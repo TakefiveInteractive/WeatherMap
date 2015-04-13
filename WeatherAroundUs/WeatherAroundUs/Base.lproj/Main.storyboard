@@ -2,10 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="slayer11.ttf">
+            <string>Slayer</string>
+            <string>Slayer</string>
             <string>Slayer</string>
             <string>Slayer</string>
             <string>Slayer</string>
@@ -56,20 +59,84 @@
                                     <segue destination="kyB-iu-air" kind="embed" id="0oP-QH-fn9"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="393" width="320" height="177"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="184278702.png" translatesAutoresizingMaskIntoConstraints="NO" id="T87-II-uZO">
-                                        <rect key="frame" x="8" y="4" width="304" height="161"/>
+                                    <imageView userInteractionEnabled="NO" alpha="0.92000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="184278702.png" translatesAutoresizingMaskIntoConstraints="NO" id="T87-II-uZO">
+                                        <rect key="frame" x="8" y="8" width="304" height="161"/>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudAndSun.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-RK-Mg0">
+                                        <rect key="frame" x="55" y="30" width="65" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ZgQ-RK-Mg0" secondAttribute="height" multiplier="1:1" id="QO3-r5-4yZ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Champaign" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug-EH-4PC">
+                                        <rect key="frame" x="135" y="60" width="153" height="24"/>
+                                        <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="19"/>
+                                        <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nvu-QS-fX4">
+                                        <rect key="frame" x="55" y="90" width="65" height="45"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0O-xK-gX7">
+                                                <rect key="frame" x="17" y="0.0" width="31" height="45"/>
+                                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="27"/>
+                                                <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNz-Hc-NSg">
+                                                <rect key="frame" x="48" y="0.0" width="11" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="038-z5-NrT"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Farah" family="Farah" pointSize="27"/>
+                                                <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="66M-2Z-bb0"/>
+                                            <constraint firstAttribute="centerY" secondItem="J0O-xK-gX7" secondAttribute="centerY" id="UbM-bf-T3f"/>
+                                            <constraint firstItem="xNz-Hc-NSg" firstAttribute="leading" secondItem="J0O-xK-gX7" secondAttribute="trailing" id="awq-kV-fP8"/>
+                                            <constraint firstItem="xNz-Hc-NSg" firstAttribute="bottom" secondItem="J0O-xK-gX7" secondAttribute="bottom" id="ggW-Qn-FD9"/>
+                                            <constraint firstItem="xNz-Hc-NSg" firstAttribute="top" secondItem="J0O-xK-gX7" secondAttribute="top" id="lbB-5l-9Nf"/>
+                                            <constraint firstAttribute="centerX" secondItem="J0O-xK-gX7" secondAttribute="centerX" id="rqd-Ok-2Vq"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rg-nX-h7z">
+                                        <rect key="frame" x="130" y="100" width="150" height="23"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="18"/>
+                                        <color key="textColor" red="0.22352941176470589" green="0.22352941176470589" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Nvu-QS-fX4" firstAttribute="trailing" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" id="3R4-wa-YXo"/>
+                                    <constraint firstItem="Nvu-QS-fX4" firstAttribute="top" secondItem="ZgQ-RK-Mg0" secondAttribute="bottom" constant="-5" id="75D-xB-eho"/>
                                     <constraint firstAttribute="bottom" secondItem="T87-II-uZO" secondAttribute="bottom" constant="8" id="9gW-2G-9W8"/>
+                                    <constraint firstAttribute="centerY" secondItem="sug-EH-4PC" secondAttribute="bottom" id="EHh-RH-mxG"/>
                                     <constraint firstAttribute="width" secondItem="ckU-eB-a2a" secondAttribute="height" multiplier="14:7" id="EON-ZN-fYQ"/>
-                                    <constraint firstItem="T87-II-uZO" firstAttribute="top" secondItem="ckU-eB-a2a" secondAttribute="top" constant="4" id="eBv-tm-lZp"/>
+                                    <constraint firstAttribute="centerX" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" constant="40" id="JYr-DN-bhE"/>
+                                    <constraint firstItem="sug-EH-4PC" firstAttribute="trailing" secondItem="4rg-nX-h7z" secondAttribute="trailing" id="TFI-u9-cIv"/>
+                                    <constraint firstItem="4rg-nX-h7z" firstAttribute="top" secondItem="sug-EH-4PC" secondAttribute="bottom" constant="20" id="ZHg-cv-dWi"/>
+                                    <constraint firstItem="sug-EH-4PC" firstAttribute="leading" secondItem="4rg-nX-h7z" secondAttribute="leading" id="aTG-MH-MUJ"/>
+                                    <constraint firstItem="T87-II-uZO" firstAttribute="top" secondItem="ckU-eB-a2a" secondAttribute="top" constant="8" id="eBv-tm-lZp"/>
+                                    <constraint firstItem="sug-EH-4PC" firstAttribute="leading" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" constant="10" id="fOL-TB-iLD"/>
+                                    <constraint firstItem="Nvu-QS-fX4" firstAttribute="leading" secondItem="ZgQ-RK-Mg0" secondAttribute="leading" id="hBK-I2-Jgn"/>
                                     <constraint firstAttribute="trailing" secondItem="T87-II-uZO" secondAttribute="trailing" constant="8" id="jvK-3i-6Rn"/>
                                     <constraint firstItem="T87-II-uZO" firstAttribute="leading" secondItem="ckU-eB-a2a" secondAttribute="leading" constant="8" id="l1K-zD-w4e"/>
+                                    <constraint firstAttribute="trailing" secondItem="sug-EH-4PC" secondAttribute="trailing" constant="40" id="nuk-X4-w8B"/>
+                                    <constraint firstItem="ZgQ-RK-Mg0" firstAttribute="top" secondItem="ckU-eB-a2a" secondAttribute="top" constant="30" id="vxS-mS-w2y"/>
+                                    <constraint firstAttribute="centerY" secondItem="ZgQ-RK-Mg0" secondAttribute="bottom" constant="-15" id="zFD-bC-RnW"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="city" destination="sug-EH-4PC" id="w1h-3n-5vg"/>
+                                    <outlet property="icon" destination="ZgQ-RK-Mg0" id="F8d-Lw-JTN"/>
+                                    <outlet property="temperature" destination="J0O-xK-gX7" id="5XK-m7-pJR"/>
+                                    <outlet property="weather" destination="4rg-nX-h7z" id="z20-4j-bS6"/>
+                                </connections>
                             </view>
                         </subviews>
                         <constraints>
@@ -174,6 +241,7 @@
     <resources>
         <image name="184278702.png" width="479" height="316"/>
         <image name="clock.png" width="99" height="99"/>
+        <image name="cloudAndSun.png" width="100" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
