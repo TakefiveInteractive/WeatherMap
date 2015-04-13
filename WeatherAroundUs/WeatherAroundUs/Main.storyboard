@@ -52,13 +52,6 @@
                                     <action selector="menuButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zFp-no-PFc"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdF-Ye-Et4">
-                                <rect key="frame" x="0.0" y="0.0" width="155" height="391"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="1"/>
-                                <connections>
-                                    <segue destination="kyB-iu-air" kind="embed" id="0oP-QH-fn9"/>
-                                </connections>
-                            </containerView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="393" width="320" height="177"/>
                                 <subviews>
@@ -71,7 +64,7 @@
                                             <constraint firstAttribute="width" secondItem="ZgQ-RK-Mg0" secondAttribute="height" multiplier="1:1" id="QO3-r5-4yZ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Champaign" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug-EH-4PC">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug-EH-4PC">
                                         <rect key="frame" x="135" y="60" width="153" height="24"/>
                                         <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="19"/>
                                         <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -80,13 +73,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nvu-QS-fX4">
                                         <rect key="frame" x="55" y="90" width="65" height="45"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0O-xK-gX7">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0O-xK-gX7">
                                                 <rect key="frame" x="17" y="0.0" width="31" height="45"/>
                                                 <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="27"/>
                                                 <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNz-Hc-NSg">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNz-Hc-NSg">
                                                 <rect key="frame" x="48" y="0.0" width="11" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="038-z5-NrT"/>
@@ -105,7 +98,7 @@
                                             <constraint firstAttribute="centerX" secondItem="J0O-xK-gX7" secondAttribute="centerX" id="rqd-Ok-2Vq"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rg-nX-h7z">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rg-nX-h7z">
                                         <rect key="frame" x="130" y="100" width="150" height="23"/>
                                         <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="18"/>
                                         <color key="textColor" red="0.22352941176470589" green="0.22352941176470589" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
@@ -145,7 +138,6 @@
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="I3l-m7-d24"/>
                             <constraint firstAttribute="trailing" secondItem="pNt-n2-tv1" secondAttribute="trailing" constant="10" id="Lx7-mF-L0j"/>
                             <constraint firstAttribute="bottom" secondItem="ckU-eB-a2a" secondAttribute="bottom" id="cB6-gX-Ykg"/>
-                            <constraint firstItem="hdF-Ye-Et4" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ek2-7N-FHX"/>
                             <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="gIL-My-mMd"/>
                             <constraint firstItem="pNt-n2-tv1" firstAttribute="top" secondItem="Ezw-9k-qKr" secondAttribute="bottom" constant="5" id="ick-Cd-b7f"/>
                             <constraint firstAttribute="trailing" secondItem="ckU-eB-a2a" secondAttribute="trailing" id="q3T-a8-BDw"/>
@@ -153,7 +145,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cityList" destination="hdF-Ye-Et4" id="pqh-3V-A1U"/>
+                        <outlet property="card" destination="ckU-eB-a2a" id="IuZ-vR-UrC"/>
                         <outlet property="clockButton" destination="pNt-n2-tv1" id="3vI-SY-AXX"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
                     </connections>
@@ -190,7 +182,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wY5-hT-eAX"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7BP-L1-h7w">
-                        <rect key="frame" x="0.0" y="0.0" width="155" height="391"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWF-ta-qqX">
