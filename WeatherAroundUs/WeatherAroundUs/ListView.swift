@@ -3,16 +3,16 @@
 //  WeatherAroundUs
 //
 //  Created by Kedan Li on 15/4/13.
-//  Copyright (c) 2015年 Kedan Li. All rights reserved.
-//
-
 import UIKit
 
 class ListView: UIView {
-
+    
+    var parentController: ViewController!
+    
     var weatherCardList = [UIButton]()
     
-    let theHeight: CGFloat = 25
+    let theHeight: CGFloat = 20
+    let maxCity: Int = 15
     
     var timer = NSTimer()
     var timeCount = 0
@@ -20,7 +20,7 @@ class ListView: UIView {
     func addACity(cityID: String, cityName: String){
         
         //move down cards
-
+        
         if weatherCardList.count > 0 {
             
             // move down
@@ -33,10 +33,11 @@ class ListView: UIView {
         }
         
         //add a card
-        let aCity = UIButton(frame: CGRectMake(4, 4, self.frame.width - 8, theHeight))
+        let aCity = UIButton(frame: CGRectMake(4, 2, self.frame.width - 8, theHeight))
         aCity.setImage(UIImage(named: "acard"), forState: UIControlState.Normal)
-        aCity.titleLabel?.text = cityID
-        aCity.alpha = 0.8
+        aCity.tag = (cityID as NSString).integerValue
+        aCity.alpha = 0
+        aCity.addTarget(self, action: "chooseCity:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(aCity)
         weatherCardList.insert(aCity, atIndex: 0)
         
@@ -48,25 +49,27 @@ class ListView: UIView {
         
         
         UIView.animateWithDuration(0.4, animations: { () -> Void in
-            aCity.alpha = 1
+            self.alpha = 1
+            aCity.alpha = 0.8
             
             }, completion: { (finish) -> Void in
                 self.timeCount = 0
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "startCounting", userInfo: nil, repeats: true)
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(25, target: self, selector: "startCounting", userInfo: nil, repeats: true)
         })
         
-        if weatherCardList.count > 12{
+        if weatherCardList.count > maxCity{
             
             let card = weatherCardList.last
             weatherCardList.removeLast()
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 card?.alpha = 0
+                card?.removeFromSuperview()
             })
         }
         
         // change size
         UIView.animateWithDuration(0.4, animations: { () -> Void in
-            self.frame.size = CGSizeMake(self.frame.width, CGFloat(self.weatherCardList.count) * self.theHeight + 8)
+            self.frame.size = CGSizeMake(self.frame.width, CGFloat(self.weatherCardList.count) * self.theHeight + 4)
         })
         
         
@@ -76,18 +79,28 @@ class ListView: UIView {
         if timeCount < 8{
             timeCount++
         }else{
-            cardsDisappear()
+            
+            removeCities()
             timer.invalidate()
             timeCount = 0
         }
     }
     
-    func cardsDisappear(){
-        
+    func chooseCity(sender: UIButton){
+        parentController.card.displayCity("\(sender.tag)")
+        removeCities()
     }
     
-    func resize(){
-        
+    func removeCities(){
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            self.alpha = 0
+            }, completion: { (finish) -> Void in
+                for button in self.weatherCardList{
+                    button.removeFromSuperview()
+                }
+                self.weatherCardList = [UIButton]()
+        })
+
     }
     
 }
