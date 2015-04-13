@@ -18,20 +18,49 @@ class ListView: UIView {
     var timeCount = 0
     
     func addACity(cityID: String, name: String){
+        
+        //move down cards
+
+        if weatherCardList.count > 0 {
+            
+            // move down
+            for city in weatherCardList {
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    city.center = CGPointMake(city.center.x, city.center.y + self.theHeight + 8)
+                })
+            }
+            
+        }
+        
+        //add a card
         let aCity = UIButton(frame: CGRectMake(4, 4, self.frame.width - 8, theHeight))
+        aCity.setImage(UIImage(named: <#String#>)), forState: <#UIControlState#>
         aCity.titleLabel?.text = cityID
         aCity.alpha = 0
-        weatherCardList.append(aCity)
+        weatherCardList.insert(aCity, atIndex: 0)
         
-        //only one card
-        if weatherCardList.count == 1{
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
-                aCity.alpha = 1
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            aCity.alpha = 1
+            
             }, completion: { (finish) -> Void in
                 self.timeCount = 0
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "startCounting", userInfo: nil, repeats: true)
+        })
+        
+        if weatherCardList.count > 8{
+            
+            let card = weatherCardList.last
+            weatherCardList.removeLast()
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                card?.alpha = 0
             })
         }
+        
+        // change size
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            self.frame.size = CGSizeMake(self.frame.width, CGFloat(self.weatherCardList.count) * self.theHeight + 8)
+        })
+        
         
     }
     
@@ -46,6 +75,10 @@ class ListView: UIView {
     }
     
     func cardsDisappear(){
+        
+    }
+    
+    func resize(){
         
     }
     

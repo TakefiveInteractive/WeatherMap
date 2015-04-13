@@ -15,6 +15,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet var mapView: MapViewForWeather!
     @IBOutlet var card: CardView!
 
+    var cityList: ListView!
     
     var weatherCardList = [UIImageView]()
     
@@ -31,14 +32,16 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         clockButton.layer.shadowRadius = 1;
         clockButton.layer.shadowOpacity = 0.3;
        
+        cityList = ListView(frame: CGRectMake(0, 0, self.view.frame.width / 2, 0))
+        cityList.alpha = 0
+        cityList.backgroundColor = UIColor.clearColor()
+        self.view.addSubview(cityList)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     
     override func viewDidAppear(animated: Bool) {
         clockButton.animate()
-        
-        //cityDetail enters
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {
