@@ -57,6 +57,7 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.92000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="184278702.png" translatesAutoresizingMaskIntoConstraints="NO" id="T87-II-uZO">
                                         <rect key="frame" x="8" y="8" width="304" height="161"/>
+                                        <color key="tintColor" red="0.7686274509803922" green="0.54117647058823526" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudAndSun.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-RK-Mg0">
                                         <rect key="frame" x="55" y="30" width="65" height="65"/>

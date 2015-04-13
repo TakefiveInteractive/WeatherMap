@@ -12,12 +12,12 @@ class ListView: UIView {
 
     var weatherCardList = [UIButton]()
     
-    let theHeight: CGFloat = 40
+    let theHeight: CGFloat = 25
     
     var timer = NSTimer()
     var timeCount = 0
     
-    func addACity(cityID: String, name: String){
+    func addACity(cityID: String, cityName: String){
         
         //move down cards
 
@@ -34,10 +34,18 @@ class ListView: UIView {
         
         //add a card
         let aCity = UIButton(frame: CGRectMake(4, 4, self.frame.width - 8, theHeight))
-        aCity.setImage(UIImage(named: <#String#>)), forState: <#UIControlState#>
+        aCity.setImage(UIImage(named: "acard"), forState: UIControlState.Normal)
         aCity.titleLabel?.text = cityID
-        aCity.alpha = 0
+        aCity.alpha = 0.8
+        self.addSubview(aCity)
         weatherCardList.insert(aCity, atIndex: 0)
+        
+        var lab = UILabel(frame: aCity.frame)
+        lab.font = UIFont(name: "Slayer", size: 11)
+        lab.text = cityName
+        lab.textColor = UIColor(red: 196/255.0, green: 138/255.0, blue: 92/255.0, alpha: 1)
+        aCity.addSubview(lab)
+        
         
         UIView.animateWithDuration(0.4, animations: { () -> Void in
             aCity.alpha = 1
@@ -47,7 +55,7 @@ class ListView: UIView {
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "startCounting", userInfo: nil, repeats: true)
         })
         
-        if weatherCardList.count > 8{
+        if weatherCardList.count > 12{
             
             let card = weatherCardList.last
             weatherCardList.removeLast()

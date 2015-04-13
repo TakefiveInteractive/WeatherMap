@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42068B771ADC570300FE4BD3 /* acard.png in Resources */ = {isa = PBXBuildFile; fileRef = 42068B761ADC570300FE4BD3 /* acard.png */; };
 		422B85021ADB4B2300EED903 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 422B85011ADB4B2300EED903 /* clock.png */; };
 		422B85031ADB4B2300EED903 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 422B85011ADB4B2300EED903 /* clock.png */; };
 		4242E6C41AD1D69B00D7EB9A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42068B761ADC570300FE4BD3 /* acard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acard.png; sourceTree = "<group>"; };
 		422B85011ADB4B2300EED903 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
 		4255EAF41ADB599800689B9E /* CardwoShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardwoShadow.png; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		42F15D491AD08275004D64EF /* IMGs */ = {
 			isa = PBXGroup;
 			children = (
+				42068B761ADC570300FE4BD3 /* acard.png */,
 				4255EAF41ADB599800689B9E /* CardwoShadow.png */,
 				422B85011ADB4B2300EED903 /* clock.png */,
 				4255EAFD1ADB651000689B9E /* cloudAndSun.png */,
@@ -396,6 +399,7 @@
 				427BAFC31AD0F2B500C87BDE /* sunrainning.png in Resources */,
 				4255EAFB1ADB622B00689B9E /* 184278702.png in Resources */,
 				427BAFC51AD0F2B500C87BDE /* eveningrain.png in Resources */,
+				42068B771ADC570300FE4BD3 /* acard.png in Resources */,
 				427BAFC61AD0F2B500C87BDE /* rainning.png in Resources */,
 				42D4EDD61A9E7F02006AE807 /* LaunchScreen.xib in Resources */,
 				422B85021ADB4B2300EED903 /* clock.png in Resources */,
