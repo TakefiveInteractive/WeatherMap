@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAroundUs/CityListViewController.swift"
+            timestampString = "449879317.374033"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "CityListViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAroundUs.CityListViewController.tableView.getter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITableView&gt;"
+                  moduleName = "WeatherAroundUs"
+                  urlString = "file:///Users/cccxfdj/Google%20Drive/REPO/WeatherAroundUs/WeatherAroundUs/WeatherAroundUs/CityListViewController.swift"
+                  timestampString = "449879317.45552"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAroundUs.CityListViewController.tableView.setter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITableView&gt;"
+                  moduleName = "WeatherAroundUs"
+                  urlString = "file:///Users/cccxfdj/Google%20Drive/REPO/WeatherAroundUs/WeatherAroundUs/WeatherAroundUs/CityListViewController.swift"
+                  timestampString = "449879317.457396"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAroundUs.CityListViewController.tableView.materializeForSet : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITableView&gt;"
+                  moduleName = "WeatherAroundUs"
+                  urlString = "file:///Users/cccxfdj/Google%20Drive/REPO/WeatherAroundUs/WeatherAroundUs/WeatherAroundUs/CityListViewController.swift"
+                  timestampString = "449879317.457591"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAroundUs.CityListViewController.init (WeatherAroundUs.CityListViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; WeatherAroundUs.CityListViewController"
+                  moduleName = "WeatherAroundUs"
+                  urlString = "file:///Users/cccxfdj/Google%20Drive/REPO/WeatherAroundUs/WeatherAroundUs/WeatherAroundUs/CityListViewController.swift"
+                  timestampString = "449879317.457749"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "61">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAroundUs.CityListViewController.init (WeatherAroundUs.CityListViewController.Type)() -&gt; WeatherAroundUs.CityListViewController"
+                  moduleName = "WeatherAroundUs"
+                  urlString = "file:///Users/cccxfdj/Google%20Drive/REPO/WeatherAroundUs/WeatherAroundUs/WeatherAroundUs/CityListViewController.swift"
+                  timestampString = "449879317.457907"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAroundUs.CityListViewController.init (WeatherAroundUs.CityListViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; WeatherAroundUs.CityListViewController"
+                  moduleName = "WeatherAroundUs"
+                  urlString = "file:///Users/cccxfdj/Google%20Drive/REPO/WeatherAroundUs/WeatherAroundUs/WeatherAroundUs/CityListViewController.swift"
+                  timestampString = "449879317.458059"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

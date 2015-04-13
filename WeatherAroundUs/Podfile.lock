@@ -1,0 +1,31 @@
+PODS:
+  - Alamofire (1.1.4)
+  - Haneke (0.9.0)
+  - Spring (1.0.2)
+
+DEPENDENCIES:
+  - Alamofire (from `git@github.com:boek/Alamofire.git`, branch `swift-1.2beta`)
+  - Haneke (from `https://github.com/Haneke/HanekeSwift.git`)
+  - Spring (~> 1.0.1)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-1.2beta
+    :git: git@github.com:boek/Alamofire.git
+  Haneke:
+    :git: https://github.com/Haneke/HanekeSwift.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 7a2cddac1904f240c4d9c20bc8e17a5ca3398647
+    :git: git@github.com:boek/Alamofire.git
+  Haneke:
+    :commit: 3666366255bbe4c520cfe7763d8815205eb9cb29
+    :git: https://github.com/Haneke/HanekeSwift.git
+
+SPEC CHECKSUMS:
+  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
+  Haneke: 6d0b23dc6603d069c889f0c02e72ddbbc78d2e97
+  Spring: b9c8a315befd509c531701f2edc4405ab9d00bad
+
+COCOAPODS: 0.36.3
