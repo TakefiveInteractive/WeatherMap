@@ -1,0 +1,13 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, ‘8.0’
+
+workspace 'WeatherAroundUs'
+
+xcodeproj 'WeatherAroundUs'
+
+pod 'Spring', '~> 1.0.1'
+pod 'Alamofire', :git => "git@github.com:boek/Alamofire.git", :branch => 'swift-1.2beta'
+pod 'Haneke', :git => 'https://github.com/Haneke/HanekeSwift.git'
+
+use_frameworks!
+

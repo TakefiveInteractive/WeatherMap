@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="slayer11.ttf">
+            <string>Slayer</string>
+            <string>Slayer</string>
+            <string>Slayer</string>
+            <string>Slayer</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="WeatherAroundUs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ezw-9k-qKr"/>
+                        <viewControllerLayoutGuide type="bottom" id="jXW-qH-GTO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-K5-F1o" customClass="MapViewForWeather" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNt-n2-tv1" userLabel="Clock" customClass="DesignableButton" customModule="Spring">
+                                <rect key="frame" x="260" y="25" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="YyO-IX-19d"/>
+                                    <constraint firstAttribute="height" constant="50" id="x4e-AX-5KZ"/>
+                                </constraints>
+                                <state key="normal" image="clock.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideLeft"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="menuButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zFp-no-PFc"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdF-Ye-Et4">
+                                <rect key="frame" x="0.0" y="0.0" width="155" height="391"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="1"/>
+                                <connections>
+                                    <segue destination="kyB-iu-air" kind="embed" id="0oP-QH-fn9"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a">
+                                <rect key="frame" x="0.0" y="393" width="320" height="177"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="184278702.png" translatesAutoresizingMaskIntoConstraints="NO" id="T87-II-uZO">
+                                        <rect key="frame" x="8" y="4" width="304" height="161"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="T87-II-uZO" secondAttribute="bottom" constant="8" id="9gW-2G-9W8"/>
+                                    <constraint firstAttribute="width" secondItem="ckU-eB-a2a" secondAttribute="height" multiplier="14:7" id="EON-ZN-fYQ"/>
+                                    <constraint firstItem="T87-II-uZO" firstAttribute="top" secondItem="ckU-eB-a2a" secondAttribute="top" constant="4" id="eBv-tm-lZp"/>
+                                    <constraint firstAttribute="trailing" secondItem="T87-II-uZO" secondAttribute="trailing" constant="8" id="jvK-3i-6Rn"/>
+                                    <constraint firstItem="T87-II-uZO" firstAttribute="leading" secondItem="ckU-eB-a2a" secondAttribute="leading" constant="8" id="l1K-zD-w4e"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ckU-eB-a2a" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="1rm-Jy-DQG"/>
+                            <constraint firstItem="Oul-K5-F1o" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="58J-wp-6aR"/>
+                            <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="I3l-m7-d24"/>
+                            <constraint firstAttribute="trailing" secondItem="pNt-n2-tv1" secondAttribute="trailing" constant="10" id="Lx7-mF-L0j"/>
+                            <constraint firstAttribute="bottom" secondItem="ckU-eB-a2a" secondAttribute="bottom" id="cB6-gX-Ykg"/>
+                            <constraint firstItem="hdF-Ye-Et4" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ek2-7N-FHX"/>
+                            <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="gIL-My-mMd"/>
+                            <constraint firstItem="pNt-n2-tv1" firstAttribute="top" secondItem="Ezw-9k-qKr" secondAttribute="bottom" constant="5" id="ick-Cd-b7f"/>
+                            <constraint firstAttribute="trailing" secondItem="ckU-eB-a2a" secondAttribute="trailing" id="q3T-a8-BDw"/>
+                            <constraint firstItem="Oul-K5-F1o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="vzJ-jJ-H1S"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cityList" destination="hdF-Ye-Et4" id="pqh-3V-A1U"/>
+                        <outlet property="clockButton" destination="pNt-n2-tv1" id="3vI-SY-AXX"/>
+                        <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="-342"/>
+        </scene>
+        <!--City Detail View Controller-->
+        <scene sceneID="pYD-IV-Ek3">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="8Ia-xJ-C07" customClass="CityDetailViewController" customModule="WeatherAroundUs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tpc-th-bWS"/>
+                        <viewControllerLayoutGuide type="bottom" id="DXi-bv-s8t"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dBH-Gf-dJW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.59742890209999999" green="0.28303097150000001" blue="0.025482414240000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HZ1-sm-XVN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="356" y="1176"/>
+        </scene>
+        <!--City List View Controller-->
+        <scene sceneID="dMs-NR-7kX">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kyB-iu-air" customClass="CityListViewController" customModule="WeatherAroundUs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ghQ-Ai-km8"/>
+                        <viewControllerLayoutGuide type="bottom" id="wY5-hT-eAX"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7BP-L1-h7w">
+                        <rect key="frame" x="0.0" y="0.0" width="155" height="391"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWF-ta-qqX">
+                                <rect key="frame" x="9" y="54" width="119" height="23"/>
+                                <color key="backgroundColor" red="0.39649863140000002" green="0.62334625909999997" blue="0.74501026459999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="11"/>
+                                <state key="normal" title="Campaign">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3En-UR-aOy">
+                                <rect key="frame" x="9" y="85" width="119" height="23"/>
+                                <color key="backgroundColor" red="0.39649863140000002" green="0.62334625909999997" blue="0.74501026459999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="11"/>
+                                <state key="normal" title="Campaign">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdU-lT-KX3">
+                                <rect key="frame" x="9" y="116" width="119" height="23"/>
+                                <color key="backgroundColor" red="0.39649863140000002" green="0.62334625909999997" blue="0.74501026459999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="11"/>
+                                <state key="normal" title="Campaign">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBo-oc-tTU">
+                                <rect key="frame" x="9" y="23" width="119" height="23"/>
+                                <color key="backgroundColor" red="0.39649863140000002" green="0.62334625909999997" blue="0.74501026459999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="11"/>
+                                <state key="normal" title="Campaign">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xME-WM-iHI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="603.5" y="110.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="184278702.png" width="479" height="316"/>
+        <image name="clock.png" width="99" height="99"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
