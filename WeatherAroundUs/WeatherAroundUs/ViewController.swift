@@ -32,16 +32,16 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         clockButton.layer.shadowRadius = 1;
         clockButton.layer.shadowOpacity = 0.3;
        
-        cityList = ListView(frame: CGRectMake(0, 0, self.view.frame.width / 2, 0))
-        cityList.alpha = 0
-        cityList.backgroundColor = UIColor.clearColor()
-        self.view.addSubview(cityList)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     
     override func viewDidAppear(animated: Bool) {
         clockButton.animate()
+        
+        cityList = ListView(frame: CGRectMake(0, 10, self.view.frame.width / 3, 0))
+        cityList.backgroundColor = UIColor.clearColor()
+        self.view.addSubview(cityList)
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {

@@ -89,6 +89,10 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             marker.title = cityID
 
             weatherIcons.updateValue(marker, forKey: cityID)
+            
+            println(WeatherInfo.citiesAroundDict[cityID])
+            
+            parentController.cityList.addACity(cityID, cityName:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!)
         }
     }
     
