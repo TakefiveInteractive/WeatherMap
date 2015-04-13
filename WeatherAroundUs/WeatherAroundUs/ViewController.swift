@@ -31,7 +31,6 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         clockButton.layer.shadowOffset = CGSizeMake(0, 2);
         clockButton.layer.shadowRadius = 1;
         clockButton.layer.shadowOpacity = 0.3;
-       
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -39,8 +38,9 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidAppear(animated: Bool) {
         clockButton.animate()
         
-        cityList = ListView(frame: CGRectMake(0, 10, self.view.frame.width / 3, 0))
+        cityList = ListView(frame: CGRectMake(0, 10, self.view.frame.width * 0.4, 0))
         cityList.backgroundColor = UIColor.clearColor()
+        cityList.parentController = self
         self.view.addSubview(cityList)
     }
     
