@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>Pods-Haneke.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>Pods-OpenWeatherMapAPI.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -48,6 +53,11 @@
 			<true/>
 		</dict>
 		<key>117A547CE4BA36C88CA33DB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>15818CDC0FA717790CB2D2F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +107,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8A69F90192E966E24A5A9396</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9B4DB442AF2EAD3CEAA40C5C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8D6294495F6BE961137BA2A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -108,6 +128,11 @@
 			<true/>
 		</dict>
 		<key>E3D8DAB60B93C9549734F05E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4F34A22C0BB9B4B22720B46</key>
 		<dict>
 			<key>primary</key>
 			<true/>
