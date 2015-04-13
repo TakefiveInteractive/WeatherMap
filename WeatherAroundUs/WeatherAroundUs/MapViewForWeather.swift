@@ -70,6 +70,11 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             
             WeatherInfo.citiesAround.insert(cityID, atIndex: 0)
             
+            if weatherIcons.count == 0 {
+                //diplay the first city getted
+                parentController.card.displayCity(cityID)
+            }
+            
             if WeatherInfo.citiesAround.count > WeatherInfo.maxCityNum{
                 self.weatherIcons.removeValueForKey(WeatherInfo.citiesAround[0])
                 WeatherInfo.citiesAround.removeLast()
@@ -146,15 +151,6 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
                 weatherIcons[key]?.icon = getImageAccordingToZoom("")
             }
         }
-        
-    }
-    
-    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
-        var content = GMSMarker(position: coordinate)
-        content.icon = UIImage(named: "rainning")?.resize(CGSizeMake(25, 25))
-        content.appearAnimation = kGMSMarkerAnimationPop
-        //content.snippet = "sdds"
-        content.map = self
         
     }
     
