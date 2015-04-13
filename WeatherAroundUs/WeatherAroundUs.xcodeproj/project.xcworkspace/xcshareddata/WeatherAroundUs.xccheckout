@@ -7,22 +7,18 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>4C787B7B-F298-4863-9D3E-F47E05D1A4AD</string>
 	<key>IDESourceControlProjectName</key>
-	<string>WeatherAroundUs</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>6EF218369900B0C3ADF9FA4E1CF0A763FCB978D3</key>
 		<string>https://github.com/likedan/WeatherAroundUs-NEW.git</string>
-		<key>A5D6554B5810C10EE6F30A9BF34B314C33D35848</key>
-		<string>https://github.com/likedan/WeatherAroundUs.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>WeatherAroundUs/WeatherAroundUs.xcodeproj</string>
+	<string>WeatherAroundUs/WeatherAroundUs.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6EF218369900B0C3ADF9FA4E1CF0A763FCB978D3</key>
 		<string>../../..</string>
-		<key>A5D6554B5810C10EE6F30A9BF34B314C33D35848</key>
-		<string>../../../../WeatherAroundUs</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/likedan/WeatherAroundUs-NEW.git</string>
@@ -36,17 +32,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>A5D6554B5810C10EE6F30A9BF34B314C33D35848</string>
-			<key>IDESourceControlWCCName</key>
-			<string>WeatherAroundUs</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>6EF218369900B0C3ADF9FA4E1CF0A763FCB978D3</string>
 			<key>IDESourceControlWCCName</key>
-			<string>WeatherAroundUs-676171dc393fbb5806b9c89789fcf25fb8854340</string>
+			<string>WeatherAroundUs-NEW</string>
 		</dict>
 	</array>
 </dict>

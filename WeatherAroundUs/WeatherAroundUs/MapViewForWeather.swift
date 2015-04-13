@@ -10,6 +10,8 @@ import UIKit
 
 class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherInformationDelegate{
 
+    var parentController: ViewController!
+    
     var mapKMRatio:Double = 0
     
     var mapCenter: GMSMarker!
@@ -22,6 +24,8 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     var zoom:Float = 12
     
     func setup() {
+        
+        
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         if userDefaults.valueForKey("longitude") != nil{
@@ -41,6 +45,8 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         UserLocation.delegate = self
         
         WeatherInfo.weatherDelegate = self
+        
+        WeatherInfo.getLocalWeatherInformation(self.camera.target)
         
     }
     
@@ -76,7 +82,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             marker.appearAnimation = kGMSMarkerAnimationPop
             marker.map = self
             marker.title = cityID
-            
+
             weatherIcons.updateValue(marker, forKey: cityID)
         }
     }
@@ -92,7 +98,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-        println(marker.title)
+        parentController.card.displayCity(marker.title)
         return true
     }
     
@@ -130,6 +136,8 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
 
     }
     
+
+    
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
         if abs(camera.zoom - zoom) > 0.5{
             zoom = camera.zoom
@@ -138,7 +146,6 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
                 weatherIcons[key]?.icon = getImageAccordingToZoom("")
             }
         }
-        
         
     }
     
@@ -150,6 +157,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         content.map = self
         
     }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
