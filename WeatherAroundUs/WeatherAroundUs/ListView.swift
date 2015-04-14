@@ -68,10 +68,7 @@ class ListView: UIView {
         }
         
         // change size
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            self.frame.size = CGSizeMake(self.frame.width, CGFloat(self.weatherCardList.count) * self.theHeight + 4)
-        })
-        
+        self.frame.size = CGSizeMake(self.frame.width, CGFloat(self.weatherCardList.count) * self.theHeight + 4)
         
     }
     
@@ -92,15 +89,20 @@ class ListView: UIView {
     }
     
     func removeCities(){
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            self.alpha = 0
-            }, completion: { (finish) -> Void in
-                for button in self.weatherCardList{
-                    button.removeFromSuperview()
-                }
-                self.weatherCardList = [UIButton]()
-        })
-
+        
+        for var index:Int = 0; index < weatherCardList.count; index++ {
+            
+            let temp = weatherCardList[index]
+            
+            UIView.animateWithDuration(0.4, delay: Double(weatherCardList.count - index + 1) * 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                temp.transform = CGAffineTransformMakeTranslation(-self.frame.width, 0)
+                
+                }) { (finish) -> Void in
+                    temp.removeFromSuperview()
+            }
+            
+        }
+        weatherCardList.removeAll(keepCapacity: false)
     }
     
 }

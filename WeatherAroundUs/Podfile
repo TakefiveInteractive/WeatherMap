@@ -8,6 +8,7 @@ xcodeproj 'WeatherAroundUs'
 pod 'Spring', '~> 1.0.1'
 pod 'Alamofire', :git => "git@github.com:boek/Alamofire.git", :branch => 'swift-1.2beta'
 pod 'Haneke', :git => 'https://github.com/Haneke/HanekeSwift.git'
+pod 'GPUImage'
 
 use_frameworks!
 
