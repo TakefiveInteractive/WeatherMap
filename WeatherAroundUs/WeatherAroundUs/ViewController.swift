@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import GPUImage
 
 class ViewController: UIViewController, GMSMapViewDelegate {
 
@@ -42,6 +43,20 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         cityList.backgroundColor = UIColor.clearColor()
         cityList.parentController = self
         self.view.addSubview(cityList)
+        
+        let image = GPUImagePicture()
+        /*
+        UIImage *inputImage = [UIImage imageNamed:@"Lambeau.jpg"];
+        
+        GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
+        GPUImageSepiaFilter *stillImageFilter = [[GPUImageSepiaFilter alloc] init];
+        
+        [stillImageSource addTarget:stillImageFilter];
+        [stillImageFilter useNextFrameForImageCapture];
+        [stillImageSource processImage];
+        
+        UIImage *currentFilteredVideoFrame = [stillImageFilter imageFromCurrentFramebuffer];
+*/
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {

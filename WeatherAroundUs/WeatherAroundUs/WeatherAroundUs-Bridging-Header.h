@@ -3,4 +3,5 @@
 //
 
 #import <GoogleMaps/GoogleMaps.h>
+#import <GPUImage/GPUImage.h>
 #import "ThreadingTrampolines.h"
