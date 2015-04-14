@@ -44,31 +44,6 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         cityList.parentController = self
         self.view.addSubview(cityList)
         
-        var image = GPUImagePicture(image: UIImage(named: "20150104075606381.jpg")!)
-        var filter = GPUImageToonFilter()
-        filter.threshold = 0.8
-        filter.quantizationLevels = 50
-        //image.addTarget(filter)
-        //filter.useNextFrameForImageCapture()
-        //image.processImage()
-        var img = filter.imageByFilteringImage(UIImage(named: "1175782717.jpg"))
-        
-        var imgv = UIImageView(image: img)
-        imgv.frame = CGRectMake(10, 10, 620, 400)
-        
-        self.view.addSubview(imgv)
-        /*
-        UIImage *inputImage = [UIImage imageNamed:@"Lambeau.jpg"];
-        
-        GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
-        GPUImageSepiaFilter *stillImageFilter = [[GPUImageSepiaFilter alloc] init];
-        GPUImageToneCurveFilter
-        [stillImageSource addTarget:stillImageFilter];
-        [stillImageFilter useNextFrameForImageCapture];
-        [stillImageSource processImage];
-        
-        UIImage *currentFilteredVideoFrame = [stillImageFilter imageFromCurrentFramebuffer];
-*/
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {

@@ -9,10 +9,6 @@
         <mutableArray key="slayer11.ttf">
             <string>Slayer</string>
             <string>Slayer</string>
-            <string>Slayer</string>
-            <string>Slayer</string>
-            <string>Slayer</string>
-            <string>Slayer</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -172,63 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZ1-sm-XVN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="356" y="1176"/>
-        </scene>
-        <!--City List View Controller-->
-        <scene sceneID="dMs-NR-7kX">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kyB-iu-air" customClass="CityListViewController" customModule="WeatherAroundUs" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ghQ-Ai-km8"/>
-                        <viewControllerLayoutGuide type="bottom" id="wY5-hT-eAX"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7BP-L1-h7w">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWF-ta-qqX">
-                                <rect key="frame" x="9" y="54" width="119" height="23"/>
-                                <color key="backgroundColor" red="0.39649863140000002" green="0.62334625909999997" blue="0.74501026459999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="11"/>
-                                <state key="normal" title="Campaign">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3En-UR-aOy">
-                                <rect key="frame" x="9" y="85" width="119" height="23"/>
-                                <color key="backgroundColor" red="0.39649863140000002" green="0.62334625909999997" blue="0.74501026459999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="11"/>
-                                <state key="normal" title="Campaign">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdU-lT-KX3">
-                                <rect key="frame" x="9" y="116" width="119" height="23"/>
-                                <color key="backgroundColor" red="0.39649863140000002" green="0.62334625909999997" blue="0.74501026459999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="11"/>
-                                <state key="normal" title="Campaign">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBo-oc-tTU">
-                                <rect key="frame" x="9" y="23" width="119" height="23"/>
-                                <color key="backgroundColor" red="0.39649863140000002" green="0.62334625909999997" blue="0.74501026459999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="11"/>
-                                <state key="normal" title="Campaign">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xME-WM-iHI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="603.5" y="110.5"/>
+            <point key="canvasLocation" x="419" y="-349"/>
         </scene>
     </scenes>
     <resources>
