@@ -7,12 +7,28 @@
 //
 
 import UIKit
+import GPUImage
 
 class CityDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var image = GPUImagePicture(image: UIImage(named: "20150104075606381.jpg")!)
+        var filter = GPUImageToonFilter()
+        filter.threshold = 0.8
+        filter.quantizationLevels = 50
+        //image.addTarget(filter)
+        //filter.useNextFrameForImageCapture()
+        //image.processImage()
+        var img = filter.imageByFilteringImage(UIImage(named: "1175782717.jpg"))
+        
+        var imgv = UIImageView(image: img)
+        imgv.frame = CGRectMake(10, 10, 620, 400)
+        
+        self.view.addSubview(imgv)
+
+        
         // Do any additional setup after loading the view.
     }
 

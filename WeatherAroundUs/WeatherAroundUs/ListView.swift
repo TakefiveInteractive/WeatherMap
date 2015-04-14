@@ -68,7 +68,7 @@ class ListView: UIView {
         }
         
         // change size
-        self.frame.size = CGSizeMake(self.frame.width, CGFloat(self.weatherCardList.count) * self.theHeight + 4)
+        self.frame.size = CGSizeMake(self.frame.width, weatherCardList[weatherCardList.count - 1].frame.origin.y + theHeight)
         
     }
     
