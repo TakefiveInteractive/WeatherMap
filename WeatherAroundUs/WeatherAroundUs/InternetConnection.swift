@@ -30,7 +30,7 @@ class InternetConnection: NSObject {
                 let result = JSON as! [String : AnyObject]
                 // get a more detailed information    avoid conflict name
                 var searchText = name
-
+                
                 if (result["predictions"] as! [AnyObject]).count > 0{
                     if(((result["predictions"] as! [AnyObject])[0] as! [String : AnyObject])["terms"] as! [AnyObject]).count == 1{
                         searchText = (((((result["predictions"] as! [AnyObject])[0] as! [String : AnyObject])["terms"] as! [AnyObject])[0] as! [String : AnyObject])["value"] as! String)
@@ -49,9 +49,21 @@ class InternetConnection: NSObject {
                         
                         if error == nil && JSON != nil {
                             let result = JSON as! [String : AnyObject]
+                            
+                            println(searchText)
+
+                            for result in (result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject]{
+                                if result.description.rangeOfString("wikipedia") != nil{
+                                    let tbUrl = (result as! [String : AnyObject])["tbUrl"] as! String
+                                    let imageUrl = (result as! [String : AnyObject])["unescapedUrl"] as! String
+                                    println(imageUrl)
+                                    return
+                                }
+                            }
                             let tbUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["tbUrl"] as! String
                             let imageUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["unescapedUrl"] as! String
                             println(imageUrl)
+
                         }
                     }
                 }else{
