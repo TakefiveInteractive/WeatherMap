@@ -7,40 +7,76 @@
 //
 
 import UIKit
+import Spring
 
-class CardView: UIView {
+class CardView: DesignableView {
 
     @IBOutlet var icon: UIImageView!
     @IBOutlet var temperature: UILabel!
     @IBOutlet var city: UILabel!
     @IBOutlet var weather: UILabel!
     
+    var hide = false
+    
     func displayCity(cityID: String){
         
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            self.icon.alpha = 0
-            self.temperature.alpha = 0
-            self.city.alpha = 0
-            self.weather.alpha = 0
-            }) { (done) -> Void in
-                
-                let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-                self.icon.image = UIImage(named: "cloudAndSun")!
-                
-                var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
-                temp = temp - 273
-                self.temperature.text = "\(Int(temp))"
-                self.city.text = (info as! [String: AnyObject])["name"] as? String
-                println((info as! [String: AnyObject])["weather"])
-                self.weather.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
-                
-                UIView.animateWithDuration(0.4, animations: { () -> Void in
-                    self.icon.alpha = 1
-                    self.temperature.alpha = 1
-                    self.city.alpha = 1
-                    self.weather.alpha = 1
-                    }) { (done) -> Void in
-                }
+        if hide {
+            hide = false
+            
+            let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
+            self.icon.image = UIImage(named: "cloudAndSun")!
+            
+            var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
+            temp = temp - 273
+            self.temperature.text = "\(Int(temp))"
+            self.city.text = (info as! [String: AnyObject])["name"] as? String
+            println((info as! [String: AnyObject])["weather"])
+            self.weather.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
+            
+            self.y = -10
+            self.animation = "slideUp"
+            self.animate()
+            
+        }else{
+        
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                self.icon.alpha = 0
+                self.temperature.alpha = 0
+                self.city.alpha = 0
+                self.weather.alpha = 0
+                }) { (done) -> Void in
+                    
+                    let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
+                    self.icon.image = UIImage(named: "cloudAndSun")!
+                    
+                    var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
+                    temp = temp - 273
+                    self.temperature.text = "\(Int(temp))"
+                    self.city.text = (info as! [String: AnyObject])["name"] as? String
+                    println((info as! [String: AnyObject])["weather"])
+                    self.weather.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
+                    
+                    UIView.animateWithDuration(0.4, animations: { () -> Void in
+                        self.icon.alpha = 1
+                        self.temperature.alpha = 1
+                        self.city.alpha = 1
+                        self.weather.alpha = 1
+                        }) { (done) -> Void in
+                    }
+            }
+        }
+    }
+    
+    func hideSelf(){
+        println(hide)
+
+        if !hide {
+            hide = true
+            self.y = 0
+            animateToNext {
+                self.animation = "slideUp"
+                self.animateTo()
+            }
         }
     }
 

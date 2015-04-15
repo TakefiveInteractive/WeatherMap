@@ -48,8 +48,12 @@
                                     <action selector="menuButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zFp-no-PFc"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="393" width="320" height="177"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="City" backgroundImage="acard.png" translatesAutoresizingMaskIntoConstraints="NO" id="yTv-RZ-bxF" customClass="CitySearchView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="10" y="25" width="220" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="408" width="320" height="160"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.92000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="184278702.png" translatesAutoresizingMaskIntoConstraints="NO" id="T87-II-uZO">
                                         <rect key="frame" x="8" y="8" width="304" height="161"/>
@@ -134,10 +138,13 @@
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="58J-wp-6aR"/>
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="I3l-m7-d24"/>
                             <constraint firstAttribute="trailing" secondItem="pNt-n2-tv1" secondAttribute="trailing" constant="10" id="Lx7-mF-L0j"/>
+                            <constraint firstItem="yTv-RZ-bxF" firstAttribute="top" secondItem="Ezw-9k-qKr" secondAttribute="bottom" constant="5" id="PdZ-JA-CC2"/>
                             <constraint firstAttribute="bottom" secondItem="ckU-eB-a2a" secondAttribute="bottom" id="cB6-gX-Ykg"/>
+                            <constraint firstItem="yTv-RZ-bxF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="f2o-U9-sQf"/>
                             <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="gIL-My-mMd"/>
                             <constraint firstItem="pNt-n2-tv1" firstAttribute="top" secondItem="Ezw-9k-qKr" secondAttribute="bottom" constant="5" id="ick-Cd-b7f"/>
                             <constraint firstAttribute="trailing" secondItem="ckU-eB-a2a" secondAttribute="trailing" id="q3T-a8-BDw"/>
+                            <constraint firstItem="pNt-n2-tv1" firstAttribute="leading" secondItem="yTv-RZ-bxF" secondAttribute="trailing" constant="30" id="rdk-Zc-hJV"/>
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="vzJ-jJ-H1S"/>
                         </constraints>
                     </view>
@@ -145,6 +152,7 @@
                         <outlet property="card" destination="ckU-eB-a2a" id="IuZ-vR-UrC"/>
                         <outlet property="clockButton" destination="pNt-n2-tv1" id="3vI-SY-AXX"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
+                        <outlet property="searchBar" destination="yTv-RZ-bxF" id="lQt-RT-Rev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -173,6 +181,7 @@
     </scenes>
     <resources>
         <image name="184278702.png" width="479" height="316"/>
+        <image name="acard.png" width="393" height="174"/>
         <image name="clock.png" width="99" height="99"/>
         <image name="cloudAndSun.png" width="100" height="100"/>
     </resources>

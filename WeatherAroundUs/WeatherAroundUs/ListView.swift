@@ -5,14 +5,14 @@
 //  Created by Kedan Li on 15/4/13.
 import UIKit
 
-class ListView: UIView {
+class ListView: UIImageView {
     
     var parentController: ViewController!
     
     var weatherCardList = [UIButton]()
     
     let theHeight: CGFloat = 20
-    let maxCity: Int = 15
+    let maxCity: Int = 12
     
     var timer = NSTimer()
     var timeCount = 0
@@ -34,17 +34,17 @@ class ListView: UIView {
         
         //add a card
         let aCity = UIButton(frame: CGRectMake(4, 2, self.frame.width - 8, theHeight))
-        aCity.setImage(UIImage(named: "acard"), forState: UIControlState.Normal)
         aCity.tag = (cityID as NSString).integerValue
         aCity.alpha = 0
         aCity.addTarget(self, action: "chooseCity:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(aCity)
         weatherCardList.insert(aCity, atIndex: 0)
         
-        var lab = UILabel(frame: aCity.frame)
+        var lab = UILabel(frame: aCity.bounds)
         lab.font = UIFont(name: "Slayer", size: 11)
         lab.text = cityName
-        lab.textColor = UIColor(red: 196/255.0, green: 138/255.0, blue: 92/255.0, alpha: 1)
+        //lab.textColor = UIColor.whiteColor()
+        lab.textColor = UIColor(red: 186/255.0, green: 128/255.0, blue: 82/255.0, alpha: 1)
         aCity.addSubview(lab)
         
         
@@ -68,7 +68,9 @@ class ListView: UIView {
         }
         
         // change size
-        self.frame.size = CGSizeMake(self.frame.width, weatherCardList[weatherCardList.count - 1].frame.origin.y + theHeight)
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.frame.size = CGSizeMake(self.frame.width, self.weatherCardList[self.weatherCardList.count - 1].frame.origin.y + self.theHeight + 4)
+        })
         
     }
     
@@ -85,24 +87,25 @@ class ListView: UIView {
     
     func chooseCity(sender: UIButton){
         parentController.card.displayCity("\(sender.tag)")
+        parentController.mapView.animateToLocation(parentController.mapView.weatherIcons["\(sender.tag)"]!.position)
         removeCities()
     }
     
     func removeCities(){
         
+        
         for var index:Int = 0; index < weatherCardList.count; index++ {
             
             let temp = weatherCardList[index]
-            
-            UIView.animateWithDuration(0.4, delay: Double(weatherCardList.count - index + 1) * 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                temp.transform = CGAffineTransformMakeTranslation(-self.frame.width, 0)
-                
-                }) { (finish) -> Void in
-                    temp.removeFromSuperview()
-            }
+            temp.removeFromSuperview()
             
         }
+        
         weatherCardList.removeAll(keepCapacity: false)
+        // change size
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.frame.size = CGSizeMake(self.frame.width, 0)
+        })
     }
     
 }
