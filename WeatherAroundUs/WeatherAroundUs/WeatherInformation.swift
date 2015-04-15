@@ -28,10 +28,14 @@ class WeatherInformation: NSObject {
     
     var weatherDelegate : WeatherInformationDelegate?
     var updateIconListDelegate : UpdateIconListDelegate?
-
-    func getLocalWeatherInformation(location: CLLocationCoordinate2D){
+    
+    var requesting = false
+    
+    func getLocalWeatherInformation(location: CLLocationCoordinate2D, number:Int){
         
-        var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/find?lat=\(location.latitude)&lon=\(location.longitude)&cnt=10&mode=json")!).responseJSON { (_, response, JSON, error) in
+        requesting = true
+        
+        var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/find?lat=\(location.latitude)&lon=\(location.longitude)&cnt=\(number)&mode=json")!).responseJSON { (_, response, JSON, error) in
             
             if error == nil && JSON != nil {
                 
@@ -54,9 +58,10 @@ class WeatherInformation: NSObject {
 
                 }
                 
+                
             }
-            
-            
+            self.requesting = false
+
         }
 
         
@@ -65,8 +70,6 @@ class WeatherInformation: NSObject {
     
     func removeAllCities(){
         citiesAround.removeAll(keepCapacity: false)
-        citiesAroundDict.removeAll(keepCapacity: false)
-        
     }
 }
 /*

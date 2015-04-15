@@ -14,10 +14,13 @@ class ViewController: UIViewController, GMSMapViewDelegate {
 
     @IBOutlet var clockButton: DesignableButton!
     @IBOutlet var mapView: MapViewForWeather!
+    @IBOutlet var searchBar: CitySearchView!
+
     @IBOutlet var card: CardView!
 
     var cityList: ListView!
-    
+    var searchResultList: SearchResultView!
+
     var weatherCardList = [UIImageView]()
     
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
@@ -29,6 +32,10 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         
         var cityListDisappearDragger: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "cityListDisappear:")
 
+        searchBar.layer.shadowOffset = CGSizeMake(0, 2);
+        searchBar.layer.shadowRadius = 1;
+        searchBar.layer.shadowOpacity = 0.3;
+        
         clockButton.layer.shadowOffset = CGSizeMake(0, 2);
         clockButton.layer.shadowRadius = 1;
         clockButton.layer.shadowOpacity = 0.3;
@@ -38,12 +45,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         clockButton.animate()
-        
-        cityList = ListView(frame: CGRectMake(0, 10, self.view.frame.width * 0.4, 0))
-        cityList.backgroundColor = UIColor.clearColor()
-        cityList.parentController = self
-        self.view.addSubview(cityList)
-        
+        createTwoLists()
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {
@@ -59,6 +61,20 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func createTwoLists() {
+        
+        searchResultList = SearchResultView(frame: CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0))
+        searchResultList.image = UIImage(named: "board")
+        searchResultList.parentController = self
+        searchResultList.userInteractionEnabled = true
+        searchResultList.layer.shadowOffset = CGSizeMake(0, 2);
+        searchResultList.layer.shadowRadius = 1;
+        searchResultList.layer.shadowOpacity = 0.3;
+        self.view.addSubview(searchResultList)
+        
+        searchBar.searchDelegate = searchResultList
     }
 
 }

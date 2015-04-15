@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAroundUs/ViewController.swift"
-            timestampString = "450715328.680598"
+            timestampString = "450761927.388323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,28 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAroundUs/MapViewForWeather.swift"
-            timestampString = "450649093.316206"
+            timestampString = "450763963.0952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
             endingLineNumber = "108"
-            landmarkName = "MapViewForWeather"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WeatherAroundUs/CardView.swift"
-            timestampString = "450644122.880508"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "displayCity(_:)"
+            landmarkName = "getNumOfWeatherBasedOnZoom()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAroundUs/ListView.swift"
-            timestampString = "450654209.978"
+            timestampString = "450759880.310038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122">
+            startingLineNumber = "125"
+            endingLineNumber = "125">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -183,13 +167,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherAroundUs/ViewController.swift"
-            timestampString = "450669622.893047"
+            filePath = "WeatherAroundUs/MapViewForWeather.swift"
+            timestampString = "450763963.0952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "viewDidAppear(_:)"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "gotOneNewWeatherData(_:latitude:longitude:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAroundUs/SearchResultView.swift"
+            timestampString = "450767192.172806"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "chooseCity(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

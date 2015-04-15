@@ -46,7 +46,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         
         WeatherInfo.weatherDelegate = self
         
-        WeatherInfo.getLocalWeatherInformation(self.camera.target)
+        WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
         
     }
     
@@ -76,7 +76,8 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             }
             
             if WeatherInfo.citiesAround.count > WeatherInfo.maxCityNum{
-                self.weatherIcons.removeValueForKey(WeatherInfo.citiesAround[0])
+                self.weatherIcons[WeatherInfo.citiesAround.last!]!.map = nil
+                self.weatherIcons.removeValueForKey(WeatherInfo.citiesAround.last!)
                 WeatherInfo.citiesAround.removeLast()
             }
             WeatherInfo.updateIconListDelegate?.updateIconList!()
@@ -89,10 +90,8 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             marker.title = cityID
 
             weatherIcons.updateValue(marker, forKey: cityID)
-            
-            println(WeatherInfo.citiesAroundDict[cityID])
-            
-            parentController.cityList.addACity(cityID, cityName:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!)
+                        
+            //parentController.cityList.addACity(cityID, cityName:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!)
         }
     }
     
@@ -104,6 +103,17 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         }else{
             return UIImage(named: "cloudAndSun")!.resize(CGSizeMake(35, 35))
         }
+    }
+    
+    func getNumOfWeatherBasedOnZoom()->Int{
+        if zoom > 12.5{
+            return 5
+        }else if zoom < 11{
+            return 20
+        }else{
+            return 10
+        }
+
     }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
@@ -133,7 +143,9 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             
             if shouldSearch{
                 // update weather info
-                WeatherInfo.getLocalWeatherInformation(self.camera.target)
+                if !WeatherInfo.requesting{
+                    WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
+                }
                 
                 searchedArea.append(CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude))
                 
@@ -141,6 +153,11 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
                     searchedArea.removeAtIndex(0)
                 }
             }
+            
+            // hide board
+            parentController.card.hideSelf()
+            parentController.searchBar.resignFirstResponder()
+
         }
 
     }
@@ -148,9 +165,15 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
 
     
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
+        
+        
         if abs(camera.zoom - zoom) > 0.5{
             zoom = camera.zoom
             let iconKeys = weatherIcons.keys
+            if !WeatherInfo.requesting{
+                WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
+            }
+            
             for key in iconKeys{
                 weatherIcons[key]?.icon = getImageAccordingToZoom("")
             }

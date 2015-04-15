@@ -15,6 +15,10 @@
 		422B85031ADB4B2300EED903 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 422B85011ADB4B2300EED903 /* clock.png */; };
 		423294721ADC6446009AEEFE /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423294711ADC6446009AEEFE /* ListView.swift */; };
 		4242E6C41AD1D69B00D7EB9A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */; };
+		424F5A1E1ADE01C300B09FBA /* CitySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */; };
+		424F5A201ADE03CF00B09FBA /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F5A1F1ADE03CF00B09FBA /* board.png */; };
+		424F5A221ADE083100B09FBA /* 1842787.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F5A211ADE083100B09FBA /* 1842787.png */; };
+		424F5A271ADE137100B09FBA /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F5A261ADE137100B09FBA /* SearchResultView.swift */; };
 		4255EAF51ADB599800689B9E /* CardwoShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAF41ADB599800689B9E /* CardwoShadow.png */; };
 		4255EAF61ADB599800689B9E /* CardwoShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAF41ADB599800689B9E /* CardwoShadow.png */; };
 		4255EAFB1ADB622B00689B9E /* 184278702.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFA1ADB622B00689B9E /* 184278702.png */; };
@@ -43,6 +47,10 @@
 		42D9638A1ADC407900FC75C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D963891ADC407900FC75C3 /* Main.storyboard */; };
 		42F15D461AD07B35004D64EF /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F15D451AD07B35004D64EF /* CityDetailViewController.swift */; };
 		42F15D481AD08271004D64EF /* fake_map.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F15D471AD08271004D64EF /* fake_map.png */; };
+		42F24B121ADD72D700CFA0EC /* timeline_attch.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F24B101ADD72D700CFA0EC /* timeline_attch.png */; };
+		42F24B131ADD72D700CFA0EC /* timeline_attch.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F24B101ADD72D700CFA0EC /* timeline_attch.png */; };
+		42F24B141ADD72D700CFA0EC /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F24B111ADD72D700CFA0EC /* timeline.png */; };
+		42F24B151ADD72D700CFA0EC /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F24B111ADD72D700CFA0EC /* timeline.png */; };
 		42F62E751AD0B6EE00D494E6 /* ListOfCities.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E741AD0B6EE00D494E6 /* ListOfCities.png */; };
 		42F62E771AD0B75100D494E6 /* Card.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E761AD0B75100D494E6 /* Card.png */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
@@ -83,6 +91,10 @@
 		422B85011ADB4B2300EED903 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		423294711ADC6446009AEEFE /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
+		424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySearchView.swift; sourceTree = "<group>"; };
+		424F5A1F1ADE03CF00B09FBA /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
+		424F5A211ADE083100B09FBA /* 1842787.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1842787.png; sourceTree = "<group>"; };
+		424F5A261ADE137100B09FBA /* SearchResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		4255EAF41ADB599800689B9E /* CardwoShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardwoShadow.png; sourceTree = "<group>"; };
 		4255EAFA1ADB622B00689B9E /* 184278702.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 184278702.png; sourceTree = "<group>"; };
 		4255EAFD1ADB651000689B9E /* cloudAndSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudAndSun.png; sourceTree = "<group>"; };
@@ -113,6 +125,8 @@
 		42D963891ADC407900FC75C3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		42F15D451AD07B35004D64EF /* CityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailViewController.swift; sourceTree = "<group>"; };
 		42F15D471AD08271004D64EF /* fake_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fake_map.png; sourceTree = "<group>"; };
+		42F24B101ADD72D700CFA0EC /* timeline_attch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline_attch.png; sourceTree = "<group>"; };
+		42F24B111ADD72D700CFA0EC /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
 		42F62E741AD0B6EE00D494E6 /* ListOfCities.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListOfCities.png; sourceTree = "<group>"; };
 		42F62E761AD0B75100D494E6 /* Card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card.png; sourceTree = "<group>"; };
 		42F62E781AD0B84900D494E6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -210,13 +224,15 @@
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
 				42F62E781AD0B84900D494E6 /* CardView.swift */,
-				423294711ADC6446009AEEFE /* ListView.swift */,
+				424F5A261ADE137100B09FBA /* SearchResultView.swift */,
+				424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */,
 				42F15D451AD07B35004D64EF /* CityDetailViewController.swift */,
 				427BAFA41AD0E6F900C87BDE /* MapViewForWeather.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */,
 				427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */,
 				427BAFA91AD0E71100C87BDE /* LocationManager.swift */,
+				423294711ADC6446009AEEFE /* ListView.swift */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				42F62E871AD0BFFD00D494E6 /* MapTile */,
 				42F15D491AD08275004D64EF /* IMGs */,
@@ -258,6 +274,8 @@
 		42F15D491AD08275004D64EF /* IMGs */ = {
 			isa = PBXGroup;
 			children = (
+				424F5A211ADE083100B09FBA /* 1842787.png */,
+				424F5A1F1ADE03CF00B09FBA /* board.png */,
 				421592DD1ADCE0EC00254479 /* 1175782717.jpg */,
 				421592DA1ADCDD4500254479 /* 20150104075606381.jpg */,
 				42068B761ADC570300FE4BD3 /* acard.png */,
@@ -270,6 +288,8 @@
 				42F62E761AD0B75100D494E6 /* Card.png */,
 				427BAFBD1AD0F2B500C87BDE /* sunrainning.png */,
 				427BAFBE1AD0F2B500C87BDE /* sun.png */,
+				42F24B101ADD72D700CFA0EC /* timeline_attch.png */,
+				42F24B111ADD72D700CFA0EC /* timeline.png */,
 				427BAFBF1AD0F2B500C87BDE /* eveningrain.png */,
 				4255EAFA1ADB622B00689B9E /* 184278702.png */,
 				427BAFC01AD0F2B500C87BDE /* rainning.png */,
@@ -396,13 +416,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				427BAFC71AD0F2B500C87BDE /* cloudrain.png in Resources */,
+				424F5A221ADE083100B09FBA /* 1842787.png in Resources */,
 				427BAFC41AD0F2B500C87BDE /* sun.png in Resources */,
 				427BAFB91AD0EFA000C87BDE /* lightningAndRain.png in Resources */,
+				424F5A201ADE03CF00B09FBA /* board.png in Resources */,
 				4255EAFE1ADB651000689B9E /* cloudAndSun.png in Resources */,
 				427BAFC31AD0F2B500C87BDE /* sunrainning.png in Resources */,
 				4255EAFB1ADB622B00689B9E /* 184278702.png in Resources */,
 				427BAFC51AD0F2B500C87BDE /* eveningrain.png in Resources */,
 				42068B771ADC570300FE4BD3 /* acard.png in Resources */,
+				42F24B121ADD72D700CFA0EC /* timeline_attch.png in Resources */,
 				427BAFC61AD0F2B500C87BDE /* rainning.png in Resources */,
 				42D4EDD61A9E7F02006AE807 /* LaunchScreen.xib in Resources */,
 				422B85021ADB4B2300EED903 /* clock.png in Resources */,
@@ -416,6 +439,7 @@
 				4255EAF51ADB599800689B9E /* CardwoShadow.png in Resources */,
 				421592DB1ADCDD4500254479 /* 20150104075606381.jpg in Resources */,
 				42D9638A1ADC407900FC75C3 /* Main.storyboard in Resources */,
+				42F24B141ADD72D700CFA0EC /* timeline.png in Resources */,
 				42F15D481AD08271004D64EF /* fake_map.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,9 +448,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F24B151ADD72D700CFA0EC /* timeline.png in Resources */,
 				422B85031ADB4B2300EED903 /* clock.png in Resources */,
 				421592DC1ADCDD4500254479 /* 20150104075606381.jpg in Resources */,
 				4255EAF61ADB599800689B9E /* CardwoShadow.png in Resources */,
+				42F24B131ADD72D700CFA0EC /* timeline_attch.png in Resources */,
 				4255EAFF1ADB651000689B9E /* cloudAndSun.png in Resources */,
 				4255EAFC1ADB622B00689B9E /* 184278702.png in Resources */,
 			);
@@ -488,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42F15D461AD07B35004D64EF /* CityDetailViewController.swift in Sources */,
+				424F5A271ADE137100B09FBA /* SearchResultView.swift in Sources */,
 				42D4EDCE1A9E7F02006AE807 /* ViewController.swift in Sources */,
 				423294721ADC6446009AEEFE /* ListView.swift in Sources */,
 				427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */,
@@ -496,6 +523,7 @@
 				42F62E811AD0BFD400D494E6 /* CachingTileClass.swift in Sources */,
 				42F62E851AD0BFF200D494E6 /* ThreadLocalSlot.swift in Sources */,
 				427BAFAA1AD0E71100C87BDE /* LocationManager.swift in Sources */,
+				424F5A1E1ADE01C300B09FBA /* CitySearchView.swift in Sources */,
 				429B95CB1AD198E400851D32 /* WeatherInformation.swift in Sources */,
 				42F62E861AD0BFF200D494E6 /* ThreadingTrampolines.m in Sources */,
 				42F62E791AD0B84900D494E6 /* CardView.swift in Sources */,
