@@ -19,6 +19,7 @@
 		424F5A201ADE03CF00B09FBA /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F5A1F1ADE03CF00B09FBA /* board.png */; };
 		424F5A221ADE083100B09FBA /* 1842787.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F5A211ADE083100B09FBA /* 1842787.png */; };
 		424F5A271ADE137100B09FBA /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F5A261ADE137100B09FBA /* SearchResultView.swift */; };
+		424F5A291ADE379C00B09FBA /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F5A281ADE379C00B09FBA /* InternetConnection.swift */; };
 		4255EAF51ADB599800689B9E /* CardwoShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAF41ADB599800689B9E /* CardwoShadow.png */; };
 		4255EAF61ADB599800689B9E /* CardwoShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAF41ADB599800689B9E /* CardwoShadow.png */; };
 		4255EAFB1ADB622B00689B9E /* 184278702.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFA1ADB622B00689B9E /* 184278702.png */; };
@@ -95,6 +96,7 @@
 		424F5A1F1ADE03CF00B09FBA /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		424F5A211ADE083100B09FBA /* 1842787.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1842787.png; sourceTree = "<group>"; };
 		424F5A261ADE137100B09FBA /* SearchResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		424F5A281ADE379C00B09FBA /* InternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
 		4255EAF41ADB599800689B9E /* CardwoShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardwoShadow.png; sourceTree = "<group>"; };
 		4255EAFA1ADB622B00689B9E /* 184278702.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 184278702.png; sourceTree = "<group>"; };
 		4255EAFD1ADB651000689B9E /* cloudAndSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudAndSun.png; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				427BAFA41AD0E6F900C87BDE /* MapViewForWeather.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */,
+				424F5A281ADE379C00B09FBA /* InternetConnection.swift */,
 				427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */,
 				427BAFA91AD0E71100C87BDE /* LocationManager.swift */,
 				423294711ADC6446009AEEFE /* ListView.swift */,
@@ -518,6 +521,7 @@
 				42D4EDCE1A9E7F02006AE807 /* ViewController.swift in Sources */,
 				423294721ADC6446009AEEFE /* ListView.swift in Sources */,
 				427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */,
+				424F5A291ADE379C00B09FBA /* InternetConnection.swift in Sources */,
 				427BAFA51AD0E6F900C87BDE /* MapViewForWeather.swift in Sources */,
 				42D4EDC91A9E7F02006AE807 /* AppDelegate.swift in Sources */,
 				42F62E811AD0BFD400D494E6 /* CachingTileClass.swift in Sources */,

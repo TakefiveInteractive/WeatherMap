@@ -23,10 +23,9 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     
     var zoom:Float = 12
     
+    
+    
     func setup() {
-        
-        
-        
         let userDefaults = NSUserDefaults.standardUserDefaults()
         if userDefaults.valueForKey("longitude") != nil{
             var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: zoom)
@@ -90,8 +89,6 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             marker.title = cityID
 
             weatherIcons.updateValue(marker, forKey: cityID)
-                        
-            //parentController.cityList.addACity(cityID, cityName:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!)
         }
     }
     
@@ -118,6 +115,11 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
         parentController.card.displayCity(marker.title)
+        var connection = InternetConnection()
+        connection.delegate = parentController
+        connection.getSmallPictureOfACity(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!)
+        self.animateToLocation(marker.position)
+        
         return true
     }
     

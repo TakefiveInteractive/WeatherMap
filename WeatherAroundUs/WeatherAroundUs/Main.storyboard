@@ -99,23 +99,25 @@
                                             <constraint firstAttribute="centerX" secondItem="J0O-xK-gX7" secondAttribute="centerX" id="rqd-Ok-2Vq"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rg-nX-h7z">
-                                        <rect key="frame" x="130" y="100" width="150" height="23"/>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="18"/>
-                                        <color key="textColor" red="0.22352941176470589" green="0.22352941176470589" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pc2-yF-qMt">
+                                        <rect key="frame" x="130" y="95" width="150" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="uTm-vm-C5k"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="sug-EH-4PC" firstAttribute="leading" secondItem="pc2-yF-qMt" secondAttribute="leading" id="1v3-89-EAS"/>
                                     <constraint firstItem="Nvu-QS-fX4" firstAttribute="trailing" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" id="3R4-wa-YXo"/>
                                     <constraint firstItem="Nvu-QS-fX4" firstAttribute="top" secondItem="ZgQ-RK-Mg0" secondAttribute="bottom" constant="-5" id="75D-xB-eho"/>
                                     <constraint firstAttribute="bottom" secondItem="T87-II-uZO" secondAttribute="bottom" constant="8" id="9gW-2G-9W8"/>
                                     <constraint firstAttribute="centerY" secondItem="sug-EH-4PC" secondAttribute="bottom" id="EHh-RH-mxG"/>
                                     <constraint firstAttribute="width" secondItem="ckU-eB-a2a" secondAttribute="height" multiplier="14:7" id="EON-ZN-fYQ"/>
                                     <constraint firstAttribute="centerX" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" constant="40" id="JYr-DN-bhE"/>
-                                    <constraint firstItem="sug-EH-4PC" firstAttribute="trailing" secondItem="4rg-nX-h7z" secondAttribute="trailing" id="TFI-u9-cIv"/>
-                                    <constraint firstItem="4rg-nX-h7z" firstAttribute="top" secondItem="sug-EH-4PC" secondAttribute="bottom" constant="20" id="ZHg-cv-dWi"/>
-                                    <constraint firstItem="sug-EH-4PC" firstAttribute="leading" secondItem="4rg-nX-h7z" secondAttribute="leading" id="aTG-MH-MUJ"/>
+                                    <constraint firstItem="pc2-yF-qMt" firstAttribute="top" secondItem="sug-EH-4PC" secondAttribute="bottom" constant="15" id="Mz4-w7-CAB"/>
+                                    <constraint firstItem="sug-EH-4PC" firstAttribute="trailing" secondItem="pc2-yF-qMt" secondAttribute="trailing" id="O0g-xc-ocw"/>
                                     <constraint firstItem="T87-II-uZO" firstAttribute="top" secondItem="ckU-eB-a2a" secondAttribute="top" constant="8" id="eBv-tm-lZp"/>
                                     <constraint firstItem="sug-EH-4PC" firstAttribute="leading" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" constant="10" id="fOL-TB-iLD"/>
                                     <constraint firstItem="Nvu-QS-fX4" firstAttribute="leading" secondItem="ZgQ-RK-Mg0" secondAttribute="leading" id="hBK-I2-Jgn"/>
@@ -129,7 +131,7 @@
                                     <outlet property="city" destination="sug-EH-4PC" id="w1h-3n-5vg"/>
                                     <outlet property="icon" destination="ZgQ-RK-Mg0" id="F8d-Lw-JTN"/>
                                     <outlet property="temperature" destination="J0O-xK-gX7" id="5XK-m7-pJR"/>
-                                    <outlet property="weather" destination="4rg-nX-h7z" id="z20-4j-bS6"/>
+                                    <outlet property="weatherDescription" destination="pc2-yF-qMt" id="n8b-AQ-eRO"/>
                                 </connections>
                             </view>
                         </subviews>

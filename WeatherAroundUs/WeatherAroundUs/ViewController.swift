@@ -10,7 +10,7 @@ import UIKit
 import Spring
 import GPUImage
 
-class ViewController: UIViewController, GMSMapViewDelegate {
+class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDelegate{
 
     @IBOutlet var clockButton: DesignableButton!
     @IBOutlet var mapView: MapViewForWeather!
@@ -25,6 +25,13 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
 
+    var imag: UIImageView!
+    
+    func getSmallImageOfCity(image: UIImage, reference: String, cityName:String){
+        imag.image = image
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +53,9 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidAppear(animated: Bool) {
         clockButton.animate()
         createTwoLists()
+        
+        imag = UIImageView(frame: CGRectMake(10, 10, 200, 400))
+        self.view.addSubview(imag)
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {

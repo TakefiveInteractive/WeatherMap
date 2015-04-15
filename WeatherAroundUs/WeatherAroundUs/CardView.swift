@@ -14,7 +14,7 @@ class CardView: DesignableView {
     @IBOutlet var icon: UIImageView!
     @IBOutlet var temperature: UILabel!
     @IBOutlet var city: UILabel!
-    @IBOutlet var weather: UILabel!
+    @IBOutlet var weatherDescription: UITextView!
     
     var hide = false
     
@@ -30,8 +30,8 @@ class CardView: DesignableView {
             temp = temp - 273
             self.temperature.text = "\(Int(temp))"
             self.city.text = (info as! [String: AnyObject])["name"] as? String
-            println((info as! [String: AnyObject])["weather"])
-            self.weather.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
+            println(self.city.text)
+            self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
             
             self.y = -10
             self.animation = "slideUp"
@@ -43,7 +43,7 @@ class CardView: DesignableView {
                 self.icon.alpha = 0
                 self.temperature.alpha = 0
                 self.city.alpha = 0
-                self.weather.alpha = 0
+                self.weatherDescription.alpha = 0
                 }) { (done) -> Void in
                     
                     let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
@@ -53,14 +53,13 @@ class CardView: DesignableView {
                     temp = temp - 273
                     self.temperature.text = "\(Int(temp))"
                     self.city.text = (info as! [String: AnyObject])["name"] as? String
-                    println((info as! [String: AnyObject])["weather"])
-                    self.weather.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
+                    self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
                     
                     UIView.animateWithDuration(0.4, animations: { () -> Void in
                         self.icon.alpha = 1
                         self.temperature.alpha = 1
                         self.city.alpha = 1
-                        self.weather.alpha = 1
+                        self.weatherDescription.alpha = 1
                         }) { (done) -> Void in
                     }
             }
