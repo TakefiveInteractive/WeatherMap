@@ -8,27 +8,28 @@
 
 import UIKit
 import Spring
-import GPUImage
 
 class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDelegate{
 
     @IBOutlet var clockButton: DesignableButton!
     @IBOutlet var mapView: MapViewForWeather!
     @IBOutlet var searchBar: CitySearchView!
-
     @IBOutlet var card: CardView!
+    @IBOutlet var shadow: UIVisualEffectView!
 
+    
+    var smallImageView: ImageCardView!
     var cityList: ListView!
     var searchResultList: SearchResultView!
 
     var weatherCardList = [UIImageView]()
     
-    var draggingGesture: UIScreenEdgePanGestureRecognizer!
-
-    var imag: UIImageView!
     
-    func getSmallImageOfCity(image: UIImage, reference: String, cityName:String){
-        imag.image = image
+    var draggingGesture: UIScreenEdgePanGestureRecognizer!
+    
+    func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL: String, cityName: String) {
+        
+        smallImageView.changeImage(image, frame:CGRectMake(self.view.frame.width - image.size.width / 2 - 20, card.frame.origin.y - image.size.height / 2 - 10, image.size.width / 2 + 8, image.size.height / 2 + 8))
     }
 
     
@@ -38,10 +39,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         mapView.parentController = self
         
         var cityListDisappearDragger: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "cityListDisappear:")
-
-        searchBar.layer.shadowOffset = CGSizeMake(0, 2);
-        searchBar.layer.shadowRadius = 1;
-        searchBar.layer.shadowOpacity = 0.3;
         
         clockButton.layer.shadowOffset = CGSizeMake(0, 2);
         clockButton.layer.shadowRadius = 1;
@@ -52,10 +49,41 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     override func viewDidAppear(animated: Bool) {
         clockButton.animate()
-        createTwoLists()
         
-        imag = UIImageView(frame: CGRectMake(10, 10, 200, 400))
-        self.view.addSubview(imag)
+        // create result list
+        searchResultList = SearchResultView(frame: CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0))
+        searchResultList.parentController = self
+        self.view.addSubview(searchResultList)
+        searchBar.searchDelegate = searchResultList
+        
+        // create smallImageView
+        smallImageView = ImageCardView(image: UIImage(named: "board")!)
+        self.view.addSubview(smallImageView)
+        
+        let gesture = UIPanGestureRecognizer(target: self, action: "dragged:")
+        self.smallImageView.addGestureRecognizer(gesture)
+    }
+    
+    func dragged(sender: UIPanGestureRecognizer){
+        var movement: CGFloat = 0
+        if sender.translationInView(self.smallImageView).x < 0{
+            movement = sqrt(pow(sender.translationInView(self.smallImageView).x, 2) + pow(sender.translationInView(self.smallImageView).y, 2))
+            smallImageView.moveAccordingToDrag(movement)
+            card.moveAccordingToDrag(movement)
+            shadow.alpha = movement / 200
+        }
+        
+        if movement > 150 || sender.state == UIGestureRecognizerState.Cancelled || sender.state == UIGestureRecognizerState.Failed || sender.state == UIGestureRecognizerState.Ended {
+            sender.removeTarget(self, action: "dragged:")
+            UIView.animateWithDuration(Double(movement) / 200, animations: { () -> Void in
+                self.shadow.alpha = 1
+                self.card.transform = CGAffineTransformMakeTranslation(0, self.card.frame.height * 1.5)
+                self.smallImageView.frame = CGRectMake(4, 4, self.view.frame.width - 8, self.view.frame.height - 8)
+                }, completion: { (finish) -> Void in
+                    
+            })
+        }
+
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {
@@ -64,27 +92,9 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         })
     }
     
-    func cityListDisappear(sender: UIPanGestureRecognizer) {
-        var x = sender.translationInView(card).x
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func createTwoLists() {
-        
-        searchResultList = SearchResultView(frame: CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0))
-        searchResultList.image = UIImage(named: "board")
-        searchResultList.parentController = self
-        searchResultList.userInteractionEnabled = true
-        searchResultList.layer.shadowOffset = CGSizeMake(0, 2);
-        searchResultList.layer.shadowRadius = 1;
-        searchResultList.layer.shadowOpacity = 0.3;
-        self.view.addSubview(searchResultList)
-        
-        searchBar.searchDelegate = searchResultList
     }
 
 }

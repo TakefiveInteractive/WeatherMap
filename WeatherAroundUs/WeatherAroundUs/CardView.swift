@@ -18,6 +18,13 @@ class CardView: DesignableView {
     
     var hide = false
     
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.layer.shadowOffset = CGSizeMake(0, 2);
+        self.layer.shadowRadius = 1;
+        self.layer.shadowOpacity = 0.3;
+    }
+ 
     func displayCity(cityID: String){
         
         if hide {
@@ -67,7 +74,6 @@ class CardView: DesignableView {
     }
     
     func hideSelf(){
-        println(hide)
 
         if !hide {
             hide = true
@@ -77,6 +83,11 @@ class CardView: DesignableView {
                 self.animateTo()
             }
         }
+    }
+    
+    // movement  0 - 200
+    func moveAccordingToDrag(movement:CGFloat){
+        self.transform = CGAffineTransformMakeTranslation(0, movement)
     }
 
 }

@@ -8,9 +8,10 @@
 
 import UIKit
 import Alamofire
+import Haneke
 
 @objc protocol InternetConnectionDelegate: class {
-    optional func getSmallImageOfCity(image: UIImage, reference: String, cityName:String)
+    optional func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL:String, cityName:String)
 }
 
 class InternetConnection: NSObject {
@@ -21,27 +22,40 @@ class InternetConnection: NSObject {
     
     func getSmallPictureOfACity(location: CLLocationCoordinate2D, name: String){
         
-        // avoid crash when there is space
-        let city = name.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        var req = Alamofire.request(.GET, NSURL(string: "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=\(city)&location=\(location.latitude),\(location.longitude))&language=en&radius=5000&key=AIzaSyDHwdGU463x3_aJfg4TNWm0fijTjr9VEdg")!).responseJSON { (_, response, JSON, error) in
-
-            if error == nil && JSON != nil {
-                let result = JSON as! [String : AnyObject]
-                // get a more detailed information    avoid conflict name
-                var searchText = name
+        var geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(location) { (response, error) -> Void in
+            
+            if error == nil && response != nil{
                 
-                if (result["predictions"] as! [AnyObject]).count > 0{
-                    if(((result["predictions"] as! [AnyObject])[0] as! [String : AnyObject])["terms"] as! [AnyObject]).count == 1{
-                        searchText = (((((result["predictions"] as! [AnyObject])[0] as! [String : AnyObject])["terms"] as! [AnyObject])[0] as! [String : AnyObject])["value"] as! String)
-                    }else if (((result["predictions"] as! [AnyObject])[0] as! [String : AnyObject])["terms"] as! [AnyObject]).count >= 2{
-                        searchText = (((((result["predictions"] as! [AnyObject])[0] as! [String : AnyObject])["terms"] as! [AnyObject])[0] as! [String : AnyObject])["value"] as! String) + " " + (((((result["predictions"] as! [AnyObject])[0] as! [String : AnyObject])["terms"] as! [AnyObject])[1] as! [String : AnyObject])["value"] as! String)
+                let address = response!.results()[0] as! GMSAddress
+                
+                var searchText = ""
+                
+                if address.subLocality != nil{
+                    
+                    if address.locality != nil{
+                        searchText = address.subLocality + " " + address.locality
+                    }else if address.administrativeArea != nil{
+                        searchText = address.subLocality + " " + address.administrativeArea
+                    }else{
+                        searchText = address.subLocality + " " + address.country
                     }
+                    
+                }else if address.locality != nil{
+                    if address.administrativeArea != nil{
+                        searchText = address.locality + " " + address.administrativeArea
+                    }else{
+                        searchText = address.locality + " " + address.country
+                    }
+                }else if address.administrativeArea != nil{
+                    searchText = address.administrativeArea + "" + address.country
+                }else{
+                    searchText = name + "" + address.country
                 }
                 
-                println(searchText)
-
+                
                 if !self.checkIfContainsChinese(searchText){
+                    // avoid error when there is space
                     searchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
                     let url = NSURL(string: "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=\(searchText)&imgtype=photo&imgsz=xlarge%7Cxxlarge%7Chuge&imgc=color&hl=en")!
                     // request for the image
@@ -51,29 +65,35 @@ class InternetConnection: NSObject {
                             let result = JSON as! [String : AnyObject]
                             
                             println(searchText)
-
+                            
+                            var tbUrl = ""
+                            var imageUrl = ""
+                            
                             for result in (result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject]{
+                                //search for wiki result first
                                 if result.description.rangeOfString("wikipedia") != nil{
-                                    let tbUrl = (result as! [String : AnyObject])["tbUrl"] as! String
-                                    let imageUrl = (result as! [String : AnyObject])["unescapedUrl"] as! String
-                                    println(imageUrl)
-                                    return
+                                    tbUrl = (result as! [String : AnyObject])["tbUrl"] as! String
+                                    imageUrl = (result as! [String : AnyObject])["unescapedUrl"] as! String
+                                    break;
                                 }
                             }
-                            let tbUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["tbUrl"] as! String
-                            let imageUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["unescapedUrl"] as! String
-                            println(imageUrl)
-
+                            if tbUrl == ""{
+                                tbUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["tbUrl"] as! String
+                                imageUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["unescapedUrl"] as! String
+                            }
+                            
+                            let cache = Shared.dataCache
+                            var img = UIImage()
+                            cache.fetch(URL: NSURL(string: tbUrl)!).onSuccess { image in
+                                img = UIImage(data: image)!
+                                self.delegate?.getSmallImageOfCity!(img, btUrl: tbUrl, imageURL: imageUrl, cityName: name)
+                            }
+                            
                         }
                     }
-                }else{
-                    //has chinese
                 }
                 
-                
-              
             }
-        
         }
     }
     

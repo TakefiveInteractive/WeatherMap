@@ -18,8 +18,21 @@ class CitySearchView: UISearchBar, UISearchBarDelegate{
     
     var searchDelegate : SearchInformationDelegate?
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
     func setup(){
         self.delegate = self
+        self.layer.shadowOffset = CGSizeMake(0, 2)
+        self.layer.shadowRadius = 1
+        self.layer.shadowOpacity = 0.3
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -59,15 +72,7 @@ class CitySearchView: UISearchBar, UISearchBarDelegate{
         return true
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
+
 }
 /*
 
