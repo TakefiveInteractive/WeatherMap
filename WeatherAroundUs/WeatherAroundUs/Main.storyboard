@@ -65,8 +65,11 @@
                                             <constraint firstAttribute="width" secondItem="ZgQ-RK-Mg0" secondAttribute="height" multiplier="1:1" id="QO3-r5-4yZ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug-EH-4PC">
-                                        <rect key="frame" x="135" y="60" width="153" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="sug-EH-4PC">
+                                        <rect key="frame" x="130" y="42" width="150" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Vfe-fa-WKi"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Slayer" family="Slayer" pointSize="19"/>
                                         <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -113,10 +116,10 @@
                                     <constraint firstItem="Nvu-QS-fX4" firstAttribute="trailing" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" id="3R4-wa-YXo"/>
                                     <constraint firstItem="Nvu-QS-fX4" firstAttribute="top" secondItem="ZgQ-RK-Mg0" secondAttribute="bottom" constant="-5" id="75D-xB-eho"/>
                                     <constraint firstAttribute="bottom" secondItem="T87-II-uZO" secondAttribute="bottom" constant="8" id="9gW-2G-9W8"/>
-                                    <constraint firstAttribute="centerY" secondItem="sug-EH-4PC" secondAttribute="bottom" id="EHh-RH-mxG"/>
+                                    <constraint firstAttribute="centerY" secondItem="sug-EH-4PC" secondAttribute="bottom" constant="-10" id="EHh-RH-mxG"/>
                                     <constraint firstAttribute="width" secondItem="ckU-eB-a2a" secondAttribute="height" multiplier="14:7" id="EON-ZN-fYQ"/>
                                     <constraint firstAttribute="centerX" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" constant="40" id="JYr-DN-bhE"/>
-                                    <constraint firstItem="pc2-yF-qMt" firstAttribute="top" secondItem="sug-EH-4PC" secondAttribute="bottom" constant="15" id="Mz4-w7-CAB"/>
+                                    <constraint firstItem="pc2-yF-qMt" firstAttribute="top" secondItem="sug-EH-4PC" secondAttribute="bottom" constant="5" id="Mz4-w7-CAB"/>
                                     <constraint firstItem="sug-EH-4PC" firstAttribute="trailing" secondItem="pc2-yF-qMt" secondAttribute="trailing" id="O0g-xc-ocw"/>
                                     <constraint firstItem="T87-II-uZO" firstAttribute="top" secondItem="ckU-eB-a2a" secondAttribute="top" constant="8" id="eBv-tm-lZp"/>
                                     <constraint firstItem="sug-EH-4PC" firstAttribute="leading" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" constant="10" id="fOL-TB-iLD"/>
@@ -134,17 +137,29 @@
                                     <outlet property="weatherDescription" destination="pc2-yF-qMt" id="n8b-AQ-eRO"/>
                                 </connections>
                             </view>
+                            <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtB-Dd-d0p">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="i5F-R2-MoH">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="ckU-eB-a2a" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="1rm-Jy-DQG"/>
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="58J-wp-6aR"/>
+                            <constraint firstItem="qtB-Dd-d0p" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="5om-xC-9i2"/>
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="I3l-m7-d24"/>
+                            <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="qtB-Dd-d0p" secondAttribute="bottom" id="KqD-vt-UtR"/>
                             <constraint firstAttribute="trailing" secondItem="pNt-n2-tv1" secondAttribute="trailing" constant="10" id="Lx7-mF-L0j"/>
                             <constraint firstItem="yTv-RZ-bxF" firstAttribute="top" secondItem="Ezw-9k-qKr" secondAttribute="bottom" constant="5" id="PdZ-JA-CC2"/>
+                            <constraint firstItem="qtB-Dd-d0p" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="XfM-ac-X3H"/>
                             <constraint firstAttribute="bottom" secondItem="ckU-eB-a2a" secondAttribute="bottom" id="cB6-gX-Ykg"/>
                             <constraint firstItem="yTv-RZ-bxF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="f2o-U9-sQf"/>
                             <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="gIL-My-mMd"/>
                             <constraint firstItem="pNt-n2-tv1" firstAttribute="top" secondItem="Ezw-9k-qKr" secondAttribute="bottom" constant="5" id="ick-Cd-b7f"/>
+                            <constraint firstAttribute="trailing" secondItem="qtB-Dd-d0p" secondAttribute="trailing" id="nUL-rs-oDT"/>
                             <constraint firstAttribute="trailing" secondItem="ckU-eB-a2a" secondAttribute="trailing" id="q3T-a8-BDw"/>
                             <constraint firstItem="pNt-n2-tv1" firstAttribute="leading" secondItem="yTv-RZ-bxF" secondAttribute="trailing" constant="30" id="rdk-Zc-hJV"/>
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="vzJ-jJ-H1S"/>
@@ -155,6 +170,7 @@
                         <outlet property="clockButton" destination="pNt-n2-tv1" id="3vI-SY-AXX"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
                         <outlet property="searchBar" destination="yTv-RZ-bxF" id="lQt-RT-Rev"/>
+                        <outlet property="shadow" destination="qtB-Dd-d0p" id="Tf6-KE-Izy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

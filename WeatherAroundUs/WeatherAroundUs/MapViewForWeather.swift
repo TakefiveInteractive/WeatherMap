@@ -72,6 +72,9 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             if weatherIcons.count == 0 {
                 //diplay the first city getted
                 parentController.card.displayCity(cityID)
+                var connection = InternetConnection()
+                connection.delegate = parentController
+                connection.getSmallPictureOfACity(CLLocationCoordinate2DMake(latitude, longitude), name:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!)
             }
             
             if WeatherInfo.citiesAround.count > WeatherInfo.maxCityNum{
@@ -158,6 +161,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             
             // hide board
             parentController.card.hideSelf()
+            parentController.smallImageView.hideSelf()
             parentController.searchBar.resignFirstResponder()
 
         }
