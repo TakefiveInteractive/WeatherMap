@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class SearchResultView: UIImageView, SearchInformationDelegate{
+class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
     
     var parentController: ViewController!
     
@@ -22,8 +22,8 @@ class SearchResultView: UIImageView, SearchInformationDelegate{
     var timer = NSTimer()
     var timeCount = 0
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(effect: UIVisualEffect) {
+        super.init(effect: effect)
         setup()
     }
     
@@ -33,7 +33,6 @@ class SearchResultView: UIImageView, SearchInformationDelegate{
     }
     
     func setup(){
-        self.image = UIImage(named: "board")
         self.layer.shadowOffset = CGSizeMake(0, 2)
         self.layer.shadowRadius = 1
         self.layer.shadowOpacity = 0.3

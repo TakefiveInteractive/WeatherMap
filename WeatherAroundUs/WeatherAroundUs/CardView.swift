@@ -15,14 +15,12 @@ class CardView: DesignableView {
     @IBOutlet var temperature: UILabel!
     @IBOutlet var city: UILabel!
     @IBOutlet var weatherDescription: UITextView!
-    
+    var blurView: UIVisualEffectView!
+
     var hide = false
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.layer.shadowOffset = CGSizeMake(0, 2);
-        self.layer.shadowRadius = 1;
-        self.layer.shadowOpacity = 0.3;
     }
  
     func displayCity(cityID: String){
@@ -71,6 +69,12 @@ class CardView: DesignableView {
                     }
             }
         }
+    }
+    
+    func addShadow(){
+        blurView.layer.shadowOffset = CGSizeMake(0, 2);
+        blurView.layer.shadowRadius = 1;
+        blurView.layer.shadowOpacity = 0.3;
     }
     
     func hideSelf(){
