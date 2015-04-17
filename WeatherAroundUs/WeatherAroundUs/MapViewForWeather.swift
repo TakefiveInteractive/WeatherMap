@@ -97,11 +97,19 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         var str = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
         
         if zoom > 12.5{
+<<<<<<< HEAD
             return UIImage(named: str + ".png")!.resize(CGSizeMake(50, 50))
         }else if zoom < 11{
             return UIImage(named: str + ".png")!.resize(CGSizeMake(25, 25))
         }else{
             return UIImage(named: str + ".png")!.resize(CGSizeMake(35, 35))
+=======
+            return UIImage(named: "rain")!.resize(CGSizeMake(50, 50))
+        }else if zoom < 11{
+            return UIImage(named: "rain")!.resize(CGSizeMake(25, 25))
+        }else{
+            return UIImage(named: "rain")!.resize(CGSizeMake(35, 35))
+>>>>>>> origin/master
         }
     }
     
