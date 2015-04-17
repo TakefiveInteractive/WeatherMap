@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import Haneke
+import SwiftyJSON
 
 @objc protocol InternetConnectionDelegate: class {
     optional func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL:String, cityName:String)
@@ -53,7 +54,6 @@ class InternetConnection: NSObject {
                     searchText = name + "" + address.country
                 }
                 
-                
                 if !self.checkIfContainsChinese(searchText){
                     // avoid error when there is space
                     searchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -63,23 +63,52 @@ class InternetConnection: NSObject {
                         
                         if error == nil && JSON != nil {
                             let result = JSON as! [String : AnyObject]
-                            
-                            println(searchText)
-                            
+                                                        
                             var tbUrl = ""
                             var imageUrl = ""
-                            
-                            for result in (result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject]{
-                                //search for wiki result first
-                                if result.description.rangeOfString("wikipedia") != nil{
-                                    tbUrl = (result as! [String : AnyObject])["tbUrl"] as! String
-                                    imageUrl = (result as! [String : AnyObject])["unescapedUrl"] as! String
-                                    break;
+                            let myjson = SwiftyJSON.JSON(JSON!)
+                            if let data = myjson["responseData"]["results"].array{
+                                for url in data {
+                                    //search for wiki result first
+                                    if url.description.rangeOfString("wikipedia") != nil{
+                                        
+                                        if let url =  url["tbUrl"].string
+                                        {
+                                            
+                                            tbUrl = url
+                                            println(url)
+                                        }
+                                        
+                                        if let url = url["unescapedUrl"].string{
+                                        
+                                            imageUrl = url
+                                            println(imageUrl)
+                                        }
+                                        
+                                        break;
+                                    }
                                 }
+                            
                             }
+                            
                             if tbUrl == ""{
-                                tbUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["tbUrl"] as! String
-                                imageUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["unescapedUrl"] as! String
+                                
+                                if let url =  myjson["responseData"]["results"][0]["tbUrl"].string
+                                {
+                                    
+                                    tbUrl = url
+                                    println(tbUrl)
+                                }
+                                
+                                if let url = myjson["responseData"]["results"][0]["unescapedUrl"].string{
+                                    
+                                    imageUrl = url
+                                    println(imageUrl)
+                                    
+                                }
+                                
+                                //tbUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["tbUrl"] as! String
+                                //imageUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["unescapedUrl"] as! String
                             }
                             
                             let cache = Shared.dataCache
