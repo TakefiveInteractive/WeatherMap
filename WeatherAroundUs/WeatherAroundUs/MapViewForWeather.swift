@@ -98,11 +98,12 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         var str = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
         
         if zoom > 12.5{
-            return UIImage(named: str)!.resize(CGSizeMake(50, 50))
+            return UIImage(named: str)!.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
         }else if zoom < 11{
-            return UIImage(named: str)!.resize(CGSizeMake(25, 25))
+            return UIImage(named: str)!.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
         }else{
-            return UIImage(named: str)!.resize(CGSizeMake(35, 35))
+            return UIImage(named: str)!.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
+
         }
     }
     
@@ -162,7 +163,6 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             
             // hide board
             parentController.card.hideSelf()
-            parentController.smallImageView.hideSelf()
             parentController.searchBar.resignFirstResponder()
 
         }

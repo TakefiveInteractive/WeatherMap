@@ -145,7 +145,7 @@
                                     <constraint firstAttribute="centerY" secondItem="ZgQ-RK-Mg0" secondAttribute="bottom" constant="-15" id="zFD-bC-RnW"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="blurView" destination="lPl-fd-JUl" id="WO3-Z7-7fB"/>
+                                    <outlet property="blurView" destination="lPl-fd-JUl" id="qdC-av-OQU"/>
                                     <outlet property="city" destination="sug-EH-4PC" id="w1h-3n-5vg"/>
                                     <outlet property="icon" destination="ZgQ-RK-Mg0" id="F8d-Lw-JTN"/>
                                     <outlet property="temperature" destination="J0O-xK-gX7" id="5XK-m7-pJR"/>

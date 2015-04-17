@@ -15,7 +15,7 @@ class CardView: DesignableView {
     @IBOutlet var temperature: UILabel!
     @IBOutlet var city: UILabel!
     @IBOutlet var weatherDescription: UITextView!
-    var blurView: UIVisualEffectView!
+    @IBOutlet var blurView: UIVisualEffectView!
 
     var hide = false
     
@@ -29,7 +29,7 @@ class CardView: DesignableView {
             hide = false
             
             let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-            self.icon.image = UIImage(named: "cloudAndSun")!
+            self.icon.image = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
             
             var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
             temp = temp - 273
@@ -52,7 +52,7 @@ class CardView: DesignableView {
                 }) { (done) -> Void in
                     
                     let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-                    self.icon.image = UIImage(named: "rain")!
+                    self.icon.image = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
                     
                     var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
                     temp = temp - 273
