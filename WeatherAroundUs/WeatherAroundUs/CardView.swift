@@ -54,7 +54,7 @@ class CardView: DesignableView {
                 }) { (done) -> Void in
                     
                     let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-                    self.icon.image = UIImage(named: "cloudAndSun")!
+                    self.icon.image = UIImage(named: "rain")!
                     
                     var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
                     temp = temp - 273
