@@ -93,12 +93,15 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     }
     
     func getImageAccordingToZoom(cityID: String)->UIImage{
+        
+        var str = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+        
         if zoom > 12.5{
-            return UIImage(named: "cloudAndSun")!.resize(CGSizeMake(50, 50))
+            return UIImage(named: str + ".png")!.resize(CGSizeMake(50, 50))
         }else if zoom < 11{
-            return UIImage(named: "cloudAndSun")!.resize(CGSizeMake(25, 25))
+            return UIImage(named: str + ".png")!.resize(CGSizeMake(25, 25))
         }else{
-            return UIImage(named: "cloudAndSun")!.resize(CGSizeMake(35, 35))
+            return UIImage(named: str + ".png")!.resize(CGSizeMake(35, 35))
         }
     }
     
@@ -178,7 +181,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             }
             
             for key in iconKeys{
-                weatherIcons[key]?.icon = getImageAccordingToZoom("")
+                weatherIcons[key]?.icon = getImageAccordingToZoom(key)
             }
         }
         

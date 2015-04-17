@@ -39,7 +39,6 @@ class WeatherInformation: NSObject {
             
             if error == nil && JSON != nil {
                 
-                
                 var result = JSON as! [String : AnyObject]
                 
                 let list:[AnyObject] = result["list"] as! [AnyObject]
@@ -72,6 +71,7 @@ class WeatherInformation: NSObject {
         citiesAround.removeAll(keepCapacity: false)
     }
 }
+
 /*
 Optional({
     city =     {
