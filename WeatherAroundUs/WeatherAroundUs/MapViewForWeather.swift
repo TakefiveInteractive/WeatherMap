@@ -37,6 +37,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         self.setMinZoom(10, maxZoom: 14)
         self.myLocationEnabled = false
         self.delegate = self
+        self.trafficEnabled = false
         
         UserLocation.delegate = self
         
@@ -161,7 +162,6 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             
             // hide board
             parentController.card.hideSelf()
-            parentController.smallImageView.hideSelf()
             parentController.searchBar.resignFirstResponder()
 
         }

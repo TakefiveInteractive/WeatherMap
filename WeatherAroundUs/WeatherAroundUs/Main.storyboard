@@ -66,9 +66,9 @@
                                 <rect key="frame" x="0.0" y="408" width="320" height="160"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPl-fd-JUl">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
+                                        <rect key="frame" x="3" y="0.0" width="314" height="157"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ibO-fV-uZr">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="314" height="157"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                         <blurEffect style="light"/>
@@ -135,16 +135,17 @@
                                     <constraint firstAttribute="centerX" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" constant="40" id="JYr-DN-bhE"/>
                                     <constraint firstItem="pc2-yF-qMt" firstAttribute="top" secondItem="sug-EH-4PC" secondAttribute="bottom" constant="5" id="Mz4-w7-CAB"/>
                                     <constraint firstItem="sug-EH-4PC" firstAttribute="trailing" secondItem="pc2-yF-qMt" secondAttribute="trailing" id="O0g-xc-ocw"/>
-                                    <constraint firstAttribute="bottom" secondItem="lPl-fd-JUl" secondAttribute="bottom" constant="-100" id="e7Y-VR-A5B"/>
+                                    <constraint firstAttribute="bottom" secondItem="lPl-fd-JUl" secondAttribute="bottom" constant="3" id="e7Y-VR-A5B"/>
                                     <constraint firstItem="sug-EH-4PC" firstAttribute="leading" secondItem="ZgQ-RK-Mg0" secondAttribute="trailing" constant="10" id="fOL-TB-iLD"/>
                                     <constraint firstItem="Nvu-QS-fX4" firstAttribute="leading" secondItem="ZgQ-RK-Mg0" secondAttribute="leading" id="hBK-I2-Jgn"/>
                                     <constraint firstAttribute="trailing" secondItem="sug-EH-4PC" secondAttribute="trailing" constant="40" id="nuk-X4-w8B"/>
-                                    <constraint firstItem="lPl-fd-JUl" firstAttribute="leading" secondItem="ckU-eB-a2a" secondAttribute="leading" id="uMo-qx-Cc0"/>
-                                    <constraint firstAttribute="trailing" secondItem="lPl-fd-JUl" secondAttribute="trailing" id="vQM-xU-cxb"/>
+                                    <constraint firstItem="lPl-fd-JUl" firstAttribute="leading" secondItem="ckU-eB-a2a" secondAttribute="leading" constant="3" id="uMo-qx-Cc0"/>
+                                    <constraint firstAttribute="trailing" secondItem="lPl-fd-JUl" secondAttribute="trailing" constant="3" id="vQM-xU-cxb"/>
                                     <constraint firstItem="ZgQ-RK-Mg0" firstAttribute="top" secondItem="ckU-eB-a2a" secondAttribute="top" constant="30" id="vxS-mS-w2y"/>
                                     <constraint firstAttribute="centerY" secondItem="ZgQ-RK-Mg0" secondAttribute="bottom" constant="-15" id="zFD-bC-RnW"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="blurView" destination="lPl-fd-JUl" id="qdC-av-OQU"/>
                                     <outlet property="city" destination="sug-EH-4PC" id="w1h-3n-5vg"/>
                                     <outlet property="icon" destination="ZgQ-RK-Mg0" id="F8d-Lw-JTN"/>
                                     <outlet property="temperature" destination="J0O-xK-gX7" id="5XK-m7-pJR"/>
@@ -179,6 +180,7 @@
                         <outlet property="card" destination="ckU-eB-a2a" id="IuZ-vR-UrC"/>
                         <outlet property="clockButton" destination="pNt-n2-tv1" id="3vI-SY-AXX"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
+                        <outlet property="searchBack" destination="mvT-8S-MPr" id="3WA-IZ-nDN"/>
                         <outlet property="searchBar" destination="yTv-RZ-bxF" id="lQt-RT-Rev"/>
                         <outlet property="shadow" destination="qtB-Dd-d0p" id="Tf6-KE-Izy"/>
                     </connections>
