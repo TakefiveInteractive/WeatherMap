@@ -33,14 +33,11 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             
         }
         
-        self.mapType = kGMSTypeNone
+        self.mapType = kGMSTypeNormal
         self.setMinZoom(10, maxZoom: 14)
         self.myLocationEnabled = false
         self.delegate = self
-        self.mapType = kGMSTypeNone
         
-        var layer = CachingTileClass()
-        layer.map = self
         UserLocation.delegate = self
         
         WeatherInfo.weatherDelegate = self

@@ -56,9 +56,6 @@
 		42F62E751AD0B6EE00D494E6 /* ListOfCities.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E741AD0B6EE00D494E6 /* ListOfCities.png */; };
 		42F62E771AD0B75100D494E6 /* Card.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E761AD0B75100D494E6 /* Card.png */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
-		42F62E811AD0BFD400D494E6 /* CachingTileClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E801AD0BFD400D494E6 /* CachingTileClass.swift */; };
-		42F62E851AD0BFF200D494E6 /* ThreadLocalSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E821AD0BFF200D494E6 /* ThreadLocalSlot.swift */; };
-		42F62E861AD0BFF200D494E6 /* ThreadingTrampolines.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E841AD0BFF200D494E6 /* ThreadingTrampolines.m */; };
 		43309AE34EFF8A1147E54079 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7061C7B48DE2F420FC0085AE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D5362D611AD0B77F00CAD195 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */; };
 		D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */; };
@@ -135,10 +132,6 @@
 		42F62E761AD0B75100D494E6 /* Card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card.png; sourceTree = "<group>"; };
 		42F62E781AD0B84900D494E6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		42F62E7C1AD0BA9100D494E6 /* WeatherAroundUs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherAroundUs-Bridging-Header.h"; sourceTree = "<group>"; };
-		42F62E801AD0BFD400D494E6 /* CachingTileClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingTileClass.swift; sourceTree = "<group>"; };
-		42F62E821AD0BFF200D494E6 /* ThreadLocalSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadLocalSlot.swift; sourceTree = "<group>"; };
-		42F62E831AD0BFF200D494E6 /* ThreadingTrampolines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingTrampolines.h; sourceTree = "<group>"; };
-		42F62E841AD0BFF200D494E6 /* ThreadingTrampolines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingTrampolines.m; sourceTree = "<group>"; };
 		7061C7B48DE2F420FC0085AE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C74A3FFE21D5AC2F375E634 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
@@ -240,7 +233,6 @@
 				427BAFA91AD0E71100C87BDE /* LocationManager.swift */,
 				423294711ADC6446009AEEFE /* ListView.swift */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
-				42F62E871AD0BFFD00D494E6 /* MapTile */,
 				42F15D491AD08275004D64EF /* IMGs */,
 				42D4EDD21A9E7F02006AE807 /* Images.xcassets */,
 				42D4EDD41A9E7F02006AE807 /* LaunchScreen.xib */,
@@ -303,17 +295,6 @@
 				427BAFC21AD0F2B500C87BDE /* suncloud.png */,
 			);
 			name = IMGs;
-			sourceTree = "<group>";
-		};
-		42F62E871AD0BFFD00D494E6 /* MapTile */ = {
-			isa = PBXGroup;
-			children = (
-				42F62E801AD0BFD400D494E6 /* CachingTileClass.swift */,
-				42F62E821AD0BFF200D494E6 /* ThreadLocalSlot.swift */,
-				42F62E831AD0BFF200D494E6 /* ThreadingTrampolines.h */,
-				42F62E841AD0BFF200D494E6 /* ThreadingTrampolines.m */,
-			);
-			name = MapTile;
 			sourceTree = "<group>";
 		};
 		7AD6E77C29B17734BE286BBB /* Frameworks */ = {
@@ -528,12 +509,9 @@
 				424F5A2E1ADF46BD00B09FBA /* ImageCardView.swift in Sources */,
 				427BAFA51AD0E6F900C87BDE /* MapViewForWeather.swift in Sources */,
 				42D4EDC91A9E7F02006AE807 /* AppDelegate.swift in Sources */,
-				42F62E811AD0BFD400D494E6 /* CachingTileClass.swift in Sources */,
-				42F62E851AD0BFF200D494E6 /* ThreadLocalSlot.swift in Sources */,
 				427BAFAA1AD0E71100C87BDE /* LocationManager.swift in Sources */,
 				424F5A1E1ADE01C300B09FBA /* CitySearchView.swift in Sources */,
 				429B95CB1AD198E400851D32 /* WeatherInformation.swift in Sources */,
-				42F62E861AD0BFF200D494E6 /* ThreadingTrampolines.m in Sources */,
 				42F62E791AD0B84900D494E6 /* CardView.swift in Sources */,
 				427BAFB21AD0EECE00C87BDE /* ImageProcessor.swift in Sources */,
 				42D4EDCC1A9E7F02006AE807 /* WeatherAroundUs.xcdatamodeld in Sources */,
