@@ -94,11 +94,11 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     
     func getImageAccordingToZoom(cityID: String)->UIImage{
         if zoom > 12.5{
-            return UIImage(named: "cloudAndSun")!.resize(CGSizeMake(50, 50))
+            return UIImage(named: "rain")!.resize(CGSizeMake(50, 50))
         }else if zoom < 11{
-            return UIImage(named: "cloudAndSun")!.resize(CGSizeMake(25, 25))
+            return UIImage(named: "rain")!.resize(CGSizeMake(25, 25))
         }else{
-            return UIImage(named: "cloudAndSun")!.resize(CGSizeMake(35, 35))
+            return UIImage(named: "rain")!.resize(CGSizeMake(35, 35))
         }
     }
     
