@@ -16,6 +16,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     @IBOutlet var searchBar: CitySearchView!
     @IBOutlet var card: CardView!
     @IBOutlet var shadow: UIVisualEffectView!
+    @IBOutlet var searchBack: UIVisualEffectView!
 
     
     var smallImageView: ImageCardView!
@@ -36,6 +37,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBack.layer.shadowOffset = CGSizeMake(0, 2)
+        searchBack.layer.shadowRadius = 1
+        searchBack.layer.shadowOpacity = 0.3
+        
         mapView.parentController = self
         
         var cityListDisappearDragger: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "cityListDisappear:")
@@ -50,8 +55,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     override func viewDidAppear(animated: Bool) {
         clockButton.animate()
         
-        // create result list
-        searchResultList = SearchResultView(frame: CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0))
+        searchResultList = SearchResultView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
+        searchResultList.frame = CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0)
         searchResultList.parentController = self
         self.view.addSubview(searchResultList)
         searchBar.searchDelegate = searchResultList
@@ -62,6 +67,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         
         let gesture = UIPanGestureRecognizer(target: self, action: "dragged:")
         self.smallImageView.addGestureRecognizer(gesture)
+        
+        card.addShadow()
     }
     
     func dragged(sender: UIPanGestureRecognizer){
