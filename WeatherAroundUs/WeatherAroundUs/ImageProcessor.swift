@@ -94,6 +94,8 @@ extension UIImage {
         UIGraphicsEndImageContext()
     }
     
+    
+    
     // MARK: Image from uiview
     convenience init?(fromView view: UIView) {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0)
@@ -101,6 +103,21 @@ extension UIImage {
         view.layer.renderInContext(UIGraphicsGetCurrentContext())
         self.init(CGImage:UIGraphicsGetImageFromCurrentImageContext().CGImage)
         UIGraphicsEndImageContext()
+    }
+    
+    func addShadow(blurSize: CGFloat = 6.0) -> UIImage {
+        
+        let data : UnsafeMutablePointer<Void> = nil
+        let bitmapInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedLast.rawValue)
+        let shadowContext : CGContextRef = CGBitmapContextCreate(data, Int(self.size.width + blurSize), Int(self.size.height + blurSize), CGImageGetBitsPerComponent(self.CGImage), 0, CGColorSpaceCreateDeviceRGB(), bitmapInfo)
+        
+        CGContextSetShadowWithColor(shadowContext, CGSize(width: blurSize/2,height: -blurSize/2),  blurSize/2, UIColor.darkGrayColor().CGColor)
+        CGContextDrawImage(shadowContext, CGRect(x: 0, y: blurSize, width: self.size.width, height: self.size.height), self.CGImage)
+        
+        let shadowedCGImage : CGImageRef = CGBitmapContextCreateImage(shadowContext)
+        let shadowedImage : UIImage = UIImage(CGImage: shadowedCGImage)!
+        
+        return shadowedImage
     }
     
     // MARK: Image with Radial Gradient
@@ -135,6 +152,7 @@ extension UIImage {
     }
     
     // MARK: Alpha
+
     
     // Returns true if the image has an alpha layer
     func hasAlpha() -> Bool

@@ -19,6 +19,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     @IBOutlet var searchBack: UIVisualEffectView!
 
     
+    
     var smallImageView: ImageCardView!
     var cityList: ListView!
     var searchResultList: SearchResultView!
@@ -29,8 +30,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
     
     func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL: String, cityName: String) {
-        
-        smallImageView.changeImage(image, frame:CGRectMake(self.view.frame.width - image.size.width / 2 - 20, card.frame.origin.y - image.size.height / 2 - 10, image.size.width / 2 + 8, image.size.height / 2 + 8))
+        //card.backImg.image = image
     }
 
     
@@ -60,13 +60,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         searchResultList.parentController = self
         self.view.addSubview(searchResultList)
         searchBar.searchDelegate = searchResultList
-        
-        // create smallImageView
-        smallImageView = ImageCardView(image: UIImage(named: "board")!)
-        self.view.addSubview(smallImageView)
-        
-        let gesture = UIPanGestureRecognizer(target: self, action: "dragged:")
-        self.smallImageView.addGestureRecognizer(gesture)
         
         card.addShadow()
     }
