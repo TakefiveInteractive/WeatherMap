@@ -81,7 +81,6 @@ class ImageCardView: DesignableImageView {
         if !hide {
             self.frame.origin = CGPointMake(self.frame.origin.x + self.frame.width * 1.5, self.frame.origin.y)
             hide = true
-            self.x = 0
             self.animation = "slideLeft"
             self.animate()
         }

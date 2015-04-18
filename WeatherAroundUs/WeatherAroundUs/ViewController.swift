@@ -61,7 +61,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         self.view.addSubview(searchResultList)
         searchBar.searchDelegate = searchResultList
         
-        card.addShadow()
+        card.setup()
+        
     }
     
     func dragged(sender: UIPanGestureRecognizer){
