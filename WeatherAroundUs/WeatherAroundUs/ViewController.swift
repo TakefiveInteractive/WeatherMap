@@ -18,17 +18,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     @IBOutlet var shadow: UIVisualEffectView!
     @IBOutlet var searchBack: UIVisualEffectView!
 
-    
-    
     var smallImageView: ImageCardView!
     var cityList: ListView!
     var searchResultList: SearchResultView!
 
     var weatherCardList = [UIImageView]()
     
-    
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
     
+    // get small city image from google
     func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL: String, cityName: String) {
         card.gotSmallImage(image)
     }

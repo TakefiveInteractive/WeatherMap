@@ -18,9 +18,7 @@ class CityDetailViewController: UIViewController {
         var filter = GPUImageToonFilter()
         filter.threshold = 0.8
         filter.quantizationLevels = 50
-        //image.addTarget(filter)
-        //filter.useNextFrameForImageCapture()
-        //image.processImage()
+
         var img = filter.imageByFilteringImage(UIImage(named: "1175782717.jpg"))
         
         var imgv = UIImageView(image: img)

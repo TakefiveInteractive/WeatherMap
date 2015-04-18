@@ -30,7 +30,6 @@ class WeatherMapCalculations: NSObject {
                 km = km / 10
                 km = km * 10
             }
-            
             return "\(km) km"
             
         }else{
