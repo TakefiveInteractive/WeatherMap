@@ -200,8 +200,6 @@ class CardView: DesignableView {
                         self.smallImage.alpha = 0.6
                     })
             }
-
-            
         }
     }
     

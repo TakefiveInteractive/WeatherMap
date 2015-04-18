@@ -12,7 +12,9 @@ import Haneke
 import SwiftyJSON
 
 @objc protocol InternetConnectionDelegate: class {
+    optional func gotCityNameAutoComplete(cities: [AnyObject])
     optional func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL:String, cityName:String)
+    optional func gotLocalCityWeather(cities: [AnyObject])
 }
 
 class InternetConnection: NSObject {
@@ -21,6 +23,45 @@ class InternetConnection: NSObject {
 
     var passData: [String: AnyObject]!
     
+    // search city name using google framework
+    func searchCityName(content:String){
+        
+        // avoid crash when there is space
+        //handle case when there is chinese
+        var searchContent = content.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        let url =  NSURL(string: "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=\(searchContent)&types=(cities)&language=en&key=AIzaSyDHwdGU463x3_aJfg4TNWm0fijTjr9VEdg")
+        
+        var req = Alamofire.request(.GET, url!).responseJSON { (_, response, JSON, error) in
+            
+            if error == nil && JSON != nil {
+                let myjson = SwiftyJSON.JSON(JSON!)
+                var predictions = myjson["predictions"].arrayObject
+                if predictions != nil{
+                    self.delegate?.gotCityNameAutoComplete!(predictions!)
+                }
+            }
+            
+        }
+
+    }
+    
+    //search for local weather data
+    func getLocalWeather(location: CLLocationCoordinate2D, number:Int){
+        
+         var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/find?lat=\(location.latitude)&lon=\(location.longitude)&cnt=\(number)&mode=json")!).responseJSON { (_, response, JSON, error) in
+            
+            if error == nil && JSON != nil {
+                let myjson = SwiftyJSON.JSON(JSON!)
+                if let data = myjson["list"].arrayObject{
+                    self.delegate?.gotLocalCityWeather!(data)
+                }
+            }
+        }
+    }
+    
+    
+    // get small city image
     func getSmallPictureOfACity(location: CLLocationCoordinate2D, name: String){
         
         var geocoder = GMSGeocoder()
@@ -49,21 +90,19 @@ class InternetConnection: NSObject {
                         searchText = address.locality + " " + address.country
                     }
                 }else if address.administrativeArea != nil{
-                    searchText = address.administrativeArea + "" + address.country
+                    searchText = address.administrativeArea + " " + address.country
                 }else{
-                    searchText = name + "" + address.country
+                    searchText = name + " " + address.country
                 }
                 
-                if !self.checkIfContainsChinese(searchText){
-                    // avoid error when there is space
-                    searchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
-                    let url = NSURL(string: "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=\(searchText)&imgtype=photo&imgsz=xlarge%7Cxxlarge%7Chuge&imgc=color&hl=en")!
+                // avoid error when there is space
+                searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+
+                    let url = NSURL(string: "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=\(searchText)&imgtype=photo&imgsz=xxlarge%7Chuge&imgc=color&hl=en")!
                     // request for the image
                     var req = Alamofire.request(.GET, url).responseJSON { (_, response, JSON, error) in
                         
                         if error == nil && JSON != nil {
-                            let result = JSON as! [String : AnyObject]
-                                                        
                             var tbUrl = ""
                             var imageUrl = ""
                             let myjson = SwiftyJSON.JSON(JSON!)
@@ -76,13 +115,11 @@ class InternetConnection: NSObject {
                                         {
                                             
                                             tbUrl = url
-                                            println(url)
                                         }
                                         
                                         if let url = url["unescapedUrl"].string{
                                         
                                             imageUrl = url
-                                            println(imageUrl)
                                         }
                                         
                                         break;
@@ -92,25 +129,16 @@ class InternetConnection: NSObject {
                             }
                             
                             if tbUrl == ""{
-                                
-                                if let url =  myjson["responseData"]["results"][0]["tbUrl"].string
-                                {
-                                    
+                                // get the first result if there is no wiki result
+                                if let url =  myjson["responseData"]["results"][0]["tbUrl"].string{
                                     tbUrl = url
-                                    println(tbUrl)
                                 }
-                                
                                 if let url = myjson["responseData"]["results"][0]["unescapedUrl"].string{
-                                    
                                     imageUrl = url
-                                    println(imageUrl)
-                                    
                                 }
-                                
-                                //tbUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["tbUrl"] as! String
-                                //imageUrl = (((result["responseData"] as! [String : AnyObject])["results"] as! [AnyObject])[0] as! [String : AnyObject])["unescapedUrl"] as! String
                             }
                             
+                            // get the image from cache
                             let cache = Shared.dataCache
                             var img = UIImage()
                             cache.fetch(URL: NSURL(string: tbUrl)!).onSuccess { image in
@@ -126,24 +154,7 @@ class InternetConnection: NSObject {
         }
     }
     
-    func checkIfContainsChinese(str: String)->Bool{
-        
-        let nsstr = str as NSString
-        let length = nsstr.length
-        
-        for var index = 0; index < length; index++ {
-            var range = NSMakeRange(index, 1)
-            var subString:NSString = nsstr.substringWithRange(range)
-            var cString = subString.UTF8String
-            if strlen(cString) == 3
-            {
-                return true
-            }
-        }
-        return false
-    }
 
-}
 /*
 [responseStatus: 200, responseDetails: <null>, responseData: {
     results =     (

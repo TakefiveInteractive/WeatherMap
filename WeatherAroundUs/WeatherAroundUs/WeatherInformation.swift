@@ -19,7 +19,7 @@ import Alamofire
 
 var WeatherInfo: WeatherInformation = WeatherInformation()
 
-class WeatherInformation: NSObject {
+class WeatherInformation: NSObject, InternetConnectionDelegate{
     
     var citiesAroundDict = [String: AnyObject]()
     var citiesAround = [String]()
@@ -32,53 +32,47 @@ class WeatherInformation: NSObject {
     var requestNum = 0
     
     func getLocalWeatherInformation(location: CLLocationCoordinate2D, number:Int){
-        
         requestNum++
-        
-        println("request")
-        
-        var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/find?lat=\(location.latitude)&lon=\(location.longitude)&cnt=\(number)&mode=json")!).responseJSON { (_, response, JSON, error) in
-            
-            self.requestNum--
-
-            println("request done")
-
-            if error == nil && JSON != nil {
-                
-                var result = JSON as! [String : AnyObject]
-                
-                let list:[AnyObject] = result["list"] as! [AnyObject]
-                
-                //println(list[0])
-                
-                for city in list{
-                    
-                    let id: Int = (city as! [String : AnyObject]) ["id"] as! Int
-                    
-                    // first time weather data
-                    if self.citiesAroundDict["\(id)"] == nil {
-                        self.citiesAroundDict.updateValue(city, forKey: "\(id)")
-                        // save the city in db
-                    }
-                    self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
-                    
-
-                }
-                
-                
-            }
-
-        }
-
-        
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.getLocalWeather(location, number: number)
     }
 
+    // got local city weather from member
+    func gotLocalCityWeather(cities: [AnyObject]) {
+        requestNum--
+        for city in cities{
+            let id: Int = (city as! [String : AnyObject]) ["id"] as! Int
+            // first time weather data
+            if self.citiesAroundDict["\(id)"] == nil {
+                self.citiesAroundDict.updateValue(city, forKey: "\(id)")
+                // save the city in db
+            }
+            self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
+        }
+    }
     
     func removeAllCities(){
         citiesAround.removeAll(keepCapacity: false)
     }
 }
 /*
+
+for city in list{
+
+let id: Int = (city as! [String : AnyObject]) ["id"] as! Int
+
+// first time weather data
+if self.citiesAroundDict["\(id)"] == nil {
+self.citiesAroundDict.updateValue(city, forKey: "\(id)")
+// save the city in db
+}
+self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
+
+
+}
+
+
 {
     clouds =     {
         all = 0;

@@ -87,6 +87,9 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
         
         let placeid = placeIDList[find(resultList, sender)!]
         
+        parentController.card.hideSelf()
+        parentController.searchBar.text = ""
+        
         var req = Alamofire.request(.GET, NSURL(string: "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(placeid)&key=AIzaSyDHwdGU463x3_aJfg4TNWm0fijTjr9VEdg")!).responseJSON { (_, response, JSON, error) in
             
             if error == nil && JSON != nil {
@@ -97,7 +100,6 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
                 self.parentController.mapView.animateToLocation(position)
 
             }
-            
         }
         removeCities()
     }
