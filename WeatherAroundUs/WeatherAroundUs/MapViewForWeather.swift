@@ -103,17 +103,16 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             return UIImage(named: str)!.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
         }else{
             return UIImage(named: str)!.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
-
         }
     }
     
     func getNumOfWeatherBasedOnZoom()->Int{
         if zoom > 12.5{
-            return 5
+            return 3
         }else if zoom < 11{
-            return 20
-        }else{
             return 10
+        }else{
+            return 6
         }
 
     }
@@ -138,29 +137,11 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         if gesture{
             let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
             
-            let distance = WeatherMapCalculations.getTheDistanceBasedOnZoom(self.camera.zoom)
-            
-            var shouldSearch = true
-            // check if should perform new search
-            for location in searchedArea{
-                if thisLocation.distanceFromLocation(location) / 1000 < distance * 2 {
-                    shouldSearch = false
-                }
-            }
-            
-            if shouldSearch{
                 // update weather info
                 if !WeatherInfo.requesting{
                     WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
                 }
-                
-                searchedArea.append(CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude))
-                
-                if searchedArea.count > 3{
-                    searchedArea.removeAtIndex(0)
-                }
-            }
-            
+                            
             // hide board
             parentController.card.hideSelf()
             parentController.searchBar.resignFirstResponder()
@@ -173,18 +154,17 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
         
-        
-        if abs(camera.zoom - zoom) > 0.5{
+        let iconKeys = weatherIcons.keys
+        for key in iconKeys{
+            weatherIcons[key]?.icon = getImageAccordingToZoom(key)
+        }
+        /*if abs(camera.zoom - zoom) > 0.5{
             zoom = camera.zoom
-            let iconKeys = weatherIcons.keys
             if !WeatherInfo.requesting{
                 WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
             }
-            
-            for key in iconKeys{
-                weatherIcons[key]?.icon = getImageAccordingToZoom(key)
-            }
-        }
+
+        }*/
         
     }
     

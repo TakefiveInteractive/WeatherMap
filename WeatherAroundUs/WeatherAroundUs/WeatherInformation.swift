@@ -35,8 +35,14 @@ class WeatherInformation: NSObject {
         
         requesting = true
         
+        println("request")
+        
         var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/find?lat=\(location.latitude)&lon=\(location.longitude)&cnt=\(number)&mode=json")!).responseJSON { (_, response, JSON, error) in
             
+            self.requesting = false
+
+            println("request done")
+
             if error == nil && JSON != nil {
                 
                 var result = JSON as! [String : AnyObject]
@@ -61,7 +67,6 @@ class WeatherInformation: NSObject {
                 
                 
             }
-            self.requesting = false
 
         }
 
