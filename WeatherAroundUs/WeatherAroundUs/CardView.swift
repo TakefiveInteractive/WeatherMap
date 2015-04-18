@@ -14,7 +14,7 @@ class CardView: DesignableView {
     var icon: UIImageView!
     var temperature: UILabel!
     var city: UILabel!
-    var smallImage: UIImage!
+    var smallImage: UIImageView!
     var weatherDescription: UILabel!
     
     var iconBack: DesignableView!
@@ -28,12 +28,16 @@ class CardView: DesignableView {
     var cityBackCenter: CGPoint!
     var weatherDescriptionBackCenter: CGPoint!
     
+    var smallImageEntered = false
+    
     var hide = false
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
+    let sideWidth:CGFloat = 6
+
     func setup(){
         
         self.userInteractionEnabled = false
@@ -46,7 +50,6 @@ class CardView: DesignableView {
             println("Font Names = [\(names)]")
         }
         
-        let sideWidth:CGFloat = 6
         
         iconBack = DesignableView(frame: CGRectMake(sideWidth, sideWidth, self.frame.height * 0.75 - sideWidth * 2, self.frame.height * 0.75 - sideWidth * 2))
         self.addSubview(iconBack)
@@ -91,10 +94,15 @@ class CardView: DesignableView {
         weatherDescriptionBack.addSubview(weatherDescription)
         weatherDescriptionBackCenter = weatherDescriptionBack.center
         
-        smallImageBack = DesignableView(frame: CGRectMake(sideWidth + temperatureBack.frame.origin.x + temperatureBack.frame.width, sideWidth, self.frame.width - sideWidth * 2 - temperatureBack.frame.origin.x - temperatureBack.frame.width, temperatureBack.frame.height))
-        //self.addSubview(smallImageBack)
+        smallImageBack = DesignableView(frame: CGRectMake(sideWidth + temperatureBack.frame.origin.x + temperatureBack.frame.width, temperatureBack.frame.origin.y, self.frame.width - sideWidth * 2 - temperatureBack.frame.origin.x - temperatureBack.frame.width, temperatureBack.frame.height))
+        self.addSubview(smallImageBack)
         addShadow(smallImageBack)
         addVisualEffectView(smallImageBack)
+        smallImage = UIImageView(frame: CGRectMake(3, 3, smallImageBack.frame.width - 6, smallImageBack.frame.height - 6))
+        smallImage.alpha = 0.6
+        smallImageBack.addSubview(smallImage)
+        // move the image away at the beginning
+        smallImageBack.center = CGPointMake(smallImageBack.center.x + temperatureBack.frame.width * 1.5, smallImageBack.center.y)
 
         
     }
@@ -112,7 +120,7 @@ class CardView: DesignableView {
             let tempF = temp * 9 / 5 + 32
             self.temperature.text = "\(Int(temp))°C / \(Int(tempF))°F"
             self.city.text = (info as! [String: AnyObject])["name"] as? String
-            println(self.city.text)
+
             self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
             
             weatherDescriptionBack.center = weatherDescriptionBackCenter
@@ -160,6 +168,43 @@ class CardView: DesignableView {
         }
     }
     
+    func gotSmallImage(image:UIImage){
+        if !smallImageEntered{
+            //not on screen yet
+            smallImageEntered = true
+            let theWidth = smallImageBack.frame.width
+            let theHeight:CGFloat = image.size.height / image.size.width * theWidth
+            smallImageBack.frame = CGRectMake(sideWidth + temperatureBack.frame.origin.x + temperatureBack.frame.width, weatherDescriptionBack.frame.origin.y - sideWidth - theHeight, theWidth, theHeight)
+            (smallImageBack.subviews[0] as! UIView).frame = smallImageBack.bounds
+            smallImageBack.animation = "slideLeft"
+            smallImageBack.animate()
+            smallImage.image = image
+            smallImage.frame = CGRectMake(3, 3, smallImageBack.frame.width - 6, smallImageBack.frame.height - 6)
+            
+        }else{
+            
+            let theWidth = smallImageBack.frame.width
+            let theHeight:CGFloat = image.size.height / image.size.width * theWidth
+            let theFrame = CGRectMake(sideWidth + temperatureBack.frame.origin.x + temperatureBack.frame.width, weatherDescriptionBack.frame.origin.y - sideWidth - theHeight, theWidth, theHeight)
+            
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.smallImageBack.frame = theFrame
+                (self.smallImageBack.subviews[0] as! UIView).frame = self.smallImageBack.bounds
+                self.smallImage.frame = CGRectMake(3, 3, self.smallImageBack.frame.width - 6, self.smallImageBack.frame.height - 6)
+            })
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                self.smallImage.alpha = 0.3
+                }) { (finish) -> Void in
+                    self.smallImage.image = image
+                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                        self.smallImage.alpha = 0.6
+                    })
+            }
+
+            
+        }
+    }
+    
     func addVisualEffectView(view: UIView){
         var effectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
         effectView.frame = view.bounds
@@ -188,9 +233,15 @@ class CardView: DesignableView {
             iconBack.animation = "slideRight"
             iconBack.animate()
             
-            temperatureBack.center = CGPointMake(temperatureBack.center.x + temperatureBack.frame.width * 3.5, temperatureBack.center.y)
-            temperatureBack.animation = "slideLeft"
+            temperatureBack.center = CGPointMake(temperatureBack.center.x, temperatureBack.center.y + temperatureBack.frame.height * 3.5)
+            temperatureBack.animation = "slideUp"
             temperatureBack.animate()
+    
+            smallImageBack.center = CGPointMake(smallImageBack.center.x + temperatureBack.frame.width * 1.5, smallImageBack.center.y)
+            smallImageBack.animation = "slideLeft"
+            smallImageBack.animate()
+            
+            smallImageEntered = false
         }
     }
     

@@ -29,17 +29,17 @@ class WeatherInformation: NSObject {
     var weatherDelegate : WeatherInformationDelegate?
     var updateIconListDelegate : UpdateIconListDelegate?
     
-    var requesting = false
+    var requestNum = 0
     
     func getLocalWeatherInformation(location: CLLocationCoordinate2D, number:Int){
         
-        requesting = true
+        requestNum++
         
         println("request")
         
         var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/find?lat=\(location.latitude)&lon=\(location.longitude)&cnt=\(number)&mode=json")!).responseJSON { (_, response, JSON, error) in
             
-            self.requesting = false
+            self.requestNum--
 
             println("request done")
 

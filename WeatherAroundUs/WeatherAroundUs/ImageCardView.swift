@@ -56,7 +56,7 @@ class ImageCardView: DesignableImageView {
             self.smallImage.image = img
             UIView.animateWithDuration(0.25, animations: { () -> Void in
                 self.smallImage.alpha = 0.6
-                })
+        })
         }
         
         if hide{
