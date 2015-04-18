@@ -43,6 +43,8 @@ class WeatherInformation: NSObject {
                 
                 let list:[AnyObject] = result["list"] as! [AnyObject]
                 
+                //println(list[0])
+                
                 for city in list{
                     
                     let id: Int = (city as! [String : AnyObject]) ["id"] as! Int
@@ -71,72 +73,41 @@ class WeatherInformation: NSObject {
         citiesAround.removeAll(keepCapacity: false)
     }
 }
-
 /*
-Optional({
-    city =     {
-        coord =         {
-            lat = "40.650101";
-            lon = "-73.94957700000001";
-        };
-        country = US;
-        id = 5110302;
-        name = Brooklyn;
-        population = 0;
+{
+    clouds =     {
+        all = 0;
     };
-    cnt = 2;
-    cod = 200;
-    list =     (
+    coord =     {
+        lat = "37.323002";
+        lon = "-122.032181";
+    };
+    dt = 1429251735;
+    id = 5341145;
+    main =     {
+        "grnd_level" = "993.61";
+        humidity = 73;
+        pressure = "993.61";
+        "sea_level" = "1032.13";
+        temp = "280.762";
+        "temp_max" = "280.762";
+        "temp_min" = "280.762";
+    };
+    name = Cupertino;
+    sys =     {
+        country = "";
+    };
+    weather =     (
         {
-            clouds = 0;
-            deg = 238;
-            dt = 1428249600;
-            humidity = 68;
-            pressure = "1033.26";
-            speed = "3.21";
-            temp =             {
-                day = "282.42";
-                eve = "284.51";
-                max = "284.89";
-                min = "281.81";
-                morn = "282.42";
-                night = "281.81";
-            };
-            weather =             (
-                {
-                    description = "sky is clear";
-                    icon = 01d;
-                    id = 800;
-                    main = Clear;
-                }
-            );
-        },
-        {
-            clouds = 0;
-            deg = 225;
-            dt = 1428336000;
-            humidity = 68;
-            pressure = "1036.05";
-            speed = "1.7";
-            temp =             {
-                day = "284.73";
-                eve = "288.65";
-                max = "288.65";
-                min = "278.17";
-                morn = "278.17";
-                night = "284.86";
-            };
-            weather =             (
-                {
-                    description = "sky is clear";
-                    icon = 01d;
-                    id = 800;
-                    main = Clear;
-                }
-            );
+            description = "Sky is Clear";
+            icon = 01n;
+            id = 800;
+            main = Clear;
         }
     );
-    message = "0.0024";
-})
-
+    wind =     {
+        deg = 184;
+        speed = "0.91";
+    };
+}
 */

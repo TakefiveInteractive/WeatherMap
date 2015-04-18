@@ -50,9 +50,9 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
         placeIDList.insert(placeID, atIndex: 0)
         
         var lab = UILabel(frame: aCity.bounds)
-        lab.font = UIFont(name: "Slayer", size: 11)
+        lab.font = UIFont(name: "AvenirNextCondensed-Regular", size: 12)
         lab.text = description
-        lab.textColor = UIColor(red: 186/255.0, green: 128/255.0, blue: 82/255.0, alpha: 1)
+        lab.textColor = UIColor.darkGrayColor()
         aCity.addSubview(lab)
         
         
