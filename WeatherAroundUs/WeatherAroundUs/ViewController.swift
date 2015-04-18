@@ -30,7 +30,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
     
     func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL: String, cityName: String) {
-        //card.backImg.image = image
+        card.gotSmallImage(image)
     }
 
     

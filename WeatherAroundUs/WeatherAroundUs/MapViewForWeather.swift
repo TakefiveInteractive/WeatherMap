@@ -21,14 +21,11 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     var weatherIcons = [String: GMSMarker]()
     var searchedArea = [CLLocation]()
     
-    var zoom:Float = 12
-    
-    
     
     func setup() {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         if userDefaults.valueForKey("longitude") != nil{
-            var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: zoom)
+            var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: 12)
             self.camera = camera
             
         }
@@ -97,9 +94,9 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         
         var str = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
         
-        if zoom > 12.5{
+        if camera.zoom > 12.5{
             return UIImage(named: str)!.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
-        }else if zoom < 11{
+        }else if camera.zoom < 11{
             return UIImage(named: str)!.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
         }else{
             return UIImage(named: str)!.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
@@ -107,9 +104,9 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
     }
     
     func getNumOfWeatherBasedOnZoom()->Int{
-        if zoom > 12.5{
+        if camera.zoom > 12.5{
             return 3
-        }else if zoom < 11{
+        }else if camera.zoom < 11{
             return 10
         }else{
             return 6
@@ -138,7 +135,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
             let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
             
                 // update weather info
-                if !WeatherInfo.requesting{
+                if WeatherInfo.requestNum < 2{
                     WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
                 }
                             
