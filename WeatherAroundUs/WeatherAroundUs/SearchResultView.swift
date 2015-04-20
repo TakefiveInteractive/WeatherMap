@@ -89,7 +89,8 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
         
         parentController.card.hideSelf()
         parentController.searchBar.text = ""
-        
+        removeCities()
+
         var req = Alamofire.request(.GET, NSURL(string: "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(placeid)&key=AIzaSyDHwdGU463x3_aJfg4TNWm0fijTjr9VEdg")!).responseJSON { (_, response, JSON, error) in
             
             if error == nil && JSON != nil {
@@ -101,7 +102,6 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
 
             }
         }
-        removeCities()
     }
     
     func removeCities(){
