@@ -11,11 +11,13 @@
 		421592DB1ADCDD4500254479 /* 20150104075606381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DA1ADCDD4500254479 /* 20150104075606381.jpg */; };
 		421592DC1ADCDD4500254479 /* 20150104075606381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DA1ADCDD4500254479 /* 20150104075606381.jpg */; };
 		421592DE1ADCE0EC00254479 /* 1175782717.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DD1ADCE0EC00254479 /* 1175782717.jpg */; };
-		423294721ADC6446009AEEFE /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423294711ADC6446009AEEFE /* ListView.swift */; };
 		4242E6C41AD1D69B00D7EB9A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */; };
-		42466A861AE4D2FF00E0BD4B /* Newclock.png in Resources */ = {isa = PBXBuildFile; fileRef = 42466A851AE4D2FF00E0BD4B /* Newclock.png */; };
 		42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */; };
 		42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8C1AE5466A00E0BD4B /* ImageCache.swift */; };
+		42466A901AE5961100E0BD4B /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8F1AE5961100E0BD4B /* TimeLineView.swift */; };
+		42466A931AE5A4EA00E0BD4B /* Newclock.png in Resources */ = {isa = PBXBuildFile; fileRef = 42466A911AE5A4EA00E0BD4B /* Newclock.png */; };
+		42466A941AE5A4EA00E0BD4B /* NewclockPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 42466A921AE5A4EA00E0BD4B /* NewclockPin.png */; };
+		42466A991AE5AD3E00E0BD4B /* TimeLineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A981AE5AD3E00E0BD4B /* TimeLineManager.swift */; };
 		424F5A1E1ADE01C300B09FBA /* CitySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */; };
 		424F5A201ADE03CF00B09FBA /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F5A1F1ADE03CF00B09FBA /* board.png */; };
 		424F5A221ADE083100B09FBA /* 1842787.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F5A211ADE083100B09FBA /* 1842787.png */; };
@@ -28,7 +30,7 @@
 		4255EAFC1ADB622B00689B9E /* 184278702.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFA1ADB622B00689B9E /* 184278702.png */; };
 		4255EAFE1ADB651000689B9E /* cloudAndSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFD1ADB651000689B9E /* cloudAndSun.png */; };
 		4255EAFF1ADB651000689B9E /* cloudAndSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFD1ADB651000689B9E /* cloudAndSun.png */; };
-		427BAFA51AD0E6F900C87BDE /* MapViewForWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA41AD0E6F900C87BDE /* MapViewForWeather.swift */; };
+		427BAFA51AD0E6F900C87BDE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA41AD0E6F900C87BDE /* MapView.swift */; };
 		427BAFAA1AD0E71100C87BDE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA91AD0E71100C87BDE /* LocationManager.swift */; };
 		427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 427BAFAB1AD0EBBF00C87BDE /* slayer11.ttf */; };
 		427BAFB21AD0EECE00C87BDE /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */; };
@@ -107,11 +109,13 @@
 		42068B761ADC570300FE4BD3 /* acard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acard.png; sourceTree = "<group>"; };
 		421592DA1ADCDD4500254479 /* 20150104075606381.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 20150104075606381.jpg; sourceTree = "<group>"; };
 		421592DD1ADCE0EC00254479 /* 1175782717.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1175782717.jpg; sourceTree = "<group>"; };
-		423294711ADC6446009AEEFE /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
-		42466A851AE4D2FF00E0BD4B /* Newclock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Newclock.png; sourceTree = "<group>"; };
 		42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		42466A8C1AE5466A00E0BD4B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		42466A8F1AE5961100E0BD4B /* TimeLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
+		42466A911AE5A4EA00E0BD4B /* Newclock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Newclock.png; sourceTree = "<group>"; };
+		42466A921AE5A4EA00E0BD4B /* NewclockPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewclockPin.png; sourceTree = "<group>"; };
+		42466A981AE5AD3E00E0BD4B /* TimeLineManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineManager.swift; sourceTree = "<group>"; };
 		424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySearchView.swift; sourceTree = "<group>"; };
 		424F5A1F1ADE03CF00B09FBA /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		424F5A211ADE083100B09FBA /* 1842787.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1842787.png; sourceTree = "<group>"; };
@@ -122,7 +126,7 @@
 		4255EAFA1ADB622B00689B9E /* 184278702.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 184278702.png; sourceTree = "<group>"; };
 		4255EAFD1ADB651000689B9E /* cloudAndSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudAndSun.png; sourceTree = "<group>"; };
 		427BAF711AD0C30B00C87BDE /* HanekeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HanekeSwift.framework; path = "Pods/../build/Debug-iphoneos/Pods/HanekeSwift.framework"; sourceTree = "<group>"; };
-		427BAFA41AD0E6F900C87BDE /* MapViewForWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewForWeather.swift; sourceTree = "<group>"; };
+		427BAFA41AD0E6F900C87BDE /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		427BAFA91AD0E71100C87BDE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		427BAFAB1AD0EBBF00C87BDE /* slayer11.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = slayer11.ttf; sourceTree = "<group>"; };
 		427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
@@ -252,6 +256,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		42466A8E1AE590CC00E0BD4B /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */,
+				42466A8F1AE5961100E0BD4B /* TimeLineView.swift */,
+				424F5A2D1ADF46BD00B09FBA /* ImageCardView.swift */,
+				42F62E781AD0B84900D494E6 /* CardView.swift */,
+				424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */,
+				424F5A261ADE137100B09FBA /* SearchResultView.swift */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
 		42D4EDBA1A9E7F02006AE807 = {
 			isa = PBXGroup;
 			children = (
@@ -279,20 +296,16 @@
 				D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
-				42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */,
-				424F5A2D1ADF46BD00B09FBA /* ImageCardView.swift */,
-				42F62E781AD0B84900D494E6 /* CardView.swift */,
-				424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */,
-				424F5A261ADE137100B09FBA /* SearchResultView.swift */,
+				42466A8E1AE590CC00E0BD4B /* CustomViews */,
 				42F15D451AD07B35004D64EF /* CityDetailViewController.swift */,
-				427BAFA41AD0E6F900C87BDE /* MapViewForWeather.swift */,
+				427BAFA41AD0E6F900C87BDE /* MapView.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */,
+				42466A981AE5AD3E00E0BD4B /* TimeLineManager.swift */,
 				424F5A281ADE379C00B09FBA /* InternetConnection.swift */,
 				42466A8C1AE5466A00E0BD4B /* ImageCache.swift */,
 				427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */,
 				427BAFA91AD0E71100C87BDE /* LocationManager.swift */,
-				423294711ADC6446009AEEFE /* ListView.swift */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				42F15D491AD08275004D64EF /* IMGs */,
 				42D4EDD21A9E7F02006AE807 /* Images.xcassets */,
@@ -333,7 +346,8 @@
 		42F15D491AD08275004D64EF /* IMGs */ = {
 			isa = PBXGroup;
 			children = (
-				42466A851AE4D2FF00E0BD4B /* Newclock.png */,
+				42466A911AE5A4EA00E0BD4B /* Newclock.png */,
+				42466A921AE5A4EA00E0BD4B /* NewclockPin.png */,
 				42B842201AE0C68200FCA7E2 /* 01d.png */,
 				42B842211AE0C68200FCA7E2 /* 01n.png */,
 				42B842221AE0C68200FCA7E2 /* 02d.png */,
@@ -511,6 +525,7 @@
 				427BAFB91AD0EFA000C87BDE /* lightningAndRain.png in Resources */,
 				424F5A201ADE03CF00B09FBA /* board.png in Resources */,
 				4255EAFE1ADB651000689B9E /* cloudAndSun.png in Resources */,
+				42466A941AE5A4EA00E0BD4B /* NewclockPin.png in Resources */,
 				42B842331AE0C68200FCA7E2 /* 01n.png in Resources */,
 				427BAFC31AD0F2B500C87BDE /* sunrainning.png in Resources */,
 				4255EAFB1ADB622B00689B9E /* 184278702.png in Resources */,
@@ -530,7 +545,6 @@
 				421592DE1ADCE0EC00254479 /* 1175782717.jpg in Resources */,
 				42B842351AE0C68200FCA7E2 /* 02n.png in Resources */,
 				427BAFC81AD0F2B500C87BDE /* suncloud.png in Resources */,
-				42466A861AE4D2FF00E0BD4B /* Newclock.png in Resources */,
 				D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */,
 				42B842371AE0C68200FCA7E2 /* 03n.png in Resources */,
 				42B8423A1AE0C68200FCA7E2 /* 09d.png in Resources */,
@@ -544,6 +558,7 @@
 				421592DB1ADCDD4500254479 /* 20150104075606381.jpg in Resources */,
 				42D9638A1ADC407900FC75C3 /* Main.storyboard in Resources */,
 				42F24B141ADD72D700CFA0EC /* timeline.png in Resources */,
+				42466A931AE5A4EA00E0BD4B /* Newclock.png in Resources */,
 				42F15D481AD08271004D64EF /* fake_map.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,12 +635,13 @@
 				42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */,
 				42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */,
 				424F5A271ADE137100B09FBA /* SearchResultView.swift in Sources */,
+				42466A901AE5961100E0BD4B /* TimeLineView.swift in Sources */,
 				42D4EDCE1A9E7F02006AE807 /* ViewController.swift in Sources */,
-				423294721ADC6446009AEEFE /* ListView.swift in Sources */,
 				427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */,
 				424F5A291ADE379C00B09FBA /* InternetConnection.swift in Sources */,
 				424F5A2E1ADF46BD00B09FBA /* ImageCardView.swift in Sources */,
-				427BAFA51AD0E6F900C87BDE /* MapViewForWeather.swift in Sources */,
+				427BAFA51AD0E6F900C87BDE /* MapView.swift in Sources */,
+				42466A991AE5AD3E00E0BD4B /* TimeLineManager.swift in Sources */,
 				42D4EDC91A9E7F02006AE807 /* AppDelegate.swift in Sources */,
 				427BAFAA1AD0E71100C87BDE /* LocationManager.swift in Sources */,
 				424F5A1E1ADE01C300B09FBA /* CitySearchView.swift in Sources */,

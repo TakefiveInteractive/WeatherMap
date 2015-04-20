@@ -12,14 +12,12 @@ import Spring
 class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDelegate{
 
     @IBOutlet var clockButton: ClockView!
-    @IBOutlet var mapView: MapViewForWeather!
+    @IBOutlet var mapView: MapView!
     @IBOutlet var searchBar: CitySearchView!
     @IBOutlet var card: CardView!
-    @IBOutlet var shadow: UIVisualEffectView!
-    @IBOutlet var searchBack: UIVisualEffectView!
+    @IBOutlet var timeLine: TimeLineView!
 
     var smallImageView: ImageCardView!
-    var cityList: ListView!
     var searchResultList: SearchResultView!
 
     var weatherCardList = [UIImageView]()
@@ -37,58 +35,27 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchBack.layer.shadowOffset = CGSizeMake(0, 2)
-        searchBack.layer.shadowRadius = 1
-        searchBack.layer.shadowOpacity = 0.3
-        
         mapView.parentController = self
-        
-        var cityListDisappearDragger: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "cityListDisappear:")
-        
-
-        // Do any additional setup after loading the view, typically from a nib.
+        clockButton.parentController = self
+        timeLine.parentController = self
+        timeLine.setupManager()
     }
     
-    
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
+        clockButton.setup()
         
-
         searchResultList = SearchResultView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
         searchResultList.frame = CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0)
         searchResultList.parentController = self
         self.view.addSubview(searchResultList)
-        searchBar.searchDelegate = searchResultList
+        searchBar.delegate = searchResultList
         
-        card.setup()
-        
+        searchResultList.parentController = self
     }
     
-    func dragged(sender: UIPanGestureRecognizer){
-        var movement: CGFloat = 0
-        if sender.translationInView(self.smallImageView).x < 0{
-            movement = sqrt(pow(sender.translationInView(self.smallImageView).x, 2) + pow(sender.translationInView(self.smallImageView).y, 2))
-            smallImageView.moveAccordingToDrag(movement)
-            card.moveAccordingToDrag(movement)
-            shadow.alpha = movement / 200
-        }
+    override func viewDidAppear(animated: Bool) {
         
-        if movement > 150 || sender.state == UIGestureRecognizerState.Cancelled || sender.state == UIGestureRecognizerState.Failed || sender.state == UIGestureRecognizerState.Ended {
-            sender.removeTarget(self, action: "dragged:")
-            UIView.animateWithDuration(Double(movement) / 200, animations: { () -> Void in
-                self.shadow.alpha = 1
-                self.card.transform = CGAffineTransformMakeTranslation(0, self.card.frame.height * 1.5)
-                self.smallImageView.frame = CGRectMake(4, 4, self.view.frame.width - 8, self.view.frame.height - 8)
-                }, completion: { (finish) -> Void in
-                    
-            })
-        }
 
-    }
-    
-    @IBAction func menuButtonClicked(sender: AnyObject) {
-        UIView.animateWithDuration(0.8, animations: { () -> Void in
-            }, completion: { (bool) -> Void in
-        })
     }
     
     override func didReceiveMemoryWarning() {
