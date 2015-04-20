@@ -11,7 +11,7 @@ import Spring
 
 class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDelegate{
 
-    @IBOutlet var clockButton: DesignableButton!
+    @IBOutlet var clockButton: ClockView!
     @IBOutlet var mapView: MapViewForWeather!
     @IBOutlet var searchBar: CitySearchView!
     @IBOutlet var card: CardView!
@@ -27,8 +27,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
     
     // get small city image from google
-    func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL: String, cityName: String) {
-        card.gotSmallImage(image)
+    func gotImageUrls(btUrl: String, imageURL: String, cityID: String) {
+        var cache = ImageCache()
+        cache.delegate = card
+        cache.getSmallImageFromCache(btUrl, cityID: cityID)
     }
 
     
@@ -43,16 +45,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         
         var cityListDisappearDragger: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "cityListDisappear:")
         
-        clockButton.layer.shadowOffset = CGSizeMake(0, 2);
-        clockButton.layer.shadowRadius = 1;
-        clockButton.layer.shadowOpacity = 0.3;
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     
     override func viewDidAppear(animated: Bool) {
-        clockButton.animate()
         
+
         searchResultList = SearchResultView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
         searchResultList.frame = CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0)
         searchResultList.parentController = self

@@ -28,37 +28,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-K5-F1o" customClass="MapViewForWeather" customModule="WeatherAroundUs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNt-n2-tv1" userLabel="Clock" customClass="DesignableButton" customModule="Spring">
-                                <rect key="frame" x="260" y="25" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQ8-bV-p14" userLabel="Clock" customClass="ClockView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="266" y="25" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="YyO-IX-19d"/>
-                                    <constraint firstAttribute="height" constant="50" id="x4e-AX-5KZ"/>
+                                    <constraint firstAttribute="width" secondItem="KQ8-bV-p14" secondAttribute="height" multiplier="1:1" id="3RF-56-WFm"/>
                                 </constraints>
-                                <state key="normal" image="clock.png">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="x">
+                                        <real key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideLeft"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="menuButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zFp-no-PFc"/>
-                                </connections>
                             </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvT-8S-MPr">
-                                <rect key="frame" x="10" y="25" width="220" height="44"/>
+                                <rect key="frame" x="10" y="25" width="226" height="44"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eLM-PW-gMl">
-                                    <rect key="frame" x="0.0" y="0.0" width="220" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="226" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="City" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTv-RZ-bxF" customClass="CitySearchView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="10" y="25" width="220" height="44"/>
+                            <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" placeholder="City" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTv-RZ-bxF" customClass="CitySearchView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="10" y="25" width="0.0" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
@@ -71,29 +66,30 @@
                         <constraints>
                             <constraint firstItem="ckU-eB-a2a" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="1rm-Jy-DQG"/>
                             <constraint firstItem="mvT-8S-MPr" firstAttribute="bottom" secondItem="yTv-RZ-bxF" secondAttribute="bottom" id="4GA-pc-U6f"/>
-                            <constraint firstItem="Oul-K5-F1o" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="58J-wp-6aR"/>
                             <constraint firstItem="qtB-Dd-d0p" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="5om-xC-9i2"/>
-                            <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="I3l-m7-d24"/>
+                            <constraint firstItem="Oul-K5-F1o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="A9W-pn-vbI"/>
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="qtB-Dd-d0p" secondAttribute="bottom" id="KqD-vt-UtR"/>
                             <constraint firstItem="mvT-8S-MPr" firstAttribute="trailing" secondItem="yTv-RZ-bxF" secondAttribute="trailing" id="LJs-68-w8n"/>
-                            <constraint firstAttribute="trailing" secondItem="pNt-n2-tv1" secondAttribute="trailing" constant="10" id="Lx7-mF-L0j"/>
                             <constraint firstItem="yTv-RZ-bxF" firstAttribute="top" secondItem="Ezw-9k-qKr" secondAttribute="bottom" constant="5" id="PdZ-JA-CC2"/>
+                            <constraint firstItem="KQ8-bV-p14" firstAttribute="leading" secondItem="mvT-8S-MPr" secondAttribute="trailing" constant="30" id="QXX-ta-2mb"/>
                             <constraint firstItem="mvT-8S-MPr" firstAttribute="leading" secondItem="yTv-RZ-bxF" secondAttribute="leading" id="TT2-1x-N7Z"/>
                             <constraint firstItem="qtB-Dd-d0p" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="XfM-ac-X3H"/>
                             <constraint firstAttribute="bottom" secondItem="ckU-eB-a2a" secondAttribute="bottom" id="cB6-gX-Ykg"/>
+                            <constraint firstItem="Oul-K5-F1o" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ct4-vJ-6mJ"/>
                             <constraint firstItem="yTv-RZ-bxF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="f2o-U9-sQf"/>
-                            <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="gIL-My-mMd"/>
-                            <constraint firstItem="pNt-n2-tv1" firstAttribute="top" secondItem="Ezw-9k-qKr" secondAttribute="bottom" constant="5" id="ick-Cd-b7f"/>
+                            <constraint firstItem="yTv-RZ-bxF" firstAttribute="bottom" secondItem="KQ8-bV-p14" secondAttribute="bottom" id="frb-S8-yvf"/>
                             <constraint firstAttribute="trailing" secondItem="qtB-Dd-d0p" secondAttribute="trailing" id="nUL-rs-oDT"/>
                             <constraint firstItem="mvT-8S-MPr" firstAttribute="top" secondItem="yTv-RZ-bxF" secondAttribute="top" id="plz-rr-Y1e"/>
                             <constraint firstAttribute="trailing" secondItem="ckU-eB-a2a" secondAttribute="trailing" id="q3T-a8-BDw"/>
-                            <constraint firstItem="pNt-n2-tv1" firstAttribute="leading" secondItem="yTv-RZ-bxF" secondAttribute="trailing" constant="30" id="rdk-Zc-hJV"/>
-                            <constraint firstItem="Oul-K5-F1o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="vzJ-jJ-H1S"/>
+                            <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="tNb-HH-PDo"/>
+                            <constraint firstAttribute="trailing" secondItem="KQ8-bV-p14" secondAttribute="trailing" constant="10" id="voV-sa-M84"/>
+                            <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="vs7-lP-xt6"/>
+                            <constraint firstItem="yTv-RZ-bxF" firstAttribute="top" secondItem="KQ8-bV-p14" secondAttribute="top" id="zzt-zq-rjb"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="card" destination="ckU-eB-a2a" id="IuZ-vR-UrC"/>
-                        <outlet property="clockButton" destination="pNt-n2-tv1" id="3vI-SY-AXX"/>
+                        <outlet property="clockButton" destination="KQ8-bV-p14" id="Tbc-xp-MS2"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
                         <outlet property="searchBack" destination="mvT-8S-MPr" id="3WA-IZ-nDN"/>
                         <outlet property="searchBar" destination="yTv-RZ-bxF" id="lQt-RT-Rev"/>
@@ -124,9 +120,6 @@
             <point key="canvasLocation" x="419" y="-349"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="clock.png" width="99" height="99"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class CardView: DesignableView {
+class CardView: DesignableView, ImageCacheDelegate{
 
     var icon: UIImageView!
     var temperature: UILabel!
@@ -168,7 +168,7 @@ class CardView: DesignableView {
         }
     }
     
-    func gotSmallImage(image:UIImage){
+    func gotSmallImageFromCache(image: UIImage, cityID: String){
         if !smallImageEntered{
             //not on screen yet
             smallImageEntered = true
