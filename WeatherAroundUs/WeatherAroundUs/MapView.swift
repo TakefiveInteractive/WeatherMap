@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherInformationDelegate{
+class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherInformationDelegate{
 
     var parentController: ViewController!
     
@@ -111,7 +111,6 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         }else{
             return 6
         }
-
     }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
@@ -138,8 +137,8 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
                 if WeatherInfo.requestNum < 2{
                     WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
                 }
-                            
             // hide board
+            parentController.searchResultList.removeCities()
             parentController.card.hideSelf()
             parentController.searchBar.resignFirstResponder()
 
@@ -166,14 +165,5 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         super.init(coder: aDecoder)
         setup()
     }
-
-    
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }

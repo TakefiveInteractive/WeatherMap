@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import Alamofire
+import Spring
 
 @objc protocol SearchInformationDelegate: class {
     optional func addACity(placeID: String, description: String)
     optional func removeCities()
 }
 
-class CitySearchView: UISearchBar, UISearchBarDelegate, InternetConnectionDelegate{
+class CitySearchView: DesignableView, UISearchBarDelegate, InternetConnectionDelegate{
     
-    var searchDelegate : SearchInformationDelegate?
+    var delegate : SearchInformationDelegate?
+    var blurView: UIVisualEffectView!
+    var searchBar: UISearchBar!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +31,16 @@ class CitySearchView: UISearchBar, UISearchBarDelegate, InternetConnectionDelega
     }
     
     func setup(){
-        self.delegate = self
+        
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
+        blurView.frame = bounds
+        addSubview(blurView)
+        
+        searchBar = UISearchBar(frame: bounds)
+        searchBar.searchBarStyle = UISearchBarStyle.Minimal
+        searchBar.delegate = self
+        addSubview(searchBar)
+        
         self.layer.shadowOffset = CGSizeMake(0, 2)
         self.layer.shadowRadius = 1
         self.layer.shadowOpacity = 0.3
@@ -42,15 +53,22 @@ class CitySearchView: UISearchBar, UISearchBarDelegate, InternetConnectionDelega
         connection.searchCityName(searchText)
     }
     
+    // got the search result from internet
+
     func gotCityNameAutoComplete(cities: [AnyObject]) {
-        // got the search result from internet
-        for city in cities{
-            self.searchDelegate?.addACity!(city["place_id"] as! String, description: city["description"] as! String)
+        // only display 10 result maximum
+        self.delegate?.removeCities!()
+        var cityNum = cities.count
+        if cityNum > 10{
+            cityNum = 10
+        }
+        for var index = 0; index < cityNum; index++ {
+            self.delegate?.addACity!((cities[index] as! [String: AnyObject])["place_id"] as! String, description: (cities[index] as! [String: AnyObject])["description"] as! String)
         }
     }
     
     func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
-        self.resignFirstResponder()
+        searchBar.resignFirstResponder()
         return true
     }
 }

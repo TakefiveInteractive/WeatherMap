@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
+class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetConnectionDelegate{
     
     var parentController: ViewController!
     
@@ -18,9 +18,6 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
     
     let theHeight: CGFloat = 20
     let maxCity: Int = 12
-    
-    var timer = NSTimer()
-    var timeCount = 0
     
     override init(effect: UIVisualEffect) {
         super.init(effect: effect)
@@ -60,10 +57,7 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
             self.alpha = 1
             aCity.alpha = 0.8
             
-            }, completion: { (finish) -> Void in
-                self.timeCount = 0
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(25, target: self, selector: "startCounting", userInfo: nil, repeats: true)
-        })
+            })
         
         // change size
         UIView.animateWithDuration(0.2, animations: { () -> Void in
@@ -72,36 +66,24 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate{
         
     }
     
-    func startCounting(){
-        if timeCount < 8{
-            timeCount++
-        }else{
-            
-            removeCities()
-            timer.invalidate()
-            timeCount = 0
-        }
-    }
-    
     func chooseCity(sender: UIButton){
         
         let placeid = placeIDList[find(resultList, sender)!]
         
         parentController.card.hideSelf()
-        parentController.searchBar.text = ""
+        parentController.searchBar.searchBar.text = ""
         removeCities()
 
-        var req = Alamofire.request(.GET, NSURL(string: "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(placeid)&key=AIzaSyDHwdGU463x3_aJfg4TNWm0fijTjr9VEdg")!).responseJSON { (_, response, JSON, error) in
-            
-            if error == nil && JSON != nil {
-                
-                let result = JSON as! [String : AnyObject]
-                let position = CLLocationCoordinate2DMake((((result["result"] as! [String : AnyObject])["geometry"] as! [String : AnyObject])["location"] as! [String : AnyObject])["lat"] as! Double, (((result["result"] as! [String : AnyObject])["geometry"] as! [String : AnyObject])["location"] as! [String : AnyObject])["lng"] as! Double)
-                WeatherInfo.getLocalWeatherInformation(position, number: 10)
-                self.parentController.mapView.animateToLocation(position)
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.getLocationWithPlaceID(placeid)
+        
+    }
+    
+    func getLocationWithPlaceID(location: CLLocationCoordinate2D){
+        WeatherInfo.getLocalWeatherInformation(location, number: 10)
+        self.parentController.mapView.animateToLocation(location)
 
-            }
-        }
     }
     
     func removeCities(){

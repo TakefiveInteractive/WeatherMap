@@ -34,6 +34,7 @@ class CardView: DesignableView, ImageCacheDelegate{
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setup()
     }
     
     let sideWidth:CGFloat = 6
@@ -41,14 +42,6 @@ class CardView: DesignableView, ImageCacheDelegate{
     func setup(){
         
         self.userInteractionEnabled = false
-        
-        let fontFamilyNames = UIFont.familyNames()
-        for familyName in fontFamilyNames {
-            println("------------------------------")
-            println("Font Family Name = [\(familyName)]")
-            let names = UIFont.fontNamesForFamilyName(familyName as! String)
-            println("Font Names = [\(names)]")
-        }
         
         
         iconBack = DesignableView(frame: CGRectMake(sideWidth, sideWidth, self.frame.height * 0.75 - sideWidth * 2, self.frame.height * 0.75 - sideWidth * 2))
