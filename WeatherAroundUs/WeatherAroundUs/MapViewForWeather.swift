@@ -69,7 +69,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
                 parentController.card.displayCity(cityID)
                 var connection = InternetConnection()
                 connection.delegate = parentController
-                connection.getSmallPictureOfACity(CLLocationCoordinate2DMake(latitude, longitude), name:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!)
+                connection.getPictureURLOfACity(CLLocationCoordinate2DMake(latitude, longitude), name:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
             }
             
             if WeatherInfo.citiesAround.count > WeatherInfo.maxCityNum{
@@ -118,7 +118,7 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
         parentController.card.displayCity(marker.title)
         var connection = InternetConnection()
         connection.delegate = parentController
-        connection.getSmallPictureOfACity(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!)
+        connection.getPictureURLOfACity(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!, cityID: (weatherIcons as! NSDictionary).allKeysForObject(marker)[0] as! String)
         self.animateToLocation(marker.position)
         
         return true
@@ -147,21 +147,12 @@ class MapViewForWeather: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate
 
     }
     
-
-    
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
         
         let iconKeys = weatherIcons.keys
         for key in iconKeys{
             weatherIcons[key]?.icon = getImageAccordingToZoom(key)
         }
-        /*if abs(camera.zoom - zoom) > 0.5{
-            zoom = camera.zoom
-            if !WeatherInfo.requesting{
-                WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
-            }
-
-        }*/
         
     }
     

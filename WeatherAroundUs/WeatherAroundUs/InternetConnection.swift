@@ -8,12 +8,11 @@
 
 import UIKit
 import Alamofire
-import Haneke
 import SwiftyJSON
 
 @objc protocol InternetConnectionDelegate: class {
     optional func gotCityNameAutoComplete(cities: [AnyObject])
-    optional func getSmallImageOfCity(image: UIImage, btUrl: String, imageURL:String, cityName:String)
+    optional func gotImageUrls(btUrl: String, imageURL: String, cityID: String)
     optional func gotLocalCityWeather(cities: [AnyObject])
 }
 
@@ -62,7 +61,7 @@ class InternetConnection: NSObject {
     
     
     // get small city image
-    func getSmallPictureOfACity(location: CLLocationCoordinate2D, name: String){
+    func getPictureURLOfACity(location: CLLocationCoordinate2D, name: String, cityID: String){
         
         var geocoder = GMSGeocoder()
         geocoder.reverseGeocodeCoordinate(location) { (response, error) -> Void in
@@ -138,13 +137,7 @@ class InternetConnection: NSObject {
                                 }
                             }
                             
-                            // get the image from cache
-                            let cache = Shared.dataCache
-                            var img = UIImage()
-                            cache.fetch(URL: NSURL(string: tbUrl)!).onSuccess { image in
-                                img = UIImage(data: image)!
-                                self.delegate?.getSmallImageOfCity!(img, btUrl: tbUrl, imageURL: imageUrl, cityName: name)
-                            }
+                            self.delegate?.gotImageUrls!(tbUrl, imageURL: imageUrl, cityID: cityID)
                             
                         }
                     }

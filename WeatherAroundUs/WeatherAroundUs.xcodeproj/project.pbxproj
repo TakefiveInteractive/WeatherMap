@@ -11,10 +11,11 @@
 		421592DB1ADCDD4500254479 /* 20150104075606381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DA1ADCDD4500254479 /* 20150104075606381.jpg */; };
 		421592DC1ADCDD4500254479 /* 20150104075606381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DA1ADCDD4500254479 /* 20150104075606381.jpg */; };
 		421592DE1ADCE0EC00254479 /* 1175782717.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DD1ADCE0EC00254479 /* 1175782717.jpg */; };
-		422B85021ADB4B2300EED903 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 422B85011ADB4B2300EED903 /* clock.png */; };
-		422B85031ADB4B2300EED903 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 422B85011ADB4B2300EED903 /* clock.png */; };
 		423294721ADC6446009AEEFE /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423294711ADC6446009AEEFE /* ListView.swift */; };
 		4242E6C41AD1D69B00D7EB9A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */; };
+		42466A861AE4D2FF00E0BD4B /* Newclock.png in Resources */ = {isa = PBXBuildFile; fileRef = 42466A851AE4D2FF00E0BD4B /* Newclock.png */; };
+		42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */; };
+		42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8C1AE5466A00E0BD4B /* ImageCache.swift */; };
 		424F5A1E1ADE01C300B09FBA /* CitySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */; };
 		424F5A201ADE03CF00B09FBA /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F5A1F1ADE03CF00B09FBA /* board.png */; };
 		424F5A221ADE083100B09FBA /* 1842787.png in Resources */ = {isa = PBXBuildFile; fileRef = 424F5A211ADE083100B09FBA /* 1842787.png */; };
@@ -76,24 +77,6 @@
 		42F62E771AD0B75100D494E6 /* Card.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E761AD0B75100D494E6 /* Card.png */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
 		43309AE34EFF8A1147E54079 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7061C7B48DE2F420FC0085AE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A1CE25A91AE0CD78008EB5F8 /* 01d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25971AE0CD78008EB5F8 /* 01d.png */; };
-		A1CE25AA1AE0CD78008EB5F8 /* 01n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25981AE0CD78008EB5F8 /* 01n.png */; };
-		A1CE25AB1AE0CD78008EB5F8 /* 02d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25991AE0CD78008EB5F8 /* 02d.png */; };
-		A1CE25AC1AE0CD78008EB5F8 /* 02n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE259A1AE0CD78008EB5F8 /* 02n.png */; };
-		A1CE25AD1AE0CD78008EB5F8 /* 03d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE259B1AE0CD78008EB5F8 /* 03d.png */; };
-		A1CE25AE1AE0CD78008EB5F8 /* 03n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE259C1AE0CD78008EB5F8 /* 03n.png */; };
-		A1CE25AF1AE0CD78008EB5F8 /* 04d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE259D1AE0CD78008EB5F8 /* 04d.png */; };
-		A1CE25B01AE0CD78008EB5F8 /* 04n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE259E1AE0CD78008EB5F8 /* 04n.png */; };
-		A1CE25B11AE0CD78008EB5F8 /* 09d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE259F1AE0CD78008EB5F8 /* 09d.png */; };
-		A1CE25B21AE0CD78008EB5F8 /* 09n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A01AE0CD78008EB5F8 /* 09n.png */; };
-		A1CE25B31AE0CD78008EB5F8 /* 10d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A11AE0CD78008EB5F8 /* 10d.png */; };
-		A1CE25B41AE0CD78008EB5F8 /* 10n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A21AE0CD78008EB5F8 /* 10n.png */; };
-		A1CE25B51AE0CD78008EB5F8 /* 11d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A31AE0CD78008EB5F8 /* 11d.png */; };
-		A1CE25B61AE0CD78008EB5F8 /* 11n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A41AE0CD78008EB5F8 /* 11n.png */; };
-		A1CE25B71AE0CD78008EB5F8 /* 13d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A51AE0CD78008EB5F8 /* 13d.png */; };
-		A1CE25B81AE0CD78008EB5F8 /* 13n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A61AE0CD78008EB5F8 /* 13n.png */; };
-		A1CE25B91AE0CD78008EB5F8 /* 50d.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A71AE0CD78008EB5F8 /* 50d.png */; };
-		A1CE25BA1AE0CD78008EB5F8 /* 50n.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CE25A81AE0CD78008EB5F8 /* 50n.png */; };
 		D5362D611AD0B77F00CAD195 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */; };
 		D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */; };
 		D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D641AD0B83F00CAD195 /* AVFoundation.framework */; };
@@ -124,9 +107,11 @@
 		42068B761ADC570300FE4BD3 /* acard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acard.png; sourceTree = "<group>"; };
 		421592DA1ADCDD4500254479 /* 20150104075606381.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 20150104075606381.jpg; sourceTree = "<group>"; };
 		421592DD1ADCE0EC00254479 /* 1175782717.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1175782717.jpg; sourceTree = "<group>"; };
-		422B85011ADB4B2300EED903 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		423294711ADC6446009AEEFE /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
+		42466A851AE4D2FF00E0BD4B /* Newclock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Newclock.png; sourceTree = "<group>"; };
+		42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		42466A8C1AE5466A00E0BD4B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySearchView.swift; sourceTree = "<group>"; };
 		424F5A1F1ADE03CF00B09FBA /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		424F5A211ADE083100B09FBA /* 1842787.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1842787.png; sourceTree = "<group>"; };
@@ -294,6 +279,7 @@
 				D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
+				42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */,
 				424F5A2D1ADF46BD00B09FBA /* ImageCardView.swift */,
 				42F62E781AD0B84900D494E6 /* CardView.swift */,
 				424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */,
@@ -303,6 +289,7 @@
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */,
 				424F5A281ADE379C00B09FBA /* InternetConnection.swift */,
+				42466A8C1AE5466A00E0BD4B /* ImageCache.swift */,
 				427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */,
 				427BAFA91AD0E71100C87BDE /* LocationManager.swift */,
 				423294711ADC6446009AEEFE /* ListView.swift */,
@@ -346,6 +333,7 @@
 		42F15D491AD08275004D64EF /* IMGs */ = {
 			isa = PBXGroup;
 			children = (
+				42466A851AE4D2FF00E0BD4B /* Newclock.png */,
 				42B842201AE0C68200FCA7E2 /* 01d.png */,
 				42B842211AE0C68200FCA7E2 /* 01n.png */,
 				42B842221AE0C68200FCA7E2 /* 02d.png */,
@@ -389,7 +377,6 @@
 				421592DA1ADCDD4500254479 /* 20150104075606381.jpg */,
 				42068B761ADC570300FE4BD3 /* acard.png */,
 				4255EAF41ADB599800689B9E /* CardwoShadow.png */,
-				422B85011ADB4B2300EED903 /* clock.png */,
 				4255EAFD1ADB651000689B9E /* cloudAndSun.png */,
 				427BAFB81AD0EFA000C87BDE /* lightningAndRain.png */,
 				42F62E741AD0B6EE00D494E6 /* ListOfCities.png */,
@@ -534,7 +521,6 @@
 				42B842431AE0C68200FCA7E2 /* 50n.png in Resources */,
 				42D4EDD61A9E7F02006AE807 /* LaunchScreen.xib in Resources */,
 				42B842421AE0C68200FCA7E2 /* 50d.png in Resources */,
-				422B85021ADB4B2300EED903 /* clock.png in Resources */,
 				427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */,
 				42D4EDD31A9E7F02006AE807 /* Images.xcassets in Resources */,
 				42B8423F1AE0C68200FCA7E2 /* 11n.png in Resources */,
@@ -544,6 +530,7 @@
 				421592DE1ADCE0EC00254479 /* 1175782717.jpg in Resources */,
 				42B842351AE0C68200FCA7E2 /* 02n.png in Resources */,
 				427BAFC81AD0F2B500C87BDE /* suncloud.png in Resources */,
+				42466A861AE4D2FF00E0BD4B /* Newclock.png in Resources */,
 				D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */,
 				42B842371AE0C68200FCA7E2 /* 03n.png in Resources */,
 				42B8423A1AE0C68200FCA7E2 /* 09d.png in Resources */,
@@ -566,7 +553,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				42F24B151ADD72D700CFA0EC /* timeline.png in Resources */,
-				422B85031ADB4B2300EED903 /* clock.png in Resources */,
 				421592DC1ADCDD4500254479 /* 20150104075606381.jpg in Resources */,
 				4255EAF61ADB599800689B9E /* CardwoShadow.png in Resources */,
 				42F24B131ADD72D700CFA0EC /* timeline_attch.png in Resources */,
@@ -631,6 +617,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				42F15D461AD07B35004D64EF /* CityDetailViewController.swift in Sources */,
+				42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */,
+				42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */,
 				424F5A271ADE137100B09FBA /* SearchResultView.swift in Sources */,
 				42D4EDCE1A9E7F02006AE807 /* ViewController.swift in Sources */,
 				423294721ADC6446009AEEFE /* ListView.swift in Sources */,
