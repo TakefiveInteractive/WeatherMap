@@ -53,21 +53,24 @@ class TimeLineManager: NSObject, InternetConnectionDelegate {
             var connection = InternetConnection()
             connection.delegate = self
             connection.getWeatherForcast(citiesToLoad.last!)
-            citiesToLoad.removeLast()
         }
     }
     
     func gotWeatherForcastData(cityID: String, forcast:[AnyObject]){
-        updateProgress()
-        var cityData = [String: AnyObject]()
-        for var index = 0; index < 14; index++ {
-            cityData.updateValue(forcast[index], forKey: (forcast[index] as! [String: AnyObject])["dt_txt"] as! String)
+        
+        //forcast valid
+        if forcast.count >= 39{
+            updateProgress()
+            var cityData = [String: AnyObject]()
+            for var index = 0; index < 14; index++ {
+                cityData.updateValue(forcast[index], forKey: (forcast[index] as! [String: AnyObject])["dt_txt"] as! String)
+            }
+            cityData.updateValue(forcast[22], forKey: (forcast[22] as! [String: AnyObject])["dt_txt"] as! String)
+            cityData.updateValue(forcast[30], forKey: (forcast[30] as! [String: AnyObject])["dt_txt"] as! String)
+            cityData.updateValue(forcast[38], forKey: (forcast[38] as! [String: AnyObject])["dt_txt"] as! String)
+            forcastInfo.updateValue(cityData, forKey: cityID)
+            citiesToLoad.removeLast()
         }
-        cityData.updateValue(forcast[22], forKey: (forcast[22] as! [String: AnyObject])["dt_txt"] as! String)
-        cityData.updateValue(forcast[30], forKey: (forcast[30] as! [String: AnyObject])["dt_txt"] as! String)
-        cityData.updateValue(forcast[38], forKey: (forcast[38] as! [String: AnyObject])["dt_txt"] as! String)
-
-        forcastInfo.updateValue(cityData, forKey: cityID)
         getWeatherForcastData()
     }
     
