@@ -21,6 +21,8 @@ class ClockView: DesignableView{
 
     var parentController: ViewController!
 
+    var dragMode = false
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -41,9 +43,15 @@ class ClockView: DesignableView{
     }
     
     func clockClicked(){
-        addRotatingAnimation()
-        parentController.timeLine.manager.getAffectedCities()
         
+        if !dragMode{
+            dragMode = true
+            addRotatingAnimation()
+            parentController.timeLine.startLoading()
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.transform = CGAffineTransformMakeScale(0.5, 0.5)
+            })
+        }
     }
     
     func addRotatingAnimation(){
@@ -92,4 +100,9 @@ class ClockView: DesignableView{
             rotatePin3()
         }
     }
+    
+    func dragged(sender: UIPanGestureRecognizer){
+        println(sender.translationInView(self).y)
+    }
+    
 }

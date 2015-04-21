@@ -17,11 +17,12 @@ class TimeLineView: DesignableView ,TimeLineManagerDelegate{
 
     var manager: TimeLineManager!
     
-    var unloadedLine: UIView!
+    var unloadLine: UIView!
 
     var loadedLine = UIView()
     var dots = [UIImageView]()
 
+    var dragger: UIPanGestureRecognizer!
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,14 +35,15 @@ class TimeLineView: DesignableView ,TimeLineManagerDelegate{
         blurView.roundCorner(UIRectCorner.AllCorners, radius: bounds.width / 2)
         addSubview(blurView)
         
-        unloadedLine = UIView()
-        unloadedLine.frame.size = CGSizeMake(1.5, self.frame.height - self.frame.width)
-        unloadedLine.backgroundColor = UIColor.lightGrayColor()
-        unloadedLine.alpha = 0.5
-        unloadedLine.center = blurView.center
-        addSubview(unloadedLine)
+        unloadLine = UIView()
+        unloadLine.frame.size = CGSizeMake(1.5, self.frame.height - self.frame.width)
+        unloadLine.backgroundColor = UIColor.lightGrayColor()
+        unloadLine.alpha = 0.5
+        unloadLine.center = blurView.center
+        addSubview(unloadLine)
         
         createDotsAndLine()
+        
     }
     
     func setupManager(){
@@ -52,24 +54,48 @@ class TimeLineView: DesignableView ,TimeLineManagerDelegate{
     func createDotsAndLine(){
         
         loadedLine.removeFromSuperview()
-        loadedLine = UIView(frame: unloadedLine.bounds)
-        loadedLine.frame.size = CGSizeMake(unloadedLine.frame.width, 0)
+        loadedLine = UIView(frame: unloadLine.bounds)
+        loadedLine.frame.size = CGSizeMake(unloadLine.frame.width, 0)
         loadedLine.backgroundColor = UIColor(red: 68/255.0, green: 155/255.0, blue: 153/255.0, alpha: 1)
-        unloadedLine.addSubview(loadedLine)
+        unloadLine.addSubview(loadedLine)
         
         for var index:CGFloat = 0; index < 17; index++ {
             var dot = UIImage(color: UIColor(red: 68/255.0, green: 155/255.0, blue: 153/255.0, alpha: 1), size: CGSizeMake(50, 50))
             dot = dot?.roundCornersToCircle()
             var dotView = UIImageView(image: dot!)
             dotView.frame.size = CGSizeMake(6, 6)
-            dotView.center = CGPointMake(self.frame.width / 2, unloadedLine.frame.origin.y +  unloadedLine.frame.height / 17 * (index + 1))
+            dotView.center = CGPointMake(self.frame.width / 2, unloadLine.frame.origin.y +  unloadLine.frame.height / 17 * (index + 1))
+            addSubview(dotView)
+            dotView.transform = CGAffineTransformMakeScale(0.01, 0.01)
             dots.append(dotView)
         }
     }
     
     func progressUpdated(progress: Double) {
         UIView.animateWithDuration(0.15, animations: { () -> Void in
-            self.loadedLine.frame.size = CGSizeMake(self.loadedLine.frame.width, self.unloadedLine.frame.height * CGFloat(progress))
+            self.loadedLine.frame.size = CGSizeMake(self.loadedLine.frame.width, self.unloadLine.frame.height * CGFloat(progress))
+            self.dots[Int(progress * 16)].transform = CGAffineTransformMakeScale(1, 1)
+        })
+        if progress > 0.99{
+            // done
+            dragger = UIPanGestureRecognizer(target: parentController.clockButton, action: "dragged:")
+            blurView.addGestureRecognizer(dragger)
+        }
+    }
+    
+
+    
+    
+    func startLoading(){
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            self.parentController.timeLine.alpha = 1
+        })
+        manager.getAffectedCities()
+    }
+    
+    func disappear(){
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            self.parentController.timeLine.alpha = 0
         })
     }
 
