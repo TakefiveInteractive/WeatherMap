@@ -24,15 +24,12 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var citiesAroundDict = [String: AnyObject]()
     var citiesAround = [String]()
 
-    let maxCityNum = 30
+    let maxCityNum = 50
     
     var weatherDelegate : WeatherInformationDelegate?
     var updateIconListDelegate : UpdateIconListDelegate?
-    
-    var requestNum = 0
-    
+        
     func getLocalWeatherInformation(location: CLLocationCoordinate2D, number:Int){
-        requestNum++
         var connection = InternetConnection()
         connection.delegate = self
         connection.getLocalWeather(location, number: number)
@@ -40,7 +37,6 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
 
     // got local city weather from member
     func gotLocalCityWeather(cities: [AnyObject]) {
-        requestNum--
         for city in cities{
             let id: Int = (city as! [String : AnyObject]) ["id"] as! Int
             // first time weather data

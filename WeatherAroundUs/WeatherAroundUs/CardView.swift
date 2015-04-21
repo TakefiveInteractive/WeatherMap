@@ -43,7 +43,6 @@ class CardView: DesignableView, ImageCacheDelegate{
         
         self.userInteractionEnabled = false
         
-        
         iconBack = DesignableView(frame: CGRectMake(sideWidth, sideWidth, self.frame.height * 0.75 - sideWidth * 2, self.frame.height * 0.75 - sideWidth * 2))
         self.addSubview(iconBack)
         addShadow(iconBack)
@@ -162,36 +161,39 @@ class CardView: DesignableView, ImageCacheDelegate{
     }
     
     func gotSmallImageFromCache(image: UIImage, cityID: String){
-        if !smallImageEntered{
-            //not on screen yet
-            smallImageEntered = true
-            let theWidth = smallImageBack.frame.width
-            let theHeight:CGFloat = image.size.height / image.size.width * theWidth
-            smallImageBack.frame = CGRectMake(sideWidth + temperatureBack.frame.origin.x + temperatureBack.frame.width, weatherDescriptionBack.frame.origin.y - sideWidth - theHeight, theWidth, theHeight)
-            (smallImageBack.subviews[0] as! UIView).frame = smallImageBack.bounds
-            smallImageBack.animation = "slideLeft"
-            smallImageBack.animate()
-            smallImage.image = image
-            smallImage.frame = CGRectMake(3, 3, smallImageBack.frame.width - 6, smallImageBack.frame.height - 6)
-            
-        }else{
-            
-            let theWidth = smallImageBack.frame.width
-            let theHeight:CGFloat = image.size.height / image.size.width * theWidth
-            let theFrame = CGRectMake(sideWidth + temperatureBack.frame.origin.x + temperatureBack.frame.width, weatherDescriptionBack.frame.origin.y - sideWidth - theHeight, theWidth, theHeight)
-            
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
-                self.smallImageBack.frame = theFrame
-                (self.smallImageBack.subviews[0] as! UIView).frame = self.smallImageBack.bounds
-                self.smallImage.frame = CGRectMake(3, 3, self.smallImageBack.frame.width - 6, self.smallImageBack.frame.height - 6)
-            })
-            UIView.animateWithDuration(0.25, animations: { () -> Void in
-                self.smallImage.alpha = 0.3
-                }) { (finish) -> Void in
-                    self.smallImage.image = image
-                    UIView.animateWithDuration(0.25, animations: { () -> Void in
-                        self.smallImage.alpha = 0.6
-                    })
+        
+        if !hide{
+            if !smallImageEntered{
+                //not on screen yet
+                smallImageEntered = true
+                let theWidth = smallImageBack.frame.width
+                let theHeight:CGFloat = image.size.height / image.size.width * theWidth
+                smallImageBack.frame = CGRectMake(sideWidth + temperatureBack.frame.origin.x + temperatureBack.frame.width, weatherDescriptionBack.frame.origin.y - sideWidth - theHeight, theWidth, theHeight)
+                (smallImageBack.subviews[0] as! UIView).frame = smallImageBack.bounds
+                smallImageBack.animation = "slideLeft"
+                smallImageBack.animate()
+                smallImage.image = image
+                smallImage.frame = CGRectMake(3, 3, smallImageBack.frame.width - 6, smallImageBack.frame.height - 6)
+                
+            }else{
+                
+                let theWidth = smallImageBack.frame.width
+                let theHeight:CGFloat = image.size.height / image.size.width * theWidth
+                let theFrame = CGRectMake(sideWidth + temperatureBack.frame.origin.x + temperatureBack.frame.width, weatherDescriptionBack.frame.origin.y - sideWidth - theHeight, theWidth, theHeight)
+                
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.smallImageBack.frame = theFrame
+                    (self.smallImageBack.subviews[0] as! UIView).frame = self.smallImageBack.bounds
+                    self.smallImage.frame = CGRectMake(3, 3, self.smallImageBack.frame.width - 6, self.smallImageBack.frame.height - 6)
+                })
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    self.smallImage.alpha = 0.3
+                    }) { (finish) -> Void in
+                        self.smallImage.image = image
+                        UIView.animateWithDuration(0.25, animations: { () -> Void in
+                            self.smallImage.alpha = 0.6
+                        })
+                }
             }
         }
     }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetConnectionDelegate{
     
@@ -80,7 +79,7 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
         
     }
     
-    func getLocationWithPlaceID(location: CLLocationCoordinate2D){
+    func gotLocationWithPlaceID(location: CLLocationCoordinate2D){
         WeatherInfo.getLocalWeatherInformation(location, number: 10)
         self.parentController.mapView.animateToLocation(location)
 

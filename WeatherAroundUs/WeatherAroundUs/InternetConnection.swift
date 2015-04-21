@@ -15,7 +15,7 @@ import SwiftyJSON
     optional func gotImageUrls(btUrl: String, imageURL: String, cityID: String)
     optional func gotLocalCityWeather(cities: [AnyObject])
     optional func gotLocationWithPlaceID(location: CLLocationCoordinate2D)
-    optional func gotWeatherForcastData(cityID: String)
+    optional func gotWeatherForcastData(cityID: String, forcast:[AnyObject])
 
 }
 
@@ -173,8 +173,8 @@ class InternetConnection: NSObject {
             if error == nil && JSON != nil {
                 
                 let myjson = SwiftyJSON.JSON(JSON!)
-                
-                println(myjson.description)
+                let list = myjson["list"].arrayObject
+                self.delegate?.gotWeatherForcastData!(cityID, forcast:list!)
             }
         }
     }
