@@ -59,19 +59,20 @@ class TimeLineManager: NSObject, InternetConnectionDelegate {
     func gotWeatherForcastData(cityID: String, forcast:[AnyObject]){
         
         //forcast valid
-        if forcast.count >= 39{
+        if forcast.count >= 38{
             updateProgress()
             var cityData = [String: AnyObject]()
             for var index = 0; index < 14; index++ {
                 cityData.updateValue(forcast[index], forKey: (forcast[index] as! [String: AnyObject])["dt_txt"] as! String)
             }
-            cityData.updateValue(forcast[22], forKey: (forcast[22] as! [String: AnyObject])["dt_txt"] as! String)
-            cityData.updateValue(forcast[30], forKey: (forcast[30] as! [String: AnyObject])["dt_txt"] as! String)
-            cityData.updateValue(forcast[38], forKey: (forcast[38] as! [String: AnyObject])["dt_txt"] as! String)
+            cityData.updateValue(forcast[21], forKey: (forcast[21] as! [String: AnyObject])["dt_txt"] as! String)
+            cityData.updateValue(forcast[29], forKey: (forcast[29] as! [String: AnyObject])["dt_txt"] as! String)
+            cityData.updateValue(forcast[37], forKey: (forcast[37] as! [String: AnyObject])["dt_txt"] as! String)
             forcastInfo.updateValue(cityData, forKey: cityID)
             citiesToLoad.removeLast()
         }
-        getWeatherForcastData()
+        self.getWeatherForcastData()
+        
     }
     
     func updateProgress(){

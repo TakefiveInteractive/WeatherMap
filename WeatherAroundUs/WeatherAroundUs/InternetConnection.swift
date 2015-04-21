@@ -89,8 +89,10 @@ class InternetConnection: NSObject {
             
             if error == nil && response != nil{
                 
-                let address = response!.results()[0] as! GMSAddress
                 
+                let address = response!.results()[0] as! GMSAddress
+                println(address.description)
+
                 var searchText = ""
                 
                 if address.subLocality != nil{
@@ -112,9 +114,9 @@ class InternetConnection: NSObject {
                 }else if address.administrativeArea != nil{
                     searchText = address.administrativeArea + " " + address.country
                 }else{
-                    searchText = name + " " + address.country
+                    searchText = address.country
                 }
-                
+                searchText = searchText + "  -human -people -crowd -person"
                 // avoid error when there is space
                 searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
                 
@@ -174,7 +176,16 @@ class InternetConnection: NSObject {
                 
                 let myjson = SwiftyJSON.JSON(JSON!)
                 let list = myjson["list"].arrayObject
+                println(list!.count)
                 self.delegate?.gotWeatherForcastData!(cityID, forcast:list!)
+            }else{
+               //resend
+                // delay 1 second
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                    Int64(Double(arc4random_uniform(UInt32(10))) / 10 * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
+                    self.getWeatherForcast(cityID)
+                }
             }
         }
     }

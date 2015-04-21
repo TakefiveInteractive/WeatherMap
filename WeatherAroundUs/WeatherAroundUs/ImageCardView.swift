@@ -19,13 +19,8 @@ class ImageCardView: DesignableImageView {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
     
-    override init(image: UIImage!) {
-        super.init(image: image)
-        setup()
-    }
     
     func setup(){
         self.userInteractionEnabled = true

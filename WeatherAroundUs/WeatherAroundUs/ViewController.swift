@@ -43,7 +43,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     override func viewWillAppear(animated: Bool) {
         clockButton.setup()
-        
+
         searchResultList = SearchResultView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
         searchResultList.frame = CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0)
         searchResultList.parentController = self
@@ -53,8 +53,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     }
     
     override func viewDidAppear(animated: Bool) {
-        
-
+        card.setup()
     }
     
     override func didReceiveMemoryWarning() {
