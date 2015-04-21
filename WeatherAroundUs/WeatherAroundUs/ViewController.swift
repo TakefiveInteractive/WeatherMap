@@ -49,7 +49,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         searchResultList.parentController = self
         self.view.addSubview(searchResultList)
         searchBar.delegate = searchResultList
-        
         searchResultList.parentController = self
     }
     

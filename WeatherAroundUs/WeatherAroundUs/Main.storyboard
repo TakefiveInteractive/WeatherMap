@@ -2,8 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -34,11 +36,10 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="294" y="20" width="20" height="528"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="285" y="43" width="15" height="363"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="9G7-TN-yrE"/>
+                                    <constraint firstAttribute="width" constant="15" id="9G7-TN-yrE"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjW-vs-Mcr" userLabel="Clock" customClass="ClockView" customModule="WeatherAroundUs" customModuleProvider="target">
@@ -59,11 +60,26 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Co-rd-AxZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin1.png" translatesAutoresizingMaskIntoConstraints="NO" id="j1A-ZF-CQd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZUd-Al-luT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                    <color key="tintColor" red="0.26666666666666666" green="0.60784313725490191" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ZUd-Al-luT" firstAttribute="leading" secondItem="oUn-7j-9mZ" secondAttribute="leading" id="08D-x2-Zdh"/>
                                                 <constraint firstAttribute="bottom" secondItem="NIh-rh-4pZ" secondAttribute="bottom" id="1EN-Cw-ycY"/>
+                                                <constraint firstItem="j1A-ZF-CQd" firstAttribute="leading" secondItem="oUn-7j-9mZ" secondAttribute="leading" id="1wc-fR-d6x"/>
+                                                <constraint firstAttribute="bottom" secondItem="j1A-ZF-CQd" secondAttribute="bottom" id="37z-n2-5Qu"/>
+                                                <constraint firstItem="j1A-ZF-CQd" firstAttribute="top" secondItem="oUn-7j-9mZ" secondAttribute="top" id="58p-MH-jgt"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZUd-Al-luT" secondAttribute="bottom" id="6u8-eB-mZc"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="leading" secondItem="0Co-rd-AxZ" secondAttribute="leading" id="8Qh-zo-XjP"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZUd-Al-luT" secondAttribute="trailing" id="JJj-bx-Wmm"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="top" secondItem="0Co-rd-AxZ" secondAttribute="top" id="LRV-ek-nLf"/>
+                                                <constraint firstAttribute="trailing" secondItem="j1A-ZF-CQd" secondAttribute="trailing" id="Rbb-T4-D1q"/>
+                                                <constraint firstItem="ZUd-Al-luT" firstAttribute="top" secondItem="oUn-7j-9mZ" secondAttribute="top" id="UnK-Dz-rMh"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="top" secondItem="oUn-7j-9mZ" secondAttribute="top" id="h5b-Ye-5F6"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="bottom" secondItem="0Co-rd-AxZ" secondAttribute="bottom" id="heP-GI-SUt"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="leading" secondItem="oUn-7j-9mZ" secondAttribute="leading" id="l47-At-7OK"/>
@@ -90,7 +106,9 @@
                                 <connections>
                                     <outlet property="blurView" destination="3hg-no-2bX" id="Ntn-0a-Ydb"/>
                                     <outlet property="clock" destination="NIh-rh-4pZ" id="fnZ-ZP-ftS"/>
-                                    <outlet property="clockLoading" destination="0Co-rd-AxZ" id="Cm0-2U-Od1"/>
+                                    <outlet property="pin1" destination="0Co-rd-AxZ" id="WyO-A7-CPS"/>
+                                    <outlet property="pin2" destination="ZUd-Al-luT" id="nRo-SM-T5U"/>
+                                    <outlet property="pin3" destination="j1A-ZF-CQd" id="Zqk-DT-Lor"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
@@ -110,13 +128,13 @@
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="top" secondItem="tqf-Zs-cEl" secondAttribute="top" id="FmS-2Q-FgV"/>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="left" secondItem="tqf-Zs-cEl" secondAttribute="right" constant="40" id="I04-ED-ebF"/>
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="MfI-Xy-ZJF"/>
-                            <constraint firstItem="XMe-1D-uI0" firstAttribute="trailing" secondItem="VjW-vs-Mcr" secondAttribute="trailing" id="Mi1-VL-AxR"/>
+                            <constraint firstItem="XMe-1D-uI0" firstAttribute="centerX" secondItem="VjW-vs-Mcr" secondAttribute="centerX" id="Mi1-VL-AxR"/>
                             <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="PVS-PN-mpV"/>
                             <constraint firstAttribute="bottom" secondItem="ckU-eB-a2a" secondAttribute="bottom" id="cB6-gX-Ykg"/>
-                            <constraint firstAttribute="bottom" secondItem="XMe-1D-uI0" secondAttribute="bottom" constant="20" id="d56-LW-ky8"/>
+                            <constraint firstAttribute="centerY" secondItem="XMe-1D-uI0" secondAttribute="bottom" multiplier="0.7" id="mk7-xr-cnH"/>
                             <constraint firstItem="tqf-Zs-cEl" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" id="onW-F1-nql"/>
                             <constraint firstAttribute="trailing" secondItem="ckU-eB-a2a" secondAttribute="trailing" id="q3T-a8-BDw"/>
-                            <constraint firstItem="XMe-1D-uI0" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="top" id="tNs-b2-QXs"/>
+                            <constraint firstItem="XMe-1D-uI0" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="centerY" id="tNs-b2-QXs"/>
                         </constraints>
                     </view>
                     <connections>
@@ -154,6 +172,8 @@
     <resources>
         <image name="Newclock.png" width="72" height="71"/>
         <image name="NewclockPin.png" width="72" height="71"/>
+        <image name="NewclockPin1.png" width="72" height="71"/>
+        <image name="NewclockPin2.png" width="72" height="71"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
