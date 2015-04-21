@@ -78,8 +78,8 @@ class TimeLineView: DesignableView ,TimeLineManagerDelegate{
         })
         if progress > 0.99{
             // done
-            dragger = UIPanGestureRecognizer(target: parentController.clockButton, action: "dragged:")
-            blurView.addGestureRecognizer(dragger)
+            dragger = UIPanGestureRecognizer(target: parentController.clockButton.blurView, action: "dragged:")
+            parentController.clockButton.blurView.addGestureRecognizer(dragger)
         }
     }
     

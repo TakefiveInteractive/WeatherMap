@@ -44,8 +44,8 @@ class ClockView: DesignableView{
     
     func clockClicked(){
         
-        if !dragMode{
-            dragMode = true
+        if clock.userInteractionEnabled{
+            clock.userInteractionEnabled = false
             addRotatingAnimation()
             parentController.timeLine.startLoading()
             UIView.animateWithDuration(0.5, animations: { () -> Void in

@@ -111,34 +111,34 @@
                                     <outlet property="pin3" destination="j1A-ZF-CQd" id="Zqk-DT-Lor"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckU-eB-a2a" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lX5-BA-Wy8" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="408" width="320" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="ckU-eB-a2a" secondAttribute="height" multiplier="14:7" id="EON-ZN-fYQ"/>
+                                    <constraint firstAttribute="width" secondItem="lX5-BA-Wy8" secondAttribute="height" multiplier="2:1" id="U0W-cl-Vkq"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="bottom" secondItem="tqf-Zs-cEl" secondAttribute="bottom" id="1HM-D5-vgH"/>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="10" id="1ec-ab-I8k"/>
-                            <constraint firstItem="ckU-eB-a2a" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="1rm-Jy-DQG"/>
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="3Dw-Ch-f55"/>
                             <constraint firstItem="tqf-Zs-cEl" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="4sN-vT-s5q"/>
+                            <constraint firstAttribute="trailing" secondItem="lX5-BA-Wy8" secondAttribute="trailing" id="6Ih-ku-uTZ"/>
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Fg4-jh-dmx"/>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="top" secondItem="tqf-Zs-cEl" secondAttribute="top" id="FmS-2Q-FgV"/>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="left" secondItem="tqf-Zs-cEl" secondAttribute="right" constant="40" id="I04-ED-ebF"/>
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="MfI-Xy-ZJF"/>
                             <constraint firstItem="XMe-1D-uI0" firstAttribute="centerX" secondItem="VjW-vs-Mcr" secondAttribute="centerX" id="Mi1-VL-AxR"/>
                             <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="PVS-PN-mpV"/>
-                            <constraint firstAttribute="bottom" secondItem="ckU-eB-a2a" secondAttribute="bottom" id="cB6-gX-Ykg"/>
                             <constraint firstAttribute="centerY" secondItem="XMe-1D-uI0" secondAttribute="bottom" multiplier="0.7" id="mk7-xr-cnH"/>
+                            <constraint firstItem="lX5-BA-Wy8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="n9B-ZE-NlM"/>
                             <constraint firstItem="tqf-Zs-cEl" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" id="onW-F1-nql"/>
-                            <constraint firstAttribute="trailing" secondItem="ckU-eB-a2a" secondAttribute="trailing" id="q3T-a8-BDw"/>
                             <constraint firstItem="XMe-1D-uI0" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="centerY" id="tNs-b2-QXs"/>
+                            <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="lX5-BA-Wy8" secondAttribute="bottom" id="zDD-Yl-xZA"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="card" destination="ckU-eB-a2a" id="IuZ-vR-UrC"/>
+                        <outlet property="card" destination="lX5-BA-Wy8" id="B6t-3H-Oag"/>
                         <outlet property="clockButton" destination="VjW-vs-Mcr" id="oL5-8g-C4Q"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
                         <outlet property="searchBar" destination="tqf-Zs-cEl" id="Dbq-Rp-BdD"/>

@@ -34,7 +34,6 @@ class CardView: DesignableView, ImageCacheDelegate{
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
     
     let sideWidth:CGFloat = 6
