@@ -232,14 +232,8 @@ class CardView: DesignableView, ImageCacheDelegate{
             smallImageBack.center = CGPointMake(smallImageBack.center.x + temperatureBack.frame.width * 1.5, smallImageBack.center.y)
             smallImageBack.animation = "slideLeft"
             smallImageBack.animate()
-            
             smallImageEntered = false
         }
-    }
-    
-    // movement  0 - 200
-    func moveAccordingToDrag(movement:CGFloat){
-        self.transform = CGAffineTransformMakeTranslation(0, movement)
     }
 
 }

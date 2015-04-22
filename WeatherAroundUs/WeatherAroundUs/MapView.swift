@@ -69,7 +69,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 parentController.card.displayCity(cityID)
                 var connection = InternetConnection()
                 connection.delegate = parentController
-                connection.getPictureURLOfACity(CLLocationCoordinate2DMake(latitude, longitude), name:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
+                connection.getSearchAddressOfACity(CLLocationCoordinate2DMake(latitude, longitude), name:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
             }
             
             if WeatherInfo.citiesAround.count > WeatherInfo.maxCityNum{
@@ -81,7 +81,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             
             var marker = GMSMarker(position: CLLocationCoordinate2DMake(latitude
                 , longitude))
-            marker.icon = getImageAccordingToZoom(cityID)
+            var icon = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)
+            marker.icon = getImageAccordingToZoom(icon!)
             marker.appearAnimation = kGMSMarkerAnimationPop
             marker.map = self
             marker.title = cityID
@@ -90,18 +91,16 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         }
     }
     
-    func getImageAccordingToZoom(cityID: String)->UIImage{
+    func getImageAccordingToZoom(icon: UIImage)->UIImage{
         
-        var str = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-
         if camera.zoom > 12.5{
-            return UIImage(named: str)!.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
+            return icon.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
         }else if camera.zoom > 11{
-            return UIImage(named: str)!.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
+            return icon.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
         }else if camera.zoom < 9.5{
-            return UIImage(named: str)!.resize(CGSizeMake(15, 15)).addShadow(blurSize: 3.0)
+            return icon.resize(CGSizeMake(15, 15)).addShadow(blurSize: 3.0)
         }else{
-            return UIImage(named: str)!.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
+            return icon.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
         }
     }
     
@@ -117,11 +116,23 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         }
     }
     
+    func changeIconWithTime(day: Int){
+        
+        for city in WeatherInfo.citiesAround{
+            if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
+                println(data)
+                let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+                let icon = UIImage(named: name)
+                weatherIcons[city]?.icon = getImageAccordingToZoom(icon!)
+            }
+        }
+    }
+    
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
         parentController.card.displayCity(marker.title)
         var connection = InternetConnection()
         connection.delegate = parentController
-        connection.getPictureURLOfACity(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!, cityID: (weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String)
+        connection.getSearchAddressOfACity(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!, cityID: (weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String)
         self.animateToLocation(marker.position)
         
         return true
@@ -147,7 +158,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             parentController.searchResultList.removeCities()
             parentController.card.hideSelf()
             parentController.searchBar.resignFirstResponder()
-
         }
 
     }
@@ -159,7 +169,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         // change size of icons
             let iconKeys = weatherIcons.keys
             for key in iconKeys{
-                weatherIcons[key]?.icon = getImageAccordingToZoom(key)
+                var icon = UIImage(named: (((WeatherInfo.citiesAroundDict[key] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)
+                weatherIcons[key]?.icon = getImageAccordingToZoom(icon!)
             }
         }
     }

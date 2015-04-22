@@ -19,7 +19,8 @@ class CitySearchView: DesignableView, UISearchBarDelegate, InternetConnectionDel
     var delegate : SearchInformationDelegate?
     var blurView: UIVisualEffectView!
     var searchBar: UISearchBar!
-    
+    var hide = false
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -71,4 +72,25 @@ class CitySearchView: DesignableView, UISearchBarDelegate, InternetConnectionDel
         searchBar.resignFirstResponder()
         return true
     }
+    
+    func hideSelf(){
+        
+        if !hide {
+            hide = true
+            self.center = CGPointMake(self.center.x, self.center.y - 80)
+            self.animation = "slideDown"
+            self.animate()
+        }
+    }
+    
+    func showSelf(){
+        
+        if hide {
+            hide = false
+            self.center = CGPointMake(self.center.x, self.center.y + 80)
+            self.animation = "slideDown"
+            self.animate()
+        }
+    }
+    
 }
