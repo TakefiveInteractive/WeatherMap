@@ -14,77 +14,8 @@ import UIKit
 
 class TimeLineManager: NSObject, InternetConnectionDelegate {
    
-    var delegate:TimeLineManagerDelegate?
     
-    var map: MapView!
-    
-    //percentage of the loading done
-    var progress: Double = 0
-    //total steps of the loading
-    var totalSteps: Double = 0
-    var currentStep: Double = 0
-    
-    var citiesToLoad = [String]()
-    var forcastInfo = [String:[String: AnyObject]]()
-    
-    init(mapView: MapView) {
-        super.init()
-        map = mapView
-    }
-    
-    func getAffectedCities(){
-        var connection = InternetConnection()
-        connection.delegate = self
-        connection.getLocalWeather(map.camera.target, number: 20)
-    }
-    
-    func gotLocalCityWeather(cities: [AnyObject]) {
-        
-        totalSteps = Double(cities.count) + 1
-        WeatherInfo.gotLocalCityWeather(cities)
-        citiesToLoad = WeatherInfo.citiesAround
-        updateProgress()
-        getWeatherForcastData()
-    }
-    
-    func getWeatherForcastData(){
-        
-        if citiesToLoad.count != 0 {
-            var connection = InternetConnection()
-            connection.delegate = self
-            connection.getWeatherForcast(citiesToLoad.last!)
-        }
-    }
-    
-    func gotWeatherForcastData(cityID: String, forcast:[AnyObject]){
-        
-        //forcast valid
-        if forcast.count >= 38{
-            updateProgress()
-            var cityData = [String: AnyObject]()
-            for var index = 0; index < 14; index++ {
-                cityData.updateValue(forcast[index], forKey: (forcast[index] as! [String: AnyObject])["dt_txt"] as! String)
-            }
-            cityData.updateValue(forcast[21], forKey: (forcast[21] as! [String: AnyObject])["dt_txt"] as! String)
-            cityData.updateValue(forcast[29], forKey: (forcast[29] as! [String: AnyObject])["dt_txt"] as! String)
-            cityData.updateValue(forcast[37], forKey: (forcast[37] as! [String: AnyObject])["dt_txt"] as! String)
-            forcastInfo.updateValue(cityData, forKey: cityID)
-            citiesToLoad.removeLast()
-        }
-        self.getWeatherForcastData()
-        
-    }
-    
-    func updateProgress(){
-        currentStep++
-        progress = currentStep / totalSteps
-        self.delegate?.progressUpdated!(progress)
-        if progress >= 1{
-            //reset
-            progress = 0
-            currentStep = 0
-        }
-    }
+
 }
 /*
 {
