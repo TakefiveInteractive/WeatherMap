@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>Pods-GPUImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>Pods-Haneke.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -87,6 +92,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>452C9B20F2DF60C9E2DE76A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5330AFABDC3E7B6D94893B35</key>
 		<dict>
 			<key>primary</key>
@@ -97,7 +107,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6525C823DB9E3F32FFC93F67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6979516126A2893B2A4CEA9C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>726BEEB30ABBF0CF4AA5E3E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,12 +147,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>DB96E3574F3AD82DDE9857C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E3D8DAB60B93C9549734F05E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E4F34A22C0BB9B4B22720B46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EF2AB8FE67DD323127C0E28C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
