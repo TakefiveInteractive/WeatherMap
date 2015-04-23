@@ -25,7 +25,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var citiesAroundDict = [String: AnyObject]()
     var citiesAround = [String]()
 
-    let maxCityNum = 50
+    let maxCityNum = 30
     
     var weatherDelegate : WeatherInformationDelegate?
     var updateIconListDelegate : UpdateIconListDelegate?

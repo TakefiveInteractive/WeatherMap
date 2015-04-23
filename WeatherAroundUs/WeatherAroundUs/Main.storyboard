@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -21,9 +22,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-K5-F1o" customClass="MapView" customModule="WeatherAroundUs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tqf-Zs-cEl" customClass="CitySearchView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="10" y="20" width="215" height="45"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqf-Zs-cEl" customClass="CitySearchView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="10" y="20" width="220" height="45"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="DMp-oM-TVX"/>
                                     <constraint firstAttribute="height" constant="45" id="ffX-le-Oiu"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -34,59 +36,64 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="292" y="28" width="15" height="330"/>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="269" y="43" width="45" height="315"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gR-aK-T8M">
-                                        <rect key="frame" x="0.0" y="0.0" width="15" height="330"/>
+                                        <rect key="frame" x="15" y="0.0" width="15" height="315"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PWY-Kw-6iW">
-                                            <rect key="frame" x="0.0" y="0.0" width="15" height="330"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="315"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="15" id="POP-s7-XAf"/>
+                                        </constraints>
                                         <blurEffect style="light"/>
                                     </visualEffectView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="15" id="9G7-TN-yrE"/>
-                                    <constraint firstAttribute="trailing" secondItem="5gR-aK-T8M" secondAttribute="trailing" id="KFR-Dr-dZG"/>
+                                    <constraint firstAttribute="centerX" secondItem="5gR-aK-T8M" secondAttribute="centerX" id="8rV-rj-NGs"/>
                                     <constraint firstAttribute="bottom" secondItem="5gR-aK-T8M" secondAttribute="bottom" id="WPo-fb-O2q"/>
                                     <constraint firstItem="5gR-aK-T8M" firstAttribute="top" secondItem="XMe-1D-uI0" secondAttribute="top" id="xAH-li-j84"/>
-                                    <constraint firstItem="5gR-aK-T8M" firstAttribute="leading" secondItem="XMe-1D-uI0" secondAttribute="leading" id="xD6-gq-IYi"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideLeft"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="x">
-                                        <real key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="blurView" destination="5gR-aK-T8M" id="wdh-LH-g9K"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjW-vs-Mcr" userLabel="Clock" customClass="ClockView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="284" y="28" width="30" height="30"/>
+                                <rect key="frame" x="269" y="20" width="45" height="45"/>
                                 <subviews>
+                                    <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-cO-CJa">
+                                        <rect key="frame" x="-38" y="0.0" width="120" height="45"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Oc5-KE-f3v">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="45"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="ElF-Jd-dyG"/>
+                                        </constraints>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hg-no-2bX">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="oUn-7j-9mZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIh-rh-4pZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                     <state key="normal" image="Newclock.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Co-rd-AxZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin1.png" translatesAutoresizingMaskIntoConstraints="NO" id="j1A-ZF-CQd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZUd-Al-luT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                     <color key="tintColor" red="0.26666666666666666" green="0.60784313725490191" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
@@ -113,12 +120,14 @@
                                     </visualEffectView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Mai-cO-CJa" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="top" id="25o-Je-qwr"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mai-cO-CJa" secondAttribute="bottom" id="6hY-ds-gRZ"/>
                                     <constraint firstItem="3hg-no-2bX" firstAttribute="leading" secondItem="VjW-vs-Mcr" secondAttribute="leading" id="FTT-bG-eUV"/>
                                     <constraint firstAttribute="bottom" secondItem="3hg-no-2bX" secondAttribute="bottom" id="Luo-7Z-py8"/>
                                     <constraint firstItem="3hg-no-2bX" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="top" id="eQo-4E-bHk"/>
                                     <constraint firstAttribute="width" secondItem="VjW-vs-Mcr" secondAttribute="height" multiplier="1:1" id="gGu-cx-ZWc"/>
-                                    <constraint firstAttribute="width" constant="30" id="l5v-cV-1vb"/>
                                     <constraint firstAttribute="trailing" secondItem="3hg-no-2bX" secondAttribute="trailing" id="pYY-p0-XIv"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mai-cO-CJa" secondAttribute="trailing" id="qLz-tG-XDI"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
@@ -133,6 +142,7 @@
                                     <outlet property="pin1" destination="0Co-rd-AxZ" id="WyO-A7-CPS"/>
                                     <outlet property="pin2" destination="ZUd-Al-luT" id="nRo-SM-T5U"/>
                                     <outlet property="pin3" destination="j1A-ZF-CQd" id="Zqk-DT-Lor"/>
+                                    <outlet property="timeDisplay" destination="Mai-cO-CJa" id="Kwr-0x-ZcH"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lX5-BA-Wy8" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
@@ -141,29 +151,44 @@
                                     <constraint firstAttribute="width" secondItem="lX5-BA-Wy8" secondAttribute="height" multiplier="2:1" id="U0W-cl-Vkq"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="og9-ta-dNc" customClass="ReturnButton" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="282" y="363" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="5ep-GF-TkY"/>
+                                    <constraint firstAttribute="width" constant="20" id="pbn-Ed-tGg"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="VjW-vs-Mcr" firstAttribute="top" secondItem="tqf-Zs-cEl" secondAttribute="top" id="1Sd-Vd-TRv"/>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="10" id="1ec-ab-I8k"/>
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="3Dw-Ch-f55"/>
                             <constraint firstItem="tqf-Zs-cEl" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="4sN-vT-s5q"/>
                             <constraint firstAttribute="trailing" secondItem="lX5-BA-Wy8" secondAttribute="trailing" id="6Ih-ku-uTZ"/>
                             <constraint firstItem="lX5-BA-Wy8" firstAttribute="top" secondItem="XMe-1D-uI0" secondAttribute="bottom" constant="50" id="FWD-Wd-KTa"/>
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Fg4-jh-dmx"/>
-                            <constraint firstItem="VjW-vs-Mcr" firstAttribute="centerY" secondItem="tqf-Zs-cEl" secondAttribute="centerY" id="FmS-2Q-FgV"/>
-                            <constraint firstItem="VjW-vs-Mcr" firstAttribute="left" secondItem="tqf-Zs-cEl" secondAttribute="right" constant="50" id="I04-ED-ebF"/>
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="MfI-Xy-ZJF"/>
                             <constraint firstItem="XMe-1D-uI0" firstAttribute="centerX" secondItem="VjW-vs-Mcr" secondAttribute="centerX" id="Mi1-VL-AxR"/>
+                            <constraint firstItem="VjW-vs-Mcr" firstAttribute="leading" secondItem="XMe-1D-uI0" secondAttribute="leading" id="OAa-wh-ehp"/>
                             <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="PVS-PN-mpV"/>
+                            <constraint firstItem="og9-ta-dNc" firstAttribute="top" secondItem="XMe-1D-uI0" secondAttribute="bottom" constant="5" id="PdI-ca-c20"/>
+                            <constraint firstItem="og9-ta-dNc" firstAttribute="centerX" secondItem="XMe-1D-uI0" secondAttribute="centerX" id="fKL-x9-nAj"/>
+                            <constraint firstItem="VjW-vs-Mcr" firstAttribute="bottom" secondItem="tqf-Zs-cEl" secondAttribute="bottom" id="fZS-UL-DHF"/>
+                            <constraint firstItem="VjW-vs-Mcr" firstAttribute="trailing" secondItem="XMe-1D-uI0" secondAttribute="trailing" id="hkh-kU-nA2"/>
                             <constraint firstItem="lX5-BA-Wy8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="n9B-ZE-NlM"/>
                             <constraint firstItem="tqf-Zs-cEl" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" id="onW-F1-nql"/>
-                            <constraint firstItem="XMe-1D-uI0" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="top" id="tNs-b2-QXs"/>
+                            <constraint firstItem="XMe-1D-uI0" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="centerY" id="tNs-b2-QXs"/>
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="lX5-BA-Wy8" secondAttribute="bottom" id="zDD-Yl-xZA"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="card" destination="lX5-BA-Wy8" id="B6t-3H-Oag"/>
+                        <outlet property="card" destination="lX5-BA-Wy8" id="7Lq-U5-IPO"/>
                         <outlet property="clockButton" destination="VjW-vs-Mcr" id="oL5-8g-C4Q"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
+                        <outlet property="returnBut" destination="og9-ta-dNc" id="2zh-JO-zKf"/>
                         <outlet property="searchBar" destination="tqf-Zs-cEl" id="Dbq-Rp-BdD"/>
                         <outlet property="timeLine" destination="XMe-1D-uI0" id="kcs-5A-Qqh"/>
                     </connections>

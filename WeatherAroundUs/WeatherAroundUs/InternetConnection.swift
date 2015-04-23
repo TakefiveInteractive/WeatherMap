@@ -193,12 +193,12 @@ class InternetConnection: NSObject {
     }
 
     func getWeatherForcast(cityID: String){
-        var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?id=\(cityID)&cnt=7")!).responseJSON { (_, response, JSON, error) in
+        var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?id=\(cityID)&cnt=9")!).responseJSON { (_, response, JSON, error) in
             
             if error == nil && JSON != nil {
                 let myjson = SwiftyJSON.JSON(JSON!)
                 let list = myjson["list"].arrayObject
-                if list != nil && list!.count == 7 {
+                if list != nil && list!.count == 9 {
                     self.delegate?.gotWeatherForcastData!(cityID, forcast:list!)
                 }else{
                     //resend
