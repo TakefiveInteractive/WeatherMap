@@ -16,6 +16,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     @IBOutlet var searchBar: CitySearchView!
     @IBOutlet var card: CardView!
     @IBOutlet var timeLine: TimeLineView!
+    @IBOutlet var returnBut: ReturnButton!
 
     var smallImageView: ImageCardView!
     var searchResultList: SearchResultView!
@@ -38,6 +39,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         mapView.parentController = self
         clockButton.parentController = self
         timeLine.parentController = self
+        returnBut.parentController = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,6 +50,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         self.view.addSubview(searchResultList)
         searchBar.delegate = searchResultList
         searchResultList.parentController = self
+        
     }
     
     override func viewDidAppear(animated: Bool) {
