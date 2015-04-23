@@ -67,6 +67,8 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
     
     func chooseCity(sender: UIButton){
         
+        parentController.searchBar.searchBar.resignFirstResponder()
+        
         let placeid = placeIDList[find(resultList, sender)!]
         
         parentController.card.hideSelf()

@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAroundUs/MapView.swift"
-            timestampString = "451428965.861708"
+            timestampString = "451460941.481081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "init(frame:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAroundUs/MapView.swift"
-            timestampString = "451428965.861708"
+            timestampString = "451460941.481081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "init(coder:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -312,7 +312,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAroundUs/ClockView.swift"
-            timestampString = "451460771.12467"
+            timestampString = "451461596.263377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
@@ -446,6 +446,22 @@
             startingLineNumber = "120"
             endingLineNumber = "120"
             landmarkName = "changeIconWithTime(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAroundUs/ClockView.swift"
+            timestampString = "451461596.263377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "addLineAnimation()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

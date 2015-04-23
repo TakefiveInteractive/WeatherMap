@@ -155,15 +155,16 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         //move
         if gesture{
             // hide board
+            parentController.searchBar.searchBar.resignFirstResponder()
             parentController.searchResultList.removeCities()
             parentController.card.hideSelf()
-            parentController.searchBar.resignFirstResponder()
         }
 
     }
     
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
         
+
         if abs(zoom - camera.zoom) > 0.5{
             zoom = camera.zoom
         // change size of icons
