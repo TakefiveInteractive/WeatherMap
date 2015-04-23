@@ -29,6 +29,8 @@ class ClockView: DesignableView{
     var dragMode = false
     var dragger: UIPanGestureRecognizer!
 
+    var timer = NSTimer()
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -93,16 +95,13 @@ class ClockView: DesignableView{
                 self.transform = CGAffineTransformMake(0.5, 0, 0, 0.5, 0, self.clockIndex)
             }, completion: { (finish) -> Void in
                 
+                
                 UIView.animateWithDuration(0.2, animations: { () -> Void in
-                    self.timeDisplay.alpha = 1
                     self.addLineAnimation()
+                    self.timeDisplay.alpha = 1
                     }, completion: { (finish) -> Void in
                         
-                        UIView.animateWithDuration(0.3, delay: 3, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                            self.timeDisplay.alpha = 0
-                            }, completion: { (finish) -> Void in
-                                self.timeDisplayOutLine.removeFromSuperlayer()
-                        })
+                    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.02, target: self, selector: "countDisplayTime:", userInfo: nil, repeats: true)
                 })
                 
             })
