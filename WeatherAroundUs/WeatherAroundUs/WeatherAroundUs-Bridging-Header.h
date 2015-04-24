@@ -5,5 +5,3 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <GPUImage/GPUImage.h>
 #import <Shimmer/FBShimmering.h>
-#import <Shimmer/FBShimmeringLayer.h>
-#import <Shimmer/FBShimmeringView.h>
