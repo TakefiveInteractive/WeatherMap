@@ -26,7 +26,6 @@ class ImageCache: NSObject {
         cache.fetch(URL: NSURL(string: url)!).onSuccess { image in
             img = UIImage(data: image)!
             self.delegate?.gotSmallImageFromCache!(img, cityID: cityID)
-            self.saveImageURL(cityID, url: url, key: "smallImgUrl")
         }
     }
     
@@ -38,7 +37,6 @@ class ImageCache: NSObject {
         cache.fetch(URL: NSURL(string: url)!).onSuccess { image in
             img = UIImage(data: image)!
             self.delegate?.gotImageFromCache!(img, cityID: cityID)
-            self.saveImageURL(cityID, url: url, key: "imgUrl")
         }
     }
     

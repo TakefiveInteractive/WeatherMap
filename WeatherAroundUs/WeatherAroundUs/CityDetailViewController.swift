@@ -9,16 +9,18 @@
 import UIKit
 import Spring
 
-class CityDetailViewController: UIViewController {
+class CityDetailViewController: UIViewController, ImageCacheDelegate {
 
     @IBOutlet var backgroundImageView: DesignableImageView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var mainTemperatureDisplay: UILabel!
     @IBOutlet var degreeToTopHeightConstraint: NSLayoutConstraint!
     
+    var cityID = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setBackgroundImage()
         degreeToTopHeightConstraint.constant = view.frame.height / 4
     }
 
@@ -26,4 +28,24 @@ class CityDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    func setBackgroundImage() {
+        var userDefault = NSUserDefaults.standardUserDefaults()
+        let imageDict: AnyObject! = userDefault.objectForKey("imgUrl")
+                
+        if let imageDict = imageDict as? NSMutableDictionary {
+            let imageUrl: AnyObject! = imageDict.objectForKey(cityID)
+            if let imageUrl = imageUrl as? String {
+                var cache = ImageCache()
+                cache.delegate = self
+                println(imageUrl)
+                cache.getImageFromCache(imageUrl, cityID: cityID)
+            }
+        }
+    }
+    
+    func gotImageFromCache(image: UIImage, cityID: String) {
+
+        backgroundImageView.image = image
+    }
+    
 }

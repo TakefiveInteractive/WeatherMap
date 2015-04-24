@@ -32,6 +32,9 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         clockButton.parentController = self
         timeLine.parentController = self
         returnBut.parentController = self
+        
+        var tapGestureReco = UITapGestureRecognizer(target: self, action: "tappedCard:")
+        self.card.addGestureRecognizer(tapGestureReco)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,6 +62,18 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "cityDetailSegue" {
+            let toView = segue.destinationViewController as! CityDetailViewController
+            toView.cityID = WeatherInfo.currentCityID
+        }
+    }
+    
+    func tappedCard(sender: UITapGestureRecognizer) {
+        let touchPoint = sender.locationInView(self.view)
+        performSegueWithIdentifier("cityDetailSegue", sender: self)
     }
 
 }
