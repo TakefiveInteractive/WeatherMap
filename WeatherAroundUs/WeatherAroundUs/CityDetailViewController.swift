@@ -18,14 +18,21 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
     @IBOutlet var mainTemperatureDisplay: UILabel!
     @IBOutlet var mainTempatureToTopHeightConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet var forecastView: DesignableView!
+    @IBOutlet var detailView: DesignableView!
+    
     var cityID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
-        mainTempatureToTopHeightConstraint.constant = view.frame.height / 4
+        mainTempatureToTopHeightConstraint.constant = view.frame.height / 3
         mainTemperatureShimmerView.contentView = mainTemperatureDisplay
         mainTemperatureShimmerView.shimmering = true
+
+        forecastView.clipsToBounds = true
+        detailView.clipsToBounds = true
     }
     
     // have to override function to manipulate status bar
