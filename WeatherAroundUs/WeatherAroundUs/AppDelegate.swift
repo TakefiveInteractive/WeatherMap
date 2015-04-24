@@ -20,11 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDLBiMd9DqNtqeRc2DMtoeYL4hg53wUEw8")
         UserLocation.setup()
 
-        // init the image url cache if not exist
         let userDefault = NSUserDefaults.standardUserDefaults()
+        // init the image url cache if not exist
         if userDefault.objectForKey("smallImgUrl") == nil{
             userDefault.setObject( NSMutableDictionary(), forKey: "smallImgUrl")
             userDefault.setObject( NSMutableDictionary(), forKey: "imgUrl")
+            userDefault.synchronize()
         }
         
         //set up current date if not exist
@@ -33,9 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd.MM.YY"
             let dateStr = dateFormatter.stringFromDate(currDate)
-            println(dateStr)
+            userDefault.setObject( dateStr, forKey: "currentDate")
+            userDefault.synchronize()
         }
         
+        if userDefault.objectForKey("citiesForcast") == nil{
+            userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
+            userDefault.synchronize()
+
+        }
         return true
     }
 
@@ -45,8 +52,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        userDefault.setObject(WeatherInfo.citiesForcast, forKey: "citiesForcast")
+        userDefault.synchronize()
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    }
+    
+    func applicationWillTerminate(application: UIApplication) {
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        userDefault.setObject(WeatherInfo.citiesForcast, forKey: "citiesForcast")
+        userDefault.synchronize()
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Saves changes in the application's managed object context before the application terminates.
+        self.saveContext()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -57,11 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
-    }
+
 
     // MARK: - Core Data stack
 

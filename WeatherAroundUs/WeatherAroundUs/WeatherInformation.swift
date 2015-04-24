@@ -76,17 +76,19 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         let userDefault = NSUserDefaults.standardUserDefaults()
         
+        // get currentDate
+        var currDate = NSDate()
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YY"
+        let dateStr = dateFormatter.stringFromDate(currDate)
+        
         //remove object if not the same day
-        if userDefault.objectForKey("currentDate") != nil && userDefault.objectForKey("currentDate") as! NSNumber == (forcast[0] as! [String: AnyObject])["dt"] as! NSNumber {
-        }else{
-            userDefault.setValue((forcast[0] as! [String: AnyObject])["dt"], forKey: "currentDate")
-            userDefault.removeObjectForKey("citiesForcast")
+        if userDefault.objectForKey("currentDate") as! String != dateStr {
+            userDefault.setValue(dateStr, forKey: "currentDate")
+            userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
             citiesForcast.removeAll(keepCapacity: false)
         }
         citiesForcast.updateValue(forcast, forKey: cityID)
-        userDefault.setObject(citiesForcast, forKey: "citiesForcast")
-        userDefault.synchronize()
-        
         citiesForcast.updateValue(forcast, forKey: cityID)
 
         //display new icon

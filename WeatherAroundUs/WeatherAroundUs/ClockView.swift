@@ -105,17 +105,16 @@ class ClockView: DesignableView{
         }
     }
     
-    func displayWeatherOfTheDay(day: Int){
+    func displayWeatherOfTheDay(dayNum: Int){
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             self.transform = CGAffineTransformMake(0.5, 0, 0, 0.5, 0, self.clockIndex)
             }, completion: { (finish) -> Void in
                 
-                let time: NSNumber = NSUserDefaults.standardUserDefaults().objectForKey("currentDate")! as! NSNumber
-                let date = NSDate(timeIntervalSince1970: time.doubleValue + Double(self.futureDay) * 86400)
+                let date = NSDate()
                 let calendar = NSCalendar.currentCalendar()
                 let components = calendar.components(.CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
                 let month = components.month
-                let day = components.day
+                let day = components.day + dayNum
                 
                 if self.timerCount > 0{
                     self.timerCount = 0
@@ -207,6 +206,7 @@ class ClockView: DesignableView{
     func clockReturnNormalSize(){
         if WeatherInfo.forcastMode{
             WeatherInfo.forcastMode = false
+            parentController.mapView.changeIconWithTime(-1)
             clockIndex = 0
             futureDay = 0
             blurView.removeGestureRecognizer(dragger)
