@@ -34,7 +34,7 @@ class InternetConnection: NSObject {
         //handle case when there is chinese
         var searchContent = content.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
-        let url =  NSURL(string: "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=\(searchContent)&types=(cities)&language=en&key=AIzaSyDHwdGU463x3_aJfg4TNWm0fijTjr9VEdg")
+        let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=\(searchContent)&types=(cities)&language=en&key=AIzaSyDHwdGU463x3_aJfg4TNWm0fijTjr9VEdg")
         
         var req = Alamofire.request(.GET, url!).responseJSON { (_, response, JSON, error) in
             
@@ -68,9 +68,7 @@ class InternetConnection: NSObject {
                 self.getLocalWeather(location, number: number)
             }
             connectionCount--
-            println(connectionCount)
         }
-        println(connectionCount)
     }
     
     // search for location with placeid
@@ -104,7 +102,6 @@ class InternetConnection: NSObject {
                 
                 
                 let address = response!.results()[0] as! GMSAddress
-                println(address.description)
 
                 var searchText = ""
                 

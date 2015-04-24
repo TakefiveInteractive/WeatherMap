@@ -28,7 +28,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // all the icons displayed
     var citiesAround = [String]()
 
-    let maxCityNum = 30
+    let maxCityNum = 24
 
     var forcastMode = false
     

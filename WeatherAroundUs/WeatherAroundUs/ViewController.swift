@@ -50,7 +50,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         self.view.addSubview(searchResultList)
         searchBar.delegate = searchResultList
         searchResultList.parentController = self
-        
+        clockButton.setup()
+
     }
     
     override func viewDidAppear(animated: Bool) {
