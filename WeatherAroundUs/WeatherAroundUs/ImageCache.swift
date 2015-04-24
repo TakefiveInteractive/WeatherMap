@@ -45,7 +45,7 @@ class ImageCache: NSObject {
     func saveImageURL(cityID: String, url: String, key:String){
         
         let userDefault = NSUserDefaults.standardUserDefaults()
-        var urlMap: NSMutableDictionary = userDefault.objectForKey(key) as! NSMutableDictionary
+        var urlMap: NSMutableDictionary = (userDefault.objectForKey(key) as! NSDictionary).mutableCopy() as! NSMutableDictionary
         urlMap.setObject(url, forKey: cityID)
         userDefault.setObject(urlMap, forKey: key)
         userDefault.synchronize()

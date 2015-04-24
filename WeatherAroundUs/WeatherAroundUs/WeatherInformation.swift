@@ -28,7 +28,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // all the icons displayed
     var citiesAround = [String]()
 
-    let maxCityNum = 24
+    let maxCityNum = 40
 
     var forcastMode = false
     
@@ -56,11 +56,12 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                 // first time weather data
                 if self.citiesAroundDict["\(id)"] == nil {
                     self.citiesAroundDict.updateValue(city, forKey: "\(id)")
-                    var connection = InternetConnection()
-                    connection.delegate = self
-                    connection.getWeatherForcast("\(id)")
-                    // save the city in db
-                }
+                    
+                        var connection = InternetConnection()
+                        connection.delegate = self
+                        connection.getWeatherForcast("\(id)")
+                    
+            }
                 if !forcastMode {
                     self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
                 }
@@ -70,7 +71,9 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     }
     
     func gotWeatherForcastData(cityID: String, forcast: [AnyObject]) {
+        
         let userDefault = NSUserDefaults.standardUserDefaults()
+        
         //remove object if not the same day
         if userDefault.objectForKey("currentDate") != nil && userDefault.objectForKey("currentDate") as! NSNumber == (forcast[0] as! [String: AnyObject])["dt"] as! NSNumber {
         }else{
@@ -81,6 +84,9 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         citiesForcast.updateValue(forcast, forKey: cityID)
         userDefault.setObject(citiesForcast, forKey: "citiesForcast")
         userDefault.synchronize()
+        
+        citiesForcast.updateValue(forcast, forKey: cityID)
+
         //display new icon
         if forcastMode{
             self.weatherDelegate?.gotOneNewWeatherData!("\(cityID)", latitude: (((citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
@@ -92,3 +98,6 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     }
 }
 
+/*                    var queueLow = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
+dispatch_sync(queueLow) {
+}*/
