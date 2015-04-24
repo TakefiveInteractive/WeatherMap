@@ -48,6 +48,7 @@ class ClockView: DesignableView{
 
     func setup() {
 
+        timeDisplay.roundCorner(UIRectCorner.AllCorners, radius: frame.width / 2)
         clock.addTarget(self, action: "clockClicked", forControlEvents: UIControlEvents.TouchUpInside)
         clock.layer.shadowOffset = CGSizeMake(0, 2)
         clock.layer.shadowRadius = 1
@@ -55,7 +56,6 @@ class ClockView: DesignableView{
         blurView.roundCircle()
         blurView.alpha = 1
         addRotatingAnimation()
-        timeDisplay.roundCorner(UIRectCorner.AllCorners, radius: frame.width / 2)
     }
     
     func dragged(sender: UIPanGestureRecognizer){

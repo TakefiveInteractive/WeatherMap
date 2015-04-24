@@ -113,11 +113,11 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         if camera.zoom > 12.5{
             return 3
         }else if camera.zoom > 11{
-            return 6
+            return 5
         }else if camera.zoom < 9.5{
-            return 15
-        }else{
             return 9
+        }else{
+            return 7
         }
     }
     
@@ -172,7 +172,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
         
-
         if abs(zoom - camera.zoom) > 0.5{
             zoom = camera.zoom
         // change size of icons
