@@ -41,13 +41,15 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     // get small city image from google
     func gotImageUrls(btUrl: String, imageURL: String, cityID: String) {
         var cache = ImageCache()
+        cache.saveImageURL(cityID, url: btUrl, key: "smallImgUrl")
+        cache.saveImageURL(cityID, url: imageURL, key: "imgUrl")
         cache.delegate = self
         cache.getSmallImageFromCache(btUrl, cityID: cityID)
     }
     
     func setup(){
         
-        self.userInteractionEnabled = false
+        //self.userInteractionEnabled = false
         
         iconBack = DesignableView(frame: CGRectMake(sideWidth, sideWidth, self.frame.height * 0.75 - sideWidth * 2, self.frame.height * 0.75 - sideWidth * 2))
         self.addSubview(iconBack)

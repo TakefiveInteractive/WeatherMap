@@ -11,7 +11,6 @@
 		421592DB1ADCDD4500254479 /* 20150104075606381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DA1ADCDD4500254479 /* 20150104075606381.jpg */; };
 		421592DC1ADCDD4500254479 /* 20150104075606381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DA1ADCDD4500254479 /* 20150104075606381.jpg */; };
 		421592DE1ADCE0EC00254479 /* 1175782717.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DD1ADCE0EC00254479 /* 1175782717.jpg */; };
-		4242E6C41AD1D69B00D7EB9A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */; };
 		42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */; };
 		42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8C1AE5466A00E0BD4B /* ImageCache.swift */; };
 		42466A901AE5961100E0BD4B /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8F1AE5961100E0BD4B /* TimeLineView.swift */; };
@@ -81,7 +80,6 @@
 		42F62E751AD0B6EE00D494E6 /* ListOfCities.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E741AD0B6EE00D494E6 /* ListOfCities.png */; };
 		42F62E771AD0B75100D494E6 /* Card.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E761AD0B75100D494E6 /* Card.png */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
-		43309AE34EFF8A1147E54079 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7061C7B48DE2F420FC0085AE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		88CAEEBB1AE9FD7600F73974 /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */; };
 		D5362D611AD0B77F00CAD195 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */; };
 		D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */; };
@@ -97,6 +95,7 @@
 		D5362D771AD0B8A400CAD195 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D761AD0B8A400CAD195 /* OpenGLES.framework */; };
 		D5362D791AD0B8AC00CAD195 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D781AD0B8AC00CAD195 /* QuartzCore.framework */; };
 		D5362D7B1AD0B8B600CAD195 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D7A1AD0B8B600CAD195 /* SystemConfiguration.framework */; };
+		E013A29CC0210A2FFC963A73 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7061C7B48DE2F420FC0085AE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,7 +226,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4242E6C41AD1D69B00D7EB9A /* Alamofire.framework in Frameworks */,
 				D5362D7B1AD0B8B600CAD195 /* SystemConfiguration.framework in Frameworks */,
 				D5362D791AD0B8AC00CAD195 /* QuartzCore.framework in Frameworks */,
 				D5362D771AD0B8A400CAD195 /* OpenGLES.framework in Frameworks */,
@@ -241,7 +239,7 @@
 				D5362D671AD0B84800CAD195 /* CoreData.framework in Frameworks */,
 				D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */,
 				D5362D611AD0B77F00CAD195 /* GoogleMaps.framework in Frameworks */,
-				43309AE34EFF8A1147E54079 /* Pods.framework in Frameworks */,
+				E013A29CC0210A2FFC963A73 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
