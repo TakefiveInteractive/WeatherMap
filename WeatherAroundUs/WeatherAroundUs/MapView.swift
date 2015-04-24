@@ -198,11 +198,12 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         if abs(zoom - camera.zoom) > 0.5{
             zoom = camera.zoom
         // change size of icons
-            let iconKeys = weatherIcons.keys
-            for key in iconKeys{
-                var icon = UIImage(named: (((WeatherInfo.citiesAroundDict[key] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)
-                weatherIcons[key]?.icon = getImageAccordingToZoom(icon!)
+            if !WeatherInfo.forcastMode{
+                changeIconWithTime(-1)
+            }else{
+                changeIconWithTime(parentController.clockButton.futureDay)
             }
+
         }
     }
     
