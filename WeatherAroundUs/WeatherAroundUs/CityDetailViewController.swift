@@ -50,7 +50,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
             if let imageUrl = imageUrl as? String {
                 var cache = ImageCache()
                 cache.delegate = self
-                println(imageUrl)
                 cache.getImageFromCache(imageUrl, cityID: cityID)
             }
         }
