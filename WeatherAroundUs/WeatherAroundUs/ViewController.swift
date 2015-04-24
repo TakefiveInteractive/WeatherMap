@@ -57,6 +57,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         clockButton.setup()
         timeLine.setup()
         card.setup()
+        
+        //first weather search
+        WeatherInfo.getLocalWeatherInformation(mapView.camera.target, number: mapView.getNumOfWeatherBasedOnZoom())
+
     }
     
     override func didReceiveMemoryWarning() {
