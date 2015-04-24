@@ -6,10 +6,11 @@ workspace 'WeatherAroundUs'
 xcodeproj 'WeatherAroundUs'
 
 pod 'Spring', '~> 1.0.1'
-pod 'Alamofire', :git => "git@github.com:boek/Alamofire.git", :branch => 'swift-1.2beta'
+pod 'Alamofire', '~> 1.2'
 pod 'Haneke', :git => 'https://github.com/Haneke/HanekeSwift.git'
 pod 'GPUImage'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode6.3'
+pod 'Shimmer'
 
 use_frameworks!
 
