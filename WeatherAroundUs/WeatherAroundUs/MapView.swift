@@ -39,9 +39,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         UserLocation.delegate = self
         
         WeatherInfo.weatherDelegate = self
-        
-        WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
-        
+                
     }
 
     func gotCurrentLocation(location: CLLocation) {
@@ -81,8 +79,15 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             
             var marker = GMSMarker(position: CLLocationCoordinate2DMake(latitude
                 , longitude))
-            var icon = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)
-            marker.icon = getImageAccordingToZoom(icon!)
+            var icon = UIImage()
+            if !WeatherInfo.forcastMode{
+                icon = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
+            }else{
+                let data: AnyObject = WeatherInfo.citiesForcast[cityID as String]!
+                let name = (((data[self.parentController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+                icon = UIImage(named: name)!
+            }
+            marker.icon = getImageAccordingToZoom(icon)
             marker.appearAnimation = kGMSMarkerAnimationPop
             marker.map = self
             marker.title = cityID
@@ -120,10 +125,14 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         for city in WeatherInfo.citiesAround{
             if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
-                println(data)
                 let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
                 let icon = UIImage(named: name)
                 weatherIcons[city]?.icon = getImageAccordingToZoom(icon!)
+            }else{
+                // get the weather data if not found
+                var connection = InternetConnection()
+                connection.delegate = WeatherInfo
+                connection.getWeatherForcast(city)
             }
         }
     }
@@ -140,7 +149,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
         let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
-        
         // update weather info
         WeatherInfo.getLocalWeatherInformation(self.camera.target, number: getNumOfWeatherBasedOnZoom())
         

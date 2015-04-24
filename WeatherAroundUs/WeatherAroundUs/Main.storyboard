@@ -65,7 +65,7 @@
                                 <subviews>
                                     <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-cO-CJa">
                                         <rect key="frame" x="-38" y="0.0" width="120" height="45"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Oc5-KE-f3v">
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" id="Oc5-KE-f3v">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="45"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>

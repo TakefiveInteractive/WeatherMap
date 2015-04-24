@@ -19,20 +19,27 @@ class ClockView: DesignableView{
     @IBOutlet var pin2: UIImageView!
     @IBOutlet var pin1: UIImageView!
     @IBOutlet var timeDisplay: UIVisualEffectView!
+    
+    var timeLab: UILabel!
+
     var timeDisplayOutLine = CAShapeLayer()
 
     // transform index in dragging
     var clockIndex: CGFloat = 0
+    // 0 - 9 witch dot it displays
+    var futureDay = 0
     
     var parentController: ViewController!
 
-    var dragMode = false
     var dragger: UIPanGestureRecognizer!
 
     var timer = NSTimer()
-    
+    var timerCount = 0
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        layer.shadowOffset = CGSizeMake(0, 2)
+        layer.shadowRadius = 1
+        layer.shadowOpacity = 0.3
     }
     
     override init(frame: CGRect) {
@@ -40,19 +47,22 @@ class ClockView: DesignableView{
     }
 
     func setup() {
-        layer.shadowOffset = CGSizeMake(0, 2)
-        layer.shadowRadius = 1
-        layer.shadowOpacity = 0.3
+
         clock.addTarget(self, action: "clockClicked", forControlEvents: UIControlEvents.TouchUpInside)
         clock.layer.shadowOffset = CGSizeMake(0, 2)
         clock.layer.shadowRadius = 1
         clock.layer.shadowOpacity = 0.3
         blurView.roundCircle()
+        blurView.alpha = 1
         addRotatingAnimation()
         timeDisplay.roundCorner(UIRectCorner.AllCorners, radius: frame.width / 2)
     }
     
     func dragged(sender: UIPanGestureRecognizer){
+        
+        if sender.state == UIGestureRecognizerState.Began{
+            displayWeatherOfTheDay(futureDay)
+        }
         
         let dotNum = parentController.timeLine.numberOfDots
         var index = sender.translationInView(self.parentController.timeLine.blurView).y + clockIndex
@@ -73,7 +83,7 @@ class ClockView: DesignableView{
                 clockIndex = index
             }
             
-            // initially set to the highest
+            // i is the number of day from current date  from 0 - dotNum
             for var i = 1; i <= dotNum; i++ {
                 if clockIndex < self.parentController.timeLine.dots[i].center.y {
                     if sender.translationInView(self.parentController.timeLine.blurView).y > 0{
@@ -87,37 +97,107 @@ class ClockView: DesignableView{
                         clockIndex = parentController.timeLine.dots[i].center.y
                         parentController.mapView.changeIconWithTime(i)
                     }
+                    futureDay = i
+                    displayWeatherOfTheDay(futureDay)
                     break
                 }
             }
-            
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
-                self.transform = CGAffineTransformMake(0.5, 0, 0, 0.5, 0, self.clockIndex)
+        }
+    }
+    
+    func displayWeatherOfTheDay(day: Int){
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.transform = CGAffineTransformMake(0.5, 0, 0, 0.5, 0, self.clockIndex)
             }, completion: { (finish) -> Void in
                 
+                let time: NSNumber = NSUserDefaults.standardUserDefaults().objectForKey("currentDate")! as! NSNumber
+                let date = NSDate(timeIntervalSince1970: time.doubleValue + Double(self.futureDay) * 86400)
+                let calendar = NSCalendar.currentCalendar()
+                let components = calendar.components(.CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+                let month = components.month
+                let day = components.day
                 
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
-                    self.addLineAnimation()
-                    self.timeDisplay.alpha = 1
-                    }, completion: { (finish) -> Void in
-                        
-                    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.02, target: self, selector: "countDisplayTime:", userInfo: nil, repeats: true)
-                })
+                if self.timerCount > 0{
+                    self.timerCount = 0
+                }else{
+                    
+                    self.timeLab = UILabel(frame: CGRectMake(0, 0, self.timeDisplay.frame.width - self.timeDisplay.frame.height, self.timeDisplay.frame.height))
+                    self.timeLab.font = UIFont(name: "AvenirNextCondensed-Regular", size: 22)
+                    self.timeLab.textAlignment = NSTextAlignment.Center
+                    
+                    self.timeDisplay.addSubview(self.timeLab)
+                    
+                    UIView.animateWithDuration(0.2, animations: { () -> Void in
+                        self.addLineAnimation()
+                        self.timeDisplay.alpha = 1
+                        })
+                    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "countDisplayTime", userInfo: nil, repeats: true)
+
+                }
+                self.timeLab.text = "\(self.getBriefMonth(month)) \(day)"
                 
-            })
-            
+        })
+
+    }
+    
+    func getBriefMonth(month: Int)->String{
+        switch month {
+        case 1:
+            return "Jan"
+        case 2:
+            return "Feb"
+        case 3:
+            return "Mar"
+        case 4:
+            return "Apr"
+        case 5:
+            return "May"
+        case 6:
+            return "June"
+        case 7:
+            return "July"
+        case 8:
+            return "Aug"
+        case 9:
+            return "Sep"
+        case 10:
+            return "Oct"
+        case 11:
+            return "Nov"
+        case 12:
+            return "Dec"
+        default:
+            return "??"
         }
-        
+    }
+    
+    func countDisplayTime(){
+        timerCount++
+        if timerCount >= 30{
+            timer.invalidate()
+            timerCount = 0
+            dateIndicatorDisappear()
+        }
+    }
+    
+    func dateIndicatorDisappear(){
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.timeDisplay.alpha = 0
+            self.timeDisplayOutLine.removeFromSuperlayer()
+            self.timeLab.alpha = 0
+        })
     }
     
     func clockClicked(){
-        if !dragMode{
-            dragMode = true
+        if !WeatherInfo.forcastMode{
+            WeatherInfo.forcastMode = true
             clock.userInteractionEnabled = false
             parentController.timeLine.appear()
             parentController.returnBut.appear()
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.transform = CGAffineTransformMakeScale(0.5, 0.5)
+            }, completion: { (finish) -> Void in
+                self.displayWeatherOfTheDay(0)
             })
             dragger = UIPanGestureRecognizer(target: self, action: "dragged:")
             blurView.addGestureRecognizer(dragger)
@@ -125,9 +205,12 @@ class ClockView: DesignableView{
     }
     
     func clockReturnNormalSize(){
-        if dragMode{
-            dragMode = false
+        if WeatherInfo.forcastMode{
+            WeatherInfo.forcastMode = false
+            clockIndex = 0
+            futureDay = 0
             blurView.removeGestureRecognizer(dragger)
+            dateIndicatorDisappear()
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.transform = CGAffineTransformMakeScale(1, 1)
                 }) { (finish) -> Void in
