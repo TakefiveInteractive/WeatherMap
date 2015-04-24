@@ -73,7 +73,6 @@
 		42D961991AE5FF850082352E /* NewclockPin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 42D961981AE5FF850082352E /* NewclockPin1.png */; };
 		42D9619B1AE600830082352E /* NewclockPin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 42D9619A1AE600830082352E /* NewclockPin2.png */; };
 		42D9638A1ADC407900FC75C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D963891ADC407900FC75C3 /* Main.storyboard */; };
-		42F15D461AD07B35004D64EF /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F15D451AD07B35004D64EF /* CityDetailViewController.swift */; };
 		42F15D481AD08271004D64EF /* fake_map.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F15D471AD08271004D64EF /* fake_map.png */; };
 		42F24B121ADD72D700CFA0EC /* timeline_attch.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F24B101ADD72D700CFA0EC /* timeline_attch.png */; };
 		42F24B131ADD72D700CFA0EC /* timeline_attch.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F24B101ADD72D700CFA0EC /* timeline_attch.png */; };
@@ -83,6 +82,7 @@
 		42F62E771AD0B75100D494E6 /* Card.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E761AD0B75100D494E6 /* Card.png */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
 		43309AE34EFF8A1147E54079 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7061C7B48DE2F420FC0085AE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		88CAEEBB1AE9FD7600F73974 /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */; };
 		D5362D611AD0B77F00CAD195 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */; };
 		D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */; };
 		D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D641AD0B83F00CAD195 /* AVFoundation.framework */; };
@@ -177,7 +177,6 @@
 		42D961981AE5FF850082352E /* NewclockPin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewclockPin1.png; sourceTree = "<group>"; };
 		42D9619A1AE600830082352E /* NewclockPin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewclockPin2.png; sourceTree = "<group>"; };
 		42D963891ADC407900FC75C3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		42F15D451AD07B35004D64EF /* CityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailViewController.swift; sourceTree = "<group>"; };
 		42F15D471AD08271004D64EF /* fake_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fake_map.png; sourceTree = "<group>"; };
 		42F24B101ADD72D700CFA0EC /* timeline_attch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline_attch.png; sourceTree = "<group>"; };
 		42F24B111ADD72D700CFA0EC /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
@@ -187,6 +186,7 @@
 		42F62E7C1AD0BA9100D494E6 /* WeatherAroundUs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherAroundUs-Bridging-Header.h"; sourceTree = "<group>"; };
 		7061C7B48DE2F420FC0085AE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C74A3FFE21D5AC2F375E634 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailViewController.swift; sourceTree = "<group>"; };
 		A1CE25971AE0CD78008EB5F8 /* 01d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01d.png; sourceTree = "<group>"; };
 		A1CE25981AE0CD78008EB5F8 /* 01n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01n.png; sourceTree = "<group>"; };
 		A1CE25991AE0CD78008EB5F8 /* 02d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02d.png; sourceTree = "<group>"; };
@@ -306,8 +306,9 @@
 				D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
+				42D963891ADC407900FC75C3 /* Main.storyboard */,
+				88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */,
 				42466A8E1AE590CC00E0BD4B /* CustomViews */,
-				42F15D451AD07B35004D64EF /* CityDetailViewController.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */,
 				42466A981AE5AD3E00E0BD4B /* TimeLineManager.swift */,
@@ -316,7 +317,6 @@
 				427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */,
 				42466A9A1AE5DAAD00E0BD4B /* UIViewExtension.swift */,
 				427BAFA91AD0E71100C87BDE /* LocationManager.swift */,
-				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				42F15D491AD08275004D64EF /* IMGs */,
 				42D4EDD21A9E7F02006AE807 /* Images.xcassets */,
 				42D4EDD41A9E7F02006AE807 /* LaunchScreen.xib */,
@@ -645,11 +645,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42F15D461AD07B35004D64EF /* CityDetailViewController.swift in Sources */,
 				42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */,
 				42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */,
 				424F5A271ADE137100B09FBA /* SearchResultView.swift in Sources */,
 				42466A901AE5961100E0BD4B /* TimeLineView.swift in Sources */,
+				88CAEEBB1AE9FD7600F73974 /* CityDetailViewController.swift in Sources */,
 				42D4EDCE1A9E7F02006AE807 /* ViewController.swift in Sources */,
 				427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */,
 				424F5A291ADE379C00B09FBA /* InternetConnection.swift in Sources */,
