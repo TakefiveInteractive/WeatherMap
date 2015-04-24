@@ -122,20 +122,28 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         }
     }
     
+    //if day == -1  display current time
     func changeIconWithTime(day: Int){
         
         for city in WeatherInfo.citiesAround{
-            if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
-                let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
-                let icon = UIImage(named: name)
-                weatherIcons[city]?.icon = getImageAccordingToZoom(icon!)
+            
+            if day == -1{
+                let icon = UIImage(named: (((WeatherInfo.citiesAroundDict[city as String] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
+                weatherIcons[city]?.icon = getImageAccordingToZoom(icon)
             }else{
-                // get the weather data if not found
-                var connection = InternetConnection()
-                connection.delegate = WeatherInfo
-                connection.getWeatherForcast(city)
+                if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
+                    let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+                    let icon = UIImage(named: name)
+                    weatherIcons[city]?.icon = getImageAccordingToZoom(icon!)
+                }else{
+                    // get the weather data if not found
+                    var connection = InternetConnection()
+                    connection.delegate = WeatherInfo
+                    connection.getWeatherForcast(city)
+                }
             }
         }
+        
     }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E076E9463E7487116D942FBB"
-               BuildableName = "Haneke.framework"
-               BlueprintName = "Pods-HanekeSwift"
+               BlueprintIdentifier = "FDE0603AF250BA7954EA7620"
+               BuildableName = "GPUImage.framework"
+               BlueprintName = "Pods-GPUImage"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
