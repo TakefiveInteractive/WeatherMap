@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class CardView: DesignableView, ImageCacheDelegate{
+class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
 
     var icon: UIImageView!
     var temperature: UILabel!
@@ -38,6 +38,13 @@ class CardView: DesignableView, ImageCacheDelegate{
     
     let sideWidth:CGFloat = 6
 
+    // get small city image from google
+    func gotImageUrls(btUrl: String, imageURL: String, cityID: String) {
+        var cache = ImageCache()
+        cache.delegate = self
+        cache.getSmallImageFromCache(btUrl, cityID: cityID)
+    }
+    
     func setup(){
         
         self.userInteractionEnabled = false
@@ -208,6 +215,7 @@ class CardView: DesignableView, ImageCacheDelegate{
         view.layer.shadowRadius = 0.5;
         view.layer.shadowOpacity = 0.3;
     }
+
     
     func hideSelf(){
 

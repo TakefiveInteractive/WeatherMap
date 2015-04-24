@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDLBiMd9DqNtqeRc2DMtoeYL4hg53wUEw8")
         UserLocation.setup()
 
+        // init the image url cache if not exist
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        if userDefault.objectForKey("smallImgUrl") == nil{
+            userDefault.setObject( NSMutableDictionary(), forKey: "smallImgUrl")
+            userDefault.setObject( NSMutableDictionary(), forKey: "imgUrl")
+        }
+
+        
         return true
     }
 

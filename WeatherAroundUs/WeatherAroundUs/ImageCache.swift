@@ -17,29 +17,38 @@ import Haneke
 
 class ImageCache: NSObject {
     
-    let userDefault = NSUserDefaults.standardUserDefaults()
-    
     var delegate: ImageCacheDelegate!
 
     func getSmallImageFromCache(url: String, cityID: String){
-        
         // get the image from cache
         let cache = Shared.dataCache
         var img = UIImage()
         cache.fetch(URL: NSURL(string: url)!).onSuccess { image in
             img = UIImage(data: image)!
             self.delegate?.gotSmallImageFromCache!(img, cityID: cityID)
+            self.saveImageURL(cityID, url: url, key: "smallImgUrl")
         }
     }
     
     func getImageFromCache(url: String, cityID: String){
+        
         // get the image from cache
         let cache = Shared.dataCache
         var img = UIImage()
         cache.fetch(URL: NSURL(string: url)!).onSuccess { image in
             img = UIImage(data: image)!
             self.delegate?.gotImageFromCache!(img, cityID: cityID)
+            self.saveImageURL(cityID, url: url, key: "imgUrl")
         }
+    }
+    
+    func saveImageURL(cityID: String, url: String, key:String){
+        
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        var urlMap: NSMutableDictionary = userDefault.objectForKey(key) as! NSMutableDictionary
+        urlMap.setObject(url, forKey: cityID)
+        userDefault.setObject(urlMap, forKey: key)
+        userDefault.synchronize()
     }
     
     

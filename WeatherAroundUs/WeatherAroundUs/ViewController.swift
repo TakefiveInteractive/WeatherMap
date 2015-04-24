@@ -25,14 +25,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
     
-    // get small city image from google
-    func gotImageUrls(btUrl: String, imageURL: String, cityID: String) {
-        var cache = ImageCache()
-        cache.delegate = card
-        cache.getSmallImageFromCache(btUrl, cityID: cityID)
-    }
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
