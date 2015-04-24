@@ -26,7 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userDefault.setObject( NSMutableDictionary(), forKey: "smallImgUrl")
             userDefault.setObject( NSMutableDictionary(), forKey: "imgUrl")
         }
-
+        
+        //set up current date if not exist
+        if userDefault.objectForKey("currentTime") == nil{
+            var currDate = NSDate()
+            var dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd.MM.YY"
+            let dateStr = dateFormatter.stringFromDate(currDate)
+            println(dateStr)
+        }
         
         return true
     }

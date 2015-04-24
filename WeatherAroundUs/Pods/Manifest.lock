@@ -1,43 +1,34 @@
 PODS:
-  - Alamofire (1.1.4)
+  - Alamofire (1.2.1)
   - GPUImage (0.1.6)
-  - Haneke (0.9.0)
+  - HanekeSwift (0.9.1)
+  - Shimmer (1.0.2)
   - Spring (1.0.3)
-  - SwiftyJSON (2.1.3)
+  - SwiftyJSON (2.2.0)
 
 DEPENDENCIES:
-  - Alamofire (from `git@github.com:boek/Alamofire.git`, branch `swift-1.2beta`)
+  - Alamofire
   - GPUImage
-  - Haneke (from `https://github.com/Haneke/HanekeSwift.git`)
-  - Spring (~> 1.0.1)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode6.3`)
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`)
+  - Shimmer
+  - Spring
+  - SwiftyJSON
 
 EXTERNAL SOURCES:
-  Alamofire:
-    :branch: swift-1.2beta
-    :git: git@github.com:boek/Alamofire.git
-  Haneke:
+  HanekeSwift:
     :git: https://github.com/Haneke/HanekeSwift.git
-  SwiftyJSON:
-    :branch: xcode6.3
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
-  Alamofire:
-    :commit: 7a2cddac1904f240c4d9c20bc8e17a5ca3398647
-    :git: git@github.com:boek/Alamofire.git
-  Haneke:
-    :commit: 3666366255bbe4c520cfe7763d8815205eb9cb29
+  HanekeSwift:
+    :commit: c1aa296ae9ac0826bb34d8ea1b4ce6d2737a77e9
     :git: https://github.com/Haneke/HanekeSwift.git
-  SwiftyJSON:
-    :commit: 008a09d7ea8b13c03fb59b35c01aad339584a5e1
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
+  Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
   GPUImage: 4675ce4a5370ca92fcea8623b2a08b8f0c51b940
-  Haneke: 6d0b23dc6603d069c889f0c02e72ddbbc78d2e97
+  HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
-  SwiftyJSON: a561c2a840121085bec8a2dfeac97a360fc66901
+  SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.36.4

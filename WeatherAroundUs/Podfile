@@ -1,15 +1,20 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, ‘8.0’
+# platform :ios, ‘7.0’
+
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
 
 workspace 'WeatherAroundUs'
 
 xcodeproj 'WeatherAroundUs'
 
-pod 'Spring', '~> 1.0.1'
-pod 'Alamofire', :git => "git@github.com:boek/Alamofire.git", :branch => 'swift-1.2beta'
-pod 'Haneke', :git => 'https://github.com/Haneke/HanekeSwift.git'
-pod 'GPUImage'
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode6.3'
-
 use_frameworks!
+
+pod 'Spring'
+pod 'Alamofire'
+pod 'GPUImage'
+pod 'SwiftyJSON'
+pod 'Shimmer'
+pod 'HanekeSwift'#, :git => 'https://github.com/Haneke/HanekeSwift.git'
+
 

@@ -27,6 +27,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var citiesAroundDict = [String: AnyObject]()
     // all the icons displayed
     var citiesAround = [String]()
+    //current city id
+    var currentCityID = ""
 
     let maxCityNum = 40
 
