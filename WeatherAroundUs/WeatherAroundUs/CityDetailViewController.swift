@@ -18,15 +18,28 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
     @IBOutlet var mainTemperatureDisplay: UILabel!
     @IBOutlet var mainTempatureToTopHeightConstraint: NSLayoutConstraint!
     
-    
-    @IBOutlet var forecastView: DesignableView!
+    @IBOutlet var forecastView: BasicWeatherView!
     @IBOutlet var detailView: DesignableView!
-    
+
+    var fiveDaysWeather = [SpringView]()
+
+    var isCnotF = false
+
     var cityID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
+
+        forecastView.parentController = self
+        
+        let todayDegree = (((WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]])[0]["temp"] as! [String: AnyObject])["day"])!.intValue
+        if isCnotF {
+            mainTemperatureDisplay.text = "\(todayDegree - 273)°C"
+        } else {
+            mainTemperatureDisplay.text = "\((todayDegree-273) * 9 / 5 + 32)°C"
+        }
+        
         mainTempatureToTopHeightConstraint.constant = view.frame.height / 3
         mainTemperatureShimmerView.contentView = mainTemperatureDisplay
         mainTemperatureShimmerView.shimmering = true
@@ -42,6 +55,13 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
     
     override func viewDidAppear(animated: Bool) {
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height + 200)
+        
+        let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
+        forecastView.setup(nineDayWeatherForcast)
+        
+        //println((nineDayWeatherForcast[0]["temp"] as! [String: AnyObject])["day"])
+        //println(WeatherInfo.citiesAround)
+        //println(WeatherInfo.citiesAroundDict[cityID])
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +81,8 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
             }
         }
     }
+    
+
     
     func gotImageFromCache(image: UIImage, cityID: String) {
         backgroundImageView.image = image

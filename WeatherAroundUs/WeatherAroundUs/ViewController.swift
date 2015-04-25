@@ -33,6 +33,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         timeLine.parentController = self
         returnBut.parentController = self
         
+        
         var tapGestureReco = UITapGestureRecognizer(target: self, action: "tappedCard:")
         self.card.addGestureRecognizer(tapGestureReco)
     }
