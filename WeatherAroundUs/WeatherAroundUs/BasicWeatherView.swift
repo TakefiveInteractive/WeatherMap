@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class BasicWeatherView: DesignableView {
+class BasicWeatherView: DesignableView, InternetConnectionDelegate {
 
     @IBOutlet var hourForcastScrollView: UIScrollView!
     let displayedDays: Int = 7
@@ -29,32 +29,13 @@ class BasicWeatherView: DesignableView {
     }
     
     func setup(forecastInfos: [[String: AnyObject]]) {
+        threeHourForcast()
+
         // each daily display block height
         let blockHeight: CGFloat = 30
         let labelFont = UIFont(name: "AvenirNext-Regular", size: 16)
 
         parentController.basicForecastViewHeight.constant = hourForcastScrollView.frame.height + CGFloat(displayedDays) * blockHeight + 50
-        
-        /// set up scroll view daily forcast
-        let hourItemViewWidth: CGFloat = 40
-        let numOfDailyWeatherForcast = 8
-        hourForcastScrollView.contentSize = CGSize(width: hourItemViewWidth * CGFloat(numOfDailyWeatherForcast), height: hourForcastScrollView.frame.height)
-        for var index = 0; index < numOfDailyWeatherForcast; index++ {
-            let hourItemView = SpringView(frame: CGRectMake(hourItemViewWidth * CGFloat(index), 0, hourItemViewWidth, hourForcastScrollView.frame.height))
-            hourForcastScrollView.addSubview(hourItemView)
-            
-            let hourTimeLabel = UILabel(frame: CGRectMake(0, 5, hourItemViewWidth, 20))
-            hourTimeLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
-            hourTimeLabel.text = "\(timeConvert(24 / numOfDailyWeatherForcast * index))"
-            hourTimeLabel.textColor = UIColor.whiteColor()
-            hourTimeLabel.textAlignment = .Center
-            hourItemView.addSubview(hourTimeLabel)
-            
-            let hourImageIcon = UIImageView(frame: CGRectMake(0, hourTimeLabel.frame.origin.y + hourTimeLabel.frame.height, hourItemViewWidth, 20))
-            hourImageIcon.image = UIImage(named: "10d")
-            hourImageIcon.contentMode = UIViewContentMode.ScaleAspectFit
-            hourItemView.addSubview(hourImageIcon)
-        }
         
         
         /// set up week weather forcast
@@ -67,7 +48,7 @@ class BasicWeatherView: DesignableView {
             weekDate[index] = week[(index + component - 1) % 7]
         }
 
-        let beginY = hourForcastScrollView.frame.origin.y + hourForcastScrollView.frame.height
+        let beginY = hourForcastScrollView.frame.origin.y + hourForcastScrollView.frame.height + 8
         let beginX = hourForcastScrollView.frame.origin.x
         
         for var index = 0; index < displayedDays; index++ {
@@ -106,6 +87,54 @@ class BasicWeatherView: DesignableView {
             backView.delay = 0.1 * CGFloat(index)
             backView.animate()
         }
+    }
+    
+    func threeHourForcast(){
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.getThreeHourForcast(parentController.cityID)
+    }
+    
+    func gotThreeHourForcastData(cityID: String, forcast: [AnyObject]) {
+//        println(forcast[0])
+        /// set up scroll view daily forcast
+        let hourItemViewWidth: CGFloat = 40
+        let numOfDailyWeatherForcast = forcast.count / 2
+        hourForcastScrollView.contentSize = CGSize(width: hourItemViewWidth * CGFloat(numOfDailyWeatherForcast), height: hourForcastScrollView.frame.height)
+        
+        for var index = 0; index < numOfDailyWeatherForcast; index++ {
+            let hourItemView = SpringView(frame: CGRectMake(hourItemViewWidth * CGFloat(index), 0, hourItemViewWidth, hourForcastScrollView.frame.height))
+            hourForcastScrollView.addSubview(hourItemView)
+            
+            var timeData = (forcast[index]["dt_txt"]) as! String
+            timeData = timeData.substringWithRange(Range<String.Index>(start: advance(timeData.startIndex, 11), end: advance(timeData.endIndex, -6)))
+            let curTime = timeData.toInt()
+            let hourTimeLabel = SpringLabel(frame: CGRectMake(0, 5, hourItemViewWidth, 20))
+            hourTimeLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+            hourTimeLabel.text = "\(timeConvert(curTime!))"
+            hourTimeLabel.textColor = UIColor.whiteColor()
+            hourTimeLabel.textAlignment = .Center
+            hourItemView.addSubview(hourTimeLabel)
+            
+            let iconString = ((forcast[index]["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+            let hourImageIcon = SpringImageView(frame: CGRectMake(0, hourTimeLabel.frame.origin.y + hourTimeLabel.frame.height, hourItemViewWidth, 20))
+            hourImageIcon.image = UIImage(named: iconString)
+            hourImageIcon.contentMode = UIViewContentMode.ScaleAspectFit
+            hourItemView.addSubview(hourImageIcon)
+            
+            let temp = ((forcast[index]["main"] as! [String: AnyObject])["temp"])!.intValue
+            let hourTemperatureLabel = SpringLabel(frame: CGRectMake(0, hourImageIcon.frame.origin.y + hourImageIcon.frame.height, hourItemViewWidth, 20))
+            hourTemperatureLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+            hourTemperatureLabel.textColor = UIColor.whiteColor()
+            hourTemperatureLabel.textAlignment = .Center
+            hourTemperatureLabel.text = "\(parentController.degreeConvert(temp))°"
+            hourItemView.addSubview(hourTemperatureLabel)
+            
+            hourItemView.animation = "fadeIn"
+            hourItemView.delay = 0.1 * CGFloat(index)
+            hourItemView.animate()
+        }
+        
     }
 
 }
