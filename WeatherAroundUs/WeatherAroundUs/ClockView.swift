@@ -64,7 +64,6 @@ class ClockView: DesignableView{
             displayWeatherOfTheDay(futureDay)
         }
         
-        let dotNum = parentController.timeLine.numberOfDots
         var index = sender.translationInView(self.parentController.timeLine.blurView).y + clockIndex
         if index < 0{
             self.transform = CGAffineTransformMake(0.75, 0, 0, 0.75, 0, 0)
@@ -83,14 +82,15 @@ class ClockView: DesignableView{
                 clockIndex = index
             }
             
+            let dotNum = parentController.timeLine.numberOfDots
             // i is the number of day from current date  from 0 - dotNum
             for var i = 1; i <= dotNum; i++ {
-                if clockIndex < self.parentController.timeLine.dots[i].center.y {
+                if index < self.parentController.timeLine.dots[i].center.y {
                     if sender.translationInView(self.parentController.timeLine.blurView).y > 0{
                         //dragging down
                         clockIndex = parentController.timeLine.dots[i].center.y
                         parentController.mapView.changeIconWithTime(i)
-
+                        
                     }else{
                         //dragging up
                         i--
