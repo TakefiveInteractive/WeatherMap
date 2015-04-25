@@ -32,9 +32,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        setBackgroundImage()
-        
         scrollView.delegate = self
         forecastView.parentController = self
         digestWeatherView.parentController = self
@@ -62,6 +59,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        setBackgroundImage()
         backgroundImageView.image = tempImage
     }
     
@@ -105,7 +103,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         var cache = ImageCache()
         cache.delegate = self
         cache.getImageFromCache(imageUrl, cityID: cityID)
-    
     }
     
     func degreeConvert(degree: Int32) -> Int32 {
