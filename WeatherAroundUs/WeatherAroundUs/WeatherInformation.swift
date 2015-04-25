@@ -21,6 +21,8 @@ var WeatherInfo: WeatherInformation = WeatherInformation()
 
 class WeatherInformation: NSObject, InternetConnectionDelegate{
     
+    var currentDate = ""
+    
     // 9 days weather forcast for city
     var citiesForcast = [String: AnyObject]()
     // all city in database with one day weather info
@@ -83,9 +85,11 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         let dateStr = dateFormatter.stringFromDate(currDate)
         
         //remove object if not the same day
-        if userDefault.objectForKey("currentDate") as! String != dateStr {
+        if currentDate != dateStr {
+            currentDate = dateStr
             userDefault.setValue(dateStr, forKey: "currentDate")
             userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
+            userDefault.synchronize()
             citiesForcast.removeAll(keepCapacity: false)
         }
         citiesForcast.updateValue(forcast, forKey: cityID)
