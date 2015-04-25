@@ -12,7 +12,7 @@ import Spring
 class BasicWeatherView: DesignableView, InternetConnectionDelegate {
 
     @IBOutlet var hourForcastScrollView: UIScrollView!
-    let displayedDays: Int = 7
+    let displayedDays: Int = 9
     
     var parentController: CityDetailViewController!
     
@@ -47,6 +47,8 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
         for var index = 0; index < displayedDays; index++ {
             weekDate[index] = week[(index + component - 1) % 7]
         }
+        weekDate[0] = "Today"
+        weekDate[1] = "Tomorrow"
 
         let beginY = hourForcastScrollView.frame.origin.y + hourForcastScrollView.frame.height + 8
         let beginX = hourForcastScrollView.frame.origin.x
