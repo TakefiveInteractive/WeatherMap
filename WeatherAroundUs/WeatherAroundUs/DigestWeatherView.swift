@@ -33,22 +33,22 @@ class DigestWeatherView: DesignableView {
         self.addSubview(weatherIcon)
         weatherIcon.animation = "zoomIn"
         weatherIcon.animate()
-        
+
         //digest current weather condition
         let labelView = UIView(frame: CGRectMake(beginX + line.frame.width / 2, beginY, self.frame.width / 2, self.frame.height))
         self.addSubview(labelView)
         let shimmerWeatherDescription = FBShimmeringView(frame: CGRectMake(0, 26, line.frame.width / 2, 30))
         labelView.addSubview(shimmerWeatherDescription)
-        let weatherDescription = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, 30))
-        weatherDescription.text = (todayWeather["description"] as? String)?.capitalizedString
-        weatherDescription.textAlignment = .Left
-        weatherDescription.font = UIFont(name: "AvenirNext-Medium", size: 16)
-        weatherDescription.textColor = UIColor.whiteColor()
-        shimmerWeatherDescription.addSubview(weatherDescription)
-        weatherDescription.animation = "fadeIn"
-        weatherDescription.delay = 0.1
-        weatherDescription.animate()
-        shimmerWeatherDescription.contentView = weatherDescription
+        let cityDisplay = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, 30))
+        cityDisplay.text = (WeatherInfo.citiesAroundDict[parentController.cityID] as! [String: AnyObject])["name"]! as? String
+        cityDisplay.textAlignment = .Left
+        cityDisplay.font = UIFont(name: "AvenirNext-Medium", size: 18)
+        cityDisplay.textColor = UIColor.whiteColor()
+        shimmerWeatherDescription.addSubview(cityDisplay)
+        cityDisplay.animation = "fadeIn"
+        cityDisplay.delay = 0.1
+        cityDisplay.animate()
+        shimmerWeatherDescription.contentView = cityDisplay
         shimmerWeatherDescription.shimmering = true
         
         //digest tempature range for the day
@@ -74,10 +74,10 @@ class DigestWeatherView: DesignableView {
         
         //digest the main weather of the day
         let mainWeather = SpringLabel(frame: CGRectMake(0, beginY + self.frame.height / 5 + 18 - beginY, line.frame.width / 2 + 10, self.frame.height / 2))
-        mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 14)
         mainWeather.textAlignment = .Left
         mainWeather.textColor = UIColor.whiteColor()
-        mainWeather.text = "Mainly " + (todayWeather["main"] as? String)!.lowercaseString + " today"
+        mainWeather.text = (todayWeather["description"] as? String)?.capitalizedString
         labelView.addSubview(mainWeather)
         mainWeather.animation = "fadeIn"
         mainWeather.delay = 0.3

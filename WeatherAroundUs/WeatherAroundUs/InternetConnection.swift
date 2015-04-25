@@ -126,7 +126,7 @@ class InternetConnection: NSObject {
                 }else{
                     searchText = address.country
                 }
-                searchText = searchText + "  -human -people -crowd -person"
+                searchText = searchText + " -human -people -crowd -person"
                 // avoid error when there is space
                 searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
                 
