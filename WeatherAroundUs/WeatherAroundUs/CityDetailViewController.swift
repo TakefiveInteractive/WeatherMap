@@ -10,26 +10,31 @@ import UIKit
 import Spring
 import Shimmer
 
-class CityDetailViewController: UIViewController, ImageCacheDelegate {
+class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollViewDelegate {
 
     @IBOutlet var backgroundImageView: DesignableImageView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var mainTemperatureShimmerView: FBShimmeringView!
     @IBOutlet var mainTemperatureDisplay: UILabel!
+    @IBOutlet var dateDisplayLabel: UILabel!
     @IBOutlet var mainTempatureToTopHeightConstraint: NSLayoutConstraint!
     @IBOutlet var basicForecastViewHeight: NSLayoutConstraint!
+    
     
     @IBOutlet var digestWeatherView: DigestWeatherView!
     @IBOutlet var forecastView: BasicWeatherView!
 
     var isCnotF = false
 
+    var tempImage: UIImage!
+    
     var cityID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
-
+        
+        scrollView.delegate = self
         forecastView.parentController = self
         digestWeatherView.parentController = self
         
@@ -53,18 +58,45 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
         return UIStatusBarStyle.LightContent
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        backgroundImageView.image = tempImage
+    }
+    
     override func viewDidAppear(animated: Bool) {
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height + 200)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + 180)
         
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         forecastView.setup(nineDayWeatherForcast)
         digestWeatherView.setup(nineDayWeatherForcast)
+        
+        
+        var currDate = NSDate()
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM dd"
+        let dateStr = dateFormatter.stringFromDate(currDate)
+        dateDisplayLabel.text = dateStr
+
+        
+        var screenEdgeWipeReco:  UIScreenEdgePanGestureRecognizer! = UIScreenEdgePanGestureRecognizer(target: self, action: "swipeScreenEdgeLeft:")
+        screenEdgeWipeReco.edges = UIRectEdge.Left
+        view.addGestureRecognizer(screenEdgeWipeReco)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    func swipeScreenEdgeLeft(sender: UIScreenEdgePanGestureRecognizer) {
+        self.performSegueWithIdentifier("backToMain", sender: self)
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < -90 {
+            self.performSegueWithIdentifier("backToMain", sender: self)
+        }
+    }
+    
     func setBackgroundImage() {
         let imageDict = ImageCache.imagesUrl
         let imageUrl = imageDict[cityID]!

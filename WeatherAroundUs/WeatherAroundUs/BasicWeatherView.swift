@@ -20,12 +20,44 @@ class BasicWeatherView: DesignableView {
         super.init(coder: aDecoder)
     }
     
+    func timeConvert(curTime: Int) -> String {
+        if (curTime < 12) {
+            return "\(curTime)AM"
+        } else {
+            return "\(curTime % 12)PM"
+        }
+    }
+    
     func setup(forecastInfos: [[String: AnyObject]]) {
         // each daily display block height
         let blockHeight: CGFloat = 30
+        let labelFont = UIFont(name: "AvenirNext-Regular", size: 16)
 
         parentController.basicForecastViewHeight.constant = hourForcastScrollView.frame.height + CGFloat(displayedDays) * blockHeight + 50
         
+        /// set up scroll view daily forcast
+        let hourItemViewWidth: CGFloat = 40
+        let numOfDailyWeatherForcast = 8
+        hourForcastScrollView.contentSize = CGSize(width: hourItemViewWidth * CGFloat(numOfDailyWeatherForcast), height: hourForcastScrollView.frame.height)
+        for var index = 0; index < numOfDailyWeatherForcast; index++ {
+            let hourItemView = SpringView(frame: CGRectMake(hourItemViewWidth * CGFloat(index), 0, hourItemViewWidth, hourForcastScrollView.frame.height))
+            hourForcastScrollView.addSubview(hourItemView)
+            
+            let hourTimeLabel = UILabel(frame: CGRectMake(0, 5, hourItemViewWidth, 20))
+            hourTimeLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+            hourTimeLabel.text = "\(timeConvert(24 / numOfDailyWeatherForcast * index))"
+            hourTimeLabel.textColor = UIColor.whiteColor()
+            hourTimeLabel.textAlignment = .Center
+            hourItemView.addSubview(hourTimeLabel)
+            
+            let hourImageIcon = UIImageView(frame: CGRectMake(0, hourTimeLabel.frame.origin.y + hourTimeLabel.frame.height, hourItemViewWidth, 20))
+            hourImageIcon.image = UIImage(named: "10d")
+            hourImageIcon.contentMode = UIViewContentMode.ScaleAspectFit
+            hourItemView.addSubview(hourImageIcon)
+        }
+        
+        
+        /// set up week weather forcast
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let component = calendar.component(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
@@ -37,7 +69,6 @@ class BasicWeatherView: DesignableView {
 
         let beginY = hourForcastScrollView.frame.origin.y + hourForcastScrollView.frame.height
         let beginX = hourForcastScrollView.frame.origin.x
-        let labelFont = UIFont(name: "AvenirNext-Regular", size: 16)
         
         for var index = 0; index < displayedDays; index++ {
             var backView = SpringView(frame: CGRectMake(beginX, beginY + CGFloat(index) * blockHeight, hourForcastScrollView.frame.width, blockHeight))
@@ -50,7 +81,6 @@ class BasicWeatherView: DesignableView {
             dateLabel.font = labelFont
             backView.addSubview(dateLabel)
             
-            //println((nineDayWeatherForcast[0]["temp"] as! [String: AnyObject])["day"])
             var maxTempLabel = UILabel(frame: CGRectMake(backView.frame.width - 90, 0, 50, blockHeight))
             maxTempLabel.textColor = UIColor.whiteColor()
             maxTempLabel.textAlignment = .Right
