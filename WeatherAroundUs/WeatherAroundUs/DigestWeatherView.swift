@@ -28,7 +28,7 @@ class DigestWeatherView: DesignableView {
         let beginX = line.frame.origin.x
         
         //digest icon
-        let weatherIcon = SpringImageView(frame: CGRectMake(beginX + line.frame.width / 16, beginY + 8, self.frame.height * 2 / 3, self.frame.height * 2 / 3))
+        let weatherIcon = SpringImageView(frame: CGRectMake(beginX + line.frame.width / 12, beginY + 8, self.frame.height * 2 / 3, self.frame.height * 2 / 3))
         weatherIcon.image = UIImage(named: todayWeather["icon"] as! String)
         self.addSubview(weatherIcon)
         weatherIcon.animation = "zoomIn"
@@ -37,12 +37,12 @@ class DigestWeatherView: DesignableView {
         //digest current weather condition
         let labelView = UIView(frame: CGRectMake(beginX + line.frame.width / 2, beginY, self.frame.width / 2, self.frame.height))
         self.addSubview(labelView)
-        let shimmerWeatherDescription = FBShimmeringView(frame: CGRectMake(0, 24, line.frame.width / 2, 30))
+        let shimmerWeatherDescription = FBShimmeringView(frame: CGRectMake(0, 26, line.frame.width / 2, 30))
         labelView.addSubview(shimmerWeatherDescription)
         let weatherDescription = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, 30))
         weatherDescription.text = (todayWeather["description"] as? String)?.capitalizedString
         weatherDescription.textAlignment = .Left
-        weatherDescription.font = UIFont(name: "AvenirNext-Medium", size: 20)
+        weatherDescription.font = UIFont(name: "AvenirNext-Medium", size: 16)
         weatherDescription.textColor = UIColor.whiteColor()
         shimmerWeatherDescription.addSubview(weatherDescription)
         weatherDescription.animation = "fadeIn"
@@ -57,7 +57,7 @@ class DigestWeatherView: DesignableView {
         let tempRange = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, self.frame.height / 2))
         let minTemp = todayTemp["min"]!.intValue
         let maxTemp = todayTemp["max"]!.intValue
-        tempRange.font = UIFont(name: "AvenirNext-Regular", size: 28)
+        tempRange.font = UIFont(name: "AvenirNext-Regular", size: 24)
         tempRange.textAlignment = .Left
         tempRange.textColor = UIColor.whiteColor()
         var unit = "F"
@@ -73,12 +73,11 @@ class DigestWeatherView: DesignableView {
         shimmerTempRange.shimmering = true
         
         //digest the main weather of the day
-        let mainWeather = SpringLabel(frame: CGRectMake(0, beginY + self.frame.height / 5 + 18 - beginY, line.frame.width / 2, self.frame.height / 2))
-        mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        let mainWeather = SpringLabel(frame: CGRectMake(0, beginY + self.frame.height / 5 + 18 - beginY, line.frame.width / 2 + 10, self.frame.height / 2))
+        mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 12)
         mainWeather.textAlignment = .Left
         mainWeather.textColor = UIColor.whiteColor()
-        mainWeather.text = "Today mainly is " + (todayWeather["main"] as? String)!.capitalizedString
-        mainWeather.numberOfLines = 0
+        mainWeather.text = "Mainly " + (todayWeather["main"] as? String)!.lowercaseString + " today"
         labelView.addSubview(mainWeather)
         mainWeather.animation = "fadeIn"
         mainWeather.delay = 0.3
