@@ -244,13 +244,13 @@
                                                     <constraint firstAttribute="trailing" secondItem="M5C-g9-bKn" secondAttribute="trailing" id="hZe-7z-wI5"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-Mc-jsF" customClass="DesignableView" customModule="Spring">
-                                                <rect key="frame" x="8" y="225" width="304" height="150"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-Mc-jsF" customClass="BasicWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="225" width="304" height="250"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ei-X4-bGf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="150"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="250"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dDD-GY-8Oz">
-                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="150"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="250"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngr-eb-lax">
@@ -266,10 +266,19 @@
                                                                         <constraint firstAttribute="height" constant="1" id="YZq-0U-LnA"/>
                                                                     </constraints>
                                                                 </imageView>
+                                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-gh-FLm">
+                                                                    <rect key="frame" x="10" y="34" width="284" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="sMQ-2w-4NT"/>
+                                                                    </constraints>
+                                                                </scrollView>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstItem="N1A-gh-FLm" firstAttribute="trailing" secondItem="gb3-Po-DIr" secondAttribute="trailing" id="8TG-Mk-cnp"/>
+                                                                <constraint firstItem="N1A-gh-FLm" firstAttribute="top" secondItem="gb3-Po-DIr" secondAttribute="bottom" id="CzO-3m-jzd"/>
                                                                 <constraint firstItem="gb3-Po-DIr" firstAttribute="top" secondItem="ngr-eb-lax" secondAttribute="bottom" constant="1" id="T5H-Uh-lda"/>
                                                                 <constraint firstAttribute="trailing" secondItem="gb3-Po-DIr" secondAttribute="trailing" constant="10" id="UIz-ny-iI0"/>
+                                                                <constraint firstItem="N1A-gh-FLm" firstAttribute="leading" secondItem="gb3-Po-DIr" secondAttribute="leading" id="ahb-sY-Pg4"/>
                                                                 <constraint firstItem="ngr-eb-lax" firstAttribute="leading" secondItem="dDD-GY-8Oz" secondAttribute="leading" constant="10" id="fWW-Yx-LuA"/>
                                                                 <constraint firstItem="ngr-eb-lax" firstAttribute="top" secondItem="dDD-GY-8Oz" secondAttribute="top" constant="8" id="jiq-qo-6cQ"/>
                                                                 <constraint firstItem="gb3-Po-DIr" firstAttribute="leading" secondItem="dDD-GY-8Oz" secondAttribute="leading" constant="10" id="o1e-3d-Gbv"/>
@@ -279,7 +288,7 @@
                                                     </visualEffectView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="OsT-dG-D0R"/>
+                                                    <constraint firstAttribute="height" constant="250" id="OsT-dG-D0R"/>
                                                     <constraint firstItem="3ei-X4-bGf" firstAttribute="leading" secondItem="uYV-Mc-jsF" secondAttribute="leading" id="V0M-nh-k7N"/>
                                                     <constraint firstItem="3ei-X4-bGf" firstAttribute="top" secondItem="uYV-Mc-jsF" secondAttribute="top" id="hFW-WA-7Ll"/>
                                                     <constraint firstAttribute="trailing" secondItem="3ei-X4-bGf" secondAttribute="trailing" id="icr-Td-Efk"/>
@@ -290,9 +299,12 @@
                                                         <real key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="hourForcastScrollView" destination="N1A-gh-FLm" id="9wz-VW-fmq"/>
+                                                </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-lg-rAJ" customClass="DesignableView" customModule="Spring">
-                                                <rect key="frame" x="8" y="385" width="304" height="200"/>
+                                                <rect key="frame" x="8" y="485" width="304" height="200"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTP-aa-91w">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="200"/>
@@ -380,7 +392,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="tWb-q8-VjH" id="NLP-c2-OVf"/>
                         <outlet property="detailView" destination="xJg-lg-rAJ" id="s8w-ra-BkG"/>
-                        <outlet property="forecastView" destination="uYV-Mc-jsF" id="iwx-58-bV1"/>
+                        <outlet property="forecastView" destination="uYV-Mc-jsF" id="nvS-og-8Uj"/>
                         <outlet property="mainTempatureToTopHeightConstraint" destination="BNP-kf-ts1" id="fUX-rS-K0Q"/>
                         <outlet property="mainTemperatureDisplay" destination="M5C-g9-bKn" id="ieL-oy-yxR"/>
                         <outlet property="mainTemperatureShimmerView" destination="Daj-Li-ljH" id="uwM-4y-IVh"/>
