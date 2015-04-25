@@ -109,7 +109,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         
         if hide {
             hide = false
-            
+            self.userInteractionEnabled = true
             let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
             self.icon.image = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
             
@@ -221,6 +221,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
 
         if !hide {
             hide = true
+            self.userInteractionEnabled = false
+
             weatherDescriptionBack.center = CGPointMake(weatherDescriptionBack.center.x + weatherDescriptionBack.frame.width * 1.5, weatherDescriptionBack.center.y)
             weatherDescriptionBack.animation = "slideLeft"
             weatherDescriptionBack.animate()

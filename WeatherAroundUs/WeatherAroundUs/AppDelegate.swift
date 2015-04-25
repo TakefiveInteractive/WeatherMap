@@ -49,8 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userDefault.synchronize()
         }
 
-        println(userDefault.objectForKey("currentDate"))
-        println(userDefault.objectForKey("smallImgUrl"))
+        IconImage.setupPhotos()
         
         return true
     }
