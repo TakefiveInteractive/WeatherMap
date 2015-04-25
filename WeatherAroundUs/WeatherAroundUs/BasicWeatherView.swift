@@ -12,6 +12,7 @@ import Spring
 class BasicWeatherView: DesignableView {
 
     @IBOutlet var hourForcastScrollView: UIScrollView!
+    let displayedDays: Int = 5
     
     var parentController: CityDetailViewController!
     
@@ -19,15 +20,22 @@ class BasicWeatherView: DesignableView {
         super.init(coder: aDecoder)
     }
     
-    
     func setup(forecastInfos: [[String: AnyObject]]) {
-        let weekDate = [0: "Friday", 1: "Saturday", 2: "Sunday", 3: "Monday", 4: "Tuesday"]
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let component = calendar.component(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
+        let week = [0: "Sunday", 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday", 6: "Saturday"]
+        var weekDate = [Int: String]()
+        for var index = 0; index < displayedDays; index++ {
+            weekDate[index] = week[(index + component - 1) % 7]
+        }
+
         let beginY = hourForcastScrollView.frame.origin.y + hourForcastScrollView.frame.height
         let beginX = hourForcastScrollView.frame.origin.x
         let blockHeight: CGFloat = 30
         let labelFont = UIFont(name: "AvenirNext-Regular", size: 16)
         
-        for var index = 0; index < 5; index++ {
+        for var index = 0; index < displayedDays; index++ {
             var backView = SpringView(frame: CGRectMake(beginX, beginY + CGFloat(index) * blockHeight, hourForcastScrollView.frame.width, blockHeight))
             self.addSubview(backView)
             
@@ -55,11 +63,10 @@ class BasicWeatherView: DesignableView {
             minTempLabel.text = "\(degreeConvert(minTempInt))°"
             backView.addSubview(minTempLabel)
             
-            var weatherIcon = UIImageView(frame: CGRect(x: backView.frame.width/2 - 20, y: 0, width: blockHeight, height: blockHeight))
-//            println( (forecastInfos[index]["weather"])["icon"] )
-//            let iconString = ((forecastInfos[index]["weather"] as! [String: AnyObject])["icon"])!.stringValue
-//            weatherIcon.image = UIImage(named: iconString)
-//            backView.addSubview(weatherIcon)
+            var weatherIcon = UIImageView(frame: CGRect(x: backView.frame.width/2 - 10, y: 4, width: blockHeight - 8, height: blockHeight - 8))
+            let iconString = ((forecastInfos[index]["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+            weatherIcon.image = UIImage(named: iconString)
+            backView.addSubview(weatherIcon)
             
             backView.animation = "fadeIn"
             backView.delay = 0.1 * CGFloat(index)

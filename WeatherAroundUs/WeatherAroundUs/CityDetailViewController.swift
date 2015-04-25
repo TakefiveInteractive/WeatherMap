@@ -69,17 +69,12 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
     }
 
     func setBackgroundImage() {
-        var userDefault = NSUserDefaults.standardUserDefaults()
-        let imageDict: AnyObject! = userDefault.objectForKey("imgUrl")
-                
-        if let imageDict = imageDict as? NSMutableDictionary {
-            let imageUrl: AnyObject! = imageDict.objectForKey(cityID)
-            if let imageUrl = imageUrl as? String {
-                var cache = ImageCache()
-                cache.delegate = self
-                cache.getImageFromCache(imageUrl, cityID: cityID)
-            }
-        }
+        let imageDict = ImageCache.imagesUrl
+        let imageUrl = imageDict[cityID]!
+        var cache = ImageCache()
+        cache.delegate = self
+        cache.getImageFromCache(imageUrl, cityID: cityID)
+    
     }
     
 

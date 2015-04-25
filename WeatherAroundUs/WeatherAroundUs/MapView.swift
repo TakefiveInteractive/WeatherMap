@@ -8,8 +8,16 @@
 
 import UIKit
 
-class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherInformationDelegate{
 
+class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherInformationDelegate{
+    
+    enum IconSize {
+        case Large
+        case Mid
+        case Small
+        case XLarge
+    }
+    
     var parentController: ViewController!
     
     var mapKMRatio:Double = 0
@@ -20,13 +28,12 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     var weatherIcons = [String: GMSMarker]()
     var searchedArea = [CLLocation]()
-    
-    var zoom:Float = 12
+    var iconSize = IconSize.Large
     
     func setup() {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         if userDefaults.valueForKey("longitude") != nil{
-            var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: zoom)
+            var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: 12)
             self.camera = camera
         }
         
@@ -47,12 +54,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             self.animateToLocation(location.coordinate)
         }
         currentLocation = location
-        // save user location in nsdefault
-        var userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setDouble(location.coordinate.longitude, forKey: "longitude")
-        userDefaults.setDouble(location.coordinate.latitude, forKey: "latitude")
-        userDefaults.synchronize()
-        
     }
     
     func gotOneNewWeatherData(cityID: String, latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
@@ -88,7 +89,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 let name = (((data[self.parentController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
                 icon = UIImage(named: name)!
             }
-            marker.icon = getImageAccordingToZoom(icon)
+            marker.icon = getImageAccordingToSize(icon)
             marker.appearAnimation = kGMSMarkerAnimationPop
             marker.map = self
             marker.title = cityID
@@ -97,15 +98,16 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         }
     }
     
-    func getImageAccordingToZoom(icon: UIImage)->UIImage{
+    func getImageAccordingToSize(icon: UIImage)->UIImage{
         
-        if camera.zoom > 12.5{
+        switch iconSize {
+        case .XLarge:
             return icon.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
-        }else if camera.zoom > 11{
+        case .Large:
             return icon.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
-        }else if camera.zoom < 9.5{
+        case .Small:
             return icon.resize(CGSizeMake(15, 15)).addShadow(blurSize: 3.0)
-        }else{
+        case .Mid:
             return icon.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
         }
     }
@@ -122,20 +124,28 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         }
     }
     
+    //if day == -1  display current time
     func changeIconWithTime(day: Int){
         
         for city in WeatherInfo.citiesAround{
-            if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
-                let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
-                let icon = UIImage(named: name)
-                weatherIcons[city]?.icon = getImageAccordingToZoom(icon!)
+            
+            if day == -1{
+                let icon = UIImage(named: (((WeatherInfo.citiesAroundDict[city as String] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
+                weatherIcons[city]?.icon = getImageAccordingToSize(icon)
             }else{
-                // get the weather data if not found
-                var connection = InternetConnection()
-                connection.delegate = WeatherInfo
-                connection.getWeatherForcast(city)
+                if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
+                    let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+                    let icon = UIImage(named: name)
+                    weatherIcons[city]?.icon = getImageAccordingToSize(icon!)
+                }else{
+                    // get the weather data if not found
+                    var connection = InternetConnection()
+                    connection.delegate = WeatherInfo
+                    connection.getWeatherForcast(city)
+                }
             }
         }
+        
     }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
@@ -169,11 +179,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
     }
     
-    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
-        // move the prebase if in add base mode
-        
-    }
-    
     func mapView(mapView: GMSMapView!, willMove gesture: Bool) {
         //move
         if gesture{
@@ -187,13 +192,22 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
         
-        if abs(zoom - camera.zoom) > 0.5{
-            zoom = camera.zoom
-        // change size of icons
-            let iconKeys = weatherIcons.keys
-            for key in iconKeys{
-                var icon = UIImage(named: (((WeatherInfo.citiesAroundDict[key] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)
-                weatherIcons[key]?.icon = getImageAccordingToZoom(icon!)
+        // change the size of the icon according to zoom
+        let previousSize = iconSize
+        if camera.zoom > 12.5{
+            iconSize = .XLarge
+        }else if camera.zoom > 11{
+            iconSize = .Large
+        }else if camera.zoom < 9.5{
+            iconSize = .Small
+        }else{
+            iconSize = .Mid
+        }
+        if iconSize != previousSize{
+            if WeatherInfo.forcastMode{
+                changeIconWithTime(parentController.clockButton.futureDay)
+            }else{
+                changeIconWithTime(-1)
             }
         }
     }
@@ -208,5 +222,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         super.init(coder: aDecoder)
         setup()
     }
+    
+
 
 }
