@@ -23,9 +23,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     var weatherIcons = [String: GMSMarker]()
     var searchedArea = [CLLocation]()
     var iconSize = IconSize.Large
-    
-    var shouldDisplayCard = true
-    
+        
     func setup() {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         if userDefaults.valueForKey("longitude") != nil{
@@ -59,10 +57,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             
             WeatherInfo.citiesAround.insert(cityID, atIndex: 0)
             
-            if shouldDisplayCard {
-                shouldDisplayCard = false
+            if weatherIcons.count == 0 {
                 //diplay the first city getted
-                parentController.card.displayCity(cityID)
                 WeatherInfo.currentCityID = cityID
                 var connection = InternetConnection()
                 connection.delegate = parentController.card
