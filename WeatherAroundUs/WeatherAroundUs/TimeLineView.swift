@@ -67,7 +67,29 @@ class TimeLineView: DesignableView {
     }
     
     func touched(sender: UITapGestureRecognizer){
-        sender
+        
+        // i is the number of day from current date  from 0 - dotNum
+        for var i = 1; i <= numberOfDots; i++ {
+            if sender.locationInView(self).y < dots[i].center.y {
+                if parentController.clockButton.clockIndex < sender.locationInView(self).y{
+                    //dragging down
+                    parentController.clockButton.clockIndex = dots[i].center.y
+                    parentController.mapView.changeIconWithTime(i)
+                    
+                }else{
+                    //dragging up
+                    i--
+                    parentController.clockButton.clockIndex = dots[i].center.y
+                    parentController.mapView.changeIconWithTime(i)
+                }
+                parentController.clockButton.futureDay = i
+                parentController.clockButton.displayWeatherOfTheDay(i)
+                break
+            }
+        }
+
+
+        println(sender.locationInView(self).y)
     }
     
     func appear(){
