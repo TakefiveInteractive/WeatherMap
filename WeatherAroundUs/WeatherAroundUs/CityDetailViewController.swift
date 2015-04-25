@@ -10,7 +10,7 @@ import UIKit
 import Spring
 import Shimmer
 
-class CityDetailViewController: UIViewController, ImageCacheDelegate {
+class CityDetailViewController: UIViewController, ImageCacheDelegate, InternetConnectionDelegate{
 
     @IBOutlet var backgroundImageView: DesignableImageView!
     @IBOutlet var scrollView: UIScrollView!
@@ -28,6 +28,10 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // get forcast
+        threeHourForcast()
+        
         setBackgroundImage()
 
         forecastView.parentController = self
@@ -47,6 +51,17 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
         forecastView.clipsToBounds = true
         digestWeatherView.clipsToBounds = true
     }
+    
+    func threeHourForcast(){
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.getThreeHourForcast(cityID)
+    }
+    
+    func gotThreeHourForcastData(cityID: String, forcast: [AnyObject]) {
+        println(forcast)
+    }
+    
     
     // have to override function to manipulate status bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

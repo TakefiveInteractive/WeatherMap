@@ -67,11 +67,11 @@ class ClockView: DesignableView{
         let dotNum = parentController.timeLine.numberOfDots
         var index = sender.translationInView(self.parentController.timeLine.blurView).y + clockIndex
         if index < 0{
-            self.transform = CGAffineTransformMake(0.5, 0, 0, 0.5, 0, 0)
+            self.transform = CGAffineTransformMake(0.75, 0, 0, 0.75, 0, 0)
         }else if index <= self.parentController.timeLine.blurView.frame.height{
-            self.transform = CGAffineTransformMake(0.5, 0, 0, 0.5, 0, index)
+            self.transform = CGAffineTransformMake(0.75, 0, 0, 0.75, 0, index)
         }else{
-            self.transform = CGAffineTransformMake(0.5, 0, 0, 0.5, 0, self.parentController.timeLine.blurView.frame.height)
+            self.transform = CGAffineTransformMake(0.75, 0, 0, 0.75, 0, self.parentController.timeLine.blurView.frame.height)
         }
         if sender.state == UIGestureRecognizerState.Cancelled || sender.state == UIGestureRecognizerState.Ended || sender.state == UIGestureRecognizerState.Failed{
             
@@ -107,7 +107,7 @@ class ClockView: DesignableView{
     
     func displayWeatherOfTheDay(dayNum: Int){
         UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.transform = CGAffineTransformMake(0.5, 0, 0, 0.5, 0, self.clockIndex)
+            self.transform = CGAffineTransformMake(0.75, 0, 0, 0.75, 0, self.clockIndex)
             }, completion: { (finish) -> Void in
                 
                 let date = NSDate()
@@ -194,7 +194,7 @@ class ClockView: DesignableView{
             parentController.timeLine.appear()
             parentController.returnBut.appear()
             UIView.animateWithDuration(0.5, animations: { () -> Void in
-                self.transform = CGAffineTransformMakeScale(0.5, 0.5)
+                self.transform = CGAffineTransformMakeScale(0.75, 0.75)
             }, completion: { (finish) -> Void in
                 self.displayWeatherOfTheDay(0)
             })

@@ -108,28 +108,23 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         for city in WeatherInfo.citiesAround{
             
-            // delay 1 second
-            //let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(index) * Double(NSEC_PER_SEC)))
-            dispatch_after(DISPATCH_TIME_NOW, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { () -> Void in
-                if day == -1{
-                    let iconStr = (((WeatherInfo.citiesAroundDict[city as String] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                    self.weatherIcons[city]?.icon = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+            //set to low priority    performance issue
+            //dispatch_after(DISPATCH_TIME_NOW, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { () -> Void in
+            if day == -1{
+                let iconStr = (((WeatherInfo.citiesAroundDict[city as String] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                self.weatherIcons[city]?.icon = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+            }else{
+                if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
+                    let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+                    self.weatherIcons[city]?.icon = IconImage.getImageWithNameAndSize(name, size: self.iconSize)
                 }else{
-                    if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
-                        let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
-                        self.weatherIcons[city]?.icon = IconImage.getImageWithNameAndSize(name, size: self.iconSize)
-                    }else{
-                        // get the weather data if not found
-                        var connection = InternetConnection()
-                        connection.delegate = WeatherInfo
-                        connection.getWeatherForcast(city)
-                    }
+                    // get the weather data if not found
+                    var connection = InternetConnection()
+                    connection.delegate = WeatherInfo
+                    connection.getWeatherForcast(city)
                 }
-
             }
-            
         }
-        
     }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
