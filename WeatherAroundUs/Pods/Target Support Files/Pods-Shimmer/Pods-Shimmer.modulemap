@@ -1,0 +1,6 @@
+framework module Shimmer {
+  umbrella header "Pods-Shimmer-umbrella.h"
+
+  export *
+  module * { export * }
+}
