@@ -32,9 +32,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        setBackgroundImage()
-        
         scrollView.delegate = self
         forecastView.parentController = self
         digestWeatherView.parentController = self
@@ -63,6 +60,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         backgroundImageView.image = tempImage
+        setBackgroundImage()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -83,6 +81,8 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         var screenEdgeWipeReco:  UIScreenEdgePanGestureRecognizer! = UIScreenEdgePanGestureRecognizer(target: self, action: "swipeScreenEdgeLeft:")
         screenEdgeWipeReco.edges = UIRectEdge.Left
         view.addGestureRecognizer(screenEdgeWipeReco)
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,7 +105,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         var cache = ImageCache()
         cache.delegate = self
         cache.getImageFromCache(imageUrl, cityID: cityID)
-    
     }
     
     func degreeConvert(degree: Int32) -> Int32 {
