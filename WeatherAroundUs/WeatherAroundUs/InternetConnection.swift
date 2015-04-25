@@ -180,7 +180,9 @@ class InternetConnection: NSObject {
                         imageUrl = url
                     }
                 }
-                
+                // save image in local
+                ImageCache.smallImagesUrl.updateValue(tbUrl, forKey: cityID)
+                ImageCache.imagesUrl.updateValue(imageUrl, forKey: cityID)
                 self.delegate?.gotImageUrls!(tbUrl, imageURL: imageUrl, cityID: cityID)
                 
             }else{

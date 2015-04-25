@@ -27,7 +27,6 @@ class ImageCache: NSObject {
         let cache = Shared.dataCache
         var img = UIImage()
         cache.fetch(URL: NSURL(string: url)!).onSuccess { image in
-            ImageCache.smallImagesUrl.updateValue(url, forKey: cityID)
             img = UIImage(data: image)!
             self.delegate?.gotSmallImageFromCache!(img, cityID: cityID)
         }
@@ -39,7 +38,6 @@ class ImageCache: NSObject {
         let cache = Shared.dataCache
         var img = UIImage()
         cache.fetch(URL: NSURL(string: url)!).onSuccess { image in
-            ImageCache.imagesUrl.updateValue(url, forKey: cityID)
             img = UIImage(data: image)!
             self.delegate?.gotImageFromCache!(img, cityID: cityID)
         }

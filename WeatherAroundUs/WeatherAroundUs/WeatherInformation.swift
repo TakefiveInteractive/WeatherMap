@@ -106,6 +106,3 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     }
 }
 
-/*                    var queueLow = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-dispatch_sync(queueLow) {
-}*/
