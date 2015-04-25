@@ -59,6 +59,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             
             if weatherIcons.count == 0 {
                 //diplay the first city getted
+                parentController.card.displayCity(cityID)
                 WeatherInfo.currentCityID = cityID
                 var connection = InternetConnection()
                 connection.delegate = parentController.card
