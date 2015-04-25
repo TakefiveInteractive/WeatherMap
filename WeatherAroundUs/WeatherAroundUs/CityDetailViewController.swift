@@ -59,10 +59,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         forecastView.setup(nineDayWeatherForcast)
         digestWeatherView.setup(nineDayWeatherForcast)
-        
-        //println((nineDayWeatherForcast[0]["temp"] as! [String: AnyObject])["day"])
-        //println(WeatherInfo.citiesAround)
-        //println(WeatherInfo.citiesAroundDict[cityID])
     }
 
     override func didReceiveMemoryWarning() {
