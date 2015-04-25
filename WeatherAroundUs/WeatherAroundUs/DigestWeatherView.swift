@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import Shimmer
 
 class DigestWeatherView: DesignableView {
 
@@ -26,20 +27,36 @@ class DigestWeatherView: DesignableView {
         let beginY = line.frame.origin.y + line.frame.height
         let beginX = line.frame.origin.x
         
-        let weatherIcon = UIImageView(frame: CGRectMake(beginX + line.frame.width / 16, beginY, self.frame.height * 2 / 3, self.frame.height * 2 / 3))
+        //digest icon
+        let weatherIcon = SpringImageView(frame: CGRectMake(beginX + line.frame.width / 16, beginY, self.frame.height * 2 / 3, self.frame.height * 2 / 3))
         weatherIcon.image = UIImage(named: todayWeather["icon"] as! String)
         self.addSubview(weatherIcon)
+        weatherIcon.animation = "zoomIn"
+        weatherIcon.animate()
         
-        let weatherDescription = UILabel(frame: CGRectMake(beginX + line.frame.width / 2, beginY + 18, line.frame.width / 2, 30))
+        //digest current weather condition
+        let labelView = UIView(frame: CGRectMake(beginX + line.frame.width / 2, beginY, self.frame.width / 2, self.frame.height))
+        self.addSubview(labelView)
+        let shimmerWeatherDescription = FBShimmeringView(frame: CGRectMake(0, 18, line.frame.width / 2, 30))
+        labelView.addSubview(shimmerWeatherDescription)
+        let weatherDescription = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, 30))
         weatherDescription.text = (todayWeather["description"] as? String)?.capitalizedString
         weatherDescription.textAlignment = .Left
         weatherDescription.font = UIFont(name: "AvenirNext-Medium", size: 20)
         weatherDescription.textColor = UIColor.whiteColor()
-        self.addSubview(weatherDescription)
+        shimmerWeatherDescription.addSubview(weatherDescription)
+        weatherDescription.animation = "fadeIn"
+        weatherDescription.delay = 0.1
+        weatherDescription.animate()
+        shimmerWeatherDescription.contentView = weatherDescription
+        shimmerWeatherDescription.shimmering = true
         
+        //digest tempature range for the day
+        let shimmerTempRange = FBShimmeringView(frame: CGRectMake(0, self.frame.height / 5 - 6, line.frame.width / 2, self.frame.height / 2))
+        labelView.addSubview(shimmerTempRange)
+        let tempRange = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, self.frame.height / 2))
         let minTemp = todayTemp["min"]!.intValue
         let maxTemp = todayTemp["max"]!.intValue
-        let tempRange = UILabel(frame: CGRectMake(beginX + line.frame.width / 2, beginY + self.frame.height / 5 - 6, line.frame.width / 2, self.frame.height / 2))
         tempRange.font = UIFont(name: "AvenirNext-Regular", size: 28)
         tempRange.textAlignment = .Left
         tempRange.textColor = UIColor.whiteColor()
@@ -48,15 +65,24 @@ class DigestWeatherView: DesignableView {
             unit = "C"
         }
         tempRange.text = "\(parentController.degreeConvert(minTemp))° ~ \(parentController.degreeConvert(maxTemp))°\(unit)"
-        self.addSubview(tempRange)
+        shimmerTempRange.addSubview(tempRange)
+        tempRange.animation = "fadeIn"
+        tempRange.delay = 0.2
+        tempRange.animate()
+        shimmerTempRange.contentView = tempRange
+        shimmerTempRange.shimmering = true
         
-        let mainWeather = UILabel(frame: CGRectMake(beginX + line.frame.width / 2, beginY + self.frame.height / 5 + 20, line.frame.width / 2, self.frame.height / 2))
+        //digest the main weather of the day
+        let mainWeather = SpringLabel(frame: CGRectMake(0, beginY + self.frame.height / 5 + 20 - beginY, line.frame.width / 2, self.frame.height / 2))
         mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 14)
         mainWeather.textAlignment = .Left
         mainWeather.textColor = UIColor.whiteColor()
         mainWeather.text = "Today mainly is " + (todayWeather["main"] as? String)!.capitalizedString
         mainWeather.numberOfLines = 0
-        self.addSubview(mainWeather)
+        labelView.addSubview(mainWeather)
+        mainWeather.animation = "fadeIn"
+        mainWeather.delay = 0.3
+        mainWeather.animate()
         
     }
 }
