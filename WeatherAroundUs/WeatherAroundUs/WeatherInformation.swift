@@ -55,19 +55,19 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // got local city weather from member
     func gotLocalCityWeather(cities: [AnyObject]) {
         
-            for city in cities{
-                let id: Int = (city as! [String : AnyObject]) ["id"] as! Int
+        for var index = 0; index < cities.count; index++ {
+                
+                let id: Int = (cities[index] as! [String : AnyObject]) ["id"] as! Int
+                
                 // first time weather data
                 if self.citiesAroundDict["\(id)"] == nil {
-                    self.citiesAroundDict.updateValue(city, forKey: "\(id)")
-                    
-                        var connection = InternetConnection()
-                        connection.delegate = self
-                        connection.getWeatherForcast("\(id)")
-                    
-            }
+                    self.citiesAroundDict.updateValue(cities[index], forKey: "\(id)")
+                    var connection = InternetConnection()
+                    connection.delegate = self
+                    connection.getWeatherForcast("\(id)")
+                }
                 if !forcastMode {
-                    self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
+                    self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
                 }
 
             }
