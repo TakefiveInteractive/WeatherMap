@@ -47,7 +47,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     
     func setup(){
         
-        //self.userInteractionEnabled = false
+        hide = false
         
         iconBack = DesignableView(frame: CGRectMake(sideWidth, sideWidth, self.frame.height * 0.75 - sideWidth * 2, self.frame.height * 0.75 - sideWidth * 2))
         self.addSubview(iconBack)

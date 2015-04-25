@@ -78,7 +78,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
             card.hideSelf()
             card.removeAllViews()
             // will display the card when return
-            mapView.shouldDisplayCard = true
             let touchPoint = sender.locationInView(self.view)
             performSegueWithIdentifier("cityDetailSegue", sender: self)
         }
