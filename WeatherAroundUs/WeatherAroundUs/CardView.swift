@@ -41,8 +41,6 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     // get small city image from google
     func gotImageUrls(btUrl: String, imageURL: String, cityID: String) {
         var cache = ImageCache()
-        cache.saveImageURL(cityID, url: btUrl, key: "smallImgUrl")
-        cache.saveImageURL(cityID, url: imageURL, key: "imgUrl")
         cache.delegate = self
         cache.getSmallImageFromCache(btUrl, cityID: cityID)
     }
