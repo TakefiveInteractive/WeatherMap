@@ -110,11 +110,12 @@ class ClockView: DesignableView{
             self.transform = CGAffineTransformMake(0.75, 0, 0, 0.75, 0, self.clockIndex)
             }, completion: { (finish) -> Void in
                 
-                let date = NSDate()
+                let date = NSDate(timeIntervalSinceNow: 24 * 60 * 60 * Double(dayNum))
                 let calendar = NSCalendar.currentCalendar()
                 let components = calendar.components(.CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
                 let month = components.month
-                let day = components.day + dayNum
+                let day = components.day
+                
                 
                 if self.timerCount > 0{
                     self.timerCount = 0

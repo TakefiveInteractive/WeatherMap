@@ -32,6 +32,8 @@ class TimeLineView: DesignableView {
         layer.shadowRadius = 1
         layer.shadowOpacity = 0.3
         
+        var gesture = UITapGestureRecognizer(target: self, action: "touched:")
+        addGestureRecognizer(gesture)
     }
     
     func setup(){
@@ -62,6 +64,10 @@ class TimeLineView: DesignableView {
             dots.append(dotView)
         }
         
+    }
+    
+    func touched(sender: UITapGestureRecognizer){
+        sender
     }
     
     func appear(){
