@@ -45,18 +45,17 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         self.view.addSubview(searchResultList)
         searchBar.delegate = searchResultList
         searchResultList.parentController = self
-        clockButton.setup()
 
     }
     
     override func viewDidAppear(animated: Bool) {
+
         clockButton.setup()
         timeLine.setup()
         card.setup()
         
         //first weather search
         WeatherInfo.getLocalWeatherInformation(mapView.camera.target, number: mapView.getNumOfWeatherBasedOnZoom())
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,13 +76,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
             searchBar.searchBar.resignFirstResponder()
             searchResultList.removeCities()
             card.hideSelf()
+            card.removeAllViews()
+            // will display the card when return
             let touchPoint = sender.locationInView(self.view)
             performSegueWithIdentifier("cityDetailSegue", sender: self)
         }
     }
     
     @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
-        card.displayCity(WeatherInfo.currentCityID)
     }
 
 }
