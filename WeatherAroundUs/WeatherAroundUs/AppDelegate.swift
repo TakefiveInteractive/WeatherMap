@@ -39,15 +39,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let dateStr = dateFormatter.stringFromDate(currDate)
             userDefault.setObject( dateStr, forKey: "currentDate")
             userDefault.synchronize()
+            
         }else{
             WeatherInfo.currentDate = userDefault.objectForKey("currentDate") as! String
         }
-        
+
         if userDefault.objectForKey("citiesForcast") == nil{
             userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
             userDefault.synchronize()
         }
 
+        println(userDefault.objectForKey("currentDate"))
+        println(userDefault.objectForKey("smallImgUrl"))
         
         return true
     }
