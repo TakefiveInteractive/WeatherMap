@@ -17,11 +17,10 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
     @IBOutlet var mainTemperatureShimmerView: FBShimmeringView!
     @IBOutlet var mainTemperatureDisplay: UILabel!
     @IBOutlet var mainTempatureToTopHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var basicForecastViewHeight: NSLayoutConstraint!
     
+    @IBOutlet var digestWeatherView: DigestWeatherView!
     @IBOutlet var forecastView: BasicWeatherView!
-    @IBOutlet var detailView: DesignableView!
-
-    var fiveDaysWeather = [SpringView]()
 
     var isCnotF = false
 
@@ -32,12 +31,13 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
         setBackgroundImage()
 
         forecastView.parentController = self
+        digestWeatherView.parentController = self
         
         let todayDegree = (((WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]])[0]["temp"] as! [String: AnyObject])["day"])!.intValue
         if isCnotF {
-            mainTemperatureDisplay.text = "\(todayDegree - 273)°C"
+            mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°C"
         } else {
-            mainTemperatureDisplay.text = "\((todayDegree-273) * 9 / 5 + 32)°C"
+            mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°F"
         }
         
         mainTempatureToTopHeightConstraint.constant = view.frame.height / 3
@@ -45,7 +45,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
         mainTemperatureShimmerView.shimmering = true
 
         forecastView.clipsToBounds = true
-        detailView.clipsToBounds = true
+        digestWeatherView.clipsToBounds = true
     }
     
     // have to override function to manipulate status bar
@@ -58,6 +58,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
         
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         forecastView.setup(nineDayWeatherForcast)
+        digestWeatherView.setup(nineDayWeatherForcast)
         
         //println((nineDayWeatherForcast[0]["temp"] as! [String: AnyObject])["day"])
         //println(WeatherInfo.citiesAround)
@@ -77,7 +78,13 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate {
     
     }
     
-
+    func degreeConvert(degree: Int32) -> Int32 {
+        if isCnotF {
+            return degree - 273
+        } else {
+            return Int32(round(Double(degree - 273) * 9.0 / 5.0 + 32))
+        }
+    }
     
     func gotImageFromCache(image: UIImage, cityID: String) {
         backgroundImageView.image = image

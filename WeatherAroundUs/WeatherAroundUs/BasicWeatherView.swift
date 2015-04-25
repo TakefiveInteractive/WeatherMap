@@ -12,7 +12,7 @@ import Spring
 class BasicWeatherView: DesignableView {
 
     @IBOutlet var hourForcastScrollView: UIScrollView!
-    let displayedDays: Int = 5
+    let displayedDays: Int = 7
     
     var parentController: CityDetailViewController!
     
@@ -21,6 +21,11 @@ class BasicWeatherView: DesignableView {
     }
     
     func setup(forecastInfos: [[String: AnyObject]]) {
+        // each daily display block height
+        let blockHeight: CGFloat = 30
+
+        parentController.basicForecastViewHeight.constant = hourForcastScrollView.frame.height + CGFloat(displayedDays) * blockHeight + 50
+        
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let component = calendar.component(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
@@ -32,7 +37,6 @@ class BasicWeatherView: DesignableView {
 
         let beginY = hourForcastScrollView.frame.origin.y + hourForcastScrollView.frame.height
         let beginX = hourForcastScrollView.frame.origin.x
-        let blockHeight: CGFloat = 30
         let labelFont = UIFont(name: "AvenirNext-Regular", size: 16)
         
         for var index = 0; index < displayedDays; index++ {
@@ -52,7 +56,7 @@ class BasicWeatherView: DesignableView {
             maxTempLabel.textAlignment = .Right
             maxTempLabel.font = labelFont
             let maxTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["max"])!.intValue
-            maxTempLabel.text = "\(degreeConvert(maxTempInt))°"
+            maxTempLabel.text = "\(parentController.degreeConvert(maxTempInt))°"
             backView.addSubview(maxTempLabel)
             
             var minTempLabel = UILabel(frame: CGRectMake(backView.frame.width - 50, 0, 50, blockHeight))
@@ -60,7 +64,7 @@ class BasicWeatherView: DesignableView {
             minTempLabel.textAlignment = .Right
             minTempLabel.font = labelFont
             let minTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["min"])!.intValue
-            minTempLabel.text = "\(degreeConvert(minTempInt))°"
+            minTempLabel.text = "\(parentController.degreeConvert(minTempInt))°"
             backView.addSubview(minTempLabel)
             
             var weatherIcon = UIImageView(frame: CGRect(x: backView.frame.width/2 - 10, y: 4, width: blockHeight - 8, height: blockHeight - 8))
@@ -73,21 +77,5 @@ class BasicWeatherView: DesignableView {
             backView.animate()
         }
     }
-    
-    func degreeConvert(degree: Int32) -> Int32 {
-        if parentController.isCnotF {
-            return degree - 273
-        } else {
-            return (degree-273) * 9 / 5 + 32
-        }
-    }
-    
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }
