@@ -32,6 +32,10 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // get forcast
+        threeHourForcast()
+        
         setBackgroundImage()
         
         scrollView.delegate = self
@@ -52,6 +56,17 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         forecastView.clipsToBounds = true
         digestWeatherView.clipsToBounds = true
     }
+    
+    func threeHourForcast(){
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.getThreeHourForcast(cityID)
+    }
+    
+    func gotThreeHourForcastData(cityID: String, forcast: [AnyObject]) {
+        println(forcast)
+    }
+    
     
     // have to override function to manipulate status bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
