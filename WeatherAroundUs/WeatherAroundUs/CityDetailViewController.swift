@@ -66,7 +66,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     }
     
     override func viewDidAppear(animated: Bool) {
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + 180)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + 240)
         
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         forecastView.setup(nineDayWeatherForcast)

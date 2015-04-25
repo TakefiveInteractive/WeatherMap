@@ -62,7 +62,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         addShadow(temperatureBack)
         addVisualEffectView(temperatureBack)
         temperature = UILabel(frame: CGRectMake(3, 5, temperatureBack.frame.width - 6, temperatureBack.frame.height - 6))
-        temperature.font = UIFont(name: "AvenirNextCondensed-Regular", size: 25)
+        temperature.font = UIFont(name: "AvenirNext-Regular", size: 25)
         temperature.adjustsFontSizeToFitWidth = true
         temperature.textAlignment = NSTextAlignment.Center
         temperature.textColor = UIColor.darkGrayColor()
@@ -74,7 +74,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         addShadow(cityBack)
         addVisualEffectView(cityBack)
         city = UILabel(frame: CGRectMake(3, 3, cityBack.frame.width - 6, cityBack.frame.height - 6))
-        city.font = UIFont(name: "AvenirNextCondensed-Medium", size: 22)
+        city.font = UIFont(name: "AvenirNext-Medium", size: 22)
         city.textAlignment = NSTextAlignment.Center
         city.textColor = UIColor.darkGrayColor()
         cityBack.addSubview(city)
@@ -86,7 +86,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         addVisualEffectView(weatherDescriptionBack)
         
         weatherDescription = UILabel(frame: CGRectMake(3, 3, weatherDescriptionBack.frame.width - 6, weatherDescriptionBack.frame.height - 6))
-        weatherDescription.font = UIFont(name: "AvenirNextCondensed-Regular", size: 18)
+        weatherDescription.font = UIFont(name: "AvenirNext-Regular", size: 18)
         weatherDescription.textColor = UIColor.darkGrayColor()
         weatherDescription.textAlignment = NSTextAlignment.Center
         weatherDescriptionBack.addSubview(weatherDescription)
@@ -153,7 +153,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                     let tempF = temp * 9 / 5 + 32
                     self.temperature.text = "\(Int(temp))°C / \(Int(tempF))°F"
                     self.city.text = (info as! [String: AnyObject])["name"] as? String
-                    self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
+                    self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"])?.capitalizedString
                     
                     UIView.animateWithDuration(0.4, animations: { () -> Void in
                         self.icon.alpha = 1
