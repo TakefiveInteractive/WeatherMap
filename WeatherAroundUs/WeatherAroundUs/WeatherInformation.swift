@@ -22,7 +22,7 @@ var WeatherInfo: WeatherInformation = WeatherInformation()
 class WeatherInformation: NSObject, InternetConnectionDelegate{
     
     var currentDate = ""
-    
+
     // 9 days weather forcast for city
     var citiesForcast = [String: AnyObject]()
     // all city in database with one day weather info
