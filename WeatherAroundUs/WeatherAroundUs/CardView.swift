@@ -102,7 +102,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         // move the image away at the beginning
         smallImageBack.center = CGPointMake(smallImageBack.center.x + temperatureBack.frame.width * 1.5, smallImageBack.center.y)
 
-        
+        hideSelf()
     }
  
     func displayCity(cityID: String){
@@ -244,6 +244,14 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
             smallImageBack.animate()
             smallImageEntered = false
         }
+    }
+    
+    func removeAllViews(){
+        iconBack.removeFromSuperview()
+        temperatureBack.removeFromSuperview()
+        cityBack.removeFromSuperview()
+        weatherDescriptionBack.removeFromSuperview()
+        smallImageBack.removeFromSuperview()
     }
 
 }
