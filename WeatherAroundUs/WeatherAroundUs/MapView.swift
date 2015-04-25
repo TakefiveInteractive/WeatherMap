@@ -9,14 +9,8 @@
 import UIKit
 
 
+
 class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherInformationDelegate{
-    
-    enum IconSize {
-        case Large
-        case Mid
-        case Small
-        case XLarge
-    }
     
     var parentController: ViewController!
     
@@ -25,7 +19,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     var mapCenter: GMSMarker!
     
     var currentLocation: CLLocation!
-    
+        
     var weatherIcons = [String: GMSMarker]()
     var searchedArea = [CLLocation]()
     var iconSize = IconSize.Large
@@ -81,34 +75,19 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             
             var marker = GMSMarker(position: CLLocationCoordinate2DMake(latitude
                 , longitude))
-            var icon = UIImage()
+            var iconStr = ""
             if !WeatherInfo.forcastMode{
-                icon = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
+                iconStr = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
             }else{
                 let data: AnyObject = WeatherInfo.citiesForcast[cityID as String]!
-                let name = (((data[self.parentController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
-                icon = UIImage(named: name)!
+                iconStr = (((data[self.parentController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
             }
-            marker.icon = getImageAccordingToSize(icon)
+            marker.icon = IconImage.getImageWithNameAndSize(iconStr, size: iconSize)
             marker.appearAnimation = kGMSMarkerAnimationPop
             marker.map = self
             marker.title = cityID
 
             weatherIcons.updateValue(marker, forKey: cityID)
-        }
-    }
-    
-    func getImageAccordingToSize(icon: UIImage)->UIImage{
-        
-        switch iconSize {
-        case .XLarge:
-            return icon.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
-        case .Large:
-            return icon.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
-        case .Small:
-            return icon.resize(CGSizeMake(15, 15)).addShadow(blurSize: 3.0)
-        case .Mid:
-            return icon.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
         }
     }
     
@@ -129,21 +108,26 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         for city in WeatherInfo.citiesAround{
             
-            if day == -1{
-                let icon = UIImage(named: (((WeatherInfo.citiesAroundDict[city as String] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
-                weatherIcons[city]?.icon = getImageAccordingToSize(icon)
-            }else{
-                if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
-                    let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
-                    let icon = UIImage(named: name)
-                    weatherIcons[city]?.icon = getImageAccordingToSize(icon!)
+            // delay 1 second
+            //let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(index) * Double(NSEC_PER_SEC)))
+            dispatch_after(DISPATCH_TIME_NOW, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { () -> Void in
+                if day == -1{
+                    let iconStr = (((WeatherInfo.citiesAroundDict[city as String] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                    self.weatherIcons[city]?.icon = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
                 }else{
-                    // get the weather data if not found
-                    var connection = InternetConnection()
-                    connection.delegate = WeatherInfo
-                    connection.getWeatherForcast(city)
+                    if let data: AnyObject = WeatherInfo.citiesForcast[city as String] {
+                        let name = (((data[day] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+                        self.weatherIcons[city]?.icon = IconImage.getImageWithNameAndSize(name, size: self.iconSize)
+                    }else{
+                        // get the weather data if not found
+                        var connection = InternetConnection()
+                        connection.delegate = WeatherInfo
+                        connection.getWeatherForcast(city)
+                    }
                 }
+
             }
+            
         }
         
     }
