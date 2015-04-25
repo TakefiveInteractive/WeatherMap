@@ -20,7 +20,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
 
     var smallImageView: ImageCardView!
     var searchResultList: SearchResultView!
-
+    
     var weatherCardList = [UIImageView]()
     
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
@@ -33,9 +33,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         timeLine.parentController = self
         returnBut.parentController = self
         
-        
-        var tapGestureReco = UITapGestureRecognizer(target: self, action: "tappedCard:")
-        self.card.addGestureRecognizer(tapGestureReco)
+        var tapGestureRecoYu = UITapGestureRecognizer(target: self, action: "tappedCard:")
+        self.card.addGestureRecognizer(tapGestureRecoYu)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -69,12 +68,23 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         if segue.identifier == "cityDetailSegue" {
             let toView = segue.destinationViewController as! CityDetailViewController
             toView.cityID = WeatherInfo.currentCityID
+            toView.tempImage = card.smallImage.image
         }
     }
     
     func tappedCard(sender: UITapGestureRecognizer) {
-        let touchPoint = sender.locationInView(self.view)
-        performSegueWithIdentifier("cityDetailSegue", sender: self)
+        if card.smallImageEntered {
+            searchBar.searchBar.resignFirstResponder()
+            searchResultList.removeCities()
+            card.hideSelf()
+            print("wangyu needs meizi")
+            let touchPoint = sender.locationInView(self.view)
+            performSegueWithIdentifier("cityDetailSegue", sender: self)
+        }
+    }
+    
+    @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
+        card.displayCity(WeatherInfo.currentCityID)
     }
 
 }
