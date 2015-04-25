@@ -17,7 +17,6 @@ import SwiftyJSON
     optional func gotLocationWithPlaceID(location: CLLocationCoordinate2D)
     optional func gotWeatherForcastData(cityID: String, forcast:[AnyObject])
     optional func gotThreeHourForcastData(cityID: String, forcast:[AnyObject])
-
 }
 
 var connectionCount: Int = 0

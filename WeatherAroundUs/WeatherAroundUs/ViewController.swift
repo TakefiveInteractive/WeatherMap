@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDelegate{
+class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDelegate {
 
     @IBOutlet var clockButton: ClockView!
     @IBOutlet var mapView: MapView!
@@ -77,7 +77,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
             searchBar.searchBar.resignFirstResponder()
             searchResultList.removeCities()
             card.hideSelf()
-            print("wangyu needs meizi")
             let touchPoint = sender.locationInView(self.view)
             performSegueWithIdentifier("cityDetailSegue", sender: self)
         }
