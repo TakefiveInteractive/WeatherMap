@@ -17,6 +17,9 @@ import Haneke
 
 class ImageCache: NSObject {
     
+    static var smallImagesUrl = [String: String]()
+    static var imagesUrl = [String: String]()
+
     var delegate: ImageCacheDelegate!
 
     func getSmallImageFromCache(url: String, cityID: String){
@@ -39,15 +42,5 @@ class ImageCache: NSObject {
             self.delegate?.gotImageFromCache!(img, cityID: cityID)
         }
     }
-    
-    func saveImageURL(cityID: String, url: String, key:String){
-        
-        let userDefault = NSUserDefaults.standardUserDefaults()
-        var urlMap: NSMutableDictionary = userDefault.objectForKey(key) as! NSMutableDictionary
-        urlMap.setObject(url, forKey: cityID)
-        userDefault.setObject(urlMap, forKey: key)
-        userDefault.synchronize()
-    }
-    
     
 }

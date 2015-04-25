@@ -138,6 +138,7 @@ class InternetConnection: NSObject {
             }
         }
     }
+    
     func getPictureURLOfACity(searchText: String, cityID: String){
 
         let url = NSURL(string: "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=\(searchText)&imgtype=photo&imgsz=xxlarge%7Chuge&imgc=color&hl=en")!
@@ -179,7 +180,9 @@ class InternetConnection: NSObject {
                         imageUrl = url
                     }
                 }
-                
+                // save image in local
+                ImageCache.smallImagesUrl.updateValue(tbUrl, forKey: cityID)
+                ImageCache.imagesUrl.updateValue(imageUrl, forKey: cityID)
                 self.delegate?.gotImageUrls!(tbUrl, imageURL: imageUrl, cityID: cityID)
                 
             }else{

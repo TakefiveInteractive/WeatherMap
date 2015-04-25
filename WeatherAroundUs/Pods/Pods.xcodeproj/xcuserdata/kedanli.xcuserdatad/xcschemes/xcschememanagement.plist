@@ -8,96 +8,71 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-GPUImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
-		<key>Pods-Haneke.xcscheme</key>
+		<key>Pods-HanekeSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
+		</dict>
+		<key>Pods-Shimmer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Spring.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>Pods-SwiftyJSON.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>03E9AD0B2DA9ADEC16D92743</key>
+		<key>1CC5A157FA3E80B631423A59</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C49A65EE73E9D96B85A50B9</key>
+		<key>B1BDB78ADC48003E0304C20F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>391C25C92E8C61E81395DF81</key>
+		<key>B37C3F40F8E146FBC3AA3C02</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3A19317AACB92C1196876112</key>
+		<key>D190A2A8A8A0E98F5F7EAAE9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>452C9B20F2DF60C9E2DE76A6</key>
+		<key>E076E9463E7487116D942FBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6525C823DB9E3F32FFC93F67</key>
+		<key>FB876347B0D008DA1B8826F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>726BEEB30ABBF0CF4AA5E3E8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8272DA250080169F28CD6E23</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BD444B01075F2B0EF6DB754C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DB96E3574F3AD82DDE9857C7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EF2AB8FE67DD323127C0E28C</key>
+		<key>FDE0603AF250BA7954EA7620</key>
 		<dict>
 			<key>primary</key>
 			<true/>

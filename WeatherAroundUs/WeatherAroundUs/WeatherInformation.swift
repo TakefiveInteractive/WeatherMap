@@ -21,6 +21,8 @@ var WeatherInfo: WeatherInformation = WeatherInformation()
 
 class WeatherInformation: NSObject, InternetConnectionDelegate{
     
+    var currentDate = ""
+    
     // 9 days weather forcast for city
     var citiesForcast = [String: AnyObject]()
     // all city in database with one day weather info
@@ -30,8 +32,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     //current city id
     var currentCityID = ""
 
-    
-    let maxCityNum = 24
+    let maxCityNum = 40
 
     var forcastMode = false
     
@@ -59,11 +60,12 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                 // first time weather data
                 if self.citiesAroundDict["\(id)"] == nil {
                     self.citiesAroundDict.updateValue(city, forKey: "\(id)")
-                    var connection = InternetConnection()
-                    connection.delegate = self
-                    connection.getWeatherForcast("\(id)")
-                    // save the city in db
-                }
+                    
+                        var connection = InternetConnection()
+                        connection.delegate = self
+                        connection.getWeatherForcast("\(id)")
+                    
+            }
                 if !forcastMode {
                     self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((city as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
                 }
@@ -73,17 +75,26 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     }
     
     func gotWeatherForcastData(cityID: String, forcast: [AnyObject]) {
+        
         let userDefault = NSUserDefaults.standardUserDefaults()
+        
+        // get currentDate
+        var currDate = NSDate()
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YY"
+        let dateStr = dateFormatter.stringFromDate(currDate)
+        
         //remove object if not the same day
-        if userDefault.objectForKey("currentDate") != nil && userDefault.objectForKey("currentDate") as! NSNumber == (forcast[0] as! [String: AnyObject])["dt"] as! NSNumber {
-        }else{
-            userDefault.setValue((forcast[0] as! [String: AnyObject])["dt"], forKey: "currentDate")
-            userDefault.removeObjectForKey("citiesForcast")
+        if currentDate != dateStr {
+            currentDate = dateStr
+            userDefault.setValue(dateStr, forKey: "currentDate")
+            userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
+            userDefault.synchronize()
             citiesForcast.removeAll(keepCapacity: false)
         }
         citiesForcast.updateValue(forcast, forKey: cityID)
-        userDefault.setObject(citiesForcast, forKey: "citiesForcast")
-        userDefault.synchronize()
+        citiesForcast.updateValue(forcast, forKey: cityID)
+
         //display new icon
         if forcastMode{
             self.weatherDelegate?.gotOneNewWeatherData!("\(cityID)", latitude: (((citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))

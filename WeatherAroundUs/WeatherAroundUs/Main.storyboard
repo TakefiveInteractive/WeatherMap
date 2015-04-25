@@ -227,14 +227,16 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ka-0M-Yir" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Daj-Li-ljH" customClass="FBShimmeringView">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Daj-Li-ljH" customClass="FBShimmeringView">
                                                 <rect key="frame" x="146" y="122" width="156" height="103"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59°F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5C-g9-bKn">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="59°F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5C-g9-bKn">
                                                         <rect key="frame" x="0.0" y="0.0" width="156" height="103"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="75"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
+                                                        <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <size key="shadowOffset" width="1" height="1"/>
                                                     </label>
                                                 </subviews>
                                                 <constraints>
@@ -244,7 +246,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="M5C-g9-bKn" secondAttribute="trailing" id="hZe-7z-wI5"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-Mc-jsF" customClass="BasicWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-Mc-jsF" customClass="BasicWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="225" width="304" height="250"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ei-X4-bGf">
@@ -303,7 +305,7 @@
                                                     <outlet property="hourForcastScrollView" destination="N1A-gh-FLm" id="9wz-VW-fmq"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-lg-rAJ" customClass="DesignableView" customModule="Spring">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-lg-rAJ" customClass="DesignableView" customModule="Spring">
                                                 <rect key="frame" x="8" y="485" width="304" height="200"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTP-aa-91w">

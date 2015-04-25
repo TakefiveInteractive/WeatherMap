@@ -20,13 +20,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDLBiMd9DqNtqeRc2DMtoeYL4hg53wUEw8")
         UserLocation.setup()
 
-        // init the image url cache if not exist
         let userDefault = NSUserDefaults.standardUserDefaults()
+        // init the image url cache if not exist
         if userDefault.objectForKey("smallImgUrl") == nil{
-            userDefault.setObject( NSMutableDictionary(), forKey: "smallImgUrl")
-            userDefault.setObject( NSMutableDictionary(), forKey: "imgUrl")
+            userDefault.setObject( [String: String](), forKey: "smallImgUrl")
+            userDefault.setObject( [String: String](), forKey: "imgUrl")
+            userDefault.synchronize()
+        }else{
+            ImageCache.imagesUrl = userDefault.objectForKey("imgUrl") as! [String: String]
+            ImageCache.smallImagesUrl = userDefault.objectForKey("smallImgUrl") as! [String: String]
+        }
+        
+        //set up current date if not exist
+        if userDefault.objectForKey("currentDate") == nil{
+            var currDate = NSDate()
+            var dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd.MM.YY"
+            let dateStr = dateFormatter.stringFromDate(currDate)
+            userDefault.setObject( dateStr, forKey: "currentDate")
+            userDefault.synchronize()
+            
+        }else{
+            WeatherInfo.currentDate = userDefault.objectForKey("currentDate") as! String
         }
 
+        if userDefault.objectForKey("citiesForcast") == nil{
+            userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
+            userDefault.synchronize()
+        }
+
+        println(userDefault.objectForKey("currentDate"))
+        println(userDefault.objectForKey("smallImgUrl"))
         
         return true
     }
@@ -37,8 +61,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
+        saveInformations()
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    }
+    
+    func applicationWillTerminate(application: UIApplication) {
+        saveInformations()
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Saves changes in the application's managed object context before the application terminates.
+        self.saveContext()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -49,11 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
-    }
+
 
     // MARK: - Core Data stack
 
@@ -116,6 +144,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    func saveInformations(){
+        // save user location in nsdefault
+        var userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        userDefaults.setDouble(UserLocation.centerLocation.coordinate.longitude, forKey: "longitude")
+        userDefaults.setDouble(UserLocation.centerLocation.coordinate.latitude, forKey: "latitude")
+        userDefaults.setObject(ImageCache.imagesUrl, forKey: "imgUrl")
+        userDefaults.setObject(ImageCache.smallImagesUrl, forKey: "smallImgUrl")
+        userDefaults.setObject(WeatherInfo.citiesForcast, forKey: "citiesForcast")
+        userDefaults.synchronize()
     }
 
 }
