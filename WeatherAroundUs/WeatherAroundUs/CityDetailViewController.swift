@@ -59,7 +59,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        setBackgroundImage()
         backgroundImageView.image = tempImage
     }
     
@@ -81,6 +80,9 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         var screenEdgeWipeReco:  UIScreenEdgePanGestureRecognizer! = UIScreenEdgePanGestureRecognizer(target: self, action: "swipeScreenEdgeLeft:")
         screenEdgeWipeReco.edges = UIRectEdge.Left
         view.addGestureRecognizer(screenEdgeWipeReco)
+        
+        setBackgroundImage()
+
     }
 
     override func didReceiveMemoryWarning() {
