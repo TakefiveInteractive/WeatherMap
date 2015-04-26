@@ -47,6 +47,7 @@ class ReturnButton: UIButton {
     func dissAppear(){
         outLine.removeAllAnimations()
         outLine.removeFromSuperlayer()
+        parentController.mapView.changeIconWithTime(-1)
         parentController.timeLine.disAppear()
         parentController.clockButton.clockReturnNormalSize()
     }

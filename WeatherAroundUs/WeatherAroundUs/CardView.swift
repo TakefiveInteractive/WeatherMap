@@ -108,10 +108,13 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     }
  
     func displayCity(cityID: String){
-            parentViewController.returnCurrentPositionButton.animation = "fadeOut"
-            parentViewController.returnCurrentPositionButton.animate()
+
         
         if hide {
+            
+            parentViewController.returnCurrentPositionButton.animation = "fadeOut"
+            parentViewController.returnCurrentPositionButton.animate()
+            
             hide = false
             self.userInteractionEnabled = true
             let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
@@ -139,7 +142,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
             temperatureBack.animate()
             
         }else{
-        
+
+            
             iconBack.animation = "swing"
             iconBack.animate()
             UIView.animateWithDuration(0.4, animations: { () -> Void in

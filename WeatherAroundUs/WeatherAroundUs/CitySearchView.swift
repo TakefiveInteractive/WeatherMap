@@ -99,6 +99,7 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         longDisplayOutLine.removeFromSuperlayer()
         self.parentController.searchBarLength.constant = 200
+        self.parentController.returnBut.dissAppear()
         self.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.8, animations: { () -> Void in
             self.searchDraw.alpha = 0
