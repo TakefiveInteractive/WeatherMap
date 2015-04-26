@@ -62,10 +62,10 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         self.addSubview(temperatureBack)
         addShadow(temperatureBack)
         addVisualEffectView(temperatureBack)
-        temperature = UILabel(frame: CGRectMake(3, 5, temperatureBack.frame.width - 6, temperatureBack.frame.height - 6))
-        temperature.font = UIFont(name: "AvenirNext-Regular", size: 25)
+        temperature = UILabel(frame: CGRectMake(5, 2, temperatureBack.frame.width - 8, temperatureBack.frame.height - 6))
+        temperature.font = UIFont(name: "AvenirNext-Medium", size: 24)
         temperature.adjustsFontSizeToFitWidth = true
-        temperature.textAlignment = NSTextAlignment.Center
+        temperature.textAlignment = NSTextAlignment.Left
         temperature.textColor = UIColor.darkGrayColor()
         temperatureBack.addSubview(temperature)
         temperatureBackCenter = temperatureBack.center
@@ -77,6 +77,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         city = UILabel(frame: CGRectMake(3, 3, cityBack.frame.width - 6, cityBack.frame.height - 6))
         city.font = UIFont(name: "AvenirNext-Medium", size: 22)
         city.textAlignment = NSTextAlignment.Center
+        city.adjustsFontSizeToFitWidth = true
         city.textColor = UIColor.darkGrayColor()
         cityBack.addSubview(city)
         cityBackCenter = cityBack.center
