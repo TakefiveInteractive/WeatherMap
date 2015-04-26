@@ -81,7 +81,7 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
         dispatch_async(dispatch_get_main_queue(), {
             
             UIView.animateWithDuration(0.8, animations: { () -> Void in
-                self.transform = CGAffineTransformMake(0.5, 0, 0, 1, -50, 0)
+                self.transform = CGAffineTransformMake(100 / self.parentController.fullLengthOfSearchBar, 0, 0, 1, (self.parentController.fullLengthOfSearchBar - 100) / 2, 0)
                 }) { (finish) -> Void in
                     self.parentController.searchBarLength.constant = 100
                     self.layoutIfNeeded()
@@ -98,7 +98,7 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         longDisplayOutLine.removeFromSuperlayer()
-        self.parentController.searchBarLength.constant = UIScreen.mainScreen().bounds.width * 2 / 3
+        self.parentController.searchBarLength.constant = parentController.fullLengthOfSearchBar
         self.parentController.returnBut.dissAppear()
         self.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.8, animations: { () -> Void in
