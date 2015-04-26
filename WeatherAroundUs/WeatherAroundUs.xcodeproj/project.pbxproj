@@ -81,6 +81,7 @@
 		42F62E771AD0B75100D494E6 /* Card.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F62E761AD0B75100D494E6 /* Card.png */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
 		8814F8881AEC52250093B037 /* DetailWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814F8871AEC52250093B037 /* DetailWeatherView.swift */; };
+		882AB7E21AECA6B000C1C773 /* returnCurPosButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 882AB7E11AECA6B000C1C773 /* returnCurPosButton.png */; };
 		88888A041AEB4041007EC387 /* DigestWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88888A031AEB4041007EC387 /* DigestWeatherView.swift */; };
 		88CAEEBB1AE9FD7600F73974 /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */; };
 		88CAEEC11AEB14FC00F73974 /* BasicWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */; };
@@ -189,6 +190,7 @@
 		7061C7B48DE2F420FC0085AE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C74A3FFE21D5AC2F375E634 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8814F8871AEC52250093B037 /* DetailWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWeatherView.swift; sourceTree = "<group>"; };
+		882AB7E11AECA6B000C1C773 /* returnCurPosButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = returnCurPosButton.png; sourceTree = "<group>"; };
 		88888A031AEB4041007EC387 /* DigestWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigestWeatherView.swift; sourceTree = "<group>"; };
 		88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailViewController.swift; sourceTree = "<group>"; };
 		88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicWeatherView.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 		42F15D491AD08275004D64EF /* IMGs */ = {
 			isa = PBXGroup;
 			children = (
+				882AB7E11AECA6B000C1C773 /* returnCurPosButton.png */,
 				42D961981AE5FF850082352E /* NewclockPin1.png */,
 				42466A911AE5A4EA00E0BD4B /* Newclock.png */,
 				42D9619A1AE600830082352E /* NewclockPin2.png */,
@@ -559,6 +562,7 @@
 				42B842421AE0C68200FCA7E2 /* 50d.png in Resources */,
 				427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */,
 				42D4EDD31A9E7F02006AE807 /* Images.xcassets in Resources */,
+				882AB7E21AECA6B000C1C773 /* returnCurPosButton.png in Resources */,
 				42B8423F1AE0C68200FCA7E2 /* 11n.png in Resources */,
 				42B842391AE0C68200FCA7E2 /* 04n.png in Resources */,
 				42B842381AE0C68200FCA7E2 /* 04d.png in Resources */,

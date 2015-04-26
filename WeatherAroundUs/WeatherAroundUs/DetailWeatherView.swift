@@ -91,4 +91,6 @@ class DetailWeatherView: UIView {
         self.addSubview(leftLabel)
         self.addSubview(rightLabel)
     }
+    
+    
 }

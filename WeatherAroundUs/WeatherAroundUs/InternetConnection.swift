@@ -92,6 +92,7 @@ class InternetConnection: NSObject {
         
     }
     
+    
     // get small city image
     func getSearchAddressOfACity(location: CLLocationCoordinate2D, name: String, cityID: String){
         
