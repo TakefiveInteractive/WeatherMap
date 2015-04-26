@@ -19,7 +19,7 @@ class DetailWeatherView: UIView {
     }
     
     var unit: String {
-        if parentController.isCnotF {
+        if parentController.isFnotC {
             return "C"
         } else {
             return "F"
