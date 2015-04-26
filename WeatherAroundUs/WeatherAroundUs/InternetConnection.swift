@@ -100,7 +100,7 @@ class InternetConnection: NSObject {
     func searchForCityPhotos(location: CLLocationCoordinate2D, name: String, cityID: String){
         
 
-        var searchText = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=10&lat=\(location.latitude)&lon=\(location.longitude)&method=flickr.photos.search&sort=interestingness-desc&tags=scenic,landscape&format=json&nojsoncallback=1"
+        var searchText = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=10&lat=\(location.latitude)&lon=\(location.longitude)&method=flickr.photos.search&sort=interestingness-desc&tags=scenic,landscape,city&format=json&nojsoncallback=1"
         searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
 
         var req = Alamofire.request(.GET, NSURL(string: searchText)!).responseJSON { (_, response, JSON, error) in
