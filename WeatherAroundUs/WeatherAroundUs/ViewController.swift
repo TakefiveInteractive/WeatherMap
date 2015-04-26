@@ -88,7 +88,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     }
     
     func tappedCard(sender: UITapGestureRecognizer) {
-        if card.smallImageEntered {
+        if card.imageUrlReady {
             
             //avoid label overlay
             clockButton.timeLab.removeFromSuperview()
