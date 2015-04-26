@@ -81,7 +81,7 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
         dispatch_async(dispatch_get_main_queue(), {
             
             UIView.animateWithDuration(0.8, animations: { () -> Void in
-                self.transform = CGAffineTransformMake(100 / self.parentController.fullLengthOfSearchBar, 0, 0, 1, (self.parentController.fullLengthOfSearchBar - 100) / 2, 0)
+                self.transform = CGAffineTransformMake(100 / self.parentController.fullLengthOfSearchBar, 0, 0, 1, -(self.parentController.fullLengthOfSearchBar - 100) / 2, 0)
                 }) { (finish) -> Void in
                     self.parentController.searchBarLength.constant = 100
                     self.layoutIfNeeded()
