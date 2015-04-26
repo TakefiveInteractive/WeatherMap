@@ -26,7 +26,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     @IBOutlet var digestWeatherView: DigestWeatherView!
     @IBOutlet var forecastView: BasicWeatherView!
 
-    var isCnotF = NSUserDefaults.standardUserDefaults().objectForKey("temperatureDisplay")!.boolValue!
+    var isFnotC = NSUserDefaults.standardUserDefaults().objectForKey("temperatureDisplay")!.boolValue!
 
     var tempImage: UIImage!
     
@@ -46,6 +46,13 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         forecastView.clipsToBounds = true
         digestWeatherView.clipsToBounds = true
         detailWeatherView.clipsToBounds = true
+        
+        if isFnotC == true {
+            mainTemperatureDisplay.text = "°F"
+        } else {
+            mainTemperatureDisplay.text = "°C"
+
+        }
     }
     
     
@@ -99,7 +106,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     }
     
     func degreeConvert(degree: Int32) -> Int32 {
-        if isCnotF {
+        if isFnotC {
             return degree - 273
         } else {
             return Int32(round(Double(Double(degree) - 273.13) * 9.0 / 5.0 + 32))
@@ -108,13 +115,13 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     func switchWeatherUnitButtonDidPressed() {
 
-        NSUserDefaults.standardUserDefaults().setBool(isCnotF, forKey: "temperatureDisplay")
+        NSUserDefaults.standardUserDefaults().setBool(isFnotC, forKey: "temperatureDisplay")
         NSUserDefaults.standardUserDefaults().synchronize()
 
-        isCnotF = !isCnotF
+        isFnotC = !isFnotC
         
         let todayDegree = (((WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]])[0]["temp"] as! [String: AnyObject])["day"])!.intValue
-        if isCnotF {
+        if isFnotC {
             mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°C"
         } else {
             mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°F"

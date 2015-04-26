@@ -64,7 +64,7 @@ class DigestWeatherView: DesignableView {
         tempRange.textAlignment = .Left
         tempRange.textColor = UIColor.whiteColor()
         var unit = "F"
-        if parentController.isCnotF {
+        if parentController.isFnotC {
             unit = "C"
         }
         tempRange.text = "\(parentController.degreeConvert(minTemp))° ~ \(parentController.degreeConvert(maxTemp))°\(unit)"
@@ -93,7 +93,7 @@ class DigestWeatherView: DesignableView {
         let minTemp = todayTemp["min"]!.intValue
         let maxTemp = todayTemp["max"]!.intValue
         var unit = "F"
-        if parentController.isCnotF {
+        if parentController.isFnotC {
             unit = "C"
         }
         tempRange.text = "\(parentController.degreeConvert(minTemp))° ~ \(parentController.degreeConvert(maxTemp))°\(unit)"
