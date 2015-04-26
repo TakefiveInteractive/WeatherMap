@@ -21,6 +21,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     @IBOutlet var basicForecastViewHeight: NSLayoutConstraint!
     
     
+    @IBOutlet var detailWeatherView: DetailWeatherView!
     @IBOutlet var digestWeatherView: DigestWeatherView!
     @IBOutlet var forecastView: BasicWeatherView!
 
@@ -35,6 +36,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         scrollView.delegate = self
         forecastView.parentController = self
         digestWeatherView.parentController = self
+        detailWeatherView.parentController = self
         
         let todayDegree = (((WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]])[0]["temp"] as! [String: AnyObject])["day"])!.intValue
         if isCnotF {
@@ -49,6 +51,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
 
         forecastView.clipsToBounds = true
         digestWeatherView.clipsToBounds = true
+        detailWeatherView.clipsToBounds = true
     }
     
     
@@ -64,12 +67,13 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     }
     
     override func viewDidAppear(animated: Bool) {
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + 240)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + detailWeatherView.frame.height + 250)
         
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         forecastView.setup(nineDayWeatherForcast)
         digestWeatherView.setup(nineDayWeatherForcast)
-        
+        detailWeatherView.setup(nineDayWeatherForcast)
+
         
         var currDate = NSDate()
         var dateFormatter = NSDateFormatter()
@@ -77,20 +81,10 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         let dateStr = dateFormatter.stringFromDate(currDate)
         dateDisplayLabel.text = dateStr
 
-        
-        var screenEdgeWipeReco:  UIScreenEdgePanGestureRecognizer! = UIScreenEdgePanGestureRecognizer(target: self, action: "swipeScreenEdgeLeft:")
-        screenEdgeWipeReco.edges = UIRectEdge.Left
-        view.addGestureRecognizer(screenEdgeWipeReco)
-        
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    func swipeScreenEdgeLeft(sender: UIScreenEdgePanGestureRecognizer) {
-        self.performSegueWithIdentifier("backToMain", sender: self)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -111,7 +105,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         if isCnotF {
             return degree - 273
         } else {
-            return Int32(round(Double(degree - 273) * 9.0 / 5.0 + 32))
+            return Int32(round(Double(Double(degree) - 273.13) * 9.0 / 5.0 + 32))
         }
     }
     

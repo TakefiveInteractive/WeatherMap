@@ -251,8 +251,8 @@
                                                     <constraint firstAttribute="trailing" secondItem="M5C-g9-bKn" secondAttribute="trailing" id="hZe-7z-wI5"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-Mc-jsF" customClass="BasicWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="396" width="359" height="280"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-Mc-jsF" customClass="BasicWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="403" width="359" height="280"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ei-X4-bGf">
                                                         <rect key="frame" x="0.0" y="0.0" width="359" height="280"/>
@@ -323,8 +323,8 @@
                                                     <outlet property="hourForcastScrollView" destination="N1A-gh-FLm" id="9wz-VW-fmq"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-lg-rAJ" customClass="DigestWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="226" width="359" height="160"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-lg-rAJ" customClass="DigestWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="233" width="359" height="160"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTP-aa-91w">
                                                         <rect key="frame" x="0.0" y="0.0" width="359" height="160"/>
@@ -382,16 +382,69 @@
                                                     <outlet property="line" destination="YfI-Rk-jBn" id="pkG-vd-6oS"/>
                                                 </connections>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcK-fL-cU8" customClass="DetailWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="693" width="359" height="210"/>
+                                                <subviews>
+                                                    <visualEffectView opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p66-a9-Lc7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="210"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mn0-d9-jS6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="210"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGo-et-DsR">
+                                                                    <rect key="frame" x="10" y="8" width="46" height="24"/>
+                                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nx3-76-x01">
+                                                                    <rect key="frame" x="10" y="33" width="339" height="1"/>
+                                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="1" id="qMg-nB-VyU"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="nx3-76-x01" secondAttribute="trailing" constant="10" id="DaL-Xz-nNG"/>
+                                                                <constraint firstItem="KGo-et-DsR" firstAttribute="leading" secondItem="mn0-d9-jS6" secondAttribute="leading" constant="10" id="Hql-mi-wdQ"/>
+                                                                <constraint firstItem="nx3-76-x01" firstAttribute="top" secondItem="KGo-et-DsR" secondAttribute="bottom" constant="1" id="MTP-bk-bDv"/>
+                                                                <constraint firstItem="nx3-76-x01" firstAttribute="leading" secondItem="mn0-d9-jS6" secondAttribute="leading" constant="10" id="hVC-G5-9wJ"/>
+                                                                <constraint firstItem="KGo-et-DsR" firstAttribute="top" secondItem="mn0-d9-jS6" secondAttribute="top" constant="8" id="lFk-c8-FEm"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <blurEffect style="dark"/>
+                                                    </visualEffectView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="p66-a9-Lc7" firstAttribute="leading" secondItem="YcK-fL-cU8" secondAttribute="leading" id="3gX-D3-XRH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="p66-a9-Lc7" secondAttribute="trailing" id="fqb-mN-c4w"/>
+                                                    <constraint firstItem="p66-a9-Lc7" firstAttribute="top" secondItem="YcK-fL-cU8" secondAttribute="top" id="mOm-wH-wHN"/>
+                                                    <constraint firstAttribute="bottom" secondItem="p66-a9-Lc7" secondAttribute="bottom" id="svU-Gn-zfg"/>
+                                                    <constraint firstAttribute="height" constant="210" id="w39-2Q-Oci"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="line" destination="nx3-76-x01" id="HhP-5K-Z2A"/>
+                                                </connections>
+                                            </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="YcK-fL-cU8" firstAttribute="centerX" secondItem="xJg-lg-rAJ" secondAttribute="centerX" id="1nN-mo-Wmw"/>
                                             <constraint firstItem="Daj-Li-ljH" firstAttribute="top" secondItem="1ka-0M-Yir" secondAttribute="top" constant="122" id="BNP-kf-ts1"/>
                                             <constraint firstAttribute="trailing" secondItem="Daj-Li-ljH" secondAttribute="trailing" constant="18" id="Bdi-dU-jp5"/>
                                             <constraint firstAttribute="trailing" secondItem="xJg-lg-rAJ" secondAttribute="trailing" constant="8" id="Epo-nE-sBJ"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="top" secondItem="xJg-lg-rAJ" secondAttribute="bottom" constant="10" id="KVc-xv-ndx"/>
                                             <constraint firstItem="xJg-lg-rAJ" firstAttribute="top" secondItem="M5C-g9-bKn" secondAttribute="bottom" id="MIY-b5-CPW"/>
+                                            <constraint firstItem="YcK-fL-cU8" firstAttribute="width" secondItem="xJg-lg-rAJ" secondAttribute="width" id="Pyx-9F-58r"/>
                                             <constraint firstItem="xJg-lg-rAJ" firstAttribute="leading" secondItem="1ka-0M-Yir" secondAttribute="leading" constant="8" id="VrX-4G-Cwd"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="centerX" secondItem="xJg-lg-rAJ" secondAttribute="centerX" id="eXl-HB-SIF"/>
                                             <constraint firstAttribute="trailing" secondItem="uYV-Mc-jsF" secondAttribute="trailing" constant="8" id="jK1-At-BHi"/>
+                                            <constraint firstItem="uYV-Mc-jsF" firstAttribute="bottom" secondItem="YcK-fL-cU8" secondAttribute="top" constant="-10" id="kKe-yc-slT"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="width" secondItem="xJg-lg-rAJ" secondAttribute="width" id="klw-iq-huI"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="leading" secondItem="1ka-0M-Yir" secondAttribute="leading" constant="8" id="rrb-FW-In6"/>
                                         </constraints>
@@ -427,6 +480,7 @@
                         <outlet property="backgroundImageView" destination="tWb-q8-VjH" id="NLP-c2-OVf"/>
                         <outlet property="basicForecastViewHeight" destination="OsT-dG-D0R" id="xm7-xc-pCA"/>
                         <outlet property="dateDisplayLabel" destination="eu2-Ii-RtU" id="8tW-I4-9tY"/>
+                        <outlet property="detailWeatherView" destination="YcK-fL-cU8" id="js3-Ne-uCx"/>
                         <outlet property="digestWeatherView" destination="xJg-lg-rAJ" id="Bhu-Je-EwB"/>
                         <outlet property="forecastView" destination="uYV-Mc-jsF" id="nvS-og-8Uj"/>
                         <outlet property="mainTempatureToTopHeightConstraint" destination="BNP-kf-ts1" id="fUX-rS-K0Q"/>
