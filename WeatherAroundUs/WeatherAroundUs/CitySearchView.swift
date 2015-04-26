@@ -16,10 +16,11 @@ import Spring
 
 class CitySearchView: DesignableView, UISearchBarDelegate, InternetConnectionDelegate{
     
+    @IBOutlet var searchBar: UISearchBar!
+
     var delegate : SearchInformationDelegate?
     var blurView: UIVisualEffectView!
-    var searchBar: UISearchBar!
-    var hide = false
+    var hide = true
 
     override init(frame: CGRect) {
         super.init(frame: frame)
