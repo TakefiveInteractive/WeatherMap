@@ -21,6 +21,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
 
     @IBOutlet var searchBarLength: NSLayoutConstraint!
     
+    var fullLengthOfSearchBar:CGFloat!
+    
     var smallImageView: ImageCardView!
     var searchResultList: SearchResultView!
     
@@ -45,8 +47,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     override func viewWillAppear(animated: Bool) {
         
+        fullLengthOfSearchBar = UIScreen.mainScreen().bounds.width * 2 / 3
+
         searchResultList = SearchResultView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
-        searchResultList.frame = CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, 200 - 6, 0)
+        searchResultList.frame = CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, fullLengthOfSearchBar - 6, 0)
         self.view.addSubview(searchResultList)
         searchBar.delegate = searchResultList
         searchResultList.parentController = self
@@ -67,6 +71,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         returnCurrentPositionButton.layer.shadowOffset = CGSizeMake(1, 1)
         returnCurrentPositionButton.layer.shadowRadius = 1
         returnCurrentPositionButton.layer.shadowOpacity = 0.5
+        
     }
     
     override func didReceiveMemoryWarning() {
