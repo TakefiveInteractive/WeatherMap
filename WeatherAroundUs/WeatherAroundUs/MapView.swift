@@ -162,7 +162,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         //move
         if gesture{
             // hide board
-            parentController.searchBar.searchBar.resignFirstResponder()
+            parentController.searchBar.hideSelf()
             parentController.searchResultList.removeCities()
             parentController.card.hideSelf()
         }
