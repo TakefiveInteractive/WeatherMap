@@ -35,6 +35,13 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
         }
     }
     
+    var hourForcastTemperatureLabelArr = [SpringLabel]()
+    var hourForcastTemperatureIntArr = [Int32]()
+    var dayForcastMinTemperatureLabelArr = [UILabel]()
+    var dayForcastMinTemperatureIntArr = [Int32]()
+    var dayForcastMaxTemperatureLabelArr = [UILabel]()
+    var dayForcastMaxTemperatureIntArr = [Int32]()
+
     func setup(forecastInfos: [[String: AnyObject]]) {
         threeHourForcast()
 
@@ -78,6 +85,8 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             let maxTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["max"])!.intValue
             maxTempLabel.text = "\(parentController.degreeConvert(maxTempInt))°"
             backView.addSubview(maxTempLabel)
+            dayForcastMaxTemperatureIntArr.append(maxTempInt)
+            dayForcastMaxTemperatureLabelArr.append(maxTempLabel)
             
             var minTempLabel = UILabel(frame: CGRectMake(backView.frame.width - 50, 0, 50, blockHeight))
             minTempLabel.textColor = UIColor(hex: "#ADD8E6")
@@ -86,6 +95,8 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             let minTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["min"])!.intValue
             minTempLabel.text = "\(parentController.degreeConvert(minTempInt))°"
             backView.addSubview(minTempLabel)
+            dayForcastMinTemperatureIntArr.append(minTempInt)
+            dayForcastMinTemperatureLabelArr.append(minTempLabel)
             
             var weatherIcon = UIImageView(frame: CGRect(x: backView.frame.width/2 - 10, y: 4, width: blockHeight - 8, height: blockHeight - 8))
             let iconString = ((forecastInfos[index]["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
@@ -98,14 +109,13 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
         }
     }
     
-    func threeHourForcast(){
+    func threeHourForcast() {
         var connection = InternetConnection()
         connection.delegate = self
         connection.getThreeHourForcast(parentController.cityID)
     }
     
     func gotThreeHourForcastData(cityID: String, forcast: [AnyObject]) {
-//        println(forcast[0])
         /// set up scroll view daily forcast
         let hourItemViewWidth: CGFloat = 40
         let numOfDailyWeatherForcast = forcast.count / 2
@@ -142,6 +152,20 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             hourItemView.animation = "fadeIn"
             hourItemView.delay = 0.1 * CGFloat(index)
             hourItemView.animate()
+            
+            hourForcastTemperatureLabelArr.append(hourTemperatureLabel)
+            hourForcastTemperatureIntArr.append(temp)
+        }
+    }
+    
+    func reloadTempatureContent() {
+        for var index = 0; index < hourForcastTemperatureLabelArr.count; index++ {
+            hourForcastTemperatureLabelArr[index].text = "\(parentController.degreeConvert(hourForcastTemperatureIntArr[index]))°"
+        }
+        for var index = 0; index < dayForcastMaxTemperatureLabelArr.count; index++ {
+            dayForcastMaxTemperatureLabelArr[index].text = "\(parentController.degreeConvert(dayForcastMaxTemperatureIntArr[index]))°"
+            dayForcastMinTemperatureLabelArr[index].text = "\(parentController.degreeConvert(dayForcastMinTemperatureIntArr[index]))°"
+
         }
         
     }

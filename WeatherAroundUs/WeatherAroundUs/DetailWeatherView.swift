@@ -18,6 +18,14 @@ class DetailWeatherView: UIView {
         super.init(coder: aDecoder)
     }
     
+    var unit: String {
+        if parentController.isCnotF {
+            return "C"
+        } else {
+            return "F"
+        }
+    }
+    
     func setup(forecastInfos: [[String: AnyObject]]) {
         var beginY = line.frame.origin.y + line.frame.height + 5
         let blockHeight: CGFloat = 18
@@ -34,10 +42,6 @@ class DetailWeatherView: UIView {
             windDirectionStr = "\(windDirection-180)° SW"
         } else {
             windDirectionStr = "\(windDirection-270)° SE"
-        }
-        var unit: String = "F"
-        if parentController.isCnotF {
-            unit = "C"
         }
         createTwoUILabelInMiddle("Wind Speed:", secondString: "\(windSpeed) mps", yPosition: beginY)
         
@@ -74,6 +78,8 @@ class DetailWeatherView: UIView {
 
     }
     
+    var TempLabelArray = [UILabel]()
+    
     func createTwoUILabelInMiddle(firstStirng: String, secondString: String, yPosition: CGFloat) {
         let labelHeight: CGFloat = 20
         let xPostion = line.frame.origin.x
@@ -90,7 +96,18 @@ class DetailWeatherView: UIView {
         rightLabel.text = secondString
         self.addSubview(leftLabel)
         self.addSubview(rightLabel)
+        
+        TempLabelArray.append(rightLabel)
     }
     
+    func reloadTempatureContent(forecastInfos: [[String: AnyObject]]) {
+        let lastFirst = TempLabelArray[TempLabelArray.count - 1]
+        let lastSecond = TempLabelArray[TempLabelArray.count - 2]
+
+        let nightTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["night"])!.intValue
+        lastFirst.text = "\(parentController.degreeConvert(nightTemperature)) °" + unit
+        let mornTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["morn"])!.intValue
+        lastSecond.text = "\(parentController.degreeConvert(mornTemperature)) °" + unit
+    }
     
 }
