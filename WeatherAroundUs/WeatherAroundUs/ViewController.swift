@@ -89,6 +89,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     func tappedCard(sender: UITapGestureRecognizer) {
         if card.smallImageEntered {
+            
+            //avoid label overlay
+            clockButton.timeLab.removeFromSuperview()
+            
             searchBar.hideSelf()
             searchResultList.removeCities()
             card.hideSelf()
