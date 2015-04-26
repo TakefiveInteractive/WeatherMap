@@ -132,18 +132,18 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         WeatherInfo.currentCityID = (weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String
         
-        let userDefault = NSUserDefaults.standardUserDefaults()
-        if let url: AnyObject = (userDefault.objectForKey("smallImgUrl") as! NSMutableDictionary).objectForKey(WeatherInfo.currentCityID){
+        //let userDefault = NSUserDefaults.standardUserDefaults()
+       /* if let url: AnyObject = (userDefault.objectForKey("smallImgUrl") as! NSMutableDictionary).objectForKey(WeatherInfo.currentCityID){
             // if doesn't have url  get url
             var cache = ImageCache()
             cache.delegate = parentController.card
             cache.getSmallImageFromCache(url as! String, cityID: WeatherInfo.currentCityID)
-        }else{
+        }else{*/
             var connection = InternetConnection()
             connection.delegate = parentController.card
             //get image url
             connection.searchForCityPhotos(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!, cityID: WeatherInfo.currentCityID)
-        }
+        //}
         
         
         self.animateToLocation(marker.position)

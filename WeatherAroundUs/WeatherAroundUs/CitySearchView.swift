@@ -14,14 +14,14 @@ import Spring
     optional func removeCities()
 }
 
-class CitySearchView: DesignableView, UITextViewDelegate, InternetConnectionDelegate{
+class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDelegate{
     
     var parentController: ViewController!
 
     @IBOutlet var blurView: UIVisualEffectView!
     @IBOutlet var searchDraw: UIView!
     @IBOutlet var searchBack: UIView!
-    @IBOutlet var searchBar: UITextView!
+    @IBOutlet var searchBar: UITextField!
     
     var searchDisplayOutLine = CAShapeLayer()
     var longDisplayOutLine = CAShapeLayer()
@@ -66,12 +66,20 @@ class CitySearchView: DesignableView, UITextViewDelegate, InternetConnectionDele
 
     }
     
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.searchCityName(textField.text)
+        return true
+
+    }
+
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         longDisplayOutLine.removeFromSuperlayer()
         searchBar.text = ""
         //fixed w
         dispatch_async(dispatch_get_main_queue(), {
-
+            
             UIView.animateWithDuration(0.8, animations: { () -> Void in
                 self.transform = CGAffineTransformMake(0.5, 0, 0, 1, -50, 0)
                 }) { (finish) -> Void in
@@ -82,14 +90,16 @@ class CitySearchView: DesignableView, UITextViewDelegate, InternetConnectionDele
                     self.addSearchAnimation()
             }
         })
-
-
+        
+        
         return true
+
     }
     
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         longDisplayOutLine.removeFromSuperlayer()
         self.parentController.searchBarLength.constant = 200
+        self.parentController.returnBut.dissAppear()
         self.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.8, animations: { () -> Void in
             self.searchDraw.alpha = 0
@@ -98,17 +108,12 @@ class CitySearchView: DesignableView, UITextViewDelegate, InternetConnectionDele
                 self.changeCircleSize()
                 self.searchDisplayOutLine.removeFromSuperlayer()
                 self.searchDraw.alpha = 1
-//rr
+                //rr
         }
         return true
+
     }
-    
-    func textViewDidChange(textView: UITextView) {
-        
-        var connection = InternetConnection()
-        connection.delegate = self
-        connection.searchCityName(textView.text)
-    }
+
     
     // draw the outside circ
     func changeCircleSize(){
