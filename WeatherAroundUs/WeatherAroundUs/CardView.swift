@@ -30,6 +30,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     var weatherDescriptionBackCenter: CGPoint!
     
     var smallImageEntered = false
+    var imageUrlReady = false
     
     var hide = false
     
@@ -109,6 +110,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
  
     func displayCity(cityID: String){
 
+        // set image to invalid
+        imageUrlReady = false
         
         if hide {
             
@@ -175,6 +178,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     }
     
     func gotSmallImageFromCache(image: UIImage, cityID: String){
+        
+        imageUrlReady = true
         
         if !hide{
             if !smallImageEntered{
