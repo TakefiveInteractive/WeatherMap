@@ -88,8 +88,6 @@ class TimeLineView: DesignableView {
             }
         }
 
-
-        println(sender.locationInView(self).y)
     }
     
     func appear(){
