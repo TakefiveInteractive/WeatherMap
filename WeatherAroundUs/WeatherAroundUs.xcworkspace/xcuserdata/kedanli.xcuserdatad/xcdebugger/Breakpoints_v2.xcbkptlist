@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
             endingLineNumber = "53"
-            landmarkName = "preferredStatusBarStyle()"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -303,7 +303,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
-            landmarkName = "degreeConvert(_:)"
+            landmarkName = "setBackgroundImage()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -399,8 +399,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
             endingLineNumber = "99"
-            landmarkName = "setBackgroundImage()"
-            landmarkType = "5">
+            landmarkName = "CityDetailViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
