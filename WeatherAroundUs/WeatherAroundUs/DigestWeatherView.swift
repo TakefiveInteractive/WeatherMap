@@ -44,6 +44,7 @@ class DigestWeatherView: DesignableView {
         cityDisplay.text = (WeatherInfo.citiesAroundDict[parentController.cityID] as! [String: AnyObject])["name"]! as? String
         cityDisplay.textAlignment = .Left
         cityDisplay.font = UIFont(name: "AvenirNext-Medium", size: 18)
+        cityDisplay.adjustsFontSizeToFitWidth = true
         cityDisplay.textColor = UIColor.whiteColor()
         shimmerWeatherDescription.addSubview(cityDisplay)
         cityDisplay.animation = "fadeIn"
@@ -59,6 +60,7 @@ class DigestWeatherView: DesignableView {
         let minTemp = todayTemp["min"]!.intValue
         let maxTemp = todayTemp["max"]!.intValue
         tempRange.font = UIFont(name: "AvenirNext-Regular", size: 24)
+        tempRange.adjustsFontSizeToFitWidth = true
         tempRange.textAlignment = .Left
         tempRange.textColor = UIColor.whiteColor()
         var unit = "F"
