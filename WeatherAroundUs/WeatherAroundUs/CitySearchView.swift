@@ -14,46 +14,37 @@ import Spring
     optional func removeCities()
 }
 
-class CitySearchView: DesignableView, UISearchBarDelegate, InternetConnectionDelegate{
+class CitySearchView: DesignableView, UITextViewDelegate, InternetConnectionDelegate{
     
-    @IBOutlet var searchBar: UISearchBar!
+    var parentController: ViewController!
+
+    @IBOutlet var blurView: UIVisualEffectView!
+    @IBOutlet var searchDraw: UIView!
+    @IBOutlet var searchBack: UIView!
+    @IBOutlet var searchBar: UITextView!
+    
+    var searchDisplayOutLine = CAShapeLayer()
+    var longDisplayOutLine = CAShapeLayer()
 
     var delegate : SearchInformationDelegate?
-    var blurView: UIVisualEffectView!
     var hide = true
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
-    }
-    
-    func setup(){
-        
-        blurView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
-        blurView.frame = bounds
-        addSubview(blurView)
-        
-        searchBar = UISearchBar(frame: bounds)
-        searchBar.searchBarStyle = UISearchBarStyle.Minimal
-        searchBar.delegate = self
-        addSubview(searchBar)
-        
         self.layer.shadowOffset = CGSizeMake(0, 2)
         self.layer.shadowRadius = 1
         self.layer.shadowOpacity = 0.3
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        var connection = InternetConnection()
-        connection.delegate = self
-        connection.searchCityName(searchText)
+    func setup(){
+        addSearchAnimation()
+        changeCircleSize()
     }
+
     
     // got the search result from internet
 
@@ -69,19 +60,49 @@ class CitySearchView: DesignableView, UISearchBarDelegate, InternetConnectionDel
         }
     }
     
-    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
-        searchBar.resignFirstResponder()
+    func hideSelf(){
+        longDisplayOutLine.removeFromSuperlayer()
+        searchBar.text = ""
+        self.parentController.searchBarLength.constant = 100
+        self.searchBar.resignFirstResponder()
+        UIView.animateWithDuration(0.8, animations: { () -> Void in
+            self.searchDraw.alpha = 1
+            //self.parentController.view.layoutIfNeeded()
+            }) { (finish) -> Void in
+                self.changeCircleSize()
+        }
+    }
+    
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        longDisplayOutLine.removeFromSuperlayer()
+        self.parentController.searchBarLength.constant = 200
+        UIView.animateWithDuration(0.8, animations: { () -> Void in
+            self.searchDraw.alpha = 0
+            self.parentController.view.layoutIfNeeded()
+            }) { (finish) -> Void in
+                self.changeCircleSize()
+        }
         return true
     }
     
-    func hideSelf(){
+    func textViewDidChange(textView: UITextView) {
         
-        if !hide {
-            hide = true
-            self.center = CGPointMake(self.center.x, self.center.y - 80)
-            self.animation = "slideDown"
-            self.animate()
-        }
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.searchCityName(textView.text)
+    }
+    
+    // draw the outside circ
+    func changeCircleSize(){
+        
+        let path = UIBezierPath(roundedRect: searchBack.bounds, cornerRadius: 5)
+        longDisplayOutLine.path = path.CGPath
+        longDisplayOutLine.strokeColor = UIColor(red: 0.267, green: 0.608, blue: 0.600, alpha: 1.000).CGColor
+        longDisplayOutLine.fillColor = UIColor.clearColor().CGColor
+        longDisplayOutLine.lineWidth = 1
+        longDisplayOutLine.lineCap = kCALineCapRound
+        searchBack.layer.addSublayer(longDisplayOutLine)
+        
     }
     
     func showSelf(){
@@ -94,4 +115,36 @@ class CitySearchView: DesignableView, UISearchBarDelegate, InternetConnectionDel
         }
     }
     
+    func addSearchAnimation(){
+        searchDisplayOutLine.path = drawSearch().CGPath
+        searchDisplayOutLine.strokeColor = UIColor(red: 0.267, green: 0.608, blue: 0.600, alpha: 1.000).CGColor
+        searchDisplayOutLine.fillColor = UIColor.clearColor().CGColor
+        searchDisplayOutLine.lineWidth = 1.5
+        searchDisplayOutLine.lineCap = kCALineCapRound
+        searchDraw.layer.addSublayer(searchDisplayOutLine)
+        
+        var animateStrokeEnd = CABasicAnimation(keyPath: "strokeEnd")
+        animateStrokeEnd.duration = 2.0
+        animateStrokeEnd.fromValue = 0
+        animateStrokeEnd.toValue = 1.0
+        animateStrokeEnd.delegate = self
+        animateStrokeEnd.fillMode = kCAFillModeForwards
+        animateStrokeEnd.removedOnCompletion = true
+        searchDisplayOutLine.addAnimation(animateStrokeEnd, forKey: "drawOutline")
+    }
+    
+    func drawSearch()->UIBezierPath{
+        var searchPath = UIBezierPath()
+        searchPath.moveToPoint(CGPointMake(searchDraw.bounds.minX + 0.58602 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.63137 * searchDraw.bounds.height))
+        searchPath.addCurveToPoint(CGPointMake(searchDraw.bounds.minX + 0.89703 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.89702 * searchDraw.bounds.height), controlPoint1: CGPointMake(searchDraw.bounds.minX + 0.59006 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.62779 * searchDraw.bounds.height), controlPoint2: CGPointMake(searchDraw.bounds.minX + 0.89314 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.90085 * searchDraw.bounds.height))
+        searchPath.addCurveToPoint(CGPointMake(searchDraw.bounds.minX + 0.60783 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.61000 * searchDraw.bounds.height), controlPoint1: CGPointMake(searchDraw.bounds.minX + 0.90043 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.89366 * searchDraw.bounds.height), controlPoint2: CGPointMake(searchDraw.bounds.minX + 0.60463 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.61348 * searchDraw.bounds.height))
+        searchPath.addCurveToPoint(CGPointMake(searchDraw.bounds.minX + 0.59792 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.20388 * searchDraw.bounds.height), controlPoint1: CGPointMake(searchDraw.bounds.minX + 0.71441 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.49445 * searchDraw.bounds.height), controlPoint2: CGPointMake(searchDraw.bounds.minX + 0.71111 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.31550 * searchDraw.bounds.height))
+        searchPath.addCurveToPoint(CGPointMake(searchDraw.bounds.minX + 0.17568 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.20388 * searchDraw.bounds.height), controlPoint1: CGPointMake(searchDraw.bounds.minX + 0.48132 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.08890 * searchDraw.bounds.height), controlPoint2: CGPointMake(searchDraw.bounds.minX + 0.29228 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.08890 * searchDraw.bounds.height))
+        searchPath.addCurveToPoint(CGPointMake(searchDraw.bounds.minX + 0.17568 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.62025 * searchDraw.bounds.height), controlPoint1: CGPointMake(searchDraw.bounds.minX + 0.05909 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.31886 * searchDraw.bounds.height), controlPoint2: CGPointMake(searchDraw.bounds.minX + 0.05909 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.50527 * searchDraw.bounds.height))
+        searchPath.addCurveToPoint(CGPointMake(searchDraw.bounds.minX + 0.58602 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.63137 * searchDraw.bounds.height), controlPoint1: CGPointMake(searchDraw.bounds.minX + 0.28839 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.73140 * searchDraw.bounds.height), controlPoint2: CGPointMake(searchDraw.bounds.minX + 0.46879 * searchDraw.bounds.width, searchDraw.bounds.minY + 0.73510 * searchDraw.bounds.height))
+        
+        searchPath.closePath()
+        return searchPath
+    }
+
 }
