@@ -383,12 +383,12 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcK-fL-cU8" customClass="DetailWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="693" width="359" height="210"/>
+                                                <rect key="frame" x="8" y="693" width="359" height="220"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p66-a9-Lc7">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="210"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="220"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mn0-d9-jS6">
-                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="210"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="220"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGo-et-DsR">
@@ -421,7 +421,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="p66-a9-Lc7" secondAttribute="trailing" id="fqb-mN-c4w"/>
                                                     <constraint firstItem="p66-a9-Lc7" firstAttribute="top" secondItem="YcK-fL-cU8" secondAttribute="top" id="mOm-wH-wHN"/>
                                                     <constraint firstAttribute="bottom" secondItem="p66-a9-Lc7" secondAttribute="bottom" id="svU-Gn-zfg"/>
-                                                    <constraint firstAttribute="height" constant="210" id="w39-2Q-Oci"/>
+                                                    <constraint firstAttribute="height" constant="220" id="w39-2Q-Oci"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

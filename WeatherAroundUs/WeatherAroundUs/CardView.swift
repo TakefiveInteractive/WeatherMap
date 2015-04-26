@@ -69,7 +69,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         temperatureBack.addSubview(temperature)
         temperatureBackCenter = temperatureBack.center
 
-        cityBack = DesignableView(frame: CGRectMake(sideWidth, iconBack.frame.height + sideWidth * 2, iconBack.frame.width * 1.5, self.frame.height - iconBack.frame.height - 3 * sideWidth))
+        cityBack = DesignableView(frame: CGRectMake(sideWidth, iconBack.frame.height + sideWidth * 2, iconBack.frame.width * 1.8, self.frame.height - iconBack.frame.height - 3 * sideWidth))
         self.addSubview(cityBack)
         addShadow(cityBack)
         addVisualEffectView(cityBack)
@@ -119,7 +119,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
             self.temperature.text = "\(Int(temp))°C / \(Int(tempF))°F"
             self.city.text = (info as! [String: AnyObject])["name"] as? String
 
-            self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"] as? String
+            self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
             
             weatherDescriptionBack.center = weatherDescriptionBackCenter
             weatherDescriptionBack.animation = "slideLeft"
@@ -153,7 +153,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                     let tempF = temp * 9 / 5 + 32
                     self.temperature.text = "\(Int(temp))°C / \(Int(tempF))°F"
                     self.city.text = (info as! [String: AnyObject])["name"] as? String
-                    self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["description"])?.capitalizedString
+                    self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString
                     
                     UIView.animateWithDuration(0.4, animations: { () -> Void in
                         self.icon.alpha = 1

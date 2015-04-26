@@ -21,7 +21,7 @@ class DetailWeatherView: UIView {
     func setup(forecastInfos: [[String: AnyObject]]) {
         var beginY = line.frame.origin.y + line.frame.height + 5
         let blockHeight: CGFloat = 18
-        let spaceHeight: CGFloat = 5
+        let spaceHeight: CGFloat = 8
 
         let windSpeed = (forecastInfos[0] as [String: AnyObject])["speed"] as! Int
         let windDirection = (forecastInfos[0] as [String: AnyObject])["deg"] as! Int
