@@ -38,7 +38,7 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
     func addACity(placeID: String, description: String){
         
         //add a card
-        let aCity = UIButton(frame: CGRectMake(4, (theHeight + 4) * CGFloat(resultList.count), self.frame.width - 8, theHeight))
+        let aCity = UIButton(frame: CGRectMake(4, (theHeight + 6) * CGFloat(resultList.count), self.frame.width - 8, theHeight))
         aCity.alpha = 0
         aCity.addTarget(self, action: "chooseCity:", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(aCity)
@@ -60,7 +60,7 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
         
         // change size
         UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.frame.size = CGSizeMake(self.frame.width, (self.theHeight + 4) * CGFloat(self.resultList.count))
+            self.frame.size = CGSizeMake(self.frame.width, (self.theHeight + 6) * CGFloat(self.resultList.count))
         })
         
     }
