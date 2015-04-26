@@ -26,7 +26,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     @IBOutlet var digestWeatherView: DigestWeatherView!
     @IBOutlet var forecastView: BasicWeatherView!
 
-    var isCnotF = false
+    var isCnotF = NSUserDefaults.standardUserDefaults().objectForKey("temperatureDisplay")!.boolValue!
 
     var tempImage: UIImage!
     
@@ -38,13 +38,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         forecastView.parentController = self
         digestWeatherView.parentController = self
         detailWeatherView.parentController = self
-        
-        let todayDegree = (((WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]])[0]["temp"] as! [String: AnyObject])["day"])!.intValue
-        if isCnotF {
-            mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°C"
-        } else {
-            mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°F"
-        }
         
         mainTempatureToTopHeightConstraint.constant = view.frame.height / 3
         mainTemperatureShimmerView.contentView = mainTemperatureDisplay
@@ -65,6 +58,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         super.viewWillAppear(true)
         backgroundImageView.image = tempImage
         setBackgroundImage()
+        switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -81,6 +75,8 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         dateFormatter.dateFormat = "MMM dd"
         let dateStr = dateFormatter.stringFromDate(currDate)
         dateDisplayLabel.text = dateStr
+
+        switchWeatherUnitButtonDidPressed()
 
     }
 
@@ -110,9 +106,13 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         }
     }
     
-    @IBAction func switchWeatherUnitButtonDidPressed(sender: UIButton) {
-        isCnotF = !isCnotF
+    func switchWeatherUnitButtonDidPressed() {
 
+        NSUserDefaults.standardUserDefaults().setBool(isCnotF, forKey: "temperatureDisplay")
+        NSUserDefaults.standardUserDefaults().synchronize()
+
+        isCnotF = !isCnotF
+        
         let todayDegree = (((WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]])[0]["temp"] as! [String: AnyObject])["day"])!.intValue
         if isCnotF {
             mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°C"

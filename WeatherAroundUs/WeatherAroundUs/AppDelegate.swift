@@ -44,6 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             WeatherInfo.currentDate = userDefault.objectForKey("currentDate") as! String
         }
 
+        if userDefault.objectForKey("temperatureDisplay") == nil{
+            userDefault.setBool(true, forKey: "temperatureDisplay")
+        }
+        
         if userDefault.objectForKey("citiesForcast") == nil{
             userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
             userDefault.synchronize()
