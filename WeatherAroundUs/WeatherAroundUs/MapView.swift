@@ -63,7 +63,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 WeatherInfo.currentCityID = cityID
                 var connection = InternetConnection()
                 connection.delegate = parentController.card
-                connection.getSearchAddressOfACity(CLLocationCoordinate2DMake(latitude, longitude), name:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
+                connection.searchForCityPhotos(CLLocationCoordinate2DMake(latitude, longitude), name:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
             }
             
             if WeatherInfo.citiesAround.count > WeatherInfo.maxCityNum{
@@ -142,7 +142,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             var connection = InternetConnection()
             connection.delegate = parentController.card
             //get image url
-            connection.getSearchAddressOfACity(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!, cityID: WeatherInfo.currentCityID)
+            connection.searchForCityPhotos(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!, cityID: WeatherInfo.currentCityID)
         }
         
         

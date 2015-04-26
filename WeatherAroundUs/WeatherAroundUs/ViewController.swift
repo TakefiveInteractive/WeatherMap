@@ -35,6 +35,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         clockButton.parentController = self
         timeLine.parentController = self
         returnBut.parentController = self
+        searchBar.parentController = self
         card.parentViewController = self
         
         returnCurrentPositionButton.alpha = 0
@@ -61,7 +62,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         searchBar.setup()
         //first weather search
         WeatherInfo.getLocalWeatherInformation(mapView.camera.target, number: mapView.getNumOfWeatherBasedOnZoom())
+        
         returnCurrentPositionButton.layer.cornerRadius = returnCurrentPositionButton.frame.width / 2
+        returnCurrentPositionButton.layer.shadowOffset = CGSizeMake(1, 1)
+        returnCurrentPositionButton.layer.shadowRadius = 1
+        returnCurrentPositionButton.layer.shadowOpacity = 0.5
     }
     
     override func didReceiveMemoryWarning() {
