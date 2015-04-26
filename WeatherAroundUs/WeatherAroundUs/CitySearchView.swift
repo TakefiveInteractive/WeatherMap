@@ -98,7 +98,7 @@ class CitySearchView: DesignableView, UITextViewDelegate, InternetConnectionDele
                 self.changeCircleSize()
                 self.searchDisplayOutLine.removeFromSuperlayer()
                 self.searchDraw.alpha = 1
-
+//rr
         }
         return true
     }
