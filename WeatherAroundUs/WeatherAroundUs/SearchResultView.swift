@@ -46,7 +46,7 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
         placeIDList.insert(placeID, atIndex: 0)
         
         var lab = UILabel(frame: aCity.bounds)
-        lab.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        lab.font = UIFont(name: "AvenirNext-Regular", size: 14)
         lab.text = description
         lab.textColor = UIColor.darkGrayColor()
         aCity.addSubview(lab)
