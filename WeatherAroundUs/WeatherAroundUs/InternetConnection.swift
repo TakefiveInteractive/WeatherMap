@@ -23,6 +23,9 @@ var connectionCount: Int = 0
 
 class InternetConnection: NSObject {
     
+    let apiKey = "ee87492c2987b4f04895330984934350"
+
+    //"https://api.flickr.com/services/rest/?accuracy=11&api_key=ee87492c2987b4f04895330984934350&per_page=10&lat37.47=&lon=-122.25&method=flickr.photos.search&sort=interestingness-desc&tags=landmark&format=json&nojsoncallback=1"
     var delegate : InternetConnectionDelegate?
     
     var passData: [String: AnyObject]!
@@ -93,55 +96,134 @@ class InternetConnection: NSObject {
     }
     
     
-    // get small city image
-    func getSearchAddressOfACity(location: CLLocationCoordinate2D, name: String, cityID: String){
+    // get image info
+    func searchForCityPhotos(location: CLLocationCoordinate2D, name: String, cityID: String){
         
-        var geocoder = GMSGeocoder()
-        geocoder.reverseGeocodeCoordinate(location) { (response, error) -> Void in
-            
-            if error == nil && response != nil{
-                
-                
-                let address = response!.results()[0] as! GMSAddress
 
-                var searchText = ""
+        var searchText = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=10&lat=\(location.latitude)&lon=\(location.longitude)&method=flickr.photos.search&sort=interestingness-desc&tags=scenic,landscape&format=json&nojsoncallback=1"
+        searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+
+        var req = Alamofire.request(.GET, NSURL(string: searchText)!).responseJSON { (_, response, JSON, error) in
+            println(error?.description)
+            if error == nil && JSON != nil {
                 
-                if address.subLocality != nil{
-                    
-                    if address.locality != nil{
-                        searchText = address.subLocality + " " + address.locality
-                    }else if address.administrativeArea != nil{
-                        searchText = address.subLocality + " " + address.administrativeArea
-                    }else{
-                        searchText = address.subLocality + " " + address.country
-                    }
-                    
-                }else if address.locality != nil{
-                    if address.administrativeArea != nil{
-                        searchText = address.locality + " " + address.administrativeArea
-                    }else{
-                        searchText = address.locality + " " + address.country
-                    }
-                }else if address.administrativeArea != nil{
-                    searchText = address.administrativeArea + " " + address.country
-                }else{
-                    searchText = address.country
-                }
-                searchText = searchText + " -human -people -crowd -person"
-                // avoid error when there is space
-                searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+                let myjson = SwiftyJSON.JSON(JSON!)
                 
-                self.getPictureURLOfACity(searchText, cityID: cityID)
+                let id = myjson["photos"]["photo"][0]["id"].string
+                self.searchPhotoID(id!, cityID: cityID)
                 
             }else{
                 //resend
-                self.getSearchAddressOfACity(location, name: name, cityID: cityID)
+                self.searchForCityPhotos(location , name: name, cityID: cityID)
             }
         }
+
     }
     
+    // get image url of sizes
+    func searchPhotoID(photoID: String,cityID: String){
+        
+        //https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=ee87492c2987b4f04895330984934350&photo_id=5100934588&format=json&nojsoncallback=1
+
+        
+        var searchText = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=\(apiKey)&photo_id=\(photoID)&format=json&nojsoncallback=1"
+        searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        var req = Alamofire.request(.GET, NSURL(string: searchText)!).responseJSON { (_, response, JSON, error) in
+            println(error?.description)
+            if error == nil && JSON != nil {
+                
+                let myjson = SwiftyJSON.JSON(JSON!)
+                
+                let tbUrl = myjson["sizes"]["size"][1]["source"].string
+                let arr = myjson["sizes"]["size"].arrayObject!//["source"].string
+                let imageUrl = myjson["sizes"]["size"][arr.count - 1]["source"].string
+                
+                ImageCache.smallImagesUrl.updateValue(tbUrl!, forKey: cityID)
+                ImageCache.imagesUrl.updateValue(imageUrl!, forKey: cityID)
+                self.delegate?.gotImageUrls!(tbUrl!, imageURL: imageUrl!, cityID: cityID)
+                
+            }else{
+                //resend
+                self.searchPhotoID(photoID, cityID: cityID)
+            }
+        }
+        
+    }
+    
+    /*
+    // save image in local
+    ImageCache.smallImagesUrl.updateValue(tbUrl, forKey: cityID)
+    ImageCache.imagesUrl.updateValue(imageUrl, forKey: cityID)
+    self.delegate?.gotImageUrls!(tbUrl, imageURL: imageUrl, cityID: cityID)
+    
+    
+    var geocoder = GMSGeocoder()
+    geocoder.reverseGeocodeCoordinate(location) { (response, error) -> Void in
+    
+    if error == nil && response != nil{
+    
+    
+    let address = response!.results()[0] as! GMSAddress
+    
+    var searchText = ""
+    
+    if address.subLocality != nil{
+    
+    if address.locality != nil{
+    searchText = address.subLocality + " " + address.locality
+    }else if address.administrativeArea != nil{
+    searchText = address.subLocality + " " + address.administrativeArea
+    }else{
+    searchText = address.subLocality + " " + address.country
+    }
+    
+    }else if address.locality != nil{
+    if address.administrativeArea != nil{
+    searchText = address.locality + " " + address.administrativeArea
+    }else{
+    searchText = address.locality + " " + address.country
+    }
+    }else if address.administrativeArea != nil{
+    searchText = address.administrativeArea + " " + address.country
+    }else{
+    searchText = address.country
+    }
+    searchText = searchText + " -human -people -crowd -person"
+    // avoid error when there is space
+    searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+    
+    self.getPictureURLOfACity(searchText, cityID: cityID)
+    
+    }else{
+    //resend
+    self.getSearchAddressOfACity(location, name: name, cityID: cityID)
+    }
+    }*/
+    
+    //func getPictureURLOfACity(searchText: String, cityID: String){
+/*
+        let baseUrl = "https://api.flickr.com/services/rest/"
+
+        let coord = "lat=37.7833&lon=-122.4167&"
+        let method = "method=flickr.photos.search&"
+        let sort = "sort=interestingness-desc&"
+        let tags = "tags=scenic,landmark&"
+        let apiSig = "10ea50b0801ddda5f26d5a343220dd47"
+        let format = "&format=json"
+        let requestUrl = NSURL(string: baseUrl + "?accuracy=11&" + apiKey + coord + method + sort + tags + apiSig + format)
+        var request = Alamofire.request(.GET, requestUrl!).responseJSON { (_, response, data, error) -> Void in
+            println(response)
+            println(error)
+            let ret = JSON(data!)
+            println(ret)
+        }
+        
+        //
+        */
     func getPictureURLOfACity(searchText: String, cityID: String){
 
+        //https://api.flickr.com/services/rest/?accuracy=11&api_key=ee87492c2987b4f04895330984934350&lat=37.7833&lon=-122.4167&method=flickr.photos.search&sort=interestingness-desc&tags=scenic,landmark
         let url = NSURL(string: "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=\(searchText)&imgtype=photo&imgsz=xxlarge%7Chuge&imgc=color&hl=en")!
         // request for the image
         var req = Alamofire.request(.GET, url).responseJSON { (_, response, JSON, error) in
@@ -181,16 +263,14 @@ class InternetConnection: NSObject {
                         imageUrl = url
                     }
                 }
-                // save image in local
-                ImageCache.smallImagesUrl.updateValue(tbUrl, forKey: cityID)
-                ImageCache.imagesUrl.updateValue(imageUrl, forKey: cityID)
-                self.delegate?.gotImageUrls!(tbUrl, imageURL: imageUrl, cityID: cityID)
+
                 
             }else{
                 //resend
                 self.getPictureURLOfACity(searchText, cityID: cityID)
             }
         }
+
     }
 
     func getWeatherForcast(cityID: String){

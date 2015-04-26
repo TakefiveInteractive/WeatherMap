@@ -37,9 +37,9 @@ class ClockView: DesignableView{
     var timerCount = 0
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        layer.shadowOffset = CGSizeMake(0, 2)
+        layer.shadowOffset = CGSizeMake(1, 1)
         layer.shadowRadius = 1
-        layer.shadowOpacity = 0.3
+        layer.shadowOpacity = 0.5
     }
     
     override init(frame: CGRect) {
