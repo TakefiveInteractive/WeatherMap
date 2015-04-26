@@ -17,6 +17,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     @IBOutlet var card: CardView!
     @IBOutlet var timeLine: TimeLineView!
     @IBOutlet var returnBut: ReturnButton!
+    @IBOutlet var returnCurrentPositionButton: DesignableButton!
 
     var smallImageView: ImageCardView!
     var searchResultList: SearchResultView!
@@ -32,7 +33,9 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         clockButton.parentController = self
         timeLine.parentController = self
         returnBut.parentController = self
+        card.parentViewController = self
         
+        returnCurrentPositionButton.alpha = 0
         var tapGestureRecoYu = UITapGestureRecognizer(target: self, action: "tappedCard:")
         self.card.addGestureRecognizer(tapGestureRecoYu)
     }
@@ -44,7 +47,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         self.view.addSubview(searchResultList)
         searchBar.delegate = searchResultList
         searchResultList.parentController = self
-
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,6 +59,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         
         //first weather search
         WeatherInfo.getLocalWeatherInformation(mapView.camera.target, number: mapView.getNumOfWeatherBasedOnZoom())
+        returnCurrentPositionButton.layer.cornerRadius = returnCurrentPositionButton.frame.width / 2
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,10 +84,20 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
             // will display the card when return
             let touchPoint = sender.locationInView(self.view)
             performSegueWithIdentifier("cityDetailSegue", sender: self)
+            
+            if returnCurrentPositionButton.alpha != 0 {
+                returnCurrentPositionButton.animation = "fadeOut"
+                returnCurrentPositionButton.animate()
+            }
         }
     }
     
     @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
+    }
+    
+    
+    @IBAction func returnCurrentPositionButtonDidPressed(sender: DesignableButton) {
+        mapView.animateToLocation(UserLocation.centerLocation.coordinate)
     }
 
 }

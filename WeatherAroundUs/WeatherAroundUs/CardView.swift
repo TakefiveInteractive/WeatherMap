@@ -16,6 +16,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     var city: UILabel!
     var smallImage: UIImageView!
     var weatherDescription: UILabel!
+    var parentViewController: ViewController!
     
     var iconBack: DesignableView!
     var temperatureBack: DesignableView!
@@ -106,6 +107,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     }
  
     func displayCity(cityID: String){
+            parentViewController.returnCurrentPositionButton.animation = "fadeOut"
+            parentViewController.returnCurrentPositionButton.animate()
         
         if hide {
             hide = false
@@ -220,9 +223,12 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     func hideSelf(){
 
         if !hide {
+            parentViewController.returnCurrentPositionButton.animation = "fadeIn"
+            parentViewController.returnCurrentPositionButton.animate()
+            
             hide = true
             self.userInteractionEnabled = false
-
+            
             weatherDescriptionBack.center = CGPointMake(weatherDescriptionBack.center.x + weatherDescriptionBack.frame.width * 1.5, weatherDescriptionBack.center.y)
             weatherDescriptionBack.animation = "slideLeft"
             weatherDescriptionBack.animate()

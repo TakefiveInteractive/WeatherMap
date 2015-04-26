@@ -36,8 +36,8 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="324" y="43" width="45" height="387"/>
+                            <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="305" y="43" width="64" height="387"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5gR-aK-T8M">
                                         <rect key="frame" x="15" y="0.0" width="15" height="387"/>
@@ -60,11 +60,11 @@
                                     <outlet property="blurView" destination="5gR-aK-T8M" id="wdh-LH-g9K"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjW-vs-Mcr" userLabel="Clock" customClass="ClockView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="324" y="20" width="45" height="45"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VjW-vs-Mcr" userLabel="Clock" customClass="ClockView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="305" y="20" width="64" height="45"/>
                                 <subviews>
-                                    <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-cO-CJa">
-                                        <rect key="frame" x="-85" y="0.0" width="130" height="45"/>
+                                    <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-cO-CJa">
+                                        <rect key="frame" x="-66" y="0.0" width="130" height="45"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" id="Oc5-KE-f3v">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="45"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,26 +74,26 @@
                                         </constraints>
                                         <blurEffect style="light"/>
                                     </visualEffectView>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hg-no-2bX">
-                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3hg-no-2bX">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="45"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="oUn-7j-9mZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="64" height="45"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIh-rh-4pZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIh-rh-4pZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="45"/>
                                                     <state key="normal" image="Newclock.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Co-rd-AxZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NewclockPin.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Co-rd-AxZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="45"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin1.png" translatesAutoresizingMaskIntoConstraints="NO" id="j1A-ZF-CQd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NewclockPin1.png" translatesAutoresizingMaskIntoConstraints="NO" id="j1A-ZF-CQd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="45"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewclockPin2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZUd-Al-luT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NewclockPin2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZUd-Al-luT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="45"/>
                                                     <color key="tintColor" red="0.26666666666666666" green="0.60784313725490191" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
@@ -161,6 +161,19 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0F-bs-deC" customClass="DesignableButton" customModule="Spring">
+                                <rect key="frame" x="324" y="602" width="45" height="45"/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.60784313725490191" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="M0F-bs-deC" secondAttribute="height" id="0dq-nK-RJm"/>
+                                </constraints>
+                                <state key="normal" image="returnCurPosButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnCurrentPositionButtonDidPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Uru-4q-M6r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="top" secondItem="tqf-Zs-cEl" secondAttribute="top" id="1Sd-Vd-TRv"/>
@@ -170,11 +183,14 @@
                             <constraint firstAttribute="trailing" secondItem="lX5-BA-Wy8" secondAttribute="trailing" id="6Ih-ku-uTZ"/>
                             <constraint firstItem="lX5-BA-Wy8" firstAttribute="top" secondItem="XMe-1D-uI0" secondAttribute="bottom" constant="50" id="FWD-Wd-KTa"/>
                             <constraint firstItem="Oul-K5-F1o" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Fg4-jh-dmx"/>
+                            <constraint firstItem="VjW-vs-Mcr" firstAttribute="trailing" secondItem="M0F-bs-deC" secondAttribute="trailing" id="L8c-RJ-7dl"/>
                             <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="Oul-K5-F1o" secondAttribute="bottom" id="MfI-Xy-ZJF"/>
                             <constraint firstItem="XMe-1D-uI0" firstAttribute="centerX" secondItem="VjW-vs-Mcr" secondAttribute="centerX" id="Mi1-VL-AxR"/>
+                            <constraint firstItem="jXW-qH-GTO" firstAttribute="top" secondItem="M0F-bs-deC" secondAttribute="bottom" constant="20" id="Mup-Av-RC3"/>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="leading" secondItem="XMe-1D-uI0" secondAttribute="leading" id="OAa-wh-ehp"/>
                             <constraint firstAttribute="trailing" secondItem="Oul-K5-F1o" secondAttribute="trailing" id="PVS-PN-mpV"/>
                             <constraint firstItem="og9-ta-dNc" firstAttribute="top" secondItem="XMe-1D-uI0" secondAttribute="bottom" constant="10" id="PdI-ca-c20"/>
+                            <constraint firstItem="VjW-vs-Mcr" firstAttribute="leading" secondItem="M0F-bs-deC" secondAttribute="leading" id="XbR-Ju-H2S"/>
                             <constraint firstItem="og9-ta-dNc" firstAttribute="centerX" secondItem="XMe-1D-uI0" secondAttribute="centerX" id="fKL-x9-nAj"/>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="bottom" secondItem="tqf-Zs-cEl" secondAttribute="bottom" id="fZS-UL-DHF"/>
                             <constraint firstItem="VjW-vs-Mcr" firstAttribute="trailing" secondItem="XMe-1D-uI0" secondAttribute="trailing" id="hkh-kU-nA2"/>
@@ -190,6 +206,7 @@
                         <outlet property="clockButton" destination="VjW-vs-Mcr" id="oL5-8g-C4Q"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
                         <outlet property="returnBut" destination="og9-ta-dNc" id="2zh-JO-zKf"/>
+                        <outlet property="returnCurrentPositionButton" destination="M0F-bs-deC" id="ueY-dW-4s0"/>
                         <outlet property="searchBar" destination="tqf-Zs-cEl" id="Dbq-Rp-BdD"/>
                         <outlet property="timeLine" destination="XMe-1D-uI0" id="kcs-5A-Qqh"/>
                         <segue destination="ECH-Ns-pDS" kind="modal" identifier="cityDetailSegue" id="1LY-U5-auJ"/>
@@ -501,6 +518,7 @@
         <image name="NewclockPin.png" width="72" height="71"/>
         <image name="NewclockPin1.png" width="72" height="71"/>
         <image name="NewclockPin2.png" width="72" height="71"/>
+        <image name="returnCurPosButton.png" width="64" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
