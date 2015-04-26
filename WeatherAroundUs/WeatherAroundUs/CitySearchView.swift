@@ -61,26 +61,44 @@ class CitySearchView: DesignableView, UITextViewDelegate, InternetConnectionDele
     }
     
     func hideSelf(){
+
+        self.searchBar.resignFirstResponder()
+
+    }
+    
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
         longDisplayOutLine.removeFromSuperlayer()
         searchBar.text = ""
-        self.parentController.searchBarLength.constant = 100
-        self.searchBar.resignFirstResponder()
-        UIView.animateWithDuration(0.8, animations: { () -> Void in
-            self.searchDraw.alpha = 1
-            //self.parentController.view.layoutIfNeeded()
-            }) { (finish) -> Void in
-                self.changeCircleSize()
-        }
+        //fixed w
+        dispatch_async(dispatch_get_main_queue(), {
+
+            UIView.animateWithDuration(0.8, animations: { () -> Void in
+                self.transform = CGAffineTransformMake(0.5, 0, 0, 1, -50, 0)
+                }) { (finish) -> Void in
+                    self.parentController.searchBarLength.constant = 100
+                    self.layoutIfNeeded()
+                    self.transform = CGAffineTransformMake(1, 0, 0, 1, 0, 0)
+                    self.changeCircleSize()
+                    self.addSearchAnimation()
+            }
+        })
+
+
+        return true
     }
     
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         longDisplayOutLine.removeFromSuperlayer()
         self.parentController.searchBarLength.constant = 200
+        self.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.8, animations: { () -> Void in
             self.searchDraw.alpha = 0
-            self.parentController.view.layoutIfNeeded()
+            self.layoutIfNeeded()
             }) { (finish) -> Void in
                 self.changeCircleSize()
+                self.searchDisplayOutLine.removeFromSuperlayer()
+                self.searchDraw.alpha = 1
+
         }
         return true
     }
