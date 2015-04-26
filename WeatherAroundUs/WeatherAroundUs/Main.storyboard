@@ -23,10 +23,56 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqf-Zs-cEl" customClass="CitySearchView" customModule="WeatherAroundUs" customModuleProvider="target">
-                                <rect key="frame" x="10" y="20" width="220" height="45"/>
+                                <rect key="frame" x="10" y="20" width="100" height="45"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-80-eGp">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="45"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aVn-e8-yUe">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="45"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUi-oI-aXT">
+                                                    <rect key="frame" x="8" y="8" width="84" height="29"/>
+                                                </view>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mtN-rl-nB3">
+                                                    <rect key="frame" x="8" y="8" width="84" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="tqf-Zs-cEl" id="N8E-s8-hql"/>
+                                                    </connections>
+                                                </textView>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3CT-pi-HrN">
+                                                    <rect key="frame" x="40" y="10" width="20" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="cmA-cQ-P0g"/>
+                                                        <constraint firstAttribute="height" constant="20" id="qWk-Oz-gGr"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oUi-oI-aXT" firstAttribute="leading" secondItem="aVn-e8-yUe" secondAttribute="leading" constant="8" id="Cv7-mD-vsw"/>
+                                                <constraint firstAttribute="centerY" secondItem="3CT-pi-HrN" secondAttribute="centerY" id="NEC-x1-QH2"/>
+                                                <constraint firstItem="mtN-rl-nB3" firstAttribute="trailing" secondItem="oUi-oI-aXT" secondAttribute="trailing" id="QiI-O7-2A6"/>
+                                                <constraint firstItem="oUi-oI-aXT" firstAttribute="top" secondItem="aVn-e8-yUe" secondAttribute="top" constant="8" id="RQR-bx-mdQ"/>
+                                                <constraint firstAttribute="centerX" secondItem="3CT-pi-HrN" secondAttribute="centerX" id="SeL-dr-MAA"/>
+                                                <constraint firstItem="mtN-rl-nB3" firstAttribute="leading" secondItem="oUi-oI-aXT" secondAttribute="leading" id="frk-rf-QM1"/>
+                                                <constraint firstAttribute="bottom" secondItem="oUi-oI-aXT" secondAttribute="bottom" constant="8" id="gUw-xH-jW3"/>
+                                                <constraint firstItem="mtN-rl-nB3" firstAttribute="bottom" secondItem="oUi-oI-aXT" secondAttribute="bottom" id="gpa-4y-IPf"/>
+                                                <constraint firstAttribute="trailing" secondItem="oUi-oI-aXT" secondAttribute="trailing" constant="8" id="jde-Qq-prG"/>
+                                                <constraint firstItem="mtN-rl-nB3" firstAttribute="top" secondItem="oUi-oI-aXT" secondAttribute="top" id="kfQ-dw-6TH"/>
+                                            </constraints>
+                                        </view>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="DMp-oM-TVX"/>
+                                    <constraint firstAttribute="width" priority="250" constant="100" id="DMp-oM-TVX"/>
+                                    <constraint firstAttribute="trailing" secondItem="zl1-80-eGp" secondAttribute="trailing" id="WoY-Xi-Sh5"/>
+                                    <constraint firstItem="zl1-80-eGp" firstAttribute="leading" secondItem="tqf-Zs-cEl" secondAttribute="leading" id="en6-r1-1bz"/>
                                     <constraint firstAttribute="height" constant="45" id="ffX-le-Oiu"/>
+                                    <constraint firstItem="zl1-80-eGp" firstAttribute="top" secondItem="tqf-Zs-cEl" secondAttribute="top" id="vFb-8Z-xFZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="zl1-80-eGp" secondAttribute="bottom" id="xrZ-yX-JBk"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="y">
@@ -35,6 +81,12 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideDown"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="blurView" destination="zl1-80-eGp" id="wYU-nP-ubb"/>
+                                    <outlet property="searchBack" destination="oUi-oI-aXT" id="KGQ-NK-mQC"/>
+                                    <outlet property="searchBar" destination="mtN-rl-nB3" id="pzs-jq-sQv"/>
+                                    <outlet property="searchDraw" destination="3CT-pi-HrN" id="270-UO-hvD"/>
+                                </connections>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherAroundUs" customModuleProvider="target">
                                 <rect key="frame" x="305" y="43" width="64" height="387"/>
@@ -208,13 +260,14 @@
                         <outlet property="returnBut" destination="og9-ta-dNc" id="2zh-JO-zKf"/>
                         <outlet property="returnCurrentPositionButton" destination="M0F-bs-deC" id="ueY-dW-4s0"/>
                         <outlet property="searchBar" destination="tqf-Zs-cEl" id="Dbq-Rp-BdD"/>
+                        <outlet property="searchBarLength" destination="DMp-oM-TVX" id="Q2H-34-ZF5"/>
                         <outlet property="timeLine" destination="XMe-1D-uI0" id="kcs-5A-Qqh"/>
                         <segue destination="ECH-Ns-pDS" kind="modal" identifier="cityDetailSegue" id="1LY-U5-auJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="-342"/>
+            <point key="canvasLocation" x="60.5" y="-342.5"/>
         </scene>
         <!--City Detail View Controller-->
         <scene sceneID="VXG-MS-Xuq">

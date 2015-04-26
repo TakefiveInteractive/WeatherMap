@@ -50,9 +50,6 @@ class ClockView: DesignableView{
         
         timeDisplay.roundCorner(UIRectCorner.AllCorners, radius: frame.width / 2)
         clock.addTarget(self, action: "clockClicked", forControlEvents: UIControlEvents.TouchUpInside)
-        clock.layer.shadowOffset = CGSizeMake(0, 2)
-        clock.layer.shadowRadius = 1
-        clock.layer.shadowOpacity = 0.3
         blurView.roundCircle()
         blurView.alpha = 1
         addRotatingAnimation()

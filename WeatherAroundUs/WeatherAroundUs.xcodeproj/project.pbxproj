@@ -273,12 +273,12 @@
 		42466A8E1AE590CC00E0BD4B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */,
 				42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */,
 				424BCD221AE8A6570053D1E9 /* ReturnButton.swift */,
 				42466A8F1AE5961100E0BD4B /* TimeLineView.swift */,
 				424F5A2D1ADF46BD00B09FBA /* ImageCardView.swift */,
 				42F62E781AD0B84900D494E6 /* CardView.swift */,
-				424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */,
 				424F5A261ADE137100B09FBA /* SearchResultView.swift */,
 				427BAFA41AD0E6F900C87BDE /* MapView.swift */,
 			);
