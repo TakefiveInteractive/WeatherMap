@@ -20,11 +20,18 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
         super.init(coder: aDecoder)
     }
     
-    func timeConvert(curTime: Int) -> String {
+    func timeConvert(var curTime: Int) -> String {
         if (curTime < 12) {
+            if curTime == 0 {
+                curTime = 12
+            }
             return "\(curTime)AM"
         } else {
-            return "\(curTime % 12)PM"
+            curTime %= 12
+            if curTime == 0 {
+                curTime = 12
+            }
+            return "\(curTime)PM"
         }
     }
     

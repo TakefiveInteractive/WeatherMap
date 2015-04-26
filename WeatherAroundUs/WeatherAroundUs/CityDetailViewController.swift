@@ -20,7 +20,6 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     @IBOutlet var mainTempatureToTopHeightConstraint: NSLayoutConstraint!
     @IBOutlet var basicForecastViewHeight: NSLayoutConstraint!
     
-    
     @IBOutlet var detailWeatherView: DetailWeatherView!
     @IBOutlet var digestWeatherView: DigestWeatherView!
     @IBOutlet var forecastView: BasicWeatherView!
