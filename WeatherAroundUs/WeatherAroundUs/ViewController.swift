@@ -18,6 +18,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     @IBOutlet var timeLine: TimeLineView!
     @IBOutlet var returnBut: ReturnButton!
 
+    @IBOutlet var searchBarLength: NSLayoutConstraint!
+    
     var smallImageView: ImageCardView!
     var searchResultList: SearchResultView!
     
@@ -27,11 +29,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         mapView.parentController = self
         clockButton.parentController = self
         timeLine.parentController = self
         returnBut.parentController = self
+        searchBar.parentController = self
         
         var tapGestureRecoYu = UITapGestureRecognizer(target: self, action: "tappedCard:")
         self.card.addGestureRecognizer(tapGestureRecoYu)
@@ -40,7 +43,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     override func viewWillAppear(animated: Bool) {
         
         searchResultList = SearchResultView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
-        searchResultList.frame = CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, searchBar.frame.width - 6, 0)
+        searchResultList.frame = CGRectMake(self.searchBar.frame.origin.x + 3, self.searchBar.frame.origin.y + self.searchBar.frame.height + 10, 200 - 6, 0)
         self.view.addSubview(searchResultList)
         searchBar.delegate = searchResultList
         searchResultList.parentController = self
@@ -52,7 +55,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         clockButton.setup()
         timeLine.setup()
         card.setup()
-        
+        searchBar.setup()
         //first weather search
         WeatherInfo.getLocalWeatherInformation(mapView.camera.target, number: mapView.getNumOfWeatherBasedOnZoom())
     }
@@ -72,7 +75,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     func tappedCard(sender: UITapGestureRecognizer) {
         if card.smallImageEntered {
-            searchBar.searchBar.resignFirstResponder()
+            searchBar.hideSelf()
             searchResultList.removeCities()
             card.hideSelf()
             card.removeAllViews()
