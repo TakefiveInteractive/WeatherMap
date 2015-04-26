@@ -502,6 +502,18 @@
                                                     <outlet property="line" destination="nx3-76-x01" id="HhP-5K-Z2A"/>
                                                 </connections>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbh-x8-lMX">
+                                                <rect key="frame" x="274" y="122" width="83" height="111"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="dbh-x8-lMX" secondAttribute="height" multiplier="3:4" id="vpy-n1-PdJ"/>
+                                                </constraints>
+                                                <state key="normal">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="switchWeatherUnitButtonDidPressed:" destination="ECH-Ns-pDS" eventType="touchUpInside" id="3SI-6r-mbD"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="YcK-fL-cU8" firstAttribute="centerX" secondItem="xJg-lg-rAJ" secondAttribute="centerX" id="1nN-mo-Wmw"/>
@@ -509,14 +521,17 @@
                                             <constraint firstAttribute="trailing" secondItem="Daj-Li-ljH" secondAttribute="trailing" constant="18" id="Bdi-dU-jp5"/>
                                             <constraint firstAttribute="trailing" secondItem="xJg-lg-rAJ" secondAttribute="trailing" constant="8" id="Epo-nE-sBJ"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="top" secondItem="xJg-lg-rAJ" secondAttribute="bottom" constant="10" id="KVc-xv-ndx"/>
+                                            <constraint firstItem="M5C-g9-bKn" firstAttribute="trailing" secondItem="dbh-x8-lMX" secondAttribute="trailing" id="LWg-TJ-6Nr"/>
                                             <constraint firstItem="xJg-lg-rAJ" firstAttribute="top" secondItem="M5C-g9-bKn" secondAttribute="bottom" id="MIY-b5-CPW"/>
                                             <constraint firstItem="YcK-fL-cU8" firstAttribute="width" secondItem="xJg-lg-rAJ" secondAttribute="width" id="Pyx-9F-58r"/>
                                             <constraint firstItem="xJg-lg-rAJ" firstAttribute="leading" secondItem="1ka-0M-Yir" secondAttribute="leading" constant="8" id="VrX-4G-Cwd"/>
+                                            <constraint firstItem="M5C-g9-bKn" firstAttribute="centerY" secondItem="dbh-x8-lMX" secondAttribute="centerY" id="WMO-Rb-Ywy"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="centerX" secondItem="xJg-lg-rAJ" secondAttribute="centerX" id="eXl-HB-SIF"/>
                                             <constraint firstAttribute="trailing" secondItem="uYV-Mc-jsF" secondAttribute="trailing" constant="8" id="jK1-At-BHi"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="bottom" secondItem="YcK-fL-cU8" secondAttribute="top" constant="-10" id="kKe-yc-slT"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="width" secondItem="xJg-lg-rAJ" secondAttribute="width" id="klw-iq-huI"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="leading" secondItem="1ka-0M-Yir" secondAttribute="leading" constant="8" id="rrb-FW-In6"/>
+                                            <constraint firstItem="M5C-g9-bKn" firstAttribute="height" secondItem="dbh-x8-lMX" secondAttribute="height" id="uAM-AT-Cqu"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -557,6 +572,7 @@
                         <outlet property="mainTemperatureDisplay" destination="M5C-g9-bKn" id="ieL-oy-yxR"/>
                         <outlet property="mainTemperatureShimmerView" destination="Daj-Li-ljH" id="uwM-4y-IVh"/>
                         <outlet property="scrollView" destination="NCV-db-lI4" id="LHs-3o-HMO"/>
+                        <outlet property="switchWeatherUnitButton" destination="dbh-x8-lMX" id="ktK-9V-zIU"/>
                         <segue destination="RkP-ls-eFw" kind="unwind" identifier="backToMain" unwindAction="returnFromWeatherDetail:" id="C4t-IV-JiL"/>
                     </connections>
                 </viewController>

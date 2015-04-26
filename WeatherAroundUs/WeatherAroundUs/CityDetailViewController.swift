@@ -15,6 +15,8 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     @IBOutlet var backgroundImageView: DesignableImageView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var mainTemperatureShimmerView: FBShimmeringView!
+    
+    @IBOutlet var switchWeatherUnitButton: UIButton!
     @IBOutlet var mainTemperatureDisplay: UILabel!
     @IBOutlet var dateDisplayLabel: UILabel!
     @IBOutlet var mainTempatureToTopHeightConstraint: NSLayoutConstraint!
@@ -106,6 +108,21 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         } else {
             return Int32(round(Double(Double(degree) - 273.13) * 9.0 / 5.0 + 32))
         }
+    }
+    
+    @IBAction func switchWeatherUnitButtonDidPressed(sender: UIButton) {
+        isCnotF = !isCnotF
+
+        let todayDegree = (((WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]])[0]["temp"] as! [String: AnyObject])["day"])!.intValue
+        if isCnotF {
+            mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°C"
+        } else {
+            mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°F"
+        }
+        let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
+        digestWeatherView.reloadTemperature(nineDayWeatherForcast)
+        forecastView.reloadTempatureContent()
+        detailWeatherView.reloadTempatureContent(nineDayWeatherForcast)
     }
     
     func gotImageFromCache(image: UIImage, cityID: String) {

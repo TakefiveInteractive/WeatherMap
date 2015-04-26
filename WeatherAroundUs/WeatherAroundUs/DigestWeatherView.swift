@@ -15,6 +15,7 @@ class DigestWeatherView: DesignableView {
     @IBOutlet var line: UIImageView!
 
     var parentController: CityDetailViewController!
+    var tempRange: SpringLabel!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -54,7 +55,7 @@ class DigestWeatherView: DesignableView {
         //digest tempature range for the day
         let shimmerTempRange = FBShimmeringView(frame: CGRectMake(0, self.frame.height / 5 - 5, line.frame.width / 2, self.frame.height / 2))
         labelView.addSubview(shimmerTempRange)
-        let tempRange = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, self.frame.height / 2))
+        tempRange = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, self.frame.height / 2))
         let minTemp = todayTemp["min"]!.intValue
         let maxTemp = todayTemp["max"]!.intValue
         tempRange.font = UIFont(name: "AvenirNext-Regular", size: 24)
@@ -83,5 +84,16 @@ class DigestWeatherView: DesignableView {
         mainWeather.delay = 0.3
         mainWeather.animate()
         
+    }
+    
+    func reloadTemperature(forecastInfos: [[String: AnyObject]]) {
+        let todayTemp = forecastInfos[0]["temp"] as! [String: AnyObject]
+        let minTemp = todayTemp["min"]!.intValue
+        let maxTemp = todayTemp["max"]!.intValue
+        var unit = "F"
+        if parentController.isCnotF {
+            unit = "C"
+        }
+        tempRange.text = "\(parentController.degreeConvert(minTemp))° ~ \(parentController.degreeConvert(maxTemp))°\(unit)"
     }
 }
