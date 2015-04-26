@@ -106,9 +106,14 @@ class InternetConnection: NSObject {
                 
                 let myjson = SwiftyJSON.JSON(JSON!)
                 
-                let id = myjson["photos"]["photo"][0]["id"].string
-                self.searchPhotoID(id!, cityID: cityID)
+                println(myjson["photos"]["photo"])
                 
+                let id = myjson["photos"]["photo"][Int(arc4random_uniform(9))]["id"].string
+                if id != nil{
+                    self.searchPhotoID(id!, cityID: cityID)
+                }else{
+                    self.searchForCityPhotos(location , name: name, cityID: cityID)
+                }
             }else{
                 //resend
                 self.searchForCityPhotos(location , name: name, cityID: cityID)
@@ -128,6 +133,8 @@ class InternetConnection: NSObject {
             if error == nil && JSON != nil {
                 
                 let myjson = SwiftyJSON.JSON(JSON!)
+                
+                println(myjson["sizes"]["size"])
                 
                 let tbUrl = myjson["sizes"]["size"][1]["source"].string
                 let arr = myjson["sizes"]["size"].arrayObject!//["source"].string
@@ -292,12 +299,12 @@ class InternetConnection: NSObject {
     func searchForCityPhotos(location: CLLocationCoordinate2D, name: String, cityID: String){
         
         //override cities to use google
-        let cities = ["4914570","4887158","4887163","1795565","6942880"]
-        if find(cities, cityID) > 0{
-            googleSearch(location, name: name, cityID: cityID)
-        }else{
+        //let cities = ["4914570","4887158","4887163","1795565","6942880"]
+        //if find(cities, cityID) > 0{
+         //   googleSearch(location, name: name, cityID: cityID)
+        //}else{
             flickrSearch(location, name: name, cityID: cityID)
-        }
+        //}
         
     }
     

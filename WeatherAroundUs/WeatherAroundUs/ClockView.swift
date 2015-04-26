@@ -184,6 +184,7 @@ class ClockView: DesignableView{
             clock.userInteractionEnabled = false
             parentController.timeLine.appear()
             parentController.returnBut.appear()
+            parentController.searchBar.hideSelf()
             self.displayWeatherOfTheDay(0)
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.transform = CGAffineTransformMakeScale(0.75, 0.75)
@@ -199,7 +200,6 @@ class ClockView: DesignableView{
         
         if WeatherInfo.forcastMode{
             WeatherInfo.forcastMode = false
-            parentController.mapView.changeIconWithTime(-1)
             clockIndex = 0
             futureDay = 0
             blurView.removeGestureRecognizer(dragger)
