@@ -104,6 +104,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     
     @IBAction func returnCurrentPositionButtonDidPressed(sender: DesignableButton) {
+        mapView.shouldDisplayCard = true
+        WeatherInfo.getLocalWeatherInformation(UserLocation.centerLocation.coordinate, number: mapView.getNumOfWeatherBasedOnZoom())
         mapView.animateToLocation(UserLocation.centerLocation.coordinate)
     }
 
