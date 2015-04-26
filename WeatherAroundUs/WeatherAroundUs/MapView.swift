@@ -33,7 +33,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         self.mapType = kGMSTypeNormal
         self.setMinZoom(8, maxZoom: 14)
-        self.myLocationEnabled = false
+        self.myLocationEnabled = true
         self.delegate = self
         self.trafficEnabled = false
         
