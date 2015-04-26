@@ -298,10 +298,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ka-0M-Yir" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Daj-Li-ljH" customClass="FBShimmeringView">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Daj-Li-ljH" customClass="FBShimmeringView">
                                                 <rect key="frame" x="189" y="122" width="168" height="111"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59°F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5C-g9-bKn" customClass="SpringLabel" customModule="Spring">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5C-g9-bKn" customClass="SpringLabel" customModule="Spring">
                                                         <rect key="frame" x="0.0" y="0.0" width="168" height="111"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="80"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -502,28 +502,24 @@
                                                     <outlet property="line" destination="nx3-76-x01" id="HhP-5K-Z2A"/>
                                                 </connections>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbh-x8-lMX">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbh-x8-lMX">
                                                 <rect key="frame" x="274" y="122" width="83" height="111"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="dbh-x8-lMX" secondAttribute="height" multiplier="3:4" id="vpy-n1-PdJ"/>
-                                                </constraints>
                                                 <state key="normal">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="switchWeatherUnitButtonDidPressed:" destination="ECH-Ns-pDS" eventType="touchUpInside" id="3SI-6r-mbD"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="YcK-fL-cU8" firstAttribute="centerX" secondItem="xJg-lg-rAJ" secondAttribute="centerX" id="1nN-mo-Wmw"/>
                                             <constraint firstItem="Daj-Li-ljH" firstAttribute="top" secondItem="1ka-0M-Yir" secondAttribute="top" constant="122" id="BNP-kf-ts1"/>
                                             <constraint firstAttribute="trailing" secondItem="Daj-Li-ljH" secondAttribute="trailing" constant="18" id="Bdi-dU-jp5"/>
+                                            <constraint firstItem="dbh-x8-lMX" firstAttribute="trailing" secondItem="Daj-Li-ljH" secondAttribute="trailing" id="C47-ku-IYP"/>
                                             <constraint firstAttribute="trailing" secondItem="xJg-lg-rAJ" secondAttribute="trailing" constant="8" id="Epo-nE-sBJ"/>
+                                            <constraint firstItem="dbh-x8-lMX" firstAttribute="leading" secondItem="Daj-Li-ljH" secondAttribute="leading" id="FmA-g3-n3b"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="top" secondItem="xJg-lg-rAJ" secondAttribute="bottom" constant="10" id="KVc-xv-ndx"/>
-                                            <constraint firstItem="M5C-g9-bKn" firstAttribute="trailing" secondItem="dbh-x8-lMX" secondAttribute="trailing" id="LWg-TJ-6Nr"/>
                                             <constraint firstItem="xJg-lg-rAJ" firstAttribute="top" secondItem="M5C-g9-bKn" secondAttribute="bottom" id="MIY-b5-CPW"/>
                                             <constraint firstItem="YcK-fL-cU8" firstAttribute="width" secondItem="xJg-lg-rAJ" secondAttribute="width" id="Pyx-9F-58r"/>
+                                            <constraint firstItem="dbh-x8-lMX" firstAttribute="top" secondItem="Daj-Li-ljH" secondAttribute="top" id="RiN-rk-QhL"/>
                                             <constraint firstItem="xJg-lg-rAJ" firstAttribute="leading" secondItem="1ka-0M-Yir" secondAttribute="leading" constant="8" id="VrX-4G-Cwd"/>
                                             <constraint firstItem="M5C-g9-bKn" firstAttribute="centerY" secondItem="dbh-x8-lMX" secondAttribute="centerY" id="WMO-Rb-Ywy"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="centerX" secondItem="xJg-lg-rAJ" secondAttribute="centerX" id="eXl-HB-SIF"/>
@@ -531,7 +527,7 @@
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="bottom" secondItem="YcK-fL-cU8" secondAttribute="top" constant="-10" id="kKe-yc-slT"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="width" secondItem="xJg-lg-rAJ" secondAttribute="width" id="klw-iq-huI"/>
                                             <constraint firstItem="uYV-Mc-jsF" firstAttribute="leading" secondItem="1ka-0M-Yir" secondAttribute="leading" constant="8" id="rrb-FW-In6"/>
-                                            <constraint firstItem="M5C-g9-bKn" firstAttribute="height" secondItem="dbh-x8-lMX" secondAttribute="height" id="uAM-AT-Cqu"/>
+                                            <constraint firstItem="dbh-x8-lMX" firstAttribute="bottom" secondItem="Daj-Li-ljH" secondAttribute="bottom" id="w4n-fD-94h"/>
                                         </constraints>
                                     </view>
                                 </subviews>
