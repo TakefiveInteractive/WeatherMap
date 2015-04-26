@@ -47,7 +47,7 @@ class ClockView: DesignableView{
     }
 
     func setup() {
-
+        
         timeDisplay.roundCorner(UIRectCorner.AllCorners, radius: frame.width / 2)
         clock.addTarget(self, action: "clockClicked", forControlEvents: UIControlEvents.TouchUpInside)
         clock.layer.shadowOffset = CGSizeMake(0, 2)
@@ -56,6 +56,11 @@ class ClockView: DesignableView{
         blurView.roundCircle()
         blurView.alpha = 1
         addRotatingAnimation()
+        
+        self.timeLab = UILabel(frame: CGRectMake(0, 0, self.timeDisplay.frame.width - self.timeDisplay.frame.height, self.timeDisplay.frame.height))
+        self.timeLab.font = UIFont(name: "AvenirNextCondensed-Regular", size: 22)
+        self.timeLab.textAlignment = NSTextAlignment.Center
+        self.timeDisplay.addSubview(self.timeLab)
     }
     
     func dragged(sender: UIPanGestureRecognizer){
@@ -108,35 +113,22 @@ class ClockView: DesignableView{
     func displayWeatherOfTheDay(dayNum: Int){
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             self.transform = CGAffineTransformMake(0.75, 0, 0, 0.75, 0, self.clockIndex)
-            }, completion: { (finish) -> Void in
-                
-                let date = NSDate(timeIntervalSinceNow: 24 * 60 * 60 * Double(dayNum))
-                let calendar = NSCalendar.currentCalendar()
-                let components = calendar.components(.CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
-                let month = components.month
-                let day = components.day
-                
-                
-                if self.timerCount > 0{
-                    self.timerCount = 0
-                }else{
-                    
-                    self.timeLab = UILabel(frame: CGRectMake(0, 0, self.timeDisplay.frame.width - self.timeDisplay.frame.height, self.timeDisplay.frame.height))
-                    self.timeLab.font = UIFont(name: "AvenirNextCondensed-Regular", size: 22)
-                    self.timeLab.textAlignment = NSTextAlignment.Center
-                    
-                    self.timeDisplay.addSubview(self.timeLab)
-                    
-                    UIView.animateWithDuration(0.2, animations: { () -> Void in
-                        self.addLineAnimation()
-                        self.timeDisplay.alpha = 1
-                        })
-                    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "countDisplayTime", userInfo: nil, repeats: true)
-
-                }
-                self.timeLab.text = "\(self.getBriefMonth(month)) \(day)"
-                
         })
+
+        let date = NSDate(timeIntervalSinceNow: 24 * 60 * 60 * Double(dayNum))
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+        let month = components.month
+        let day = components.day
+        
+        self.timerCount = 0
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.addLineAnimation()
+            self.timeDisplay.alpha = 1
+        })
+        timer.invalidate()
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "countDisplayTime", userInfo: nil, repeats: true)
+        self.timeLab.text = "\(self.getBriefMonth(month)) \(day)"
 
     }
     
@@ -181,10 +173,11 @@ class ClockView: DesignableView{
     }
     
     func dateIndicatorDisappear(){
+        timerCount = 0
+        timer.invalidate()
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             self.timeDisplay.alpha = 0
             self.timeDisplayOutLine.removeFromSuperlayer()
-            self.timeLab.alpha = 0
         })
     }
     
@@ -194,17 +187,19 @@ class ClockView: DesignableView{
             clock.userInteractionEnabled = false
             parentController.timeLine.appear()
             parentController.returnBut.appear()
+            self.displayWeatherOfTheDay(0)
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.transform = CGAffineTransformMakeScale(0.75, 0.75)
-            }, completion: { (finish) -> Void in
-                self.displayWeatherOfTheDay(0)
-            })
-            dragger = UIPanGestureRecognizer(target: self, action: "dragged:")
-            blurView.addGestureRecognizer(dragger)
+                }){ (finish) -> Void in
+                    self.dragger = UIPanGestureRecognizer(target: self, action: "dragged:")
+                    self.blurView.addGestureRecognizer(self.dragger)
+            }
+
         }
     }
     
     func clockReturnNormalSize(){
+        
         if WeatherInfo.forcastMode{
             WeatherInfo.forcastMode = false
             parentController.mapView.changeIconWithTime(-1)
