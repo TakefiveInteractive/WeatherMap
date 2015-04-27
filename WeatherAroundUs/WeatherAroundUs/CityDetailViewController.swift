@@ -84,7 +84,10 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         dateFormatter.dateFormat = "MMM dd"
         let dateStr = dateFormatter.stringFromDate(currDate)
         dateDisplayLabel.text = dateStr
-
+        //handle chinese
+        if dateDisplayLabel.text!.rangeOfString("月") != nil {
+            dateDisplayLabel.text = dateDisplayLabel.text! + "日"
+        }
         switchWeatherUnitButtonDidPressed()
 
     }
@@ -133,7 +136,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         
         let imageDict = ImageCache.imagesUrl
         let imageUrl = imageDict[cityID]
-        if imageUrl != "" {
+        if imageUrl != nil {
             var cache = ImageCache()
             cache.delegate = backgroundImageView
             cache.getImageFromCache(imageUrl!, cityID: cityID)

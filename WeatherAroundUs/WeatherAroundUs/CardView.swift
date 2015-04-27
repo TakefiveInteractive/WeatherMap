@@ -172,10 +172,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                     let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
                     
                     var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
-                    println(temp)
                     if WeatherInfo.forcastMode {
                         temp = (((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double
-                        println(temp)
                     }
                     temp = temp - 273
                     let tempF = temp * 9 / 5 + 32
