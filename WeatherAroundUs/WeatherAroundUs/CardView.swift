@@ -113,6 +113,11 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         // set image to invalid
         imageUrlReady = false
         
+        var connection = InternetConnection()
+        connection.delegate = self
+        //get image url
+        connection.searchForCityPhotos(CLLocationCoordinate2DMake(((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
+        
         if hide {
             
             parentViewController.returnCurrentPositionButton.animation = "fadeOut"

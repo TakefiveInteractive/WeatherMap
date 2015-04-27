@@ -68,10 +68,11 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
     func chooseCity(sender: UIButton){
         
         parentController.searchBar.hideSelf()
-        
+    
         let placeid = placeIDList[find(resultList, sender)!]
         
         parentController.card.hideSelf()
+        parentController.clockButton.clockReturnNormalSize()
         parentController.searchBar.searchBar.text = ""
         removeCities()
 
@@ -82,7 +83,8 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
     }
     
     func gotLocationWithPlaceID(location: CLLocationCoordinate2D){
-        WeatherInfo.getLocalWeatherInformation(location, number: 10)
+        parentController.mapView.shouldDisplayCard = true
+        WeatherInfo.getLocalWeatherInformation(location, number: parentController.mapView.getNumOfWeatherBasedOnZoom())
         self.parentController.mapView.animateToLocation(location)
 
     }
