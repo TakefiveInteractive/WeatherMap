@@ -23,7 +23,7 @@ class MotionManager: NSObject{
     
     func start(){
         if manager.gyroAvailable {
-            manager.gyroUpdateInterval = 0.1
+            manager.gyroUpdateInterval = 0.4
             let queue = NSOperationQueue.mainQueue
             manager.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrame.XArbitraryCorrectedZVertical, toQueue: queue(), withHandler: { (data, error) -> Void in
                 self.delegate?.gotAttitudeRoll!(CGFloat((data as CMDeviceMotion).attitude.roll))
