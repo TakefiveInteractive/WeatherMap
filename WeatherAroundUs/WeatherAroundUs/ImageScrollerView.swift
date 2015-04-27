@@ -23,6 +23,9 @@ class ImageScrollerView: UIScrollView, ImageCacheDelegate, MotionManagerDelegate
             imageView.frame.size = contentSize
             addSubview(imageView)
             setContentOffset(CGPointMake((contentSize.width - width) / 2, 0), animated: false)
+            
+            UserMotion.delegate = self
+            UserMotion.start()
         }else{
             // don't enable motion
             contentSize = CGSizeMake(width, width * image.size.height / image.size.width)
@@ -31,8 +34,7 @@ class ImageScrollerView: UIScrollView, ImageCacheDelegate, MotionManagerDelegate
             setContentOffset(CGPointMake(0, (contentSize.height - height) / 2), animated: false)
         }
         
-        UserMotion.delegate = self
-        UserMotion.start()
+
     }
     
     func gotImageFromCache(image: UIImage, cityID: String) {
@@ -40,21 +42,28 @@ class ImageScrollerView: UIScrollView, ImageCacheDelegate, MotionManagerDelegate
     }
     
     func gotAttitudeRoll(roll: CGFloat) {
-        println(roll)
         var num = roll
         if abs(roll) > 0.1{
+
+            var animateIndex:CGFloat = 0
+            
             if contentOffset.x >= 5 && contentOffset.x <= contentSize.width - UIScreen.mainScreen().bounds.width - 5 {
                 if num > 1{
                     num = 1
                 }else if num < -1 {
                     num = -1
                 }
-                setContentOffset(CGPointMake(contentOffset.x + num, 0), animated: false)
+                animateIndex = contentOffset.x + num
             }else if contentOffset.x < 5{
-                setContentOffset(CGPointMake(5, 0), animated: false)
+                animateIndex = 5
             }else if contentOffset.x > contentSize.width - UIScreen.mainScreen().bounds.width - 5{
-                setContentOffset(CGPointMake(contentSize.width - UIScreen.mainScreen().bounds.width - 5, 0), animated: false)
+                animateIndex = contentSize.width - UIScreen.mainScreen().bounds.width - 5
             }
+            
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                self.contentOffset = CGPointMake(animateIndex, 0)
+            })
+            
         }
     }
 
