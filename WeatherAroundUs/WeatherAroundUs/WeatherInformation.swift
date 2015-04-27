@@ -13,10 +13,6 @@ import Alamofire
     optional func gotOneNewWeatherData(cityID: String, latitude:CLLocationDegrees, longitude:CLLocationDegrees)
 }
 
-@objc protocol UpdateIconListDelegate: class {
-    optional func updateIconList()
-}
-
 var WeatherInfo: WeatherInformation = WeatherInformation()
 
 class WeatherInformation: NSObject, InternetConnectionDelegate{
@@ -32,12 +28,11 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     //current city id
     var currentCityID = ""
 
-    let maxCityNum = 40
+    let maxCityNum = 150
 
     var forcastMode = false
     
     var weatherDelegate : WeatherInformationDelegate?
-    var updateIconListDelegate : UpdateIconListDelegate?
     
     override init() {
         super.init()
@@ -57,20 +52,21 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         for var index = 0; index < cities.count; index++ {
                 
-                let id: Int = (cities[index] as! [String : AnyObject]) ["id"] as! Int
-                
-                // first time weather data
-                if self.citiesAroundDict["\(id)"] == nil {
-                    self.citiesAroundDict.updateValue(cities[index], forKey: "\(id)")
-                    var connection = InternetConnection()
-                    connection.delegate = self
-                    connection.getWeatherForcast("\(id)")
-                }
-                if !forcastMode {
-                    self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
-                }
-
+            let id: Int = (cities[index] as! [String : AnyObject]) ["id"] as! Int
+            
+            // first time weather data
+            if self.citiesAroundDict["\(id)"] == nil {
+                self.citiesAroundDict.updateValue(cities[index], forKey: "\(id)")
+                var connection = InternetConnection()
+                connection.delegate = self
+                connection.getWeatherForcast("\(id)")
             }
+            
+            if !forcastMode {
+                self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
+            }
+
+        }
 
     }
     

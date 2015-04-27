@@ -54,26 +54,23 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     func gotOneNewWeatherData(cityID: String, latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         
+        //display card if needed
+        if shouldDisplayCard {
+            shouldDisplayCard = false
+            //diplay the card of the first city getted
+            WeatherInfo.currentCityID = cityID
+            parentController.card.displayCity(cityID)
+        }
+        
         // update city if doesn't exist
         if weatherIcons[cityID] == nil{
             
-            WeatherInfo.citiesAround.insert(cityID, atIndex: 0)
-            
-            if shouldDisplayCard {
-                shouldDisplayCard = false
-                //diplay the card of the first city getted
-                parentController.card.displayCity(cityID)
-                WeatherInfo.currentCityID = cityID
-                var connection = InternetConnection()
-                connection.delegate = parentController.card
-                connection.searchForCityPhotos(CLLocationCoordinate2DMake(latitude, longitude), name:((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)            }
-            
             if WeatherInfo.citiesAround.count > WeatherInfo.maxCityNum{
-                self.weatherIcons[WeatherInfo.citiesAround.last!]!.map = nil
-                self.weatherIcons.removeValueForKey(WeatherInfo.citiesAround.last!)
+                let city = WeatherInfo.citiesAround.last!
                 WeatherInfo.citiesAround.removeLast()
+                self.weatherIcons[city]!.map = nil
+                self.weatherIcons.removeValueForKey(city)
             }
-            WeatherInfo.updateIconListDelegate?.updateIconList!()
             
             var marker = GMSMarker(position: CLLocationCoordinate2DMake(latitude
                 , longitude))
@@ -90,18 +87,24 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             marker.title = cityID
 
             weatherIcons.updateValue(marker, forKey: cityID)
+            
+        }else{
+            // remove the existing in the queue and add it again
+            WeatherInfo.citiesAround.removeAtIndex(find(WeatherInfo.citiesAround, cityID)!)
         }
+        WeatherInfo.citiesAround.insert(cityID, atIndex: 0)
+
     }
     
     func getNumOfWeatherBasedOnZoom()->Int{
         if camera.zoom > 12.5{
-            return 3
-        }else if camera.zoom > 11{
             return 5
+        }else if camera.zoom > 11{
+            return 10
         }else if camera.zoom < 9.5{
-            return 9
+            return 20
         }else{
-            return 7
+            return 15
         }
     }
     
@@ -130,26 +133,9 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+        WeatherInfo.currentCityID = marker.title
         parentController.card.displayCity(marker.title)
-        
-        WeatherInfo.currentCityID = (weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String
-        
-        //let userDefault = NSUserDefaults.standardUserDefaults()
-       /* if let url: AnyObject = (userDefault.objectForKey("smallImgUrl") as! NSMutableDictionary).objectForKey(WeatherInfo.currentCityID){
-            // if doesn't have url  get url
-            var cache = ImageCache()
-            cache.delegate = parentController.card
-            cache.getSmallImageFromCache(url as! String, cityID: WeatherInfo.currentCityID)
-        }else{*/
-            var connection = InternetConnection()
-            connection.delegate = parentController.card
-            //get image url
-            connection.searchForCityPhotos(marker.position, name:((WeatherInfo.citiesAroundDict[(weatherIcons as NSDictionary).allKeysForObject(marker)[0] as! String] as! [String: AnyObject])["name"] as? String)!, cityID: WeatherInfo.currentCityID)
-        //}
-        
-        
         self.animateToLocation(marker.position)
-        
         return true
     }
     
