@@ -99,7 +99,6 @@ class InternetConnection: NSObject {
     func flickrSearch(location: CLLocationCoordinate2D, cityID: String){
         var searchText = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=10&lat=\(location.latitude)&lon=\(location.longitude)&method=flickr.photos.search&sort=interestingness-desc&tags=scenic,landscape,city&format=json&nojsoncallback=1"
         searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        println(searchText)
         
         var req = Alamofire.request(.GET, NSURL(string: searchText)!).responseJSON { (_, response, JSON, error) in
 
@@ -109,7 +108,6 @@ class InternetConnection: NSObject {
                 
                 
                 let id = myjson["photos"]["photo"][Int(arc4random_uniform(9))]["id"].string
-                println(id)
 
                 if id != nil{
                     self.searchPhotoID(id!, cityID: cityID, location:location)
@@ -140,7 +138,6 @@ class InternetConnection: NSObject {
                 let arr = myjson["sizes"]["size"].arrayObject!//["source"].string
                 let imageUrl = myjson["sizes"]["size"][arr.count - 1]["source"].string
                 
-                println(imageUrl)
 
                 if tbUrl != nil && imageUrl != nil{
                     ImageCache.smallImagesUrl.updateValue(tbUrl!, forKey: cityID)
