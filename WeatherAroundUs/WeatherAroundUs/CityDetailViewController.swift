@@ -10,7 +10,7 @@ import UIKit
 import Spring
 import Shimmer
 
-class CityDetailViewController: UIViewController, UIScrollViewDelegate{
+class CityDetailViewController: UIViewController, UIScrollViewDelegate, InternetConnectionDelegate{
 
     @IBOutlet var backgroundImageView: ImageScrollerView!
     @IBOutlet var scrollView: UIScrollView!
@@ -65,7 +65,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate{
         super.viewWillAppear(true)
        // backgroundImageView = tempImage
         switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
-    
+        
         backgroundImageView.setup(tempImage)
         setBackgroundImage()
     }
@@ -130,12 +130,26 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate{
     }
     
     func setBackgroundImage() {
+        
         let imageDict = ImageCache.imagesUrl
-        let imageUrl = imageDict[cityID]!
-        var cache = ImageCache()
-        cache.delegate = backgroundImageView
-        cache.getImageFromCache(imageUrl, cityID: cityID)
+        let imageUrl = imageDict[cityID]
+        if imageUrl != "" {
+            var cache = ImageCache()
+            cache.delegate = backgroundImageView
+            cache.getImageFromCache(imageUrl!, cityID: cityID)
+        }else{
+            // search if image not found
+            var connection = InternetConnection()
+            connection.delegate = self
+            //get image url
+            connection.searchForCityPhotos(CLLocationCoordinate2DMake(((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: WeatherInfo.currentCityID)
+        }
     }
     
+    func gotImageUrls(btUrl: String, imageURL: String, cityID: String) {
+        var cache = ImageCache()
+        cache.delegate = backgroundImageView
+        cache.getImageFromCache(imageURL, cityID: cityID)
+    }
 
 }

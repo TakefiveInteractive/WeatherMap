@@ -46,6 +46,7 @@
 		427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */; };
 		429B95CB1AD198E400851D32 /* WeatherInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B95CA1AD198E400851D32 /* WeatherInformation.swift */; };
 		42AF65641AEB537400E4E550 /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF65631AEB537400E4E550 /* IconImage.swift */; };
+		42B53CD51AEED92B00420A5E /* 48-1024x670.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CD41AEED92B00420A5E /* 48-1024x670.jpg */; };
 		42B842321AE0C68200FCA7E2 /* 01d.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B842201AE0C68200FCA7E2 /* 01d.png */; };
 		42B842331AE0C68200FCA7E2 /* 01n.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B842211AE0C68200FCA7E2 /* 01n.png */; };
 		42B842341AE0C68200FCA7E2 /* 02d.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B842221AE0C68200FCA7E2 /* 02d.png */; };
@@ -152,6 +153,7 @@
 		427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMapCalculations.swift; sourceTree = "<group>"; };
 		429B95CA1AD198E400851D32 /* WeatherInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInformation.swift; sourceTree = "<group>"; };
 		42AF65631AEB537400E4E550 /* IconImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
+		42B53CD41AEED92B00420A5E /* 48-1024x670.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "48-1024x670.jpg"; sourceTree = "<group>"; };
 		42B842201AE0C68200FCA7E2 /* 01d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 01d.png; path = weatherIcon/01d.png; sourceTree = "<group>"; };
 		42B842211AE0C68200FCA7E2 /* 01n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 01n.png; path = weatherIcon/01n.png; sourceTree = "<group>"; };
 		42B842221AE0C68200FCA7E2 /* 02d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 02d.png; path = weatherIcon/02d.png; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 		42F15D491AD08275004D64EF /* IMGs */ = {
 			isa = PBXGroup;
 			children = (
+				42B53CD41AEED92B00420A5E /* 48-1024x670.jpg */,
 				882AB7E11AECA6B000C1C773 /* returnCurPosButton.png */,
 				42D961981AE5FF850082352E /* NewclockPin1.png */,
 				42466A911AE5A4EA00E0BD4B /* Newclock.png */,
@@ -557,6 +560,7 @@
 				42466A941AE5A4EA00E0BD4B /* NewclockPin.png in Resources */,
 				42B842331AE0C68200FCA7E2 /* 01n.png in Resources */,
 				427BAFC31AD0F2B500C87BDE /* sunrainning.png in Resources */,
+				42B53CD51AEED92B00420A5E /* 48-1024x670.jpg in Resources */,
 				4255EAFB1ADB622B00689B9E /* 184278702.png in Resources */,
 				427BAFC51AD0F2B500C87BDE /* eveningrain.png in Resources */,
 				42068B771ADC570300FE4BD3 /* acard.png in Resources */,
