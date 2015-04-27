@@ -55,7 +55,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         searchBar.delegate = searchResultList
         searchResultList.parentController = self
         
-        
     }
     
     override func viewDidAppear(animated: Bool) {

@@ -10,9 +10,9 @@ import UIKit
 import Spring
 import Shimmer
 
-class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollViewDelegate, MotionManagerDelegate{
+class CityDetailViewController: UIViewController, UIScrollViewDelegate{
 
-    @IBOutlet var backgroundImageView: UIScrollView!
+    @IBOutlet var backgroundImageView: ImageScrollerView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var mainTemperatureShimmerView: FBShimmeringView!
     
@@ -63,13 +63,11 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        backgroundImageView.image = tempImage
-        setBackgroundImage()
+       // backgroundImageView = tempImage
         switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        UserMotion.delegate = self
-        UserMotion.start()
     
+        backgroundImageView.setup(tempImage)
+        setBackgroundImage()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -97,17 +95,12 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -90 {
+            UserMotion.stop()
             self.performSegueWithIdentifier("backToMain", sender: self)
         }
     }
     
-    func setBackgroundImage() {
-        let imageDict = ImageCache.imagesUrl
-        let imageUrl = imageDict[cityID]!
-        var cache = ImageCache()
-        cache.delegate = self
-        cache.getImageFromCache(imageUrl, cityID: cityID)
-    }
+
     
     func degreeConvert(degree: Int32) -> Int32 {
         if isFnotC {
@@ -136,11 +129,13 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         detailWeatherView.reloadTempatureContent(nineDayWeatherForcast)
     }
     
-    func gotImageFromCache(image: UIImage, cityID: String) {
-        backgroundImageView.image = image
+    func setBackgroundImage() {
+        let imageDict = ImageCache.imagesUrl
+        let imageUrl = imageDict[cityID]!
+        var cache = ImageCache()
+        cache.delegate = backgroundImageView
+        cache.getImageFromCache(imageUrl, cityID: cityID)
     }
     
-    func gotAttitudeRoll(roll: CGFloat) {
-        println(roll)
-    }
+
 }

@@ -281,7 +281,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLQ-oH-KaY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLQ-oH-KaY" customClass="ImageScrollerView" customModule="WeatherAroundUs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                             </scrollView>
                             <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTZ-if-wGP">
@@ -557,6 +557,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageView" destination="JLQ-oH-KaY" id="GQT-2t-hWD"/>
                         <outlet property="basicForecastViewHeight" destination="OsT-dG-D0R" id="xm7-xc-pCA"/>
                         <outlet property="dateDisplayLabel" destination="eu2-Ii-RtU" id="8tW-I4-9tY"/>
                         <outlet property="detailWeatherView" destination="YcK-fL-cU8" id="js3-Ne-uCx"/>

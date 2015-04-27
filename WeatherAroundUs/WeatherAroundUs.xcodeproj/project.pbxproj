@@ -31,6 +31,7 @@
 		4255EAFE1ADB651000689B9E /* cloudAndSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFD1ADB651000689B9E /* cloudAndSun.png */; };
 		4255EAFF1ADB651000689B9E /* cloudAndSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFD1ADB651000689B9E /* cloudAndSun.png */; };
 		426880291AEDC5E000F0EC16 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426880281AEDC5E000F0EC16 /* MotionManager.swift */; };
+		4268802B1AEDD34200F0EC16 /* ImageScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268802A1AEDD34200F0EC16 /* ImageScrollerView.swift */; };
 		427BAFA51AD0E6F900C87BDE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA41AD0E6F900C87BDE /* MapView.swift */; };
 		427BAFAA1AD0E71100C87BDE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA91AD0E71100C87BDE /* LocationManager.swift */; };
 		427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 427BAFAB1AD0EBBF00C87BDE /* slayer11.ttf */; };
@@ -135,6 +136,7 @@
 		4255EAFA1ADB622B00689B9E /* 184278702.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 184278702.png; sourceTree = "<group>"; };
 		4255EAFD1ADB651000689B9E /* cloudAndSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudAndSun.png; sourceTree = "<group>"; };
 		426880281AEDC5E000F0EC16 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		4268802A1AEDD34200F0EC16 /* ImageScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerView.swift; sourceTree = "<group>"; };
 		427BAF711AD0C30B00C87BDE /* HanekeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HanekeSwift.framework; path = "Pods/../build/Debug-iphoneos/Pods/HanekeSwift.framework"; sourceTree = "<group>"; };
 		427BAFA41AD0E6F900C87BDE /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		427BAFA91AD0E71100C87BDE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		42466A8E1AE590CC00E0BD4B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				4268802A1AEDD34200F0EC16 /* ImageScrollerView.swift */,
 				8814F8871AEC52250093B037 /* DetailWeatherView.swift */,
 				88888A031AEB4041007EC387 /* DigestWeatherView.swift */,
 				88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */,
@@ -671,6 +674,7 @@
 				424F5A291ADE379C00B09FBA /* InternetConnection.swift in Sources */,
 				424F5A2E1ADF46BD00B09FBA /* ImageCardView.swift in Sources */,
 				426880291AEDC5E000F0EC16 /* MotionManager.swift in Sources */,
+				4268802B1AEDD34200F0EC16 /* ImageScrollerView.swift in Sources */,
 				427BAFA51AD0E6F900C87BDE /* MapView.swift in Sources */,
 				42466A991AE5AD3E00E0BD4B /* TimeLineManager.swift in Sources */,
 				42D4EDC91A9E7F02006AE807 /* AppDelegate.swift in Sources */,
