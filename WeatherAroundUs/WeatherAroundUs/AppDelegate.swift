@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyDLBiMd9DqNtqeRc2DMtoeYL4hg53wUEw8")
         UserLocation.setup()
+        IconImage.setupPhotos()
 
         let userDefault = NSUserDefaults.standardUserDefaults()
         // init the image url cache if not exist
@@ -53,8 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userDefault.synchronize()
         }
 
-        IconImage.setupPhotos()
-        
         return true
     }
 

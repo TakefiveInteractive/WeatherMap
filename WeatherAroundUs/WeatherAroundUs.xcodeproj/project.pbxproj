@@ -30,6 +30,7 @@
 		4255EAFC1ADB622B00689B9E /* 184278702.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFA1ADB622B00689B9E /* 184278702.png */; };
 		4255EAFE1ADB651000689B9E /* cloudAndSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFD1ADB651000689B9E /* cloudAndSun.png */; };
 		4255EAFF1ADB651000689B9E /* cloudAndSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4255EAFD1ADB651000689B9E /* cloudAndSun.png */; };
+		426880291AEDC5E000F0EC16 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426880281AEDC5E000F0EC16 /* MotionManager.swift */; };
 		427BAFA51AD0E6F900C87BDE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA41AD0E6F900C87BDE /* MapView.swift */; };
 		427BAFAA1AD0E71100C87BDE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA91AD0E71100C87BDE /* LocationManager.swift */; };
 		427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 427BAFAB1AD0EBBF00C87BDE /* slayer11.ttf */; };
@@ -133,6 +134,7 @@
 		4255EAF41ADB599800689B9E /* CardwoShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardwoShadow.png; sourceTree = "<group>"; };
 		4255EAFA1ADB622B00689B9E /* 184278702.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 184278702.png; sourceTree = "<group>"; };
 		4255EAFD1ADB651000689B9E /* cloudAndSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudAndSun.png; sourceTree = "<group>"; };
+		426880281AEDC5E000F0EC16 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		427BAF711AD0C30B00C87BDE /* HanekeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HanekeSwift.framework; path = "Pods/../build/Debug-iphoneos/Pods/HanekeSwift.framework"; sourceTree = "<group>"; };
 		427BAFA41AD0E6F900C87BDE /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		427BAFA91AD0E71100C87BDE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -273,6 +275,9 @@
 		42466A8E1AE590CC00E0BD4B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				8814F8871AEC52250093B037 /* DetailWeatherView.swift */,
+				88888A031AEB4041007EC387 /* DigestWeatherView.swift */,
+				88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */,
 				424F5A1D1ADE01C300B09FBA /* CitySearchView.swift */,
 				42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */,
 				424BCD221AE8A6570053D1E9 /* ReturnButton.swift */,
@@ -314,9 +319,6 @@
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */,
-				8814F8871AEC52250093B037 /* DetailWeatherView.swift */,
-				88888A031AEB4041007EC387 /* DigestWeatherView.swift */,
-				88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */,
 				42466A8E1AE590CC00E0BD4B /* CustomViews */,
 				42AF65631AEB537400E4E550 /* IconImage.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
@@ -326,6 +328,7 @@
 				42466A8C1AE5466A00E0BD4B /* ImageCache.swift */,
 				427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */,
 				42466A9A1AE5DAAD00E0BD4B /* UIViewExtension.swift */,
+				426880281AEDC5E000F0EC16 /* MotionManager.swift */,
 				427BAFA91AD0E71100C87BDE /* LocationManager.swift */,
 				42F15D491AD08275004D64EF /* IMGs */,
 				42D4EDD21A9E7F02006AE807 /* Images.xcassets */,
@@ -667,6 +670,7 @@
 				427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */,
 				424F5A291ADE379C00B09FBA /* InternetConnection.swift in Sources */,
 				424F5A2E1ADF46BD00B09FBA /* ImageCardView.swift in Sources */,
+				426880291AEDC5E000F0EC16 /* MotionManager.swift in Sources */,
 				427BAFA51AD0E6F900C87BDE /* MapView.swift in Sources */,
 				42466A991AE5AD3E00E0BD4B /* TimeLineManager.swift in Sources */,
 				42D4EDC91A9E7F02006AE807 /* AppDelegate.swift in Sources */,

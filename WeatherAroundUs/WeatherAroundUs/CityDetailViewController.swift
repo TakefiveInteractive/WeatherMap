@@ -10,9 +10,9 @@ import UIKit
 import Spring
 import Shimmer
 
-class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollViewDelegate {
+class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollViewDelegate, MotionManagerDelegate{
 
-    @IBOutlet var backgroundImageView: DesignableImageView!
+    @IBOutlet var backgroundImageView: UIScrollView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var mainTemperatureShimmerView: FBShimmeringView!
     
@@ -66,6 +66,10 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         backgroundImageView.image = tempImage
         setBackgroundImage()
         switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        UserMotion.delegate = self
+        UserMotion.start()
+    
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -136,4 +140,7 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         backgroundImageView.image = image
     }
     
+    func gotAttitudeRoll(roll: CGFloat) {
+        println(roll)
+    }
 }
