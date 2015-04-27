@@ -121,16 +121,24 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
             hide = false
             self.userInteractionEnabled = true
             let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-            self.icon.image = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
             
             var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
+            if WeatherInfo.forcastMode {
+               temp = (((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double
+                self.icon.image = UIImage(named: ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
+            }else{
+                self.icon.image = UIImage(named: (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
+
+            }
             temp = temp - 273
             let tempF = temp * 9 / 5 + 32
             self.temperature.text = "\(Int(temp))°C / \(Int(tempF))°F"
             self.city.text = (info as! [String: AnyObject])["name"] as? String
 
             self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
-            
+            if WeatherInfo.forcastMode {
+                self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+            }
             weatherDescriptionBack.center = weatherDescriptionBackCenter
             weatherDescriptionBack.animation = "slideLeft"
             weatherDescriptionBack.animate()
@@ -157,14 +165,26 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                 }) { (done) -> Void in
                     
                     let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-                    self.icon.image = UIImage(named: (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
                     
                     var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
+                    println(temp)
+                    if WeatherInfo.forcastMode {
+                        temp = (((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double
+                        println(temp)
+                    }
                     temp = temp - 273
                     let tempF = temp * 9 / 5 + 32
                     self.temperature.text = "\(Int(temp))°C / \(Int(tempF))°F"
                     self.city.text = (info as! [String: AnyObject])["name"] as? String
                     self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString
+                    if WeatherInfo.forcastMode {
+                        self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                        self.icon.image = UIImage(named: ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
+                    }else{
+                        self.icon.image = UIImage(named: (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String)!
+                        
+                    }
+
                     
                     UIView.animateWithDuration(0.4, animations: { () -> Void in
                         self.icon.alpha = 1

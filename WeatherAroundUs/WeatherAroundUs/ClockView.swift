@@ -101,6 +101,7 @@ class ClockView: DesignableView{
                     }
                     futureDay = i
                     displayWeatherOfTheDay(futureDay)
+                    self.parentController.card.displayCity(WeatherInfo.currentCityID)
                     break
                 }
             }
