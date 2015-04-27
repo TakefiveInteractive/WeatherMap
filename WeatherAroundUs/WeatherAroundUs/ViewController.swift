@@ -91,7 +91,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
             
             //avoid label overlay
             clockButton.timeLab.removeFromSuperview()
-            
+            returnBut.dissAppear()
             searchBar.hideSelf()
             searchResultList.removeCities()
             card.hideSelf()
