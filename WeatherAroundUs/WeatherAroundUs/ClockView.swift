@@ -112,12 +112,6 @@ class ClockView: DesignableView{
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             self.transform = CGAffineTransformMake(0.75, 0, 0, 0.75, 0, self.clockIndex)
         })
-
-        let date = NSDate(timeIntervalSinceNow: 24 * 60 * 60 * Double(dayNum))
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
-        let month = components.month
-        let day = components.day
         
         self.timerCount = 0
         UIView.animateWithDuration(0.2, animations: { () -> Void in
@@ -126,39 +120,18 @@ class ClockView: DesignableView{
         })
         timer.invalidate()
         self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "countDisplayTime", userInfo: nil, repeats: true)
-        self.timeLab.text = "\(self.getBriefMonth(month)) \(day)"
-
-    }
-    
-    func getBriefMonth(month: Int)->String{
-        switch month {
-        case 1:
-            return "Jan"
-        case 2:
-            return "Feb"
-        case 3:
-            return "Mar"
-        case 4:
-            return "Apr"
-        case 5:
-            return "May"
-        case 6:
-            return "June"
-        case 7:
-            return "July"
-        case 8:
-            return "Aug"
-        case 9:
-            return "Sep"
-        case 10:
-            return "Oct"
-        case 11:
-            return "Nov"
-        case 12:
-            return "Dec"
-        default:
-            return "??"
+        
+        var currDate = NSDate(timeIntervalSinceNow: 24 * 60 * 60 * Double(dayNum))
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM dd"
+        let dateStr = dateFormatter.stringFromDate(currDate)
+        self.timeLab.text = dateStr
+        
+        //handle chinese
+        if self.timeLab.text!.rangeOfString("月") != nil {
+            self.timeLab.text = self.timeLab.text! + "日"
         }
+
     }
     
     func countDisplayTime(){
