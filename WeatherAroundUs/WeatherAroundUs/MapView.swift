@@ -136,7 +136,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         WeatherInfo.currentCityID = marker.title
         parentController.card.displayCity(marker.title)
         self.animateToLocation(marker.position)
-        
         return true
     }
     

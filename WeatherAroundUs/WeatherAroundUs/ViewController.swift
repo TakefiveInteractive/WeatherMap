@@ -82,13 +82,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         if segue.identifier == "cityDetailSegue" {
             let toView = segue.destinationViewController as! CityDetailViewController
             toView.cityID = WeatherInfo.currentCityID
-            toView.tempImage = card.smallImage.image
-        }
-    }
-    
-    func tappedCard(sender: UITapGestureRecognizer) {
-        if card.imageUrlReady {
             
+            if card.imageUrlReady {
+                toView.tempImage = card.smallImage.image
+            }else{
+                toView.tempImage = UIImage(named: "48-1024x670.jpg")!
+            }
             //avoid label overlay
             clockButton.timeLab.removeFromSuperview()
             returnBut.dissAppear()
@@ -96,18 +95,26 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
             searchResultList.removeCities()
             card.hideSelf()
             card.removeAllViews()
-            // will display the card when return
-            let touchPoint = sender.locationInView(self.view)
-            performSegueWithIdentifier("cityDetailSegue", sender: self)
+        }
+    }
+    
+    func tappedCard(sender: UITapGestureRecognizer) {
+
             
+
+
+        
             if returnCurrentPositionButton.alpha != 0 {
                 returnCurrentPositionButton.animation = "fadeOut"
                 returnCurrentPositionButton.animate()
             }
-        }
+            // will display the card when return
+            performSegueWithIdentifier("cityDetailSegue", sender: self)
+            
     }
     
     @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
+        
     }
     
     
