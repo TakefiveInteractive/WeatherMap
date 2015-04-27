@@ -47,9 +47,10 @@ class ReturnButton: UIButton {
     func dissAppear(){
         outLine.removeAllAnimations()
         outLine.removeFromSuperlayer()
+        parentController.clockButton.clockReturnNormalSize()
         parentController.mapView.changeIconWithTime(-1)
         parentController.timeLine.disAppear()
-        parentController.clockButton.clockReturnNormalSize()
+        parentController.card.displayCity(WeatherInfo.currentCityID)
     }
     
     override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {

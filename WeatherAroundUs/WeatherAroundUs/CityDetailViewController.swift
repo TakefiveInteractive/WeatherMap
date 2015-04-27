@@ -10,9 +10,9 @@ import UIKit
 import Spring
 import Shimmer
 
-class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollViewDelegate {
+class CityDetailViewController: UIViewController, UIScrollViewDelegate, InternetConnectionDelegate{
 
-    @IBOutlet var backgroundImageView: DesignableImageView!
+    @IBOutlet var backgroundImageView: ImageScrollerView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var mainTemperatureShimmerView: FBShimmeringView!
     
@@ -63,9 +63,11 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        backgroundImageView.image = tempImage
-        setBackgroundImage()
+       // backgroundImageView = tempImage
         switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        backgroundImageView.setup(tempImage)
+        setBackgroundImage()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -82,7 +84,10 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         dateFormatter.dateFormat = "MMM dd"
         let dateStr = dateFormatter.stringFromDate(currDate)
         dateDisplayLabel.text = dateStr
-
+        //handle chinese
+        if dateDisplayLabel.text!.rangeOfString("月") != nil {
+            dateDisplayLabel.text = dateDisplayLabel.text! + "日"
+        }
         switchWeatherUnitButtonDidPressed()
 
     }
@@ -93,17 +98,12 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -90 {
+            UserMotion.stop()
             self.performSegueWithIdentifier("backToMain", sender: self)
         }
     }
     
-    func setBackgroundImage() {
-        let imageDict = ImageCache.imagesUrl
-        let imageUrl = imageDict[cityID]!
-        var cache = ImageCache()
-        cache.delegate = self
-        cache.getImageFromCache(imageUrl, cityID: cityID)
-    }
+
     
     func degreeConvert(degree: Int32) -> Int32 {
         if isFnotC {
@@ -132,8 +132,27 @@ class CityDetailViewController: UIViewController, ImageCacheDelegate, UIScrollVi
         detailWeatherView.reloadTempatureContent(nineDayWeatherForcast)
     }
     
-    func gotImageFromCache(image: UIImage, cityID: String) {
-        backgroundImageView.image = image
+    func setBackgroundImage() {
+        
+        let imageDict = ImageCache.imagesUrl
+        let imageUrl = imageDict[cityID]
+        if imageUrl != nil {
+            var cache = ImageCache()
+            cache.delegate = backgroundImageView
+            cache.getImageFromCache(imageUrl!, cityID: cityID)
+        }else{
+            // search if image not found
+            var connection = InternetConnection()
+            connection.delegate = self
+            //get image url
+            connection.searchForCityPhotos(CLLocationCoordinate2DMake(((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: WeatherInfo.currentCityID)
+        }
     }
     
+    func gotImageUrls(btUrl: String, imageURL: String, cityID: String) {
+        var cache = ImageCache()
+        cache.delegate = backgroundImageView
+        cache.getImageFromCache(imageURL, cityID: cityID)
+    }
+
 }

@@ -96,10 +96,9 @@ class InternetConnection: NSObject {
     
     
     //searh url with flicker
-    func flickrSearch(location: CLLocationCoordinate2D, name: String, cityID: String){
-        var searchText = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=10&lat=\(location.latitude)&lon=\(location.longitude)&method=flickr.photos.search&sort=interestingness-desc&tags=scenic,landscape,city,beautifull&tagmode=all&format=json&nojsoncallback=1"
+    func flickrSearch(location: CLLocationCoordinate2D, cityID: String){
+        var searchText = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=10&lat=\(location.latitude)&lon=\(location.longitude)&method=flickr.photos.search&sort=interestingness-desc&tags=scenic,landscape,city&format=json&nojsoncallback=1"
         searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        println(searchText)
         
         var req = Alamofire.request(.GET, NSURL(string: searchText)!).responseJSON { (_, response, JSON, error) in
 
@@ -107,24 +106,24 @@ class InternetConnection: NSObject {
                 
                 let myjson = SwiftyJSON.JSON(JSON!)
                 
-                println(myjson["photos"]["photo"])
                 
                 let id = myjson["photos"]["photo"][Int(arc4random_uniform(9))]["id"].string
+
                 if id != nil{
-                    self.searchPhotoID(id!, cityID: cityID)
+                    self.searchPhotoID(id!, cityID: cityID, location:location)
                 }else{
-                    self.searchForCityPhotos(location , name: name, cityID: cityID)
+                    self.flickrSearch(location, cityID: cityID)
                 }
             }else{
                 //resend
-                self.searchForCityPhotos(location , name: name, cityID: cityID)
+                self.flickrSearch(location, cityID: cityID)
             }
         }
 
     }
     
     // get image url of sizes
-    func searchPhotoID(photoID: String, cityID: String){
+    func searchPhotoID(photoID: String, cityID: String, location: CLLocationCoordinate2D){
         
         var searchText = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=\(apiKey)&photo_id=\(photoID)&format=json&nojsoncallback=1"
         searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
@@ -135,19 +134,23 @@ class InternetConnection: NSObject {
                 
                 let myjson = SwiftyJSON.JSON(JSON!)
                 
-                println(myjson["sizes"]["size"])
-                
                 let tbUrl = myjson["sizes"]["size"][1]["source"].string
                 let arr = myjson["sizes"]["size"].arrayObject!//["source"].string
                 let imageUrl = myjson["sizes"]["size"][arr.count - 1]["source"].string
                 
-                ImageCache.smallImagesUrl.updateValue(tbUrl!, forKey: cityID)
-                ImageCache.imagesUrl.updateValue(imageUrl!, forKey: cityID)
-                self.delegate?.gotImageUrls!(tbUrl!, imageURL: imageUrl!, cityID: cityID)
+
+                if tbUrl != nil && imageUrl != nil{
+                    ImageCache.smallImagesUrl.updateValue(tbUrl!, forKey: cityID)
+                    ImageCache.imagesUrl.updateValue(imageUrl!, forKey: cityID)
+                    self.delegate?.gotImageUrls!(tbUrl!, imageURL: imageUrl!, cityID: cityID)
+                }else{
+                    //resend
+                    self.flickrSearch(location, cityID: cityID)
+                }
                 
             }else{
                 //resend
-                self.searchPhotoID(photoID, cityID: cityID)
+                self.searchPhotoID(photoID, cityID: cityID, location:location)
             }
         }
         
@@ -304,7 +307,7 @@ class InternetConnection: NSObject {
         //if find(cities, cityID) > 0{
          //   googleSearch(location, name: name, cityID: cityID)
         //}else{
-            flickrSearch(location, name: name, cityID: cityID)
+            flickrSearch(location, cityID: cityID)
         //}
         
     }

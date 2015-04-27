@@ -116,7 +116,7 @@
                                 <rect key="frame" x="316" y="25" width="45" height="45"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-cO-CJa">
-                                        <rect key="frame" x="-85" y="0.0" width="130" height="45"/>
+                                        <rect key="frame" x="-87" y="0.0" width="130" height="45"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" id="Oc5-KE-f3v">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="45"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,7 +179,7 @@
                                     <constraint firstItem="3hg-no-2bX" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="top" id="eQo-4E-bHk"/>
                                     <constraint firstAttribute="width" secondItem="VjW-vs-Mcr" secondAttribute="height" multiplier="1:1" id="gGu-cx-ZWc"/>
                                     <constraint firstAttribute="trailing" secondItem="3hg-no-2bX" secondAttribute="trailing" id="pYY-p0-XIv"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mai-cO-CJa" secondAttribute="trailing" id="qLz-tG-XDI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mai-cO-CJa" secondAttribute="trailing" constant="2" id="qLz-tG-XDI"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
@@ -281,9 +281,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tWb-q8-VjH" customClass="DesignableImageView" customModule="Spring">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLQ-oH-KaY" customClass="ImageScrollerView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+                            </scrollView>
                             <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTZ-if-wGP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1mM-jA-qJO">
@@ -540,24 +540,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JLQ-oH-KaY" secondAttribute="trailing" id="4V5-Dw-xwT"/>
+                            <constraint firstItem="JLQ-oH-KaY" firstAttribute="leading" secondItem="FtV-zL-DB7" secondAttribute="leading" id="7f3-ZI-v5T"/>
                             <constraint firstItem="ZeH-sy-je1" firstAttribute="top" secondItem="NCV-db-lI4" secondAttribute="bottom" id="AQS-6X-AaE"/>
                             <constraint firstItem="NCV-db-lI4" firstAttribute="leading" secondItem="FtV-zL-DB7" secondAttribute="leading" id="Bos-8w-s9E"/>
                             <constraint firstItem="qTZ-if-wGP" firstAttribute="top" secondItem="FtV-zL-DB7" secondAttribute="top" id="Due-i7-idK"/>
-                            <constraint firstItem="tWb-q8-VjH" firstAttribute="top" secondItem="FtV-zL-DB7" secondAttribute="top" id="LAh-ai-dL3"/>
+                            <constraint firstItem="JLQ-oH-KaY" firstAttribute="top" secondItem="FtV-zL-DB7" secondAttribute="top" id="Gam-aM-X6q"/>
                             <constraint firstItem="1ka-0M-Yir" firstAttribute="width" secondItem="FtV-zL-DB7" secondAttribute="width" id="RIn-hJ-RMx"/>
                             <constraint firstItem="ZeH-sy-je1" firstAttribute="top" secondItem="qTZ-if-wGP" secondAttribute="bottom" id="Wko-ag-D8K"/>
                             <constraint firstItem="qTZ-if-wGP" firstAttribute="leading" secondItem="FtV-zL-DB7" secondAttribute="leading" id="Y2P-ue-ofy"/>
-                            <constraint firstItem="ZeH-sy-je1" firstAttribute="top" secondItem="tWb-q8-VjH" secondAttribute="bottom" id="aW4-u7-g5z"/>
                             <constraint firstItem="1ka-0M-Yir" firstAttribute="height" secondItem="FtV-zL-DB7" secondAttribute="height" priority="250" id="eQR-Xv-YRN"/>
-                            <constraint firstItem="tWb-q8-VjH" firstAttribute="leading" secondItem="FtV-zL-DB7" secondAttribute="leading" id="gCv-DU-Oj4"/>
-                            <constraint firstAttribute="trailing" secondItem="tWb-q8-VjH" secondAttribute="trailing" id="oNH-Wd-8S7"/>
+                            <constraint firstItem="ZeH-sy-je1" firstAttribute="top" secondItem="JLQ-oH-KaY" secondAttribute="bottom" id="my1-zd-j9G"/>
                             <constraint firstAttribute="trailing" secondItem="qTZ-if-wGP" secondAttribute="trailing" id="r6s-rO-JYW"/>
                             <constraint firstAttribute="trailing" secondItem="NCV-db-lI4" secondAttribute="trailing" id="xgj-4I-7Ld"/>
                             <constraint firstItem="NCV-db-lI4" firstAttribute="top" secondItem="FtV-zL-DB7" secondAttribute="top" id="zjH-oE-qAd"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundImageView" destination="tWb-q8-VjH" id="NLP-c2-OVf"/>
+                        <outlet property="backgroundImageView" destination="JLQ-oH-KaY" id="GQT-2t-hWD"/>
                         <outlet property="basicForecastViewHeight" destination="OsT-dG-D0R" id="xm7-xc-pCA"/>
                         <outlet property="dateDisplayLabel" destination="eu2-Ii-RtU" id="8tW-I4-9tY"/>
                         <outlet property="detailWeatherView" destination="YcK-fL-cU8" id="js3-Ne-uCx"/>

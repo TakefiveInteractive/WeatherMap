@@ -84,6 +84,7 @@ class TimeLineView: DesignableView {
                 }
                 parentController.clockButton.futureDay = i
                 parentController.clockButton.displayWeatherOfTheDay(i)
+                parentController.card.displayCity(WeatherInfo.currentCityID)
                 break
             }
         }
