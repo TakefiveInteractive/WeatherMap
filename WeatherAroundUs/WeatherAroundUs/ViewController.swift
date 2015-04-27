@@ -100,10 +100,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     func tappedCard(sender: UITapGestureRecognizer) {
 
-            
-
-
-        
             if returnCurrentPositionButton.alpha != 0 {
                 returnCurrentPositionButton.animation = "fadeOut"
                 returnCurrentPositionButton.animate()

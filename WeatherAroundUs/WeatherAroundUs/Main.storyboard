@@ -116,7 +116,7 @@
                                 <rect key="frame" x="316" y="25" width="45" height="45"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-cO-CJa">
-                                        <rect key="frame" x="-85" y="0.0" width="130" height="45"/>
+                                        <rect key="frame" x="-87" y="0.0" width="130" height="45"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" id="Oc5-KE-f3v">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="45"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,7 +179,7 @@
                                     <constraint firstItem="3hg-no-2bX" firstAttribute="top" secondItem="VjW-vs-Mcr" secondAttribute="top" id="eQo-4E-bHk"/>
                                     <constraint firstAttribute="width" secondItem="VjW-vs-Mcr" secondAttribute="height" multiplier="1:1" id="gGu-cx-ZWc"/>
                                     <constraint firstAttribute="trailing" secondItem="3hg-no-2bX" secondAttribute="trailing" id="pYY-p0-XIv"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mai-cO-CJa" secondAttribute="trailing" id="qLz-tG-XDI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mai-cO-CJa" secondAttribute="trailing" constant="2" id="qLz-tG-XDI"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
