@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
             endingLineNumber = "146"
-            landmarkName = "searchPhotoID(_:cityID:)"
+            landmarkName = "searchPhotoID(_:cityID:location:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
             endingLineNumber = "148"
-            landmarkName = "searchPhotoID(_:cityID:)"
+            landmarkName = "searchPhotoID(_:cityID:location:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
             endingLineNumber = "149"
-            landmarkName = "searchPhotoID(_:cityID:)"
+            landmarkName = "searchPhotoID(_:cityID:location:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
