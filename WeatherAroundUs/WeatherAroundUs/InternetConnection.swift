@@ -100,12 +100,14 @@ class InternetConnection: NSObject {
         var searchText = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=10&lat=\(location.latitude)&lon=\(location.longitude)&method=flickr.photos.search&sort=interestingness-desc&tags=scenic,landscape,city,beautiful&tagmode=all&format=json&nojsoncallback=1"
         searchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
+        println(searchText)
+
+        
         var req = Alamofire.request(.GET, NSURL(string: searchText)!).responseJSON { (_, response, JSON, error) in
 
             if error == nil && JSON != nil {
                 
                 let myjson = SwiftyJSON.JSON(JSON!)
-                
                 
                 let id = myjson["photos"]["photo"][Int(arc4random_uniform(9))]["id"].string
 
@@ -116,7 +118,12 @@ class InternetConnection: NSObject {
                 }
             }else{
                 //resend
-                self.flickrSearch(location, cityID: cityID)
+                // delay 1 second
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                    Int64(1 * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
+                    self.flickrSearch(location, cityID: cityID)
+                }
             }
         }
 

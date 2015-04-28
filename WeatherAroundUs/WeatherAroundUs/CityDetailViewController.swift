@@ -103,8 +103,6 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         }
     }
     
-
-    
     func degreeConvert(degree: Int32) -> Int32 {
         if isFnotC {
             return degree - 273
