@@ -50,7 +50,6 @@ class ReturnButton: UIButton {
         parentController.clockButton.clockReturnNormalSize()
         parentController.mapView.changeIconWithTime(-1)
         parentController.timeLine.disAppear()
-        parentController.card.displayCity(WeatherInfo.currentCityID)
     }
     
     override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
