@@ -86,7 +86,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
             if card.imageUrlReady {
                 toView.tempImage = card.smallImage.image
             }else{
-                toView.tempImage = UIImage(named: "48-1024x670.jpg")!
+                toView.tempImage = UIImage(named: card.currentIcon + ".jpg")
             }
             //avoid label overlay
             clockButton.timeLab.removeFromSuperview()
