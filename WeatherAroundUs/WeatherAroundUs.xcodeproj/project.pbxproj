@@ -105,6 +105,8 @@
 		88888A041AEB4041007EC387 /* DigestWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88888A031AEB4041007EC387 /* DigestWeatherView.swift */; };
 		88CAEEBB1AE9FD7600F73974 /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */; };
 		88CAEEC11AEB14FC00F73974 /* BasicWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */; };
+		B5E257601AEF45B1007B343F /* bkgd.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E2575F1AEF45B1007B343F /* bkgd.png */; };
+		B5E257621AEF4665007B343F /* startScr.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E257611AEF4665007B343F /* startScr.png */; };
 		D5362D611AD0B77F00CAD195 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */; };
 		D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */; };
 		D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D641AD0B83F00CAD195 /* AVFoundation.framework */; };
@@ -252,6 +254,8 @@
 		A1CE25A61AE0CD78008EB5F8 /* 13n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13n.png; sourceTree = "<group>"; };
 		A1CE25A71AE0CD78008EB5F8 /* 50d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50d.png; sourceTree = "<group>"; };
 		A1CE25A81AE0CD78008EB5F8 /* 50n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50n.png; sourceTree = "<group>"; };
+		B5E2575F1AEF45B1007B343F /* bkgd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkgd.png; sourceTree = "<group>"; };
+		B5E257611AEF4665007B343F /* startScr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startScr.png; sourceTree = "<group>"; };
 		D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
 		D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		D5362D641AD0B83F00CAD195 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -372,6 +376,8 @@
 				42F15D491AD08275004D64EF /* IMGs */,
 				42D4EDD21A9E7F02006AE807 /* Images.xcassets */,
 				42D4EDD41A9E7F02006AE807 /* LaunchScreen.xib */,
+				B5E257611AEF4665007B343F /* startScr.png */,
+				B5E2575F1AEF45B1007B343F /* bkgd.png */,
 				42D4EDCA1A9E7F02006AE807 /* WeatherAroundUs.xcdatamodeld */,
 				42D4EDC61A9E7F02006AE807 /* Supporting Files */,
 				42F62E7C1AD0BA9100D494E6 /* WeatherAroundUs-Bridging-Header.h */,
@@ -623,6 +629,7 @@
 				42B53CE91AEF1E8000420A5E /* 01n.jpg in Resources */,
 				42068B771ADC570300FE4BD3 /* acard.png in Resources */,
 				42B53CF51AEF1E8000420A5E /* 11n.jpg in Resources */,
+				B5E257601AEF45B1007B343F /* bkgd.png in Resources */,
 				42B53CF01AEF1E8000420A5E /* 09d.jpg in Resources */,
 				42B53CEC1AEF1E8000420A5E /* 03d.jpg in Resources */,
 				42D9619B1AE600830082352E /* NewclockPin2.png in Resources */,
@@ -633,6 +640,7 @@
 				42B842421AE0C68200FCA7E2 /* 50d.png in Resources */,
 				427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */,
 				42B53CEE1AEF1E8000420A5E /* 04d.jpg in Resources */,
+				B5E257621AEF4665007B343F /* startScr.png in Resources */,
 				42D4EDD31A9E7F02006AE807 /* Images.xcassets in Resources */,
 				882AB7E21AECA6B000C1C773 /* returnCurPosButton.png in Resources */,
 				42B53CF41AEF1E8000420A5E /* 11d.jpg in Resources */,
