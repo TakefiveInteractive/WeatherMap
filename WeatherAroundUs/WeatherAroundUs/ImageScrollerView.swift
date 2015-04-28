@@ -32,37 +32,53 @@ class ImageScrollerView: UIScrollView, ImageCacheDelegate, MotionManagerDelegate
             setContentOffset(CGPointMake(0, (contentSize.height - height) / 2), animated: false)
         }
         addSubview(imageView)
-        
     }
     
     func changeImage(image: UIImage){
         
-        UserMotion.stop()
+        UserMotion.delegate = nil
+
+        var img = self.imageView
         
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.alpha = 0.4
+        let width = UIScreen.mainScreen().bounds.width
+        let height = UIScreen.mainScreen().bounds.height
+        var newsize = CGSize()
+        
+        if image.size.width / image.size.height > width / height{
+            newsize = CGSizeMake(height * image.size.width / image.size.height, height)
+            self.imageView = UIImageView()
+            imageView.frame.size = newsize
+            imageView.center = img.center
+            
+        }else{
+            // don't enable motion
+            newsize = CGSizeMake(width, width * image.size.height / image.size.width)
+            self.imageView = UIImageView()
+            imageView.frame.size = newsize
+            imageView.center = img.center
+        }
+        imageView.alpha = 0
+        addSubview(imageView)
+        imageView.image = image
+        
+        UIView.animateWithDuration(5, animations: { () -> Void in
+            img.alpha = 0
+            self.imageView.alpha = 1
+            self.setContentOffset(CGPointMake((img.frame.width - width) / 2, 0), animated: false)
+            
             }) { (finish) -> Void in
-                let width = UIScreen.mainScreen().bounds.width
-                let height = UIScreen.mainScreen().bounds.height
-                // long image
+                
+                UserMotion.delegate = self
+                UserMotion.start()
+                self.contentSize = newsize
+                self.imageView.frame = CGRectMake(0, 0, newsize.width, newsize.height)
+                
                 if image.size.width / image.size.height > width / height{
-                    self.contentSize = CGSizeMake(height * image.size.width / image.size.height, height)
-                    self.imageView.frame.size = self.contentSize
-                    self.setContentOffset(CGPointMake((self.contentSize.width - width) / 2, 0), animated: false)
-                    
-                    UserMotion.delegate = self
-                    UserMotion.start()
+                    self.setContentOffset(CGPointMake( (newsize.width - width) / 2, 0), animated: false)
                 }else{
                     // don't enable motion
-                    self.contentSize = CGSizeMake(width, width * image.size.height / image.size.width)
-                    self.imageView.frame.size = self.contentSize
-                    self.setContentOffset(CGPointMake(0, (self.contentSize.height - height) / 2), animated: false)
+                    self.setContentOffset(CGPointMake(0, (newsize.height - height) / 2), animated: false)
                 }
-                
-                self.imageView.image = image
-                UIView.animateWithDuration(0.25, animations: { () -> Void in
-                    self.alpha = 1
-                })
         }
         
     }

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "42D4EDC21A9E7F02006AE807"
-               BuildableName = "WeatherAroundUs.app"
-               BlueprintName = "WeatherAroundUs"
-               ReferencedContainer = "container:WeatherAroundUs.xcodeproj">
+               BuildableName = "WeatherMap.app"
+               BlueprintName = "WeatherMap"
+               ReferencedContainer = "container:WeatherMap.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "42D4EDDA1A9E7F02006AE807"
-               BuildableName = "WeatherAroundUsTests.xctest"
-               BlueprintName = "WeatherAroundUsTests"
-               ReferencedContainer = "container:WeatherAroundUs.xcodeproj">
+               BuildableName = "WeatherMapTests.xctest"
+               BlueprintName = "WeatherMapTests"
+               ReferencedContainer = "container:WeatherMap.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "42D4EDDA1A9E7F02006AE807"
-               BuildableName = "WeatherAroundUsTests.xctest"
-               BlueprintName = "WeatherAroundUsTests"
-               ReferencedContainer = "container:WeatherAroundUs.xcodeproj">
+               BuildableName = "WeatherMapTests.xctest"
+               BlueprintName = "WeatherMapTests"
+               ReferencedContainer = "container:WeatherMap.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42D4EDC21A9E7F02006AE807"
-            BuildableName = "WeatherAroundUs.app"
-            BlueprintName = "WeatherAroundUs"
-            ReferencedContainer = "container:WeatherAroundUs.xcodeproj">
+            BuildableName = "WeatherMap.app"
+            BlueprintName = "WeatherMap"
+            ReferencedContainer = "container:WeatherMap.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42D4EDC21A9E7F02006AE807"
-            BuildableName = "WeatherAroundUs.app"
-            BlueprintName = "WeatherAroundUs"
-            ReferencedContainer = "container:WeatherAroundUs.xcodeproj">
+            BuildableName = "WeatherMap.app"
+            BlueprintName = "WeatherMap"
+            ReferencedContainer = "container:WeatherMap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,13 +91,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42D4EDC21A9E7F02006AE807"
-            BuildableName = "WeatherAroundUs.app"
-            BlueprintName = "WeatherAroundUs"
-            ReferencedContainer = "container:WeatherAroundUs.xcodeproj">
+            BuildableName = "WeatherMap.app"
+            BlueprintName = "WeatherMap"
+            ReferencedContainer = "container:WeatherMap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
