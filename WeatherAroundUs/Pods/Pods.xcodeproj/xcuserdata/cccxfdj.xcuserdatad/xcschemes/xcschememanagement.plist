@@ -12,32 +12,42 @@
 		<key>Pods-Alamofire.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>1</integer>
 		</dict>
 		<key>Pods-GPUImage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-Haneke.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>Pods-HanekeSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Pods-OpenWeatherMapAPI.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>Pods-Shimmer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>Pods-Spring.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>7</integer>
 		</dict>
 		<key>Pods-TMCache.xcscheme</key>
 		<dict>
@@ -47,11 +57,16 @@
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>01C1E572F6CF7EF7EC8991F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>03E9AD0B2DA9ADEC16D92743</key>
 		<dict>
 			<key>primary</key>
@@ -92,6 +107,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>358054214885C051CF7DEEA8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>391C25C92E8C61E81395DF81</key>
 		<dict>
 			<key>primary</key>
@@ -108,6 +128,11 @@
 			<true/>
 		</dict>
 		<key>3DB102565F64312EBCBF51C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>41AB6B4740D856A16E09D15F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,7 +162,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6C92CB7FE63E5254D776A3ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7057EE3A6EFB33B1949EC8B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>726BEEB30ABBF0CF4AA5E3E8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79F3CEE6ECBD99CF3606E7FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -153,6 +193,11 @@
 			<true/>
 		</dict>
 		<key>8A69F90192E966E24A5A9396</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>914E02999010FB8D45BCE147</key>
 		<dict>
 			<key>primary</key>
 			<true/>
