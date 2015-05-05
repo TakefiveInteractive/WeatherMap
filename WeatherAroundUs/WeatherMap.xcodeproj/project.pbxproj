@@ -46,11 +46,11 @@
 		427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */; };
 		429B95CB1AD198E400851D32 /* WeatherInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B95CA1AD198E400851D32 /* WeatherInformation.swift */; };
 		42AF65641AEB537400E4E550 /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF65631AEB537400E4E550 /* IconImage.swift */; };
-		42B53CE81AEF1E8000420A5E /* 01d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CD61AEF1E8000420A5E /* 01d.jpg */; };
+		42B448041AF0043D005AA174 /* 02n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B448031AF0043D005AA174 /* 02n.jpg */; };
+		42B448061AF0072A005AA174 /* 01d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B448051AF0072A005AA174 /* 01d.jpg */; };
+		42B448081AF00800005AA174 /* 03d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B448071AF00800005AA174 /* 03d.jpg */; };
 		42B53CE91AEF1E8000420A5E /* 01n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CD71AEF1E8000420A5E /* 01n.jpg */; };
-		42B53CEA1AEF1E8000420A5E /* 02d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CD81AEF1E8000420A5E /* 02d.jpg */; };
-		42B53CEB1AEF1E8000420A5E /* 02n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CD91AEF1E8000420A5E /* 02n.jpg */; };
-		42B53CEC1AEF1E8000420A5E /* 03d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CDA1AEF1E8000420A5E /* 03d.jpg */; };
+		42B53CEC1AEF1E8000420A5E /* 02d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CDA1AEF1E8000420A5E /* 02d.jpg */; };
 		42B53CED1AEF1E8000420A5E /* 03n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CDB1AEF1E8000420A5E /* 03n.jpg */; };
 		42B53CEE1AEF1E8000420A5E /* 04d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CDC1AEF1E8000420A5E /* 04d.jpg */; };
 		42B53CEF1AEF1E8000420A5E /* 04n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 42B53CDD1AEF1E8000420A5E /* 04n.jpg */; };
@@ -172,11 +172,11 @@
 		427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMapCalculations.swift; sourceTree = "<group>"; };
 		429B95CA1AD198E400851D32 /* WeatherInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInformation.swift; sourceTree = "<group>"; };
 		42AF65631AEB537400E4E550 /* IconImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
-		42B53CD61AEF1E8000420A5E /* 01d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01d.jpg; sourceTree = "<group>"; };
+		42B448031AF0043D005AA174 /* 02n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02n.jpg; sourceTree = "<group>"; };
+		42B448051AF0072A005AA174 /* 01d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01d.jpg; sourceTree = "<group>"; };
+		42B448071AF00800005AA174 /* 03d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 03d.jpg; sourceTree = "<group>"; };
 		42B53CD71AEF1E8000420A5E /* 01n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01n.jpg; sourceTree = "<group>"; };
-		42B53CD81AEF1E8000420A5E /* 02d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02d.jpg; sourceTree = "<group>"; };
-		42B53CD91AEF1E8000420A5E /* 02n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02n.jpg; sourceTree = "<group>"; };
-		42B53CDA1AEF1E8000420A5E /* 03d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 03d.jpg; sourceTree = "<group>"; };
+		42B53CDA1AEF1E8000420A5E /* 02d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02d.jpg; sourceTree = "<group>"; };
 		42B53CDB1AEF1E8000420A5E /* 03n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 03n.jpg; sourceTree = "<group>"; };
 		42B53CDC1AEF1E8000420A5E /* 04d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 04d.jpg; sourceTree = "<group>"; };
 		42B53CDD1AEF1E8000420A5E /* 04n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 04n.jpg; sourceTree = "<group>"; };
@@ -419,11 +419,11 @@
 				42466A911AE5A4EA00E0BD4B /* Newclock.png */,
 				42D9619A1AE600830082352E /* NewclockPin2.png */,
 				42466A921AE5A4EA00E0BD4B /* NewclockPin.png */,
-				42B53CD61AEF1E8000420A5E /* 01d.jpg */,
 				42B53CD71AEF1E8000420A5E /* 01n.jpg */,
-				42B53CD81AEF1E8000420A5E /* 02d.jpg */,
-				42B53CD91AEF1E8000420A5E /* 02n.jpg */,
-				42B53CDA1AEF1E8000420A5E /* 03d.jpg */,
+				42B448051AF0072A005AA174 /* 01d.jpg */,
+				42B448031AF0043D005AA174 /* 02n.jpg */,
+				42B53CDA1AEF1E8000420A5E /* 02d.jpg */,
+				42B448071AF00800005AA174 /* 03d.jpg */,
 				42B53CDB1AEF1E8000420A5E /* 03n.jpg */,
 				42B53CDC1AEF1E8000420A5E /* 04d.jpg */,
 				42B53CDD1AEF1E8000420A5E /* 04n.jpg */,
@@ -609,7 +609,6 @@
 				42B842361AE0C68200FCA7E2 /* 03d.png in Resources */,
 				42C146641AE099DB0083ADE5 /* rain.png in Resources */,
 				42B842321AE0C68200FCA7E2 /* 01d.png in Resources */,
-				42B53CEB1AEF1E8000420A5E /* 02n.jpg in Resources */,
 				427BAFC41AD0F2B500C87BDE /* sun.png in Resources */,
 				42B8423B1AE0C68200FCA7E2 /* 09n.png in Resources */,
 				42B53CF31AEF1E8000420A5E /* 10n.jpg in Resources */,
@@ -619,11 +618,11 @@
 				42B53CF71AEF1E8000420A5E /* 13n.jpg in Resources */,
 				42B53CF91AEF1E8000420A5E /* 50n.jpg in Resources */,
 				42D961991AE5FF850082352E /* NewclockPin1.png in Resources */,
-				42B53CE81AEF1E8000420A5E /* 01d.jpg in Resources */,
 				42466A941AE5A4EA00E0BD4B /* NewclockPin.png in Resources */,
 				42B53CEF1AEF1E8000420A5E /* 04n.jpg in Resources */,
 				42B842331AE0C68200FCA7E2 /* 01n.png in Resources */,
 				427BAFC31AD0F2B500C87BDE /* sunrainning.png in Resources */,
+				42B448061AF0072A005AA174 /* 01d.jpg in Resources */,
 				4255EAFB1ADB622B00689B9E /* 184278702.png in Resources */,
 				427BAFC51AD0F2B500C87BDE /* eveningrain.png in Resources */,
 				42B53CE91AEF1E8000420A5E /* 01n.jpg in Resources */,
@@ -631,7 +630,7 @@
 				42B53CF51AEF1E8000420A5E /* 11n.jpg in Resources */,
 				B5E257601AEF45B1007B343F /* bkgd.png in Resources */,
 				42B53CF01AEF1E8000420A5E /* 09d.jpg in Resources */,
-				42B53CEC1AEF1E8000420A5E /* 03d.jpg in Resources */,
+				42B53CEC1AEF1E8000420A5E /* 02d.jpg in Resources */,
 				42D9619B1AE600830082352E /* NewclockPin2.png in Resources */,
 				42F24B121ADD72D700CFA0EC /* timeline_attch.png in Resources */,
 				427BAFC61AD0F2B500C87BDE /* rainning.png in Resources */,
@@ -664,12 +663,13 @@
 				4255EAF51ADB599800689B9E /* CardwoShadow.png in Resources */,
 				421592DB1ADCDD4500254479 /* 20150104075606381.jpg in Resources */,
 				42D9638A1ADC407900FC75C3 /* Main.storyboard in Resources */,
-				42B53CEA1AEF1E8000420A5E /* 02d.jpg in Resources */,
 				42F24B141ADD72D700CFA0EC /* timeline.png in Resources */,
+				42B448081AF00800005AA174 /* 03d.jpg in Resources */,
 				42466A931AE5A4EA00E0BD4B /* Newclock.png in Resources */,
 				42F15D481AD08271004D64EF /* fake_map.png in Resources */,
 				42B53CF81AEF1E8000420A5E /* 50d.jpg in Resources */,
 				42B53CF61AEF1E8000420A5E /* 13d.jpg in Resources */,
+				42B448041AF0043D005AA174 /* 02n.jpg in Resources */,
 				42B53CF11AEF1E8000420A5E /* 09n.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -893,7 +893,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
 				);
 				INFOPLIST_FILE = WeatherAroundUs/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = WeatherMap;
@@ -921,7 +921,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
 				);
 				INFOPLIST_FILE = WeatherAroundUs/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = WeatherMap;
