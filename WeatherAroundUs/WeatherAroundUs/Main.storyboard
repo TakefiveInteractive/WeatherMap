@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -10,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="WeatherAroundUs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="WeatherMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ezw-9k-qKr"/>
                         <viewControllerLayoutGuide type="bottom" id="jXW-qH-GTO"/>
@@ -19,10 +20,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-K5-F1o" customClass="MapView" customModule="WeatherAroundUs" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oul-K5-F1o" customClass="MapView" customModule="WeatherMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </view>
-                            <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqf-Zs-cEl" customClass="CitySearchView" customModule="WeatherAroundUs" customModuleProvider="target">
+                            <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqf-Zs-cEl" customClass="CitySearchView" customModule="WeatherMap" customModuleProvider="target">
                                 <rect key="frame" x="10" y="25" width="100" height="45"/>
                                 <subviews>
                                     <visualEffectView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-80-eGp">
@@ -88,7 +89,7 @@
                                     <outlet property="searchDraw" destination="3CT-pi-HrN" id="270-UO-hvD"/>
                                 </connections>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherAroundUs" customModuleProvider="target">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-1D-uI0" userLabel="TimeLine" customClass="TimeLineView" customModule="WeatherMap" customModuleProvider="target">
                                 <rect key="frame" x="316" y="48" width="45" height="382"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gR-aK-T8M">
@@ -112,7 +113,7 @@
                                     <outlet property="blurView" destination="5gR-aK-T8M" id="wdh-LH-g9K"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjW-vs-Mcr" userLabel="Clock" customClass="ClockView" customModule="WeatherAroundUs" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjW-vs-Mcr" userLabel="Clock" customClass="ClockView" customModule="WeatherMap" customModuleProvider="target">
                                 <rect key="frame" x="316" y="25" width="45" height="45"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mai-cO-CJa">
@@ -197,13 +198,13 @@
                                     <outlet property="timeDisplay" destination="Mai-cO-CJa" id="Kwr-0x-ZcH"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lX5-BA-Wy8" customClass="CardView" customModule="WeatherAroundUs" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lX5-BA-Wy8" customClass="CardView" customModule="WeatherMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="480" width="375" height="187"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lX5-BA-Wy8" secondAttribute="height" multiplier="2:1" id="U0W-cl-Vkq"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="og9-ta-dNc" userLabel="ReturnButton" customClass="ReturnButton" customModule="WeatherAroundUs" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="og9-ta-dNc" userLabel="ReturnButton" customClass="ReturnButton" customModule="WeatherMap" customModuleProvider="target">
                                 <rect key="frame" x="324" y="440" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="5ep-GF-TkY"/>
@@ -272,7 +273,7 @@
         <!--City Detail View Controller-->
         <scene sceneID="VXG-MS-Xuq">
             <objects>
-                <viewController id="ECH-Ns-pDS" customClass="CityDetailViewController" customModule="WeatherAroundUs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ECH-Ns-pDS" customClass="CityDetailViewController" customModule="WeatherMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Tk-JE-Qcs"/>
                         <viewControllerLayoutGuide type="bottom" id="ZeH-sy-je1"/>
@@ -281,7 +282,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLQ-oH-KaY" customClass="ImageScrollerView" customModule="WeatherAroundUs" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLQ-oH-KaY" customClass="ImageScrollerView" customModule="WeatherMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                             </scrollView>
                             <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTZ-if-wGP">
@@ -321,7 +322,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="M5C-g9-bKn" secondAttribute="trailing" id="hZe-7z-wI5"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-Mc-jsF" customClass="BasicWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-Mc-jsF" customClass="BasicWeatherView" customModule="WeatherMap" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="403" width="359" height="280"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ei-X4-bGf">
@@ -393,7 +394,7 @@
                                                     <outlet property="hourForcastScrollView" destination="N1A-gh-FLm" id="9wz-VW-fmq"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-lg-rAJ" customClass="DigestWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-lg-rAJ" customClass="DigestWeatherView" customModule="WeatherMap" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="233" width="359" height="160"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTP-aa-91w">
@@ -451,7 +452,7 @@
                                                     <outlet property="line" destination="YfI-Rk-jBn" id="pkG-vd-6oS"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcK-fL-cU8" customClass="DetailWeatherView" customModule="WeatherAroundUs" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcK-fL-cU8" customClass="DetailWeatherView" customModule="WeatherMap" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="693" width="359" height="220"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p66-a9-Lc7">

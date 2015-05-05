@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42D4EDC21A9E7F02006AE807"
-            BuildableName = "WeatherAroundUs.app"
-            BlueprintName = "WeatherAroundUs"
-            ReferencedContainer = "container:WeatherAroundUs.xcodeproj">
+            BuildableName = "WeatherMap.app"
+            BlueprintName = "WeatherMap"
+            ReferencedContainer = "container:WeatherMap.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42D4EDC21A9E7F02006AE807"
-            BuildableName = "WeatherAroundUs.app"
-            BlueprintName = "WeatherAroundUs"
-            ReferencedContainer = "container:WeatherAroundUs.xcodeproj">
+            BuildableName = "WeatherMap.app"
+            BlueprintName = "WeatherMap"
+            ReferencedContainer = "container:WeatherMap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,7 +91,8 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42D4EDC21A9E7F02006AE807"
