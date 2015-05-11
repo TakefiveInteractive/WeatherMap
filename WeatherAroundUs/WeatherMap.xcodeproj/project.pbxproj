@@ -11,6 +11,10 @@
 		421592DB1ADCDD4500254479 /* 20150104075606381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DA1ADCDD4500254479 /* 20150104075606381.jpg */; };
 		421592DC1ADCDD4500254479 /* 20150104075606381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DA1ADCDD4500254479 /* 20150104075606381.jpg */; };
 		421592DE1ADCE0EC00254479 /* 1175782717.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421592DD1ADCE0EC00254479 /* 1175782717.jpg */; };
+		4237ACAE1AFF1FCC00B80DF7 /* QCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACA51AFF1FCC00B80DF7 /* QCluster.m */; };
+		4237ACAF1AFF1FCC00B80DF7 /* QNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACA71AFF1FCC00B80DF7 /* QNode.m */; };
+		4237ACB01AFF1FCC00B80DF7 /* QTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACAA1AFF1FCC00B80DF7 /* QTree.m */; };
+		4237ACB11AFF1FCC00B80DF7 /* QTreeGeometryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACAC1AFF1FCC00B80DF7 /* QTreeGeometryUtils.m */; };
 		42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */; };
 		42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8C1AE5466A00E0BD4B /* ImageCache.swift */; };
 		42466A901AE5961100E0BD4B /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8F1AE5961100E0BD4B /* TimeLineView.swift */; };
@@ -138,6 +142,16 @@
 		42068B761ADC570300FE4BD3 /* acard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acard.png; sourceTree = "<group>"; };
 		421592DA1ADCDD4500254479 /* 20150104075606381.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 20150104075606381.jpg; sourceTree = "<group>"; };
 		421592DD1ADCE0EC00254479 /* 1175782717.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1175782717.jpg; sourceTree = "<group>"; };
+		4237ACA41AFF1FCC00B80DF7 /* QCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QCluster.h; path = QTree/QCluster.h; sourceTree = "<group>"; };
+		4237ACA51AFF1FCC00B80DF7 /* QCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QCluster.m; path = QTree/QCluster.m; sourceTree = "<group>"; };
+		4237ACA61AFF1FCC00B80DF7 /* QNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QNode.h; path = QTree/QNode.h; sourceTree = "<group>"; };
+		4237ACA71AFF1FCC00B80DF7 /* QNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QNode.m; path = QTree/QNode.m; sourceTree = "<group>"; };
+		4237ACA81AFF1FCC00B80DF7 /* QTree-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "QTree-Prefix.pch"; path = "QTree/QTree-Prefix.pch"; sourceTree = "<group>"; };
+		4237ACA91AFF1FCC00B80DF7 /* QTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QTree.h; path = QTree/QTree.h; sourceTree = "<group>"; };
+		4237ACAA1AFF1FCC00B80DF7 /* QTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QTree.m; path = QTree/QTree.m; sourceTree = "<group>"; };
+		4237ACAB1AFF1FCC00B80DF7 /* QTreeGeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QTreeGeometryUtils.h; path = QTree/QTreeGeometryUtils.h; sourceTree = "<group>"; };
+		4237ACAC1AFF1FCC00B80DF7 /* QTreeGeometryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QTreeGeometryUtils.m; path = QTree/QTreeGeometryUtils.m; sourceTree = "<group>"; };
+		4237ACAD1AFF1FCC00B80DF7 /* QTreeInsertable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QTreeInsertable.h; path = QTree/QTreeInsertable.h; sourceTree = "<group>"; };
 		4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
 		42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		42466A8C1AE5466A00E0BD4B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -314,6 +328,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4237AC9F1AFF1E8500B80DF7 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				427BAFA41AD0E6F900C87BDE /* MapView.swift */,
+				42AF65631AEB537400E4E550 /* IconImage.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		4237ACB21AFF1FE400B80DF7 /* QTree */ = {
+			isa = PBXGroup;
+			children = (
+				4237ACA41AFF1FCC00B80DF7 /* QCluster.h */,
+				4237ACA51AFF1FCC00B80DF7 /* QCluster.m */,
+				4237ACA61AFF1FCC00B80DF7 /* QNode.h */,
+				4237ACA71AFF1FCC00B80DF7 /* QNode.m */,
+				4237ACA81AFF1FCC00B80DF7 /* QTree-Prefix.pch */,
+				4237ACA91AFF1FCC00B80DF7 /* QTree.h */,
+				4237ACAA1AFF1FCC00B80DF7 /* QTree.m */,
+				4237ACAB1AFF1FCC00B80DF7 /* QTreeGeometryUtils.h */,
+				4237ACAC1AFF1FCC00B80DF7 /* QTreeGeometryUtils.m */,
+				4237ACAD1AFF1FCC00B80DF7 /* QTreeInsertable.h */,
+			);
+			name = QTree;
+			sourceTree = "<group>";
+		};
 		42466A8E1AE590CC00E0BD4B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,7 +368,6 @@
 				424F5A2D1ADF46BD00B09FBA /* ImageCardView.swift */,
 				42F62E781AD0B84900D494E6 /* CardView.swift */,
 				424F5A261ADE137100B09FBA /* SearchResultView.swift */,
-				427BAFA41AD0E6F900C87BDE /* MapView.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -362,8 +401,9 @@
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
 				88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */,
+				4237ACB21AFF1FE400B80DF7 /* QTree */,
+				4237AC9F1AFF1E8500B80DF7 /* Map */,
 				42466A8E1AE590CC00E0BD4B /* CustomViews */,
-				42AF65631AEB537400E4E550 /* IconImage.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */,
 				42466A981AE5AD3E00E0BD4B /* TimeLineManager.swift */,
@@ -750,6 +790,7 @@
 				42466A901AE5961100E0BD4B /* TimeLineView.swift in Sources */,
 				88CAEEBB1AE9FD7600F73974 /* CityDetailViewController.swift in Sources */,
 				42D4EDCE1A9E7F02006AE807 /* ViewController.swift in Sources */,
+				4237ACAE1AFF1FCC00B80DF7 /* QCluster.m in Sources */,
 				427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */,
 				424F5A291ADE379C00B09FBA /* InternetConnection.swift in Sources */,
 				424F5A2E1ADF46BD00B09FBA /* ImageCardView.swift in Sources */,
@@ -758,14 +799,17 @@
 				427BAFA51AD0E6F900C87BDE /* MapView.swift in Sources */,
 				42466A991AE5AD3E00E0BD4B /* TimeLineManager.swift in Sources */,
 				42D4EDC91A9E7F02006AE807 /* AppDelegate.swift in Sources */,
+				4237ACB11AFF1FCC00B80DF7 /* QTreeGeometryUtils.m in Sources */,
 				427BAFAA1AD0E71100C87BDE /* LocationManager.swift in Sources */,
 				424BCD231AE8A6570053D1E9 /* ReturnButton.swift in Sources */,
 				42466A9B1AE5DAAD00E0BD4B /* UIViewExtension.swift in Sources */,
 				88888A041AEB4041007EC387 /* DigestWeatherView.swift in Sources */,
+				4237ACB01AFF1FCC00B80DF7 /* QTree.m in Sources */,
 				424F5A1E1ADE01C300B09FBA /* CitySearchView.swift in Sources */,
 				429B95CB1AD198E400851D32 /* WeatherInformation.swift in Sources */,
 				42F62E791AD0B84900D494E6 /* CardView.swift in Sources */,
 				427BAFB21AD0EECE00C87BDE /* ImageProcessor.swift in Sources */,
+				4237ACAF1AFF1FCC00B80DF7 /* QNode.m in Sources */,
 				42D4EDCC1A9E7F02006AE807 /* WeatherAroundUs.xcdatamodeld in Sources */,
 				88CAEEC11AEB14FC00F73974 /* BasicWeatherView.swift in Sources */,
 			);

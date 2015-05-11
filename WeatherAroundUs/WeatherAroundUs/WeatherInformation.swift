@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 @objc protocol WeatherInformationDelegate: class {
-    optional func gotOneNewWeatherData(cityID: String, latitude:CLLocationDegrees, longitude:CLLocationDegrees)
+    optional func displayIcon()
 }
 
 var WeatherInfo: WeatherInformation = WeatherInformation()
@@ -23,8 +23,10 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var citiesForcast = [String: AnyObject]()
     // all city in database with one day weather info
     var citiesAroundDict = [String: AnyObject]()
-    // all the icons displayed
-    var citiesAround = [String]()
+    
+    // tree that store all the weather data
+    var quadTree = QTree()
+    
     //current city id
     var currentCityID = ""
 
@@ -50,6 +52,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // got local city weather from member
     func gotLocalCityWeather(cities: [AnyObject]) {
         
+        var hasNewInfo = false
+        
         for var index = 0; index < cities.count; index++ {
                 
             let id: Int = (cities[index] as! [String : AnyObject]) ["id"] as! Int
@@ -57,15 +61,20 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             // first time weather data
             if self.citiesAroundDict["\(id)"] == nil {
                 self.citiesAroundDict.updateValue(cities[index], forKey: "\(id)")
+                // add to the tree
+                quadTree.insertObject(WeatherDataQTree(position: CLLocationCoordinate2DMake(((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), cityID: "\(id)"))
+                
                 var connection = InternetConnection()
                 connection.delegate = self
                 connection.getWeatherForcast("\(id)")
+                
+                hasNewInfo = true
             }
             
-            if !forcastMode {
-                self.weatherDelegate?.gotOneNewWeatherData!("\(id)", latitude: (((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
-            }
-
+        }
+        
+        if !forcastMode && hasNewInfo {
+            self.weatherDelegate?.displayIcon!()
         }
 
     }
@@ -93,12 +102,24 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
 
         //display new icon
         if forcastMode{
-            self.weatherDelegate?.gotOneNewWeatherData!("\(cityID)", latitude: (((citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double), longitude: (((citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double))
+            self.weatherDelegate?.displayIcon!()
         }
     }
     
-    func removeAllCities(){
-        citiesAround.removeAll(keepCapacity: false)
+}
+
+
+class WeatherDataQTree: NSObject, QTreeInsertable{
+    
+    var coordinate: CLLocationCoordinate2D
+    
+    var cityID = ""
+    
+    init(position: CLLocationCoordinate2D, cityID: String) {
+        coordinate = position
+        super.init()
+        self.cityID = cityID
     }
+    
 }
 

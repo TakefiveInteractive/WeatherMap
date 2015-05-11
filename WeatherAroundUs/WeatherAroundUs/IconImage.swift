@@ -32,7 +32,6 @@ class IconImage: NSObject {
         IconImage.createImageForName("03n")
         IconImage.createImageForName("04d")
         IconImage.createImageForName("04n")
-        
         IconImage.createImageForName("09d")
         IconImage.createImageForName("09n")
         IconImage.createImageForName("10d")
@@ -52,7 +51,7 @@ class IconImage: NSObject {
 
         img = UIImage(named: name)!.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
         IconImage.xlargeImage.updateValue(img, forKey: name)
-        img = UIImage(named: name)!.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
+        img = UIImage(named: name)!.resize(CGSizeMake(30, 30)).addShadow(blurSize: 3.0)
         IconImage.largeImage.updateValue(img, forKey: name)
         img = UIImage(named: name)!.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
         IconImage.midImage.updateValue(img, forKey: name)
@@ -62,6 +61,8 @@ class IconImage: NSObject {
     }
     
     static func getImageWithNameAndSize(name: String, size: IconSize)->UIImage{
+        return IconImage.largeImage[name]!
+        /*
         switch size {
         case .XLarge:
             return IconImage.xlargeImage[name]!
@@ -71,7 +72,7 @@ class IconImage: NSObject {
             return IconImage.smallImage[name]!
         case .Mid:
             return IconImage.midImage[name]!
-        }
+        }*/
     }
     
 }

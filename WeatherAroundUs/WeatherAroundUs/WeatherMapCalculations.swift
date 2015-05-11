@@ -92,6 +92,13 @@ class WeatherMapCalculations: NSObject {
         
     }
     
+    // Convert GMSVisibleRegion to CLRegion or MKCoordinateRegion
+    class func convertRegion(center: CLLocationCoordinate2D, region: GMSVisibleRegion)->MKCoordinateRegion{
+        var latitudeDelta = region.farLeft.latitude - region.nearLeft.latitude
+        var longitudeDelta = region.farRight.longitude - region.farLeft.longitude
+        var span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+        return MKCoordinateRegionMake(center, span)
+    }
     
     // get the destination point according to distance and direction
     class func getDestinationPointWithDistanceAndBearing(distance: Double, bearing: CLLocationDirection)->CLLocationCoordinate2D{
