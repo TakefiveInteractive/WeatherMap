@@ -5,3 +5,8 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <GPUImage/GPUImage.h>
 #import <Shimmer/FBShimmering.h>
+
+#import "QTree.h"
+#import "QTreeInsertable.h"
+#import "QCluster.h"
+

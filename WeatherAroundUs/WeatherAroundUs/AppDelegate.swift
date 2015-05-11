@@ -47,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if userDefault.objectForKey("temperatureDisplay") == nil{
             userDefault.setBool(true, forKey: "temperatureDisplay")
+            userDefault.synchronize()
+
         }
         
         if userDefault.objectForKey("citiesForcast") == nil{
