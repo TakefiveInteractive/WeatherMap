@@ -71,8 +71,6 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     }
     
     override func viewDidAppear(animated: Bool) {
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + detailWeatherView.frame.height + 250)
-        
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         forecastView.setup(nineDayWeatherForcast)
         digestWeatherView.setup(nineDayWeatherForcast)
@@ -94,6 +92,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
             self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
             self.view.layoutIfNeeded()
             }) { (finish) -> Void in
+                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
         }
     }
 
