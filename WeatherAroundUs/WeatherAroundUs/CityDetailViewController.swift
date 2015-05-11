@@ -90,6 +90,11 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         }
         switchWeatherUnitButtonDidPressed()
 
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
+            self.view.layoutIfNeeded()
+            }) { (finish) -> Void in
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,7 +123,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
 
         isFnotC = !isFnotC
         
-        let todayDegree = (((WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]])[0]["temp"] as! [String: AnyObject])["day"])!.intValue
+        let todayDegree = ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"]!.intValue
         if isFnotC {
             mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°C"
         } else {
