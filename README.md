@@ -1,4 +1,5 @@
 # WeatherAroundUs
-Project for CS465
+Original: Project for CS465
 
-See you on App Store :)
+
+Download:(Weather Map)[https://itunes.apple.com/us/app/weather-map-take-five-interactive/id990141529?mt=8]
