@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 @objc protocol WeatherInformationDelegate: class {
-    optional func displayIcon()
+    optional func changeIconWithTime()
 }
 
 var WeatherInfo: WeatherInformation = WeatherInformation()
@@ -74,7 +74,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         }
         
         if !forcastMode && hasNewInfo {
-            self.weatherDelegate?.displayIcon!()
+            self.weatherDelegate?.changeIconWithTime!()
         }
 
     }
@@ -101,7 +101,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
 
         //display new icon
         if forcastMode{
-            self.weatherDelegate?.displayIcon!()
+            self.weatherDelegate?.changeIconWithTime!()
         }
     }
     

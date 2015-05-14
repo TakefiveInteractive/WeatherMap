@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-GPUImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,72 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>03D4C62EFBD2CB10980E4E85</key>
+		<key>0DA24F9449BC0C7A18981A80</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1278654328B2926836615CC8</key>
+		<key>20A3493418311D577525C30D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>198168411AEE00A75CC63BFB</key>
+		<key>3F64C33F8AEEF3156CC1AEC6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>225E7AD4EB3BF63382A5FCE5</key>
+		<key>48784AB7484FF816FAB68F57</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3FF0E8E9903DC9CAF9C68B88</key>
+		<key>B54A8D9CDBBBD2E60B4347D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4394FCEF4E8B5F6202778B9B</key>
+		<key>BC0DC1D5471BD3F1F9EDD50E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C8571FC84EB8C366C72592D</key>
+		<key>CD830DDE2588FED0D8F4B381</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77841AE3DC179184BD3B604C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8B35B93BC5B4391DBDA5064E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9FB754B4DC55B826F2D693A3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AEE422E768391D512964EBE1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D01D490C31B43342CA0F5C9A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E058B9888949427295801E6A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ED11364C7474E839BC0F57F7</key>
+		<key>CEA724AF205C366C80E11628</key>
 		<dict>
 			<key>primary</key>
 			<true/>

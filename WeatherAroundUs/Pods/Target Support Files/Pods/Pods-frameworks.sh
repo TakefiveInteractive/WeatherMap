@@ -49,6 +49,7 @@ code_sign() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Alamofire.framework'
+  install_framework 'FMDB.framework'
   install_framework 'GPUImage.framework'
   install_framework 'Haneke.framework'
   install_framework 'Shimmer.framework'
@@ -57,6 +58,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Alamofire.framework'
+  install_framework 'FMDB.framework'
   install_framework 'GPUImage.framework'
   install_framework 'Haneke.framework'
   install_framework 'Shimmer.framework'

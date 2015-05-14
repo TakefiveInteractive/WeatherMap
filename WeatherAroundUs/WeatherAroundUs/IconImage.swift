@@ -23,7 +23,7 @@ class IconImage: NSObject {
     static var largeImage = [String: UIImage]()
     static var xlargeImage = [String: UIImage]()
     static var reducedImage = [String: UIImage]()
-
+    static var empty = UIImage(color: UIColor.clearColor(), size: CGSizeMake(1, 1))
     static func setupPhotos() {
         
         IconImage.createImageForName("01d")
@@ -50,7 +50,6 @@ class IconImage: NSObject {
     static func createImageForName(name: String){
         
         var img: UIImage!
-
         img = UIImage(named: name)!.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
         IconImage.xlargeImage.updateValue(img, forKey: name)
         img = UIImage(named: name)!.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
@@ -64,6 +63,10 @@ class IconImage: NSObject {
     }
     
     static func getImageWithNameAndSize(name: String, size: IconSize)->UIImage{
+        
+        if name == "empty"{
+            return empty!
+        }
         
         switch size {
         case .XLarge:

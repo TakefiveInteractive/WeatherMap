@@ -71,18 +71,18 @@ class TimeLineView: DesignableView {
         // i is the number of day from current date  from 0 - dotNum
         for var i = 1; i <= numberOfDots; i++ {
             if sender.locationInView(self).y < dots[i].center.y {
+                parentController.clockButton.futureDay = i
                 if parentController.clockButton.clockIndex < sender.locationInView(self).y{
                     //dragging down
                     parentController.clockButton.clockIndex = dots[i].center.y
-                    parentController.mapView.changeIconWithTime(i)
+                    parentController.mapView.changeIconWithTime()
                     
                 }else{
                     //dragging up
                     i--
                     parentController.clockButton.clockIndex = dots[i].center.y
-                    parentController.mapView.changeIconWithTime(i)
+                    parentController.mapView.changeIconWithTime()
                 }
-                parentController.clockButton.futureDay = i
                 parentController.clockButton.displayWeatherOfTheDay(i)
                 parentController.card.displayCity(WeatherInfo.currentCityID)
                 break
