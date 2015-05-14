@@ -10,12 +10,10 @@ import UIKit
 
 class WeatherMapCalculations: NSObject {
     
-    // get the distance of one CM based on Zoom returned by KM
-    class func getTheDistanceBasedOnZoom(zoom: Float)->Double{
-        var result: Double = 0
-        var base = 21 - zoom
-        result = Double(pow(2, base)) * 0.00294668257
-        return result
+    // get the diagonal real distance of the map displayed on the screen
+    class func getTheDistanceBased(region: GMSVisibleRegion)->Double{
+        let location = CLLocation(latitude: region.farLeft.latitude, longitude: region.farLeft.longitude)
+        return location.distanceFromLocation(CLLocation(latitude: region.nearRight.latitude, longitude: region.nearRight.longitude))
     }
     
     // correctly display the distance with text
@@ -45,9 +43,10 @@ class WeatherMapCalculations: NSObject {
 
     }
     
+    /*
     // get the weather around according to map center and zoom
     class func getWeatherAround(mapCenter:CLLocationCoordinate2D, zoom: Float)->[CLLocationCoordinate2D]{
-        let distance = WeatherMapCalculations.getTheDistanceBasedOnZoom(zoom)
+        let distance = 10//WeatherMapCalculations.getTheDistanceBasedOnZoom(zoom)
         var locationArray = [CLLocationCoordinate2D]()
         //scan upper screen
         
@@ -63,7 +62,7 @@ class WeatherMapCalculations: NSObject {
        
         return locationArray
     }
-    
+    */
     class func getDestinationPointWithDistanceAndLongitudeAndLatitude(centerLocation:CLLocationCoordinate2D, distanceX: Double, distanceY: Double)->CLLocationCoordinate2D{
         let constant = 0.1
         
@@ -92,35 +91,42 @@ class WeatherMapCalculations: NSObject {
         
     }
     
-    // Convert GMSVisibleRegion to CLRegion or MKCoordinateRegion
-    class func convertRegion(center: CLLocationCoordinate2D, region: GMSVisibleRegion)->MKCoordinateRegion{
-        var latitudeDelta = region.farLeft.latitude - region.nearLeft.latitude
-        var longitudeDelta = region.farRight.longitude - region.farLeft.longitude
-        var span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+    // Convert distance and center or MKCoordinateRegion
+    class func convertRegion(center: CLLocationCoordinate2D, distance: Double)->MKCoordinateRegion{
+        var northWestPoint = WeatherMapCalculations.getDestinationPointWithDistanceAndBearing(distance, coordinate: center, bearing: 315)
+        var southEastPoint = WeatherMapCalculations.getDestinationPointWithDistanceAndBearing(distance, coordinate: center, bearing: 135)
+        var lat = abs(northWestPoint.latitude - southEastPoint.latitude)
+        var lon = abs(northWestPoint.longitude - southEastPoint.longitude)
+        if lat > 360{
+            lat = lat - 360
+        }
+        var span = MKCoordinateSpanMake(lat ,lon)
         return MKCoordinateRegionMake(center, span)
     }
     
     // get the destination point according to distance and direction
-    class func getDestinationPointWithDistanceAndBearing(distance: Double, bearing: CLLocationDirection)->CLLocationCoordinate2D{
+    class func getDestinationPointWithDistanceAndBearing(distance: Double, coordinate: CLLocationCoordinate2D, bearing: CLLocationDirection)->CLLocationCoordinate2D{
         
         let constant = 0.1
         
-        var locationXdegree = UserLocation.centerLocation.coordinate.longitude
+        var locationXdegree = coordinate.longitude
         if locationXdegree > 0{
             locationXdegree = locationXdegree - constant
         }else{
             locationXdegree = locationXdegree + constant
         }
         
-        var locationYdegree = UserLocation.centerLocation.coordinate.latitude
+        var locationYdegree = coordinate.latitude
         if locationYdegree > 0{
             locationYdegree = locationYdegree - constant
         }else{
             locationYdegree = locationYdegree + constant
         }
         
-        let yRatio = UserLocation.centerLocation.distanceFromLocation(CLLocation(latitude: locationYdegree, longitude: UserLocation.centerLocation.coordinate.longitude)) / 1000
-        let xRatio = UserLocation.centerLocation.distanceFromLocation(CLLocation(latitude: UserLocation.centerLocation.coordinate.latitude, longitude: locationXdegree)) / 1000
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        let yRatio = location.distanceFromLocation(CLLocation(latitude: locationYdegree, longitude: coordinate.longitude))
+        let xRatio = location.distanceFromLocation(CLLocation(latitude: coordinate.latitude, longitude: locationXdegree))
         
         // positive east, negative west
         let xAcceleration = sin(bearing * M_PI / 180) * distance
@@ -131,8 +137,8 @@ class WeatherMapCalculations: NSObject {
         let x = xAcceleration * constant / xRatio
         let y = yAcceleration * constant / yRatio
 
-        let arrivingYCoordinate = UserLocation.centerLocation.coordinate.latitude + y
-        let arrivingXCoordinate = UserLocation.centerLocation.coordinate.longitude + x
+        let arrivingYCoordinate = coordinate.latitude + y
+        let arrivingXCoordinate = coordinate.longitude + x
         
         return CLLocationCoordinate2D(latitude: arrivingYCoordinate, longitude: arrivingXCoordinate)
 

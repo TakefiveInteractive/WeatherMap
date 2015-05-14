@@ -43,8 +43,12 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
     var dayForcastMaxTemperatureIntArr = [Int32]()
 
     func setup(forecastInfos: [[String: AnyObject]]) {
-        threeHourForcast()
 
+        // get three hour forcast data
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.getThreeHourForcast(parentController.cityID)
+        
         // each daily display block height
         let blockHeight: CGFloat = 30
         let labelFont = UIFont(name: "AvenirNext-Regular", size: 16)
@@ -107,13 +111,9 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             backView.delay = 0.1 * CGFloat(index)
             backView.animate()
         }
+
     }
-    
-    func threeHourForcast() {
-        var connection = InternetConnection()
-        connection.delegate = self
-        connection.getThreeHourForcast(parentController.cityID)
-    }
+
     
     func gotThreeHourForcastData(cityID: String, forcast: [AnyObject]) {
         /// set up scroll view daily forcast

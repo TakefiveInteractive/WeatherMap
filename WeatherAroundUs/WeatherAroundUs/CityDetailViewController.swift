@@ -71,11 +71,17 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     }
     
     override func viewDidAppear(animated: Bool) {
-        let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
-        forecastView.setup(nineDayWeatherForcast)
-        digestWeatherView.setup(nineDayWeatherForcast)
-        detailWeatherView.setup(nineDayWeatherForcast)
-
+        
+        if WeatherInfo.citiesForcast[cityID] != nil{
+            let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
+            forecastView.setup(nineDayWeatherForcast)
+            digestWeatherView.setup(nineDayWeatherForcast)
+            detailWeatherView.setup(nineDayWeatherForcast)
+        }else{
+            var connection = InternetConnection()
+            connection.delegate = self
+            connection.getWeatherForcast(cityID)
+        }
         
         var currDate = NSDate()
         var dateFormatter = NSDateFormatter()
@@ -87,14 +93,37 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
             dateDisplayLabel.text = dateDisplayLabel.text! + "日"
         }
         switchWeatherUnitButtonDidPressed()
-
+        
+        /*   TODO:
         UIView.animateWithDuration(1, animations: { () -> Void in
             self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
             self.view.layoutIfNeeded()
             }) { (finish) -> Void in
                 self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
-        }
+        }*/
     }
+    
+    // if doesn't have forcast data
+    func gotWeatherForcastData(cityID: String, forcast: [AnyObject]) {
+        
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        
+        // get currentDate
+        var currDate = NSDate()
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YY"
+        let dateStr = dateFormatter.stringFromDate(currDate)
+        
+        WeatherInfo.citiesForcast.updateValue(forcast, forKey: cityID)
+        
+        let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
+        forecastView.setup(nineDayWeatherForcast)
+        digestWeatherView.setup(nineDayWeatherForcast)
+        detailWeatherView.setup(nineDayWeatherForcast)
+        //display new icon
+
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
