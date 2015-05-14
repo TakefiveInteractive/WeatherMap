@@ -17,6 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //copy db to local if needed
+        
+        let fileManager = NSFileManager.defaultManager()
+        var target = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+        target = target.stringByAppendingPathComponent("citiesInfo.db")
+        
+        if (!fileManager.fileExistsAtPath(target)) {
+            var resource = NSBundle.mainBundle().pathForResource("citiesInfo", ofType: "db") as String?
+            fileManager.copyItemAtPath(resource!, toPath: target, error: nil)
+        }
+        
         GMSServices.provideAPIKey("AIzaSyDLBiMd9DqNtqeRc2DMtoeYL4hg53wUEw8")
         UserLocation.setup()
         IconImage.setupPhotos()

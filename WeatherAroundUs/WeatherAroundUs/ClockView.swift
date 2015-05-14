@@ -88,18 +88,18 @@ class ClockView: DesignableView{
             // i is the number of day from current date  from 0 - dotNum
             for var i = 1; i <= dotNum; i++ {
                 if index < self.parentController.timeLine.dots[i].center.y {
+                    futureDay = i
                     if sender.translationInView(self.parentController.timeLine.blurView).y > 0{
                         //dragging down
                         clockIndex = parentController.timeLine.dots[i].center.y
-                        parentController.mapView.changeIconWithTime(i)
+                        parentController.mapView.changeIconWithTime()
                         
                     }else{
                         //dragging up
                         i--
                         clockIndex = parentController.timeLine.dots[i].center.y
-                        parentController.mapView.changeIconWithTime(i)
+                        parentController.mapView.changeIconWithTime()
                     }
-                    futureDay = i
                     displayWeatherOfTheDay(futureDay)
                     self.parentController.card.displayCity(WeatherInfo.currentCityID)
                     break
