@@ -98,7 +98,6 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             citiesForcast.removeAll(keepCapacity: false)
         }
         citiesForcast.updateValue(forcast, forKey: cityID)
-        citiesForcast.updateValue(forcast, forKey: cityID)
 
         //display new icon
         if forcastMode{
