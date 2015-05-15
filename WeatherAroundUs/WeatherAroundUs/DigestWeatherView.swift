@@ -67,7 +67,7 @@ class DigestWeatherView: DesignableView {
         if parentController.isFnotC {
             unit = "C"
         }
-        tempRange.text = "\(WeatherMapCalculations.degreeConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.degreeConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
+        tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
         shimmerTempRange.addSubview(tempRange)
         tempRange.animation = "fadeIn"
         tempRange.delay = 0.2
@@ -96,6 +96,6 @@ class DigestWeatherView: DesignableView {
         if parentController.isFnotC {
             unit = "C"
         }
-        tempRange.text = "\(WeatherMapCalculations.degreeConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.degreeConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
+        tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
     }
 }

@@ -140,7 +140,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                     currentIcon = (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
                     self.icon.image = UIImage(named: currentIcon)!
                 }
-                self.temperature.text = "\(WeatherMapCalculations.degreeConvert(temp, isFnotC: false))°C / \(WeatherMapCalculations.degreeConvert(temp, isFnotC: true))°F"
+                self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                 self.city.text = (info as! [String: AnyObject])["name"] as? String
                 
                 self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
@@ -177,7 +177,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                         if WeatherInfo.forcastMode {
                             temp = Int32((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
                         }
-                        self.temperature.text = "\(WeatherMapCalculations.degreeConvert(temp, isFnotC: false))°C / \(WeatherMapCalculations.degreeConvert(temp, isFnotC: true))°F"
+                        self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                         self.city.text = (info as! [String: AnyObject])["name"] as? String
                         self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString
                         

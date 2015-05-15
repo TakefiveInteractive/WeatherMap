@@ -39,7 +39,6 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         digestWeatherView.parentController = self
         detailWeatherView.parentController = self
         
-        mainTempatureToTopHeightConstraint.constant = view.frame.height / 3
         mainTemperatureShimmerView.contentView = mainTemperatureDisplay
         mainTemperatureShimmerView.shimmering = true
 
@@ -62,8 +61,11 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-       // backgroundImageView = tempImage
+
+        mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
+        self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
+
+        // backgroundImageView = tempImage
         switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
         
         backgroundImageView.setup(tempImage)
@@ -71,17 +73,28 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     }
     
     override func viewDidAppear(animated: Bool) {
+        setUpBasicViews()
+/*
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
+            self.view.layoutIfNeeded()
+            }) { (finish) -> Void in
+                
+                self.setUpBasicViews()
+
+                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
+                println(self.forecastView.userInteractionEnabled)
+                println(self.scrollView.userInteractionEnabled)
+                println(self.forecastView.frame)
+                
+                var but = UIButton(frame: CGRectMake(0, 0, 100, 100))
+                but.backgroundColor = UIColor.whiteColor()
+                but.addTarget(self, action: "ll", forControlEvents: UIControlEvents.TouchUpInside)
+                self.scrollView.addSubview(but)
+                
+        }*/
         
-        if WeatherInfo.citiesForcast[cityID] != nil{
-            let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
-            forecastView.setup(nineDayWeatherForcast)
-            digestWeatherView.setup(nineDayWeatherForcast)
-            detailWeatherView.setup(nineDayWeatherForcast)
-        }else{
-            var connection = InternetConnection()
-            connection.delegate = self
-            connection.getWeatherForcast(cityID)
-        }
+        //self.scrollView.bringSubviewToFront(self.forecastView)
         
         var currDate = NSDate()
         var dateFormatter = NSDateFormatter()
@@ -93,14 +106,23 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
             dateDisplayLabel.text = dateDisplayLabel.text! + "日"
         }
         switchWeatherUnitButtonDidPressed()
-        
-        /*   TODO:
-        UIView.animateWithDuration(1, animations: { () -> Void in
-            self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
-            self.view.layoutIfNeeded()
-            }) { (finish) -> Void in
-                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
-        }*/
+    }
+    
+    func setUpBasicViews() {
+        if WeatherInfo.citiesForcast[cityID] != nil{
+            let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
+            forecastView.setup(nineDayWeatherForcast)
+            digestWeatherView.setup(nineDayWeatherForcast)
+            detailWeatherView.setup(nineDayWeatherForcast)
+        }else{
+            var connection = InternetConnection()
+            connection.delegate = self
+            connection.getWeatherForcast(cityID)
+        }
+    }
+    
+    func ll () {
+        println("sdsddssd")
     }
     
     // if doesn't have forcast data
@@ -147,9 +169,9 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         
         let todayDegree = ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"]!.intValue
         if isFnotC {
-            mainTemperatureDisplay.text = "\(WeatherMapCalculations.degreeConvert(todayDegree, isFnotC: isFnotC))°C"
+            mainTemperatureDisplay.text = "\(todayDegree)°C"
         } else {
-            mainTemperatureDisplay.text = "\(WeatherMapCalculations.degreeConvert(todayDegree, isFnotC: isFnotC))°F"
+            mainTemperatureDisplay.text = "\(WeatherMapCalculations.degreeToF(Int32(todayDegree)))°F"
         }
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         digestWeatherView.reloadTemperature(nineDayWeatherForcast)

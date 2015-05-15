@@ -43,18 +43,12 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
     var dayForcastMaxTemperatureIntArr = [Int32]()
 
     func setup(forecastInfos: [[String: AnyObject]]) {
-
-        // get three hour forcast data
-        var connection = InternetConnection()
-        connection.delegate = self
-        connection.getThreeHourForcast(parentController.cityID)
         
         // each daily display block height
         let blockHeight: CGFloat = 30
         let labelFont = UIFont(name: "AvenirNext-Regular", size: 16)
 
         parentController.basicForecastViewHeight.constant = hourForcastScrollView.frame.height + CGFloat(displayedDays) * blockHeight + 50
-        
         
         /// set up week weather forcast
         let date = NSDate()
@@ -87,7 +81,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             maxTempLabel.textAlignment = .Right
             maxTempLabel.font = labelFont
             let maxTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["max"])!.intValue
-            maxTempLabel.text = "\(WeatherMapCalculations.degreeConvert(maxTempInt, isFnotC: parentController.isFnotC))°"
+            maxTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(maxTempInt, isFnotC: parentController.isFnotC))°"
             backView.addSubview(maxTempLabel)
             dayForcastMaxTemperatureIntArr.append(maxTempInt)
             dayForcastMaxTemperatureLabelArr.append(maxTempLabel)
@@ -97,7 +91,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             minTempLabel.textAlignment = .Right
             minTempLabel.font = labelFont
             let minTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["min"])!.intValue
-            minTempLabel.text = "\(WeatherMapCalculations.degreeConvert(minTempInt, isFnotC: parentController.isFnotC))°"
+            minTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(minTempInt, isFnotC: parentController.isFnotC))°"
             backView.addSubview(minTempLabel)
             dayForcastMinTemperatureIntArr.append(minTempInt)
             dayForcastMinTemperatureLabelArr.append(minTempLabel)
@@ -112,6 +106,11 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             backView.animate()
         }
 
+        // get three hour forcast data
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.getThreeHourForcast(parentController.cityID)
+        
     }
 
     
@@ -146,7 +145,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             hourTemperatureLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
             hourTemperatureLabel.textColor = UIColor.whiteColor()
             hourTemperatureLabel.textAlignment = .Center
-            hourTemperatureLabel.text = "\(WeatherMapCalculations.degreeConvert(temp, isFnotC: parentController.isFnotC))°"
+            hourTemperatureLabel.text = "\(WeatherMapCalculations.kelvinConvert(temp, isFnotC: parentController.isFnotC))°"
             hourItemView.addSubview(hourTemperatureLabel)
             
             hourItemView.animation = "fadeIn"
@@ -161,11 +160,11 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
     func reloadTempatureContent() {
         
         for var index = 0; index < hourForcastTemperatureLabelArr.count; index++ {
-            hourForcastTemperatureLabelArr[index].text = "\(WeatherMapCalculations.degreeConvert(hourForcastTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
+            hourForcastTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(hourForcastTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
         }
         for var index = 0; index < dayForcastMaxTemperatureLabelArr.count; index++ {
-            dayForcastMaxTemperatureLabelArr[index].text = "\(WeatherMapCalculations.degreeConvert(dayForcastMaxTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
-            dayForcastMinTemperatureLabelArr[index].text = "\(WeatherMapCalculations.degreeConvert(dayForcastMinTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
+            dayForcastMaxTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(dayForcastMaxTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
+            dayForcastMinTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(dayForcastMinTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
 
         }
         

@@ -291,7 +291,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 //set to low priority    performance issue
                 //dispatch_after(DISPATCH_TIME_NOW, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { () -> Void in
                 if WeatherInfo.citiesAroundDict[city] != nil{
-                    println(city)
                     if !WeatherInfo.forcastMode {
                         let iconStr = (((WeatherInfo.citiesAroundDict[city] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
                         weatherIcons[city]!.icon = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
