@@ -84,7 +84,8 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
     
     func gotLocationWithPlaceID(location: CLLocationCoordinate2D){
         parentController.mapView.shouldDisplayCard = true
-        WeatherInfo.getLocalWeatherInformation(location, number: 15)
+        //TO DO  NEW search
+        //WeatherInfo.getLocalWeatherInformation(location, number: 15)
         self.parentController.mapView.animateToLocation(location)
 
     }

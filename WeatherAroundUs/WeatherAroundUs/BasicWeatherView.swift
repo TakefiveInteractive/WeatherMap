@@ -87,7 +87,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             maxTempLabel.textAlignment = .Right
             maxTempLabel.font = labelFont
             let maxTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["max"])!.intValue
-            maxTempLabel.text = "\(parentController.degreeConvert(maxTempInt))°"
+            maxTempLabel.text = "\(WeatherMapCalculations.degreeConvert(maxTempInt, isFnotC: parentController.isFnotC))°"
             backView.addSubview(maxTempLabel)
             dayForcastMaxTemperatureIntArr.append(maxTempInt)
             dayForcastMaxTemperatureLabelArr.append(maxTempLabel)
@@ -97,7 +97,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             minTempLabel.textAlignment = .Right
             minTempLabel.font = labelFont
             let minTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["min"])!.intValue
-            minTempLabel.text = "\(parentController.degreeConvert(minTempInt))°"
+            minTempLabel.text = "\(WeatherMapCalculations.degreeConvert(minTempInt, isFnotC: parentController.isFnotC))°"
             backView.addSubview(minTempLabel)
             dayForcastMinTemperatureIntArr.append(minTempInt)
             dayForcastMinTemperatureLabelArr.append(minTempLabel)
@@ -146,7 +146,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             hourTemperatureLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
             hourTemperatureLabel.textColor = UIColor.whiteColor()
             hourTemperatureLabel.textAlignment = .Center
-            hourTemperatureLabel.text = "\(parentController.degreeConvert(temp))°"
+            hourTemperatureLabel.text = "\(WeatherMapCalculations.degreeConvert(temp, isFnotC: parentController.isFnotC))°"
             hourItemView.addSubview(hourTemperatureLabel)
             
             hourItemView.animation = "fadeIn"
@@ -159,12 +159,13 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
     }
     
     func reloadTempatureContent() {
+        
         for var index = 0; index < hourForcastTemperatureLabelArr.count; index++ {
-            hourForcastTemperatureLabelArr[index].text = "\(parentController.degreeConvert(hourForcastTemperatureIntArr[index]))°"
+            hourForcastTemperatureLabelArr[index].text = "\(WeatherMapCalculations.degreeConvert(hourForcastTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
         }
         for var index = 0; index < dayForcastMaxTemperatureLabelArr.count; index++ {
-            dayForcastMaxTemperatureLabelArr[index].text = "\(parentController.degreeConvert(dayForcastMaxTemperatureIntArr[index]))°"
-            dayForcastMinTemperatureLabelArr[index].text = "\(parentController.degreeConvert(dayForcastMinTemperatureIntArr[index]))°"
+            dayForcastMaxTemperatureLabelArr[index].text = "\(WeatherMapCalculations.degreeConvert(dayForcastMaxTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
+            dayForcastMinTemperatureLabelArr[index].text = "\(WeatherMapCalculations.degreeConvert(dayForcastMinTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
 
         }
         

@@ -136,13 +136,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         }
     }
     
-    func degreeConvert(degree: Int32) -> Int32 {
-        if isFnotC {
-            return degree - 273
-        } else {
-            return Int32(round(Double(Double(degree) - 273.13) * 9.0 / 5.0 + 32))
-        }
-    }
+
     
     func switchWeatherUnitButtonDidPressed() {
 
@@ -153,9 +147,9 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         
         let todayDegree = ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"]!.intValue
         if isFnotC {
-            mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°C"
+            mainTemperatureDisplay.text = "\(WeatherMapCalculations.degreeConvert(todayDegree, isFnotC: isFnotC))°C"
         } else {
-            mainTemperatureDisplay.text = "\(degreeConvert(todayDegree))°F"
+            mainTemperatureDisplay.text = "\(WeatherMapCalculations.degreeConvert(todayDegree, isFnotC: isFnotC))°F"
         }
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         digestWeatherView.reloadTemperature(nineDayWeatherForcast)

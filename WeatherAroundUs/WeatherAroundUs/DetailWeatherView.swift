@@ -70,12 +70,12 @@ class DetailWeatherView: UIView {
         
         beginY += blockHeight + spaceHeight
         let mornTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["morn"])!.intValue
-        createTwoUILabelInMiddle("Morn Temp:", secondString: "\(parentController.degreeConvert(mornTemperature)) °" + unit, yPosition: beginY)
+        createTwoUILabelInMiddle("Morn Temp:", secondString: "\(WeatherMapCalculations.degreeConvert(mornTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
         
         beginY += blockHeight
         let nightTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["night"])!.intValue
-        createTwoUILabelInMiddle("Niehgt Temp:", secondString: "\(parentController.degreeConvert(nightTemperature)) °" + unit, yPosition: beginY)
-
+        createTwoUILabelInMiddle("Niehgt Temp:", secondString: "\(WeatherMapCalculations.degreeConvert(nightTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
+        
     }
     
     var TempLabelArray = [UILabel]()
@@ -105,9 +105,9 @@ class DetailWeatherView: UIView {
         let lastSecond = TempLabelArray[TempLabelArray.count - 2]
 
         let nightTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["night"])!.intValue
-        lastFirst.text = "\(parentController.degreeConvert(nightTemperature)) °" + unit
+        lastFirst.text = "\(WeatherMapCalculations.degreeConvert(nightTemperature, isFnotC: parentController.isFnotC)) °" + unit
         let mornTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["morn"])!.intValue
-        lastSecond.text = "\(parentController.degreeConvert(mornTemperature)) °" + unit
+        lastSecond.text = "\(WeatherMapCalculations.degreeConvert(mornTemperature, isFnotC: parentController.isFnotC)) °" + unit
     }
     
 }
