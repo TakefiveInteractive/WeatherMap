@@ -10,6 +10,14 @@ import UIKit
 
 class WeatherMapCalculations: NSObject {
     
+    class func degreeConvert(degree: Int32, isFnotC: Bool) -> Int32 {
+        if isFnotC {
+            return degree - 273
+        } else {
+            return Int32(round(Double(Double(degree) - 273.13) * 9.0 / 5.0 + 32))
+        }
+    }
+    
     // get the diagonal real distance of the map displayed on the screen
     class func getTheDistanceBased(region: GMSVisibleRegion)->Double{
         let location = CLLocation(latitude: region.farLeft.latitude, longitude: region.farLeft.longitude)

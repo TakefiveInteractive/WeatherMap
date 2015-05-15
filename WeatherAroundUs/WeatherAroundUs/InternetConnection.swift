@@ -19,7 +19,7 @@ import SwiftyJSON
     optional func gotThreeHourForcastData(cityID: String, forcast:[AnyObject])
 }
 
-var connectionCount: Int = 0
+//var connectionCount: Int = 0
 
 class InternetConnection: NSObject {
     
@@ -56,10 +56,15 @@ class InternetConnection: NSObject {
     }
     
     //search for local weather data
-    func getLocalWeather(location: CLLocationCoordinate2D, number:Int){
+    func getLocalWeather(info: [WeatherDataQTree]){
         
-        connectionCount++
-        var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/find?lat=\(location.latitude)&lon=\(location.longitude)&cnt=\(number)&mode=json")!).responseJSON { (_, response, JSON, error) in
+        var searchIDs = ""
+        for city in info{
+            searchIDs = searchIDs + "," + city.cityID
+        }
+        searchIDs = (searchIDs as NSString).substringFromIndex(1)
+
+        var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/group?id=\(searchIDs)&units=metric")!).responseJSON { (_, response, JSON, error) in
             
             if error == nil && JSON != nil {
                 let myjson = SwiftyJSON.JSON(JSON!)
@@ -67,9 +72,8 @@ class InternetConnection: NSObject {
                     self.delegate?.gotLocalCityWeather!(data)
                 }
             }else{
-                self.getLocalWeather(location, number: number)
+                self.getLocalWeather(info)
             }
-            connectionCount--
         }
     }
     

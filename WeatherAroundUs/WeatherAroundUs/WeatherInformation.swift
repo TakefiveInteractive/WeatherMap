@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 @objc protocol WeatherInformationDelegate: class {
-    optional func changeIconWithTime()
+    optional func gotWeatherInformation()
 }
 
 var WeatherInfo: WeatherInformation = WeatherInformation()
@@ -41,12 +41,15 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         if let forcast: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("citiesForcast"){
             citiesForcast = forcast as! [String : AnyObject]
         }
+        let db = CitySQL()
+        db.loadDataToTree(quadTree)
     }
     
-    func getLocalWeatherInformation(location: CLLocationCoordinate2D, number:Int){
+    func getLocalWeatherInformation(cities: [WeatherDataQTree]){
+        
         var connection = InternetConnection()
         connection.delegate = self
-        connection.getLocalWeather(location, number: number)
+        connection.getLocalWeather(cities)
     }
 
     // got local city weather from member
@@ -61,20 +64,16 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             // first time weather data
             if self.citiesAroundDict["\(id)"] == nil {
                 self.citiesAroundDict.updateValue(cities[index], forKey: "\(id)")
-                // add to the tree
-                quadTree.insertObject(WeatherDataQTree(position: CLLocationCoordinate2DMake(((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), cityID: "\(id)"))
                 
                 var connection = InternetConnection()
                 connection.delegate = self
                 connection.getWeatherForcast("\(id)")
-                
                 hasNewInfo = true
             }
-            
         }
         
         if !forcastMode && hasNewInfo {
-            self.weatherDelegate?.changeIconWithTime!()
+            self.weatherDelegate?.gotWeatherInformation!()
         }
 
     }
@@ -101,7 +100,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
 
         //display new icon
         if forcastMode{
-            self.weatherDelegate?.changeIconWithTime!()
+            self.weatherDelegate?.gotWeatherInformation!()
         }
     }
     
