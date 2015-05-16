@@ -11,7 +11,7 @@ import Spring
 import Shimmer
 
 class CityDetailViewController: UIViewController, UIScrollViewDelegate, InternetConnectionDelegate{
-
+    
     @IBOutlet var backgroundImageView: ImageScrollerView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var mainTemperatureShimmerView: FBShimmeringView!
@@ -25,9 +25,9 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     @IBOutlet var detailWeatherView: DetailWeatherView!
     @IBOutlet var digestWeatherView: DigestWeatherView!
     @IBOutlet var forecastView: BasicWeatherView!
-
+    
     var isFnotC = NSUserDefaults.standardUserDefaults().objectForKey("temperatureDisplay")!.boolValue!
-
+    
     var tempImage: UIImage!
     
     var cityID = String()
@@ -39,9 +39,10 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         digestWeatherView.parentController = self
         detailWeatherView.parentController = self
         
+        mainTempatureToTopHeightConstraint.constant = view.frame.height - 111
         mainTemperatureShimmerView.contentView = mainTemperatureDisplay
         mainTemperatureShimmerView.shimmering = true
-
+        
         forecastView.clipsToBounds = true
         digestWeatherView.clipsToBounds = true
         detailWeatherView.clipsToBounds = true
@@ -50,7 +51,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
             mainTemperatureDisplay.text = "°F"
         } else {
             mainTemperatureDisplay.text = "°C"
-
+            
         }
     }
     
@@ -61,10 +62,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     }
     
     override func viewWillAppear(animated: Bool) {
-
-        mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
-        self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
-
+        super.viewWillAppear(true)
         // backgroundImageView = tempImage
         switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -73,28 +71,8 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     }
     
     override func viewDidAppear(animated: Bool) {
-        setUpBasicViews()
-/*
-        UIView.animateWithDuration(1, animations: { () -> Void in
-            self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
-            self.view.layoutIfNeeded()
-            }) { (finish) -> Void in
-                
-                self.setUpBasicViews()
-
-                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
-                println(self.forecastView.userInteractionEnabled)
-                println(self.scrollView.userInteractionEnabled)
-                println(self.forecastView.frame)
-                
-                var but = UIButton(frame: CGRectMake(0, 0, 100, 100))
-                but.backgroundColor = UIColor.whiteColor()
-                but.addTarget(self, action: "ll", forControlEvents: UIControlEvents.TouchUpInside)
-                self.scrollView.addSubview(but)
-                
-        }*/
-        
-        //self.scrollView.bringSubviewToFront(self.forecastView)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + detailWeatherView.frame.height + 250)
+        setUpBasicViews();
         
         var currDate = NSDate()
         var dateFormatter = NSDateFormatter()
@@ -121,10 +99,6 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         }
     }
     
-    func ll () {
-        println("sdsddssd")
-    }
-    
     // if doesn't have forcast data
     func gotWeatherForcastData(cityID: String, forcast: [AnyObject]) {
         
@@ -143,10 +117,9 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         digestWeatherView.setup(nineDayWeatherForcast)
         detailWeatherView.setup(nineDayWeatherForcast)
         //display new icon
-
+        
     }
-
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -158,20 +131,18 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         }
     }
     
-
-    
     func switchWeatherUnitButtonDidPressed() {
-
+        
         NSUserDefaults.standardUserDefaults().setBool(isFnotC, forKey: "temperatureDisplay")
         NSUserDefaults.standardUserDefaults().synchronize()
-
+        
         isFnotC = !isFnotC
         
-        let todayDegree = ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"]!.intValue
+        let todayDegree = Int32(((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
         if isFnotC {
             mainTemperatureDisplay.text = "\(todayDegree)°C"
         } else {
-            mainTemperatureDisplay.text = "\(WeatherMapCalculations.degreeToF(Int32(todayDegree)))°F"
+            mainTemperatureDisplay.text = "\(WeatherMapCalculations.degreeToF(todayDegree))°F"
         }
         let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as! [[String: AnyObject]]
         digestWeatherView.reloadTemperature(nineDayWeatherForcast)
@@ -201,5 +172,5 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         cache.delegate = backgroundImageView
         cache.getImageFromCache(imageURL, cityID: cityID)
     }
-
+    
 }
