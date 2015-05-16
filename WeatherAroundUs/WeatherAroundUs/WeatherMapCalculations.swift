@@ -28,6 +28,7 @@ class WeatherMapCalculations: NSObject {
         return location.distanceFromLocation(CLLocation(latitude: region.nearRight.latitude, longitude: region.nearRight.longitude))
     }
     
+    
     // correctly display the distance with text
     class func displayKMWithLabel(kilometer: Double)->String{
         

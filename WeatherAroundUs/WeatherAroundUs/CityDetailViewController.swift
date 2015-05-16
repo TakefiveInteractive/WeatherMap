@@ -39,7 +39,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         digestWeatherView.parentController = self
         detailWeatherView.parentController = self
         
-        mainTempatureToTopHeightConstraint.constant = view.frame.height - 111
+        mainTempatureToTopHeightConstraint.constant = view.frame.height / 3
         mainTemperatureShimmerView.contentView = mainTemperatureDisplay
         mainTemperatureShimmerView.shimmering = true
         
@@ -63,7 +63,8 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        // backgroundImageView = tempImage
+
+       // backgroundImageView = tempImage
         switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
         
         backgroundImageView.setup(tempImage)
@@ -71,8 +72,26 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     }
     
     override func viewDidAppear(animated: Bool) {
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + detailWeatherView.frame.height + 250)
+        //scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + detailWeatherView.frame.height + 250)
         setUpBasicViews();
+
+
+//        UIView.animateWithDuration(1, animations: { () -> Void in
+//            self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
+//            self.view.layoutIfNeeded()
+//            }) { (finish) -> Void in
+//                
+//                self.setUpBasicViews()
+//                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
+//
+//                var but = UIButton(frame: CGRectMake(0, 0, 100, 100))
+//                but.backgroundColor = UIColor.whiteColor()
+//                but.addTarget(self, action: "ll", forControlEvents: UIControlEvents.TouchUpInside)
+//                self.scrollView.addSubview(but)
+//                
+//        }
+        
+        //self.scrollView.bringSubviewToFront(self.forecastView)
         
         var currDate = NSDate()
         var dateFormatter = NSDateFormatter()
