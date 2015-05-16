@@ -34,6 +34,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
 
     var forcastMode = false
     
+    var blockSize = 18
+    
     var weatherDelegate : WeatherInformationDelegate?
     
     override init() {
@@ -41,10 +43,44 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         if let forcast: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("citiesForcast"){
             citiesForcast = forcast as! [String : AnyObject]
         }
+
+        splitIntoSubtree()
+    }
+    
+    func splitIntoSubtree(){
+        
         let db = CitySQL()
-        db.loadDataToTree(level1Tree)
+        var entireTree = QTree()
+        db.loadDataToTree(entireTree)
+        
+        for var x = -180; x < 180; x += blockSize {
+            for var y = -90; y < 90; y += blockSize{
+                
+                let centerCoordinate = CLLocationCoordinate2DMake(Double(y + blockSize / 2), Double(x + blockSize / 2))
+                let location1 = CLLocation(latitude: Double(y), longitude: Double(x))
+                let distance = location1.distanceFromLocation(CLLocation(latitude: Double(y + blockSize), longitude: Double(x + blockSize)))
+                let region = MKCoordinateRegionMakeWithDistance(centerCoordinate, distance, distance)
+                
+                // get all nodes in an area
+                let cities = entireTree.getObjectsInRegion(region, minNonClusteredSpan: 0.000001)
+                
+                if cities.count > 0{
+                var tree = SecondLevelQTree(position: centerCoordinate)
+                
+                for city in cities{
+                    
+                    tree.insertObject(city as! WeatherDataQTree)
+                    
+                }
+                    println(cities.count)
+                    println(distance)
+                    level1Tree.insertObject(tree)
+                }
+            }
+        }
         
     }
+
     
     func getLocalWeatherInformation(cities: [WeatherDataQTree]){
         
@@ -107,6 +143,16 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     
 }
 
+class SecondLevelQTree: QTree, QTreeInsertable{
+    
+    var coordinate: CLLocationCoordinate2D
+    
+    init(position: CLLocationCoordinate2D) {
+        coordinate = position
+        super.init()
+    }
+    
+}
 
 class WeatherDataQTree: NSObject, QTreeInsertable{
     
