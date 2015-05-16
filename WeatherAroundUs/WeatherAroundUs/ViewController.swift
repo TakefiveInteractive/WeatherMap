@@ -63,8 +63,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         timeLine.setup()
         card.setup()
         searchBar.setup()
-        //first weather search
-        mapView.displayIcon()
+
         //WeatherInfo.getLocalWeatherInformation(mapView.camera.target, number: 15)
         
         returnCurrentPositionButton.layer.cornerRadius = returnCurrentPositionButton.frame.width / 2
