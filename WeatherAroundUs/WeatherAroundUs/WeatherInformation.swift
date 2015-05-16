@@ -25,7 +25,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var citiesAroundDict = [String: AnyObject]()
     
     // tree that store all the weather data
-    var quadTree = QTree()
+    var level1Tree = QTree()
     
     //current city id
     var currentCityID = ""
@@ -42,7 +42,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             citiesForcast = forcast as! [String : AnyObject]
         }
         let db = CitySQL()
-        db.loadDataToTree(quadTree)
+        db.loadDataToTree(level1Tree)
+        
     }
     
     func getLocalWeatherInformation(cities: [WeatherDataQTree]){
