@@ -117,7 +117,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
     func gotThreeHourForcastData(cityID: String, forcast: [AnyObject]) {
         /// set up scroll view daily forcast
         let hourItemViewWidth: CGFloat = 40
-        let numOfDailyWeatherForcast = forcast.count / 2
+        let numOfDailyWeatherForcast = forcast.count
         hourForcastScrollView.contentSize = CGSize(width: hourItemViewWidth * CGFloat(numOfDailyWeatherForcast), height: hourForcastScrollView.frame.height)
         
         for var index = 0; index < numOfDailyWeatherForcast; index++ {
