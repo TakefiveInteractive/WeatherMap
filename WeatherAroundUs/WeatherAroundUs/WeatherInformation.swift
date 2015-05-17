@@ -27,6 +27,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // tree that store all the weather data
     var level1Tree = QTree()
     
+    var currentSearchTree = QTree()
+
     //current city id
     var currentCityID = ""
 
@@ -34,7 +36,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
 
     var forcastMode = false
     
-    var blockSize = 18
+    var blockSize = 6
     
     var weatherDelegate : WeatherInformationDelegate?
     
