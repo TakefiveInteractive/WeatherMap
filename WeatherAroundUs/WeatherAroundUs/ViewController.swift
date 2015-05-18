@@ -63,8 +63,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         timeLine.setup()
         card.setup()
         searchBar.setup()
-
-        //WeatherInfo.getLocalWeatherInformation(mapView.camera.target, number: 15)
         
         returnCurrentPositionButton.layer.cornerRadius = returnCurrentPositionButton.frame.width / 2
         returnCurrentPositionButton.layer.shadowOffset = CGSizeMake(1, 1)
@@ -118,7 +116,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         if UserLocation.centerLocation != nil{
             mapView.shouldDisplayCard = true
             mapView.displayIcon()
-            //WeatherInfo.getLocalWeatherInformation(UserLocation.centerLocation.coordinate, number: 15)
             mapView.animateToLocation(UserLocation.centerLocation.coordinate)
         }
     }

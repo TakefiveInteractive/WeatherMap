@@ -56,7 +56,7 @@ class InternetConnection: NSObject {
     }
     
     //search for local weather data
-    func getLocalWeather(info: [WeatherDataQTree]){
+    func getLocalWeather(info: [QTreeInsertable]){
         
         var searchIDs = ""
         for city in info{
