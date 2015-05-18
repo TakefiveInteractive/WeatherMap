@@ -8,5 +8,6 @@
 @protocol QTreeInsertable<NSObject>
 
 @property(nonatomic, assign, readonly) CLLocationCoordinate2D coordinate;
+@property(nonatomic, assign, readonly) NSString * cityID;
 
 @end
