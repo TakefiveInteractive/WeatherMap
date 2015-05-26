@@ -27,6 +27,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     var zoom: Float = 12
     
     let clusterZoom: Float = 11
+    let splitZoom: Float = 9.7
     
     var iconSize = IconSize.Large
     
@@ -137,42 +138,17 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         let distance = WeatherMapCalculations.getTheDistanceBased(self.projection.visibleRegion())
         
-        let tree = WeatherInfo.level1Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
-        WeatherInfo.currentSearchTree = tree
-        println(tree.count)
-
+        println("distance  \(distance)")
+        
         if camera.zoom >= clusterZoom {
             //display all icon
+            let tree = WeatherInfo.level2Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
+            WeatherInfo.currentSearchTree = tree
+            
             var iconToRemove = weatherIcons
             weatherIcons = [String: WeatherMarker]()
             
             var iconsData = tree.neighboursForLocation(camera.target, limitCount: 30)
-            
-            if iconsData[0].isMemberOfClass(ThirdLevelQTree){
-                var tempData = [QTreeInsertable]()
-                var dataLeft: UInt = 31
-                for thirdTree in iconsData{
-                    
-                    var localData = [AnyObject]()
-                    if (thirdTree as! ThirdLevelQTree).count < dataLeft {
-                        localData = (thirdTree as! ThirdLevelQTree).neighboursForLocation((thirdTree as! ThirdLevelQTree).coordinate, limitCount: (thirdTree as! ThirdLevelQTree).count)
-                    }else{
-                        localData = (thirdTree as! ThirdLevelQTree).neighboursForLocation((thirdTree as! ThirdLevelQTree).coordinate, limitCount: dataLeft)
-                    }
-                    for searchData in localData{
-                        tempData.append(searchData as! QTreeInsertable)
-                        dataLeft--
-                        if dataLeft <= 1{
-                            break
-                        }
-                    }
-                    
-                    if dataLeft <= 1{
-                        break
-                    }
-                }
-                iconsData = tempData
-            }
             
             WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
             
@@ -199,8 +175,13 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             }
             iconToRemove.removeAll(keepCapacity: false)
             
-        }else{
+        }else if camera.zoom < splitZoom{
         
+            let tree = WeatherInfo.level1Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
+            WeatherInfo.currentSearchTree = tree
+            
+            let helpTree = WeatherInfo.level2Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
+            
             var mapRegion = WeatherMapCalculations.convertRegion(camera.target, distance: distance)
             var reducedLocations = tree.getObjectsInRegion(mapRegion, minNonClusteredSpan: min(mapRegion.span.latitudeDelta, mapRegion.span.longitudeDelta) / 8)
             reducedLocations = removeIconOutSideScreen(reducedLocations)
@@ -208,35 +189,9 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             var iconToRemove = weatherCluster
             weatherCluster = [WeatherMarker]()
             
-            println(reducedLocations.count)
-            
             for icon in reducedLocations {
                 
-                var iconsData = tree.neighboursForLocation(icon.coordinate, limitCount: 10)
-                
-                    var tempData = [QTreeInsertable]()
-                    var dataLeft: UInt = 11
-                    for thirdTree in iconsData{
-                        
-                        var localData = [AnyObject]()
-                        if (thirdTree as! ThirdLevelQTree).count < dataLeft {
-                            localData = (thirdTree as! ThirdLevelQTree).neighboursForLocation((thirdTree as! ThirdLevelQTree).coordinate, limitCount: (thirdTree as! ThirdLevelQTree).count)
-                        }else{
-                            localData = (thirdTree as! ThirdLevelQTree).neighboursForLocation((thirdTree as! ThirdLevelQTree).coordinate, limitCount: dataLeft)
-                        }
-                        for searchData in localData{
-                            tempData.append(searchData as! QTreeInsertable)
-                            dataLeft--
-                            if dataLeft <= 1{
-                                break
-                            }
-                        }
-                        
-                        if dataLeft <= 1{
-                            break
-                        }
-                    }
-                    iconsData = tempData
+                var iconsData = helpTree.neighboursForLocation(icon.coordinate, limitCount: 10)
                 
                 WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
                 
@@ -272,6 +227,11 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 weatherClusterTree.removeObject(icon)
             }
             iconToRemove.removeAll(keepCapacity: false)
+            
+        }else{
+            
+            let tree = WeatherInfo.level2Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
+            WeatherInfo.currentSearchTree = tree
             
         }
         
@@ -366,7 +326,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         
         let tree = WeatherInfo.currentSearchTree
-        println("addicon")
+        //println("addicon")
         
         var marker = WeatherMarker(position: position, cityID: cityID, info: iconInfo)
         var iconStr = ""
