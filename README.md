@@ -1,5 +1,5 @@
 # Weather Map - [Take Five Interactive](http://www.takefiveinteractive.com)
-#### WeatherMap combines weather info with map display. You can view the ongoing weather change of an entire region in one scroll! A tool designed for those of you who road-trip or travel around often.
+WeatherMap combines weather info with map display. You can view the ongoing weather change of an entire region in one scroll! A tool designed for those of you who road-trip or travel around often.
 
 # Usage
 1) Download the repository
@@ -29,11 +29,11 @@ Now Weather Map version 1.1 is updated in apple store.
 # Credits
 * [Alamofire](https://github.com/Alamofire/Alamofire) for network request
 * [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) for handling JSON api
-* [Spring](https://github.com/MengTo/Spring)  for code-less animation
-* FMDB for data storing
-* GPUImage for image handling
-* HanekeSwift for cache
-* Shimmer for animation
+* [Spring](https://github.com/MengTo/Spring) for code-less animation
+* [FMDB](https://github.com/ccgus/fmdb) for data storing
+* [GPUImage](https://github.com/BradLarson/GPUImage) for image handling
+* [HanekeSwift](https://github.com/Haneke/HanekeSwift) for cache
+* [Shimmer](https://github.com/facebook/Shimmer) for animation
 
 # Donation:
 <img src="http://i.imgur.com/H4Qs3am.png" width="200" height="200"/>
