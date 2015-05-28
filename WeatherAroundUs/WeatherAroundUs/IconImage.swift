@@ -52,13 +52,13 @@ class IconImage: NSObject {
         var img: UIImage!
         img = UIImage(named: name)!.resize(CGSizeMake(50, 50)).addShadow(blurSize: 3.0)
         IconImage.xlargeImage.updateValue(img, forKey: name)
-        img = UIImage(named: name)!.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
+        img = UIImage(named: name)!.resize(CGSizeMake(40, 40)).addShadow(blurSize: 3.0)
         IconImage.largeImage.updateValue(img, forKey: name)
-        img = UIImage(named: name)!.resize(CGSizeMake(25, 25)).addShadow(blurSize: 3.0)
-        IconImage.midImage.updateValue(img, forKey: name)
-        img = UIImage(named: name)!.resize(CGSizeMake(15, 15)).addShadow(blurSize: 3.0)
-        IconImage.smallImage.updateValue(img, forKey: name)
         img = UIImage(named: name)!.resize(CGSizeMake(30, 30)).addShadow(blurSize: 3.0)
+        IconImage.midImage.updateValue(img, forKey: name)
+        img = UIImage(named: name)!.resize(CGSizeMake(20, 20)).addShadow(blurSize: 3.0)
+        IconImage.smallImage.updateValue(img, forKey: name)
+        img = UIImage(named: name)!.resize(CGSizeMake(35, 35)).addShadow(blurSize: 3.0)
         IconImage.reducedImage.updateValue(img, forKey: name)
     }
     

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 @objc protocol WeatherInformationDelegate: class {
-    optional func changeIconWithTime()
+    optional func gotWeatherInformation()
 }
 
 var WeatherInfo: WeatherInformation = WeatherInformation()
@@ -25,14 +25,19 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var citiesAroundDict = [String: AnyObject]()
     
     // tree that store all the weather data
-    var quadTree = QTree()
-    
+    var currentSearchTree = QTree()
+
+    var level1Tree = QTree()
+    var level2Tree = QTree()
+
     //current city id
     var currentCityID = ""
 
     let maxCityNum = 150
 
     var forcastMode = false
+    
+    var blockSize = 8
     
     var weatherDelegate : WeatherInformationDelegate?
     
@@ -41,12 +46,81 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         if let forcast: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("citiesForcast"){
             citiesForcast = forcast as! [String : AnyObject]
         }
+
+        splitIntoSubtree()
     }
     
-    func getLocalWeatherInformation(location: CLLocationCoordinate2D, number:Int){
+    func splitIntoSubtree(){
+        
+        let db = CitySQL()
+        var entireTree = QTree()
+        db.loadDataToTree(entireTree)
+        
+        for var x = -180; x < 180; x += blockSize {
+            for var y = -90; y < 90; y += blockSize{
+                
+                let centerCoordinate = CLLocationCoordinate2DMake(Double(y + blockSize / 2), Double(x + blockSize / 2))
+                let location1 = CLLocation(latitude: Double(y), longitude: Double(x))
+                let distance = location1.distanceFromLocation(CLLocation(latitude: Double(y + blockSize), longitude: Double(x + blockSize)))
+                let region = MKCoordinateRegionMakeWithDistance(centerCoordinate, distance, distance)
+                
+                // get all nodes in an area
+                let cities = entireTree.getObjectsInRegion(region, minNonClusteredSpan: 0.000001)
+                
+                if cities.count > 0{
+                    
+                    var tree = SecondLevelQTree(position: centerCoordinate, cityID: (cities[0] as! WeatherDataQTree).cityID)
+                    
+                    for city in cities{
+                        
+                        tree.insertObject(city as! WeatherDataQTree)
+                        
+                    }
+                    println(cities.count)
+                    level2Tree.insertObject(tree)
+                    
+                    // split into level 3 tree
+                    
+                    var uptree = SecondLevelQTree(position: centerCoordinate, cityID: (cities[0] as! WeatherDataQTree).cityID)
+                    
+                    let size = 0.1
+                    
+                    for var xm: Double = Double(x); xm < Double(x + blockSize); xm += size {
+                        for var ym: Double = Double(y); ym < Double(y + blockSize); ym += size {
+                            let centerCoordinateThird = CLLocationCoordinate2DMake(Double(ym + size / 2), Double(xm + size / 2))
+                            let location1 = CLLocation(latitude: Double(ym), longitude: Double(xm))
+                            let distanceThird = location1.distanceFromLocation(CLLocation(latitude: Double(ym + size), longitude: Double(xm + size)))
+                            let region = MKCoordinateRegionMakeWithDistance(centerCoordinateThird, distanceThird, distanceThird)
+                            
+                            // get all nodes in an area
+                            let citiesInThirdLevel = entireTree.getObjectsInRegion(region, minNonClusteredSpan: 0.000001)
+                            if citiesInThirdLevel.count > 0{
+                                
+                                var tree = ThirdLevelQTree(position: (citiesInThirdLevel[0] as! WeatherDataQTree).coordinate, cityID: (citiesInThirdLevel[0] as! WeatherDataQTree).cityID)
+                                
+                                for thirdCity in citiesInThirdLevel{
+                                    
+                                    tree.insertObject(thirdCity as! WeatherDataQTree)
+                                    
+                                }
+                                uptree.insertObject(tree)
+                                println(citiesInThirdLevel.count)
+                            }
+                        }
+                    }
+                    level1Tree.insertObject(uptree)
+                }
+            }
+        }
+        
+    }
+
+    
+    func getLocalWeatherInformation(cities: [QTreeInsertable]){
+        
         var connection = InternetConnection()
         connection.delegate = self
-        connection.getLocalWeather(location, number: number)
+        connection.getLocalWeather(cities)
     }
 
     // got local city weather from member
@@ -61,20 +135,16 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             // first time weather data
             if self.citiesAroundDict["\(id)"] == nil {
                 self.citiesAroundDict.updateValue(cities[index], forKey: "\(id)")
-                // add to the tree
-                quadTree.insertObject(WeatherDataQTree(position: CLLocationCoordinate2DMake(((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((cities[index] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), cityID: "\(id)"))
                 
                 var connection = InternetConnection()
                 connection.delegate = self
                 connection.getWeatherForcast("\(id)")
-                
                 hasNewInfo = true
             }
-            
         }
         
         if !forcastMode && hasNewInfo {
-            self.weatherDelegate?.changeIconWithTime!()
+            self.weatherDelegate?.gotWeatherInformation!()
         }
 
     }
@@ -101,12 +171,50 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
 
         //display new icon
         if forcastMode{
-            self.weatherDelegate?.changeIconWithTime!()
+            self.weatherDelegate?.gotWeatherInformation!()
         }
     }
     
 }
 
+/*
+class FourthLevelQTree: QTree, QTreeInsertable{
+    
+    var coordinate: CLLocationCoordinate2D
+    var centerCity: String!
+    
+    init(position: CLLocationCoordinate2D) {
+        coordinate = position
+        super.init()
+    }
+    
+}*/
+
+class ThirdLevelQTree: QTree, QTreeInsertable{
+    
+    var coordinate: CLLocationCoordinate2D
+    var cityID: String
+    
+    init(position: CLLocationCoordinate2D, cityID: String) {
+        coordinate = position
+        self.cityID = cityID
+        super.init()
+    }
+    
+}
+
+class SecondLevelQTree: QTree, QTreeInsertable{
+    
+    var coordinate: CLLocationCoordinate2D
+    var cityID: String
+
+    init(position: CLLocationCoordinate2D, cityID: String) {
+        coordinate = position
+        self.cityID = cityID
+        super.init()
+    }
+    
+}
 
 class WeatherDataQTree: NSObject, QTreeInsertable{
     
@@ -116,8 +224,8 @@ class WeatherDataQTree: NSObject, QTreeInsertable{
     
     init(position: CLLocationCoordinate2D, cityID: String) {
         coordinate = position
-        super.init()
         self.cityID = cityID
+        super.init()
     }
     
 }

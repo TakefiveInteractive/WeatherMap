@@ -22,10 +22,12 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     var weatherClusterTree = QTree()
     var weatherCluster = [WeatherMarker]()
     var weatherIcons = [String: WeatherMarker]()
+    var lastLocation = CLLocation()
     
     var zoom: Float = 12
     
-    let clusterZoom: Float = 10
+    let clusterZoom: Float = 11
+    let splitZoom: Float = 9.7
     
     var iconSize = IconSize.Large
     
@@ -38,8 +40,9 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: zoom)
             self.camera = camera
         }
-        
-        self.setMinZoom(5, maxZoom: 14)
+        self.setMinZoom(6, maxZoom: 15)
+
+        lastLocation = CLLocation(latitude: camera.target.latitude, longitude: camera.target.longitude)
 
         self.mapType = kGMSTypeNormal
         self.myLocationEnabled = true
@@ -61,27 +64,33 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+        
         if (marker as! WeatherMarker).data.isMemberOfClass(QCluster) {
             //handle cluster
-            self.animateToZoom(10.5)
+            let data = WeatherInfo.currentSearchTree.neighboursForLocation(marker.position, limitCount: 1)[0] as! QTreeInsertable
+            self.animateToCameraPosition(GMSCameraPosition(target: data.coordinate, zoom: 11.5, bearing: self.camera.bearing, viewingAngle: self.camera.viewingAngle))
+            WeatherInfo.currentCityID = data.cityID
+            parentController.card.displayCity(data.cityID)
+            
         }else{
-            if WeatherInfo.citiesAroundDict[((marker as! WeatherMarker).data as! WeatherDataQTree).cityID] != nil {
-                WeatherInfo.currentCityID = marker.title
-                parentController.card.displayCity(marker.title)
+            if WeatherInfo.citiesAroundDict[((marker as! WeatherMarker).data as! QTreeInsertable).cityID] != nil {
+                WeatherInfo.currentCityID = ((marker as! WeatherMarker).data as! QTreeInsertable).cityID
+                parentController.card.displayCity(((marker as! WeatherMarker).data as! QTreeInsertable).cityID)
+                self.animateToLocation(marker.position)
             }
         }
-        self.animateToLocation(marker.position)
         return true
+
     }
     
     func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
         
         // change the size of the icon according to zoom
-    
+        //let distance = WeatherMapCalculations.getTheDistanceBased(self.projection.visibleRegion())
+
         let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
-        // update weather info
-        WeatherInfo.getLocalWeatherInformation(self.camera.target, number: 15)
-        displayIcon()
+            displayIcon()
+
     }
     
     func mapView(mapView: GMSMapView!, willMove gesture: Bool) {
@@ -97,23 +106,27 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
         
+        println(camera.zoom)
+        
         if zoom != camera.zoom{
             clearIcons()
             zoom = camera.zoom
         }
         
         let previousSize = iconSize
-        if camera.zoom > 13{
+        
+        if camera.zoom > 14{
             iconSize = .XLarge
-        }else if camera.zoom > 12{
+        }else if camera.zoom > 13{
             iconSize = .Large
-        }else if camera.zoom > 11{
+        }else if camera.zoom > 12{
             iconSize = .Mid
-        }else if camera.zoom > 10{
+        }else if camera.zoom >= 11{
             iconSize = .Small
         }else{
             iconSize = .Reduced
         }
+
         if iconSize != previousSize{
             changeIconWithTime()
         }
@@ -123,27 +136,32 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     //display the icon on the map
     func displayIcon() {
         
-        println("displayIcon")
-        
         let distance = WeatherMapCalculations.getTheDistanceBased(self.projection.visibleRegion())
         
-        if camera.zoom > clusterZoom {
+        println("distance  \(distance)")
+        
+        if camera.zoom >= clusterZoom {
             //display all icon
+            let tree = WeatherInfo.level2Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
+            WeatherInfo.currentSearchTree = tree
+            
             var iconToRemove = weatherIcons
             weatherIcons = [String: WeatherMarker]()
             
-            let iconsData = WeatherInfo.quadTree.neighboursForLocation(camera.target, limitCount: 40)
+            var iconsData = tree.neighboursForLocation(camera.target, limitCount: 30)
+            
+            WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
             
             for icon in iconsData{
                 
-                let cityID = (icon as! WeatherDataQTree).cityID
+                let cityID = (icon as! QTreeInsertable).cityID
                 
                 if iconToRemove[cityID] == nil{
                     //if the icon has valid weather data
                     if WeatherInfo.citiesAroundDict[cityID] != nil{
-                        addIconToMap(cityID, position: (icon as! WeatherDataQTree).coordinate, iconInfo: icon)
+                        addIconToMap(cityID, position: (icon as! QTreeInsertable).coordinate, iconInfo: icon)
                     }else{
-                        addIconToMap("empty", position: (icon as! WeatherDataQTree).coordinate, iconInfo: icon)
+                        addIconToMap("empty", position: (icon as! QTreeInsertable).coordinate, iconInfo: icon)
                     }
                 }else{
                     // exist already
@@ -157,15 +175,25 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             }
             iconToRemove.removeAll(keepCapacity: false)
             
-        }else{
+        }else if camera.zoom < splitZoom{
         
+            let tree = WeatherInfo.level1Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
+            WeatherInfo.currentSearchTree = tree
+            
+            let helpTree = WeatherInfo.level2Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
+            
             var mapRegion = WeatherMapCalculations.convertRegion(camera.target, distance: distance)
-            var reducedLocations = WeatherInfo.quadTree.getObjectsInRegion(mapRegion, minNonClusteredSpan: min(mapRegion.span.latitudeDelta, mapRegion.span.longitudeDelta) / 5)
+            var reducedLocations = tree.getObjectsInRegion(mapRegion, minNonClusteredSpan: min(mapRegion.span.latitudeDelta, mapRegion.span.longitudeDelta) / 8)
+            reducedLocations = removeIconOutSideScreen(reducedLocations)
             
             var iconToRemove = weatherCluster
             weatherCluster = [WeatherMarker]()
             
             for icon in reducedLocations {
+                
+                var iconsData = helpTree.neighboursForLocation(icon.coordinate, limitCount: 10)
+                
+                WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
                 
                 var coord = CLLocation()
                 var iconCoord = CLLocation()
@@ -173,7 +201,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 if icon.isMemberOfClass(QCluster){
                     coord = CLLocation(latitude: (icon as! QCluster).coordinate.latitude, longitude: (icon as! QCluster).coordinate.longitude)
                 }else{
-                    coord = CLLocation(latitude: (icon as! WeatherDataQTree).coordinate.latitude, longitude: (icon as! WeatherDataQTree).coordinate.longitude)
+                    coord = CLLocation(latitude: (icon as! QTreeInsertable).coordinate.latitude, longitude: (icon as! QTreeInsertable).coordinate.longitude)
                 }
                 var markers = weatherClusterTree.neighboursForLocation(coord.coordinate, limitCount: 1)
                 
@@ -191,6 +219,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 }else{
                     addIconToMap("", position: coord.coordinate, iconInfo: icon)
                 }
+                
             }
             
             for icon in iconToRemove{
@@ -199,6 +228,11 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             }
             iconToRemove.removeAll(keepCapacity: false)
             
+        }else{
+            
+            let tree = WeatherInfo.level2Tree.neighboursForLocation(camera.target, limitCount: 1)[0] as! SecondLevelQTree
+            WeatherInfo.currentSearchTree = tree
+            
         }
         
         changeIconWithTime()
@@ -206,9 +240,67 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         replaceCard()
     }
     
+    func removeIconOutSideScreen(weatherData: [AnyObject])->[AnyObject]{
+        
+        var result = [AnyObject]()
+        
+        for weather in weatherData{
+            if weather.isMemberOfClass(QCluster){
+                if self.projection.containsCoordinate((weather as! QCluster).coordinate) {
+                    result.append(weather)
+                }
+            }else{
+                if self.projection.containsCoordinate((weather as! QTreeInsertable).coordinate) {
+                    result.append(weather)
+                }
+            }
+        }
+        return result
+    }
+    
+    func getMaxWeatherInCluster(iconInfo: QCluster) ->String{
+        
+        let tree = WeatherInfo.currentSearchTree
+        
+        var iconStr = "empty"
+        
+        var cities: [AnyObject]!
+        if iconInfo.objectsCount > 5{
+            cities = tree.neighboursForLocation(iconInfo.coordinate, limitCount: 5)
+        }else{
+            cities = tree.neighboursForLocation(iconInfo.coordinate, limitCount: UInt(iconInfo.objectsCount))
+        }
+        
+        var iconArray = [String:Int]()
+    
+        for city in cities {
+            let id = (city as! QTreeInsertable).cityID
+            if WeatherInfo.citiesAroundDict[id] != nil{
+                iconStr = (((WeatherInfo.citiesAroundDict[id] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                if iconArray[iconStr] == nil {
+                    iconArray.updateValue(1, forKey: iconStr)
+                }else{
+                    iconArray.updateValue((iconArray[iconStr]! + 1), forKey: iconStr)
+                }
+            }
+        }
+        
+        
+        var max = 0
+        for key in iconArray.keys.array{
+            if iconArray[key] > max{
+                max = iconArray[key]!
+                iconStr = key
+            }
+        }
+        
+        return iconStr
+    }
+
+    
     //clean the map
     func clearIcons() {
-        if (camera.zoom <= clusterZoom && weatherIcons.count > 0) || (camera.zoom > clusterZoom && weatherCluster.count > 0) {
+        if (camera.zoom < clusterZoom && weatherIcons.count > 0) || (camera.zoom >= clusterZoom && weatherCluster.count > 0) {
             clear()
             weatherClusterTree = QTree()
             weatherCluster = [WeatherMarker]()
@@ -219,26 +311,32 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     //display card if needed
     func replaceCard(){
         if shouldDisplayCard {
-            if WeatherInfo.quadTree.count > 0{
+            if WeatherInfo.currentSearchTree.count > 0{
                 shouldDisplayCard = false
                 //diplay the card of the first city getted
-                WeatherInfo.currentCityID = (WeatherInfo.quadTree.neighboursForLocation(camera.target, limitCount: 1)[0] as! WeatherDataQTree).cityID
+                WeatherInfo.currentCityID = (WeatherInfo.currentSearchTree.neighboursForLocation(camera.target, limitCount: 1)[0] as! QTreeInsertable).cityID
                 parentController.card.displayCity(WeatherInfo.currentCityID)
             }
         }
     }
     
+    //cityID = empty if should display fake
+    //cityID = ""   if is cluster
     func addIconToMap(cityID: String, position: CLLocationCoordinate2D, iconInfo: AnyObject){
+        
+        
+        let tree = WeatherInfo.currentSearchTree
+        //println("addicon")
         
         var marker = WeatherMarker(position: position, cityID: cityID, info: iconInfo)
         var iconStr = ""
         
-            if !WeatherInfo.forcastMode{
+        if cityID != "empty"{
+            
+            if !WeatherInfo.forcastMode {
                 if iconInfo.isMemberOfClass(QCluster) {
                     //is cluster
-                    let city = (WeatherInfo.quadTree.neighboursForLocation((iconInfo as! QCluster).coordinate, limitCount: 1)[0] as! WeatherDataQTree).cityID
-                    iconStr = (((WeatherInfo.citiesAroundDict[city] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                    
+                    iconStr = getMaxWeatherInCluster(iconInfo as! QCluster)
                 }else{
                     if WeatherInfo.citiesAroundDict[cityID] == nil{
                         iconStr = "empty"
@@ -253,6 +351,9 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                     return
                 }
                 iconStr = (((data![self.parentController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+            }
+        }else{
+            iconStr = "empty"
         }
         
         marker.icon = IconImage.getImageWithNameAndSize(iconStr, size: iconSize)
@@ -260,62 +361,66 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         marker.map = self
         marker.title = cityID
         
-        if camera.zoom > clusterZoom {
-            weatherIcons.updateValue(marker, forKey: (iconInfo as! WeatherDataQTree).cityID)
+        if camera.zoom >= clusterZoom {
+            weatherIcons.updateValue(marker, forKey: (iconInfo as! QTreeInsertable).cityID)
         }else{
             weatherClusterTree.insertObject(marker)
             weatherCluster.append(marker)
         }
-        
     }
 
+    func gotWeatherInformation() {
+        //display if first open
+        if weatherCluster.count == 0 && weatherIcons.count == 0{
+            displayIcon()
+            return
+        }
+        changeIconWithTime()
+    }
     
     //if day == -1  display current time
+
     func changeIconWithTime(){
+        let tree = WeatherInfo.currentSearchTree
         
-        println("changeIconWithTime")
-        
-        if zoom > clusterZoom {
+        if zoom >= clusterZoom {
             
-            for city in weatherIcons.keys.array {
+            for marker in weatherIcons.keys.array {
                 
                 //set to low priority    performance issue
                 //dispatch_after(DISPATCH_TIME_NOW, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { () -> Void in
-                if WeatherInfo.citiesAroundDict[city] != nil{
+                if WeatherInfo.citiesAroundDict[marker] != nil{
                     if !WeatherInfo.forcastMode {
-                        let iconStr = (((WeatherInfo.citiesAroundDict[city] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                        weatherIcons[city]!.icon = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                        let iconStr = (((WeatherInfo.citiesAroundDict[marker] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                        weatherIcons[marker]!.icon = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
                     }else{
                         //To Do !!!forcast mode
                     }
                 }else{
-                    weatherIcons[city]!.icon = IconImage.getImageWithNameAndSize("empty", size: self.iconSize)
+                    weatherIcons[marker]!.icon = IconImage.getImageWithNameAndSize("empty", size: self.iconSize)
                 }
-            
             }
             
         }else{
+            //change icon display
             
-            /*
-            
-            change icon display
-            
-            for city in weatherCluster{
+            for marker in weatherCluster{
                 
                 //set to low priority    performance issue
                 //dispatch_after(DISPATCH_TIME_NOW, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { () -> Void in
-                if WeatherInfo.forcastMode {
+                if !WeatherInfo.forcastMode {
                     
-                        var markers = weatherClusterTree.neighboursForLocation((city as QTreeInsertable).coordinate, limitCount: 1)
-                        
-                        let sameLat = (markers[0] as! QTreeInsertable).coordinate.latitude == city.coordinate.latitude
-                        let sameLong = (markers[0] as! QTreeInsertable).coordinate.longitude == city.coordinate.longitude
-                        
-                        if markers != nil && markers.count > 0 && sameLat && sameLong {
-
-                        }else{
-                            
+                    if marker.data.isMemberOfClass(QCluster){
+                        let iconStr = getMaxWeatherInCluster(marker.data as! QCluster)
+                        marker.icon = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                    }else{
+                        let id = (marker.data as! QTreeInsertable).cityID
+                        let iconStr = "empty"
+                        if WeatherInfo.citiesAroundDict[id] != nil{
+                            (((WeatherInfo.citiesAroundDict[id] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
                         }
+                        marker.icon = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                    }
                     
                 }else{
                     var i = parentController.clockButton.futureDay
@@ -331,7 +436,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                     }*/
                 }
             }
-            */
+            
         }
     }
 
@@ -351,7 +456,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
 class WeatherMarker: GMSMarker, QTreeInsertable{
     
     var coordinate: CLLocationCoordinate2D
-    
+    var cityID: String!
     var data: AnyObject!
     
     init(position: CLLocationCoordinate2D, cityID: String, info: AnyObject) {
@@ -359,6 +464,7 @@ class WeatherMarker: GMSMarker, QTreeInsertable{
         super.init()
         self.position = position
         data = info
+        self.cityID = cityID
     }
     
 }
