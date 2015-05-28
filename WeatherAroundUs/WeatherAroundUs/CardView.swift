@@ -111,94 +111,92 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     }
  
     func displayCity(cityID: String){
+        
+        if WeatherInfo.citiesAroundDict[cityID] != nil {
 
         // set image to invalid
-        imageUrlReady = false
+            imageUrlReady = false
         
-        var connection = InternetConnection()
-        connection.delegate = self
-        //get image url
-        connection.searchForCityPhotos(CLLocationCoordinate2DMake(((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
-        
-        if hide {
+            var connection = InternetConnection()
+            connection.delegate = self
+            //get image url
+            connection.searchForCityPhotos(CLLocationCoordinate2DMake(((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
             
-            parentViewController.returnCurrentPositionButton.animation = "fadeOut"
-            parentViewController.returnCurrentPositionButton.animate()
-            
-            hide = false
-            self.userInteractionEnabled = true
-            let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-            
-            var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
-            if WeatherInfo.forcastMode {
-               temp = (((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double
-                currentIcon = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                self.icon.image = UIImage(named: currentIcon)!
+            if hide {
+                
+                parentViewController.returnCurrentPositionButton.animation = "fadeOut"
+                parentViewController.returnCurrentPositionButton.animate()
+                
+                hide = false
+                self.userInteractionEnabled = true
+                let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
+                
+                var temp = Int32(((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
+                if WeatherInfo.forcastMode {
+                    temp = Int32((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
+                    currentIcon = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                    self.icon.image = UIImage(named: currentIcon)!
+                }else{
+                    currentIcon = (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                    self.icon.image = UIImage(named: currentIcon)!
+                }
+                self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
+                self.city.text = (info as! [String: AnyObject])["name"] as? String
+                
+                self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                if WeatherInfo.forcastMode {
+                    self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                }
+                weatherDescriptionBack.center = weatherDescriptionBackCenter
+                weatherDescriptionBack.animation = "slideLeft"
+                weatherDescriptionBack.animate()
+                cityBack.center = cityBackCenter
+                cityBack.animation = "slideUp"
+                cityBack.animate()
+                iconBack.center = iconBackCenter
+                iconBack.animation = "slideRight"
+                iconBack.animate()
+                temperatureBack.center = temperatureBackCenter
+                temperatureBack.animation = "slideLeft"
+                temperatureBack.animate()
+                
             }else{
-                currentIcon = (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                self.icon.image = UIImage(named: currentIcon)!
-            }
-            temp = temp - 273
-            let tempF = temp * 9 / 5 + 32
-            self.temperature.text = "\(Int(temp))°C / \(Int(tempF))°F"
-            self.city.text = (info as! [String: AnyObject])["name"] as? String
-
-            self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
-            if WeatherInfo.forcastMode {
-                self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
-            }
-            weatherDescriptionBack.center = weatherDescriptionBackCenter
-            weatherDescriptionBack.animation = "slideLeft"
-            weatherDescriptionBack.animate()
-            cityBack.center = cityBackCenter
-            cityBack.animation = "slideUp"
-            cityBack.animate()
-            iconBack.center = iconBackCenter
-            iconBack.animation = "slideRight"
-            iconBack.animate()
-            temperatureBack.center = temperatureBackCenter
-            temperatureBack.animation = "slideLeft"
-            temperatureBack.animate()
-            
-        }else{
-
-            
-            iconBack.animation = "swing"
-            iconBack.animate()
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
-                self.icon.alpha = 0
-                self.temperature.alpha = 0
-                self.city.alpha = 0
-                self.weatherDescription.alpha = 0
-                }) { (done) -> Void in
-                    
-                    let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-                    
-                    var temp = ((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double
-                    if WeatherInfo.forcastMode {
-                        temp = (((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double
-                    }
-                    temp = temp - 273
-                    let tempF = temp * 9 / 5 + 32
-                    self.temperature.text = "\(Int(temp))°C / \(Int(tempF))°F"
-                    self.city.text = (info as! [String: AnyObject])["name"] as? String
-                    self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString
-                    if WeatherInfo.forcastMode {
-                        temp = (((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double
-                        self.currentIcon = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                        self.icon.image = UIImage(named: self.currentIcon)!
-                    }else{
-                        self.currentIcon = (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                        self.icon.image = UIImage(named: self.currentIcon)!
-                    }
-                    
-                    UIView.animateWithDuration(0.4, animations: { () -> Void in
-                        self.icon.alpha = 1
-                        self.temperature.alpha = 1
-                        self.city.alpha = 1
-                        self.weatherDescription.alpha = 1
-                        }) { (done) -> Void in
-                    }
+                
+                iconBack.animation = "swing"
+                iconBack.animate()
+                UIView.animateWithDuration(0.4, animations: { () -> Void in
+                    self.icon.alpha = 0
+                    self.temperature.alpha = 0
+                    self.city.alpha = 0
+                    self.weatherDescription.alpha = 0
+                    }) { (done) -> Void in
+                        
+                        let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
+                        
+                        var temp = Int32(((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
+                        if WeatherInfo.forcastMode {
+                            temp = Int32((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
+                        }
+                        self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
+                        self.city.text = (info as! [String: AnyObject])["name"] as? String
+                        self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString
+                        
+                        if WeatherInfo.forcastMode {
+                            self.currentIcon = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                            self.icon.image = UIImage(named: self.currentIcon)!
+                        }else{
+                            self.currentIcon = (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                            self.icon.image = UIImage(named: self.currentIcon)!
+                        }
+                        
+                        UIView.animateWithDuration(0.4, animations: { () -> Void in
+                            self.icon.alpha = 1
+                            self.temperature.alpha = 1
+                            self.city.alpha = 1
+                            self.weatherDescription.alpha = 1
+                            }) { (done) -> Void in
+                        }
+                }
             }
         }
     }

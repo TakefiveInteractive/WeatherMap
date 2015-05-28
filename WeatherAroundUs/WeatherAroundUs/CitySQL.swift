@@ -35,7 +35,7 @@ class CitySQL: NSObject{
         
         queue.inDatabase { (db) -> Void in
             
-            let resultSet = db.executeQuery("select * from AllTheQustions", withArgumentsInArray: nil) 
+            let resultSet = db.executeQuery("select * from City", withArgumentsInArray: nil) 
             while resultSet.next() {
 
                 let element = WeatherDataQTree(position: CLLocationCoordinate2DMake(resultSet.doubleForColumn("latitude"), resultSet.doubleForColumn("longitude")), cityID: resultSet.stringForColumn("id"))

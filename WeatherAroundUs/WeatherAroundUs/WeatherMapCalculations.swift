@@ -10,11 +10,24 @@ import UIKit
 
 class WeatherMapCalculations: NSObject {
     
+    class func kelvinConvert(degree: Int32, isFnotC: Bool) -> Int32 {
+        if isFnotC {
+            return degree - 273
+        } else {
+            return Int32(round(Double(Double(degree) - 273.13) * 9.0 / 5.0 + 32))
+        }
+    }
+    
+    class func degreeToF(degree: Int32) -> Int32 {
+        return Int32(Double(degree) * 1.8 + 32)
+    }
+    
     // get the diagonal real distance of the map displayed on the screen
     class func getTheDistanceBased(region: GMSVisibleRegion)->Double{
         let location = CLLocation(latitude: region.farLeft.latitude, longitude: region.farLeft.longitude)
         return location.distanceFromLocation(CLLocation(latitude: region.nearRight.latitude, longitude: region.nearRight.longitude))
     }
+    
     
     // correctly display the distance with text
     class func displayKMWithLabel(kilometer: Double)->String{
