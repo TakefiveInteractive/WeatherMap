@@ -47,7 +47,6 @@ class ClockView: DesignableView{
     }
 
     func setup() {
-        
         timeDisplay.roundCorner(UIRectCorner.AllCorners, radius: frame.width / 2)
         clock.addTarget(self, action: "clockClicked", forControlEvents: UIControlEvents.TouchUpInside)
         blurView.roundCircle()

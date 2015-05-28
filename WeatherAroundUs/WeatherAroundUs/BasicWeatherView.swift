@@ -11,7 +11,11 @@ import Spring
 
 class BasicWeatherView: DesignableView, InternetConnectionDelegate {
 
-    @IBOutlet var hourForcastScrollView: UIScrollView!
+    //@IBOutlet var hourForcastScrollView: UIScrollView!
+    @IBOutlet weak var upperLine: UIImageView!
+    @IBOutlet weak var lowerLine: UIImageView!
+    @IBOutlet weak var scrollViewPosition: UIScrollView!
+    var hourForcastScrollView: UIScrollView!
     let displayedDays: Int = 9
     
     var parentController: CityDetailViewController!
@@ -44,6 +48,15 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
 
     func setup(forecastInfos: [[String: AnyObject]]) {
         
+//        var hourForcastScrollViewConstraints = [NSLayoutConstraint]()
+//        hourForcastScrollViewConstraints += [NSLayoutConstraint(item: hourForcastScrollView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: upperLine, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)]
+//        hourForcastScrollViewConstraints += [NSLayoutConstraint(item: hourForcastScrollView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: upperLine, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)]
+//        hourForcastScrollViewConstraints += [NSLayoutConstraint(item: hourForcastScrollView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: lowerLine, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)]
+//        hourForcastScrollViewConstraints += [NSLayoutConstraint(item: hourForcastScrollView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: lowerLine, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)]
+//        hourForcastScrollView.addConstraints(hourForcastScrollViewConstraints)
+        
+        hourForcastScrollView = UIScrollView(frame: scrollViewPosition.frame)
+        self.addSubview(hourForcastScrollView)
         // each daily display block height
         let blockHeight: CGFloat = 30
         let labelFont = UIFont(name: "AvenirNext-Regular", size: 16)
