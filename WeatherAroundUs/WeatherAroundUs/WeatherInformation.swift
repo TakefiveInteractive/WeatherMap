@@ -18,7 +18,7 @@ var WeatherInfo: WeatherInformation = WeatherInformation()
 class WeatherInformation: NSObject, InternetConnectionDelegate{
     
     var currentDate = ""
-
+    
     // 9 days weather forcast for city
     var citiesForcast = [String: AnyObject]()
     // all city in database with one day weather info
@@ -26,15 +26,16 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     
     // tree that store all the weather data
     var currentSearchTree = QTree()
-
-    var level1Tree = QTree()
-    var level2Tree = QTree()
-
+    var currentSearchTreeDict = [String: [WeatherDataQTree]]()
+    
+    var mainTree = QTree()
+    
+    var lv2 = QTree()
+    
+    
     //current city id
     var currentCityID = ""
-
-    let maxCityNum = 150
-
+        
     var forcastMode = false
     
     var blockSize = 8
@@ -46,9 +47,105 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         if let forcast: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("citiesForcast"){
             citiesForcast = forcast as! [String : AnyObject]
         }
-
-        splitIntoSubtree()
+        
+        //splitIntoSubtree()
+        
+        //Load Main Tree
+        if let path = NSBundle.mainBundle().pathForResource("MainTree", ofType: "plist") {
+            var arr = NSArray(contentsOfFile: path) as! [NSDictionary]
+            for tree in arr{
+                mainTree.insertObject(WeatherDataQTree(position: CLLocationCoordinate2DMake((tree.objectForKey("latitude")! as! NSNumber).doubleValue, (tree.objectForKey("longitude")! as! NSNumber).doubleValue), cityID: tree.objectForKey("cityID") as! String))
+            }
+        }
     }
+    
+    func loadTree(cityID: String){
+        
+        var treeArr = [NSDictionary]()
+        
+        if let path = NSBundle.mainBundle().pathForResource("\(cityID)", ofType: "plist") {
+            var arr = NSArray(contentsOfFile: path)
+            treeArr = arr as! [NSDictionary]
+        }
+        
+        var arr = [WeatherDataQTree]()
+        
+        for node in treeArr{
+            
+            let data = WeatherDataQTree(position: CLLocationCoordinate2DMake(node.objectForKey("latitude")!.doubleValue, node.objectForKey("longitude")!.doubleValue), cityID: node.objectForKey("cityID") as! String)
+            
+            arr.append(data)
+            currentSearchTree.insertObject(data)
+        }
+        currentSearchTreeDict.updateValue(arr, forKey: cityID)
+    }
+    
+    func removeTree(cityID: String){
+        
+        currentSearchTreeDict.removeValueForKey(cityID)
+
+    }
+    
+    
+    func getLocalWeatherInformation(cities: [QTreeInsertable]){
+        
+        var connection = InternetConnection()
+        connection.delegate = self
+        connection.getLocalWeather(cities)
+    }
+    
+    // got local city weather from member
+    func gotLocalCityWeather(cities: [AnyObject]) {
+        
+        var hasNewInfo = false
+        
+        for var index = 0; index < cities.count; index++ {
+            
+            let id: Int = (cities[index] as! [String : AnyObject]) ["id"] as! Int
+            
+            // first time weather data
+            if self.citiesAroundDict["\(id)"] == nil {
+                self.citiesAroundDict.updateValue(cities[index], forKey: "\(id)")
+                
+                var connection = InternetConnection()
+                connection.delegate = self
+                connection.getWeatherForcast("\(id)")
+                hasNewInfo = true
+            }
+        }
+        
+        if !forcastMode && hasNewInfo {
+            self.weatherDelegate?.gotWeatherInformation!()
+        }
+        
+    }
+    
+    func gotWeatherForcastData(cityID: String, forcast: [AnyObject]) {
+        
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        
+        // get currentDate
+        var currDate = NSDate()
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YY"
+        let dateStr = dateFormatter.stringFromDate(currDate)
+        
+        //remove object if not the same day
+        if currentDate != dateStr {
+            currentDate = dateStr
+            userDefault.setValue(dateStr, forKey: "currentDate")
+            userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
+            userDefault.synchronize()
+            citiesForcast.removeAll(keepCapacity: false)
+        }
+        citiesForcast.updateValue(forcast, forKey: cityID)
+        
+        //display new icon
+        if forcastMode{
+            self.weatherDelegate?.gotWeatherInformation!()
+        }
+    }
+    
     
     func splitIntoSubtree(){
         
@@ -77,118 +174,20 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                         
                     }
                     println(cities.count)
-                    level2Tree.insertObject(tree)
+                    lv2.insertObject(tree)
                     
                     // split into level 3 tree
-                    
-                    var uptree = SecondLevelQTree(position: centerCoordinate, cityID: (cities[0] as! WeatherDataQTree).cityID)
-                    
-                    let size = 0.1
-                    
-                    for var xm: Double = Double(x); xm < Double(x + blockSize); xm += size {
-                        for var ym: Double = Double(y); ym < Double(y + blockSize); ym += size {
-                            let centerCoordinateThird = CLLocationCoordinate2DMake(Double(ym + size / 2), Double(xm + size / 2))
-                            let location1 = CLLocation(latitude: Double(ym), longitude: Double(xm))
-                            let distanceThird = location1.distanceFromLocation(CLLocation(latitude: Double(ym + size), longitude: Double(xm + size)))
-                            let region = MKCoordinateRegionMakeWithDistance(centerCoordinateThird, distanceThird, distanceThird)
-                            
-                            // get all nodes in an area
-                            let citiesInThirdLevel = entireTree.getObjectsInRegion(region, minNonClusteredSpan: 0.000001)
-                            if citiesInThirdLevel.count > 0{
-                                
-                                var tree = ThirdLevelQTree(position: (citiesInThirdLevel[0] as! WeatherDataQTree).coordinate, cityID: (citiesInThirdLevel[0] as! WeatherDataQTree).cityID)
-                                
-                                for thirdCity in citiesInThirdLevel{
-                                    
-                                    tree.insertObject(thirdCity as! WeatherDataQTree)
-                                    
-                                }
-                                uptree.insertObject(tree)
-                                println(citiesInThirdLevel.count)
-                            }
-                        }
-                    }
-                    level1Tree.insertObject(uptree)
                 }
             }
         }
         
-    }
-
-    
-    func getLocalWeatherInformation(cities: [QTreeInsertable]){
-        
-        var connection = InternetConnection()
-        connection.delegate = self
-        connection.getLocalWeather(cities)
-    }
-
-    // got local city weather from member
-    func gotLocalCityWeather(cities: [AnyObject]) {
-        
-        var hasNewInfo = false
-        
-        for var index = 0; index < cities.count; index++ {
-                
-            let id: Int = (cities[index] as! [String : AnyObject]) ["id"] as! Int
-            
-            // first time weather data
-            if self.citiesAroundDict["\(id)"] == nil {
-                self.citiesAroundDict.updateValue(cities[index], forKey: "\(id)")
-                
-                var connection = InternetConnection()
-                connection.delegate = self
-                connection.getWeatherForcast("\(id)")
-                hasNewInfo = true
-            }
-        }
-        
-        if !forcastMode && hasNewInfo {
-            self.weatherDelegate?.gotWeatherInformation!()
-        }
-
-    }
-    
-    func gotWeatherForcastData(cityID: String, forcast: [AnyObject]) {
-        
-        let userDefault = NSUserDefaults.standardUserDefaults()
-        
-        // get currentDate
-        var currDate = NSDate()
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY"
-        let dateStr = dateFormatter.stringFromDate(currDate)
-        
-        //remove object if not the same day
-        if currentDate != dateStr {
-            currentDate = dateStr
-            userDefault.setValue(dateStr, forKey: "currentDate")
-            userDefault.setObject([String: AnyObject](), forKey: "citiesForcast")
-            userDefault.synchronize()
-            citiesForcast.removeAll(keepCapacity: false)
-        }
-        citiesForcast.updateValue(forcast, forKey: cityID)
-
-        //display new icon
-        if forcastMode{
-            self.weatherDelegate?.gotWeatherInformation!()
-        }
+        QtreeSerialization.saveSecondLevelTree(lv2)
+        QtreeSerialization.saveMainTree(lv2)
     }
     
 }
 
-/*
-class FourthLevelQTree: QTree, QTreeInsertable{
-    
-    var coordinate: CLLocationCoordinate2D
-    var centerCity: String!
-    
-    init(position: CLLocationCoordinate2D) {
-        coordinate = position
-        super.init()
-    }
-    
-}*/
+
 
 class ThirdLevelQTree: QTree, QTreeInsertable{
     
@@ -207,20 +206,6 @@ class SecondLevelQTree: QTree, QTreeInsertable{
     
     var coordinate: CLLocationCoordinate2D
     var cityID: String
-
-    init(position: CLLocationCoordinate2D, cityID: String) {
-        coordinate = position
-        self.cityID = cityID
-        super.init()
-    }
-    
-}
-
-class WeatherDataQTree: NSObject, QTreeInsertable{
-    
-    var coordinate: CLLocationCoordinate2D
-    
-    var cityID = ""
     
     init(position: CLLocationCoordinate2D, cityID: String) {
         coordinate = position
@@ -230,3 +215,25 @@ class WeatherDataQTree: NSObject, QTreeInsertable{
     
 }
 
+
+
+/*
+class FourthLevelQTree: QTree, QTreeInsertable{
+
+var coordinate: CLLocationCoordinate2D
+var centerCity: String!
+
+init(position: CLLocationCoordinate2D) {
+coordinate = position
+super.init()
+}
+
+}*/
+
+/*
+
+build   Tree   plist   files
+
+
+
+*/
