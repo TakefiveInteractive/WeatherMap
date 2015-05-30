@@ -1132,9 +1132,9 @@
 		4237AC9F1AFF1E8500B80DF7 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				42F093831B175725009BA6A6 /* WeatherDataQTree.swift */,
 				427BAFA41AD0E6F900C87BDE /* MapView.swift */,
 				42AF65631AEB537400E4E550 /* IconImage.swift */,
-				42F093831B175725009BA6A6 /* WeatherDataQTree.swift */,
 				42F093851B175DAF009BA6A6 /* QtreeSerialization.swift */,
 			);
 			name = Map;
