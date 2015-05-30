@@ -177,7 +177,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 
                 let cityID = (icon as! WeatherDataQTree).cityID
                 
-                println(cityID)
                 if iconToRemove[cityID] == nil{
                     //if the icon has valid weather data
                     if WeatherInfo.citiesAroundDict[cityID] != nil{
@@ -192,7 +191,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 }
             }
             
-            println("end")
             for icon in iconToRemove.keys.array {
                 iconToRemove[icon]!.map = nil
             }
