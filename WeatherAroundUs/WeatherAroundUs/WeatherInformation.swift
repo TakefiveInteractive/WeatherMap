@@ -75,10 +75,12 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         for node in treeArr{
             
             if currentSearchTreeUnique[node.objectForKey("cityID") as! String] == nil{
-                let data = WeatherDataQTree(position: CLLocationCoordinate2DMake(node.objectForKey("latitude")!.doubleValue, node.objectForKey("longitude")!.doubleValue), cityID: node.objectForKey("cityID") as! String)
+                var data = WeatherDataQTree(position: CLLocationCoordinate2DMake(node.objectForKey("latitude")!.doubleValue, node.objectForKey("longitude")!.doubleValue), cityID: node.objectForKey("cityID") as! String)
                 arr.append(data)
                 currentSearchTree.insertObject(data)
-                currentSearchTreeUnique.updateValue(data, forKey: data.cityID)
+                
+                weak var weakData = data
+                currentSearchTreeUnique.updateValue(weakData!, forKey: data.cityID)
             }
         }
         currentSearchTreeDict.updateValue(arr, forKey: cityID)
