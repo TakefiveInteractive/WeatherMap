@@ -386,8 +386,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         return iconStr
     }
 
-    let changeIconRate = 25
-    var changeIcon = 0
+    //let changeIconRate = 25
+    var changeIcon = false
     
     func gotWeatherInformation() {
         //display if first open
@@ -396,17 +396,17 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             return
         }
         
-        changeIcon++
-        
-        if changeIcon >= changeIconRate{
+        if !changeIcon {
             changeIconWithTime()
-            changeIcon = 0
         }
     }
     
     //if day == -1  display current time
 
     func changeIconWithTime(){
+        
+        changeIcon = true
+        
         let tree = WeatherInfo.currentSearchTree
         
         if zoom >= clusterZoom {
@@ -466,6 +466,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             }
             
         }
+        
+        changeIcon = false
     }
 
     
