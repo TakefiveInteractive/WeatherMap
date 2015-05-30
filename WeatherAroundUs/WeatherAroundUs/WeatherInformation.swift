@@ -27,6 +27,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // tree that store all the weather data
     var currentSearchTree = QTree()
     var currentSearchTreeDict = [String: [WeatherDataQTree]]()
+    var currentSearchTreeUnique = [String: WeatherDataQTree]()
+
     
     var mainTree = QTree()
     
@@ -72,10 +74,12 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         for node in treeArr{
             
-            let data = WeatherDataQTree(position: CLLocationCoordinate2DMake(node.objectForKey("latitude")!.doubleValue, node.objectForKey("longitude")!.doubleValue), cityID: node.objectForKey("cityID") as! String)
-            
-            arr.append(data)
-            currentSearchTree.insertObject(data)
+            if currentSearchTreeUnique[node.objectForKey("cityID") as! String] == nil{
+                let data = WeatherDataQTree(position: CLLocationCoordinate2DMake(node.objectForKey("latitude")!.doubleValue, node.objectForKey("longitude")!.doubleValue), cityID: node.objectForKey("cityID") as! String)
+                arr.append(data)
+                currentSearchTree.insertObject(data)
+                currentSearchTreeUnique.updateValue(data, forKey: data.cityID)
+            }
         }
         currentSearchTreeDict.updateValue(arr, forKey: cityID)
     }
