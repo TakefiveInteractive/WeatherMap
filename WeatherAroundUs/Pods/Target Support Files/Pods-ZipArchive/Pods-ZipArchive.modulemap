@@ -1,0 +1,6 @@
+framework module ZipArchive {
+  umbrella header "Pods-ZipArchive-umbrella.h"
+
+  export *
+  module * { export * }
+}
