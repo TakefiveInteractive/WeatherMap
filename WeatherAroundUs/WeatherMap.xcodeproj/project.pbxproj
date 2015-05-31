@@ -2588,7 +2588,7 @@
 				INFOPLIST_FILE = WeatherAroundUsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = WeatherMapTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherAroundUs.app/WeatherAroundUs";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMap.app/WeatherMap";
 			};
 			name = Debug;
 		};
@@ -2603,7 +2603,7 @@
 				INFOPLIST_FILE = WeatherAroundUsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = WeatherMapTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherAroundUs.app/WeatherAroundUs";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMap.app/WeatherMap";
 			};
 			name = Release;
 		};
