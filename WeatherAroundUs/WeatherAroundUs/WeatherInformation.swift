@@ -53,7 +53,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         //splitIntoSubtree()
         
         //Load Main Tree
-        if let path = NSBundle.mainBundle().pathForResource("MainTree", ofType: "plist") {
+        if var path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as? String{
+            path = path.stringByAppendingString("/MainTree.plist")
             var arr = NSArray(contentsOfFile: path) as! [NSDictionary]
             for tree in arr{
                 mainTree.insertObject(WeatherDataQTree(position: CLLocationCoordinate2DMake((tree.objectForKey("latitude")! as! NSNumber).doubleValue, (tree.objectForKey("longitude")! as! NSNumber).doubleValue), cityID: tree.objectForKey("cityID") as! String))
@@ -65,7 +66,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         var treeArr = [NSDictionary]()
         
-        if let path = NSBundle.mainBundle().pathForResource("\(cityID)", ofType: "plist") {
+        if var path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as? String{
+            path = path.stringByAppendingString("/" + cityID + ".plist")
             var arr = NSArray(contentsOfFile: path)
             treeArr = arr as! [NSDictionary]
         }

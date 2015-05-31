@@ -161,9 +161,9 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             hourTemperatureLabel.text = "\(WeatherMapCalculations.kelvinConvert(temp, isFnotC: parentController.isFnotC))°"
             hourItemView.addSubview(hourTemperatureLabel)
             
-            hourItemView.animation = "fadeIn"
-            hourItemView.delay = 0.1 * CGFloat(index)
-            hourItemView.animate()
+            //hourItemView.animation = "fadeIn"
+            //hourItemView.delay = 0.1 * CGFloat(index)
+            //hourItemView.animate()
             
             hourForcastTemperatureLabelArr.append(hourTemperatureLabel)
             hourForcastTemperatureIntArr.append(temp)

@@ -8,12 +8,12 @@
 
 import UIKit
 import CoreData
+import ZipArchive
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -21,12 +21,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //copy db to local if needed
         
         let fileManager = NSFileManager.defaultManager()
-        var target = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-        target = target.stringByAppendingPathComponent("citiesInfo.db")
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+        var target = path.stringByAppendingPathComponent("citiesInfo.db")
         
+        /*
+        create database
         if (!fileManager.fileExistsAtPath(target)) {
             var resource = NSBundle.mainBundle().pathForResource("citiesInfo", ofType: "db") as String?
             fileManager.copyItemAtPath(resource!, toPath: target, error: nil)
+        }
+        */
+        println(path)
+        
+        target = path.stringByAppendingPathComponent("MainTree.plist")
+        
+        if !fileManager.fileExistsAtPath(target){
+            //unzip the files
+            let filePath = NSBundle.mainBundle().pathForResource("subtrees", ofType: "zip")
+            let zip = ZipArchive()
+            zip.UnzipOpenFile(filePath)
+            zip.UnzipFileTo(path, overWrite: true)
+            zip.UnzipCloseFile()
         }
         
         GMSServices.provideAPIKey("AIzaSyDLBiMd9DqNtqeRc2DMtoeYL4hg53wUEw8")

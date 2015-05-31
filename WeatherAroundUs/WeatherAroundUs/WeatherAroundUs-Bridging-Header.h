@@ -6,6 +6,7 @@
 #import <GPUImage/GPUImage.h>
 #import <Shimmer/FBShimmering.h>
 #import <FMDB/FMDB.h>
+#import <ZipArchive/ZipArchive.h>
 
 #import "QTree.h"
 #import "QTreeInsertable.h"
