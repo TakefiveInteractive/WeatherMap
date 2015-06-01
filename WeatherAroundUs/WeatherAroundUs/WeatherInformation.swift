@@ -105,21 +105,21 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // get the closest icon
     func getTheNearestIcon(position: CLLocationCoordinate2D)->WeatherDataQTree{
         let nearestTree = mainTree.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
-        let data = currentSearchTrees[nearestTree.cityID]!.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
+        let data = currentSearchTrees[nearestTree.cityID]?.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
         return data
     }
     
     // get the five closest icons
-    func getTheTwoNearestIcons(position: CLLocationCoordinate2D)->NSArray{
+    func getTheTwoNearestIcons(position: CLLocationCoordinate2D)->NSArray?{
         let nearestTree = mainTree.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
-        let data = currentSearchTrees[nearestTree.cityID]!.neighboursForLocation(position, limitCount: 2)
+        let data = currentSearchTrees[nearestTree.cityID]?.neighboursForLocation(position, limitCount: 2)
         return data
     }
     
     // get the five closest icons
-    func getTheFiveNearestIcons(position: CLLocationCoordinate2D)->NSArray{
+    func getTheFiveNearestIcons(position: CLLocationCoordinate2D)->NSArray?{
         let nearestTree = mainTree.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
-        let data = currentSearchTrees[nearestTree.cityID]!.neighboursForLocation(position, limitCount: 5)
+        let data = currentSearchTrees[nearestTree.cityID]?.neighboursForLocation(position, limitCount: 5)
         return data
     }
     

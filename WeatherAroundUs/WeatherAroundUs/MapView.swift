@@ -206,31 +206,33 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 
                 var iconsData = WeatherInfo.getTheFiveNearestIcons(icon.coordinate)
                 
-                WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
-                
-                var coord = CLLocation()
-                var iconCoord = CLLocation()
-                
-                if icon.isMemberOfClass(QCluster){
-                    coord = CLLocation(latitude: (icon as! QCluster).coordinate.latitude, longitude: (icon as! QCluster).coordinate.longitude)
-                }else{
-                    coord = CLLocation(latitude: (icon as! QTreeInsertable).coordinate.latitude, longitude: (icon as! QTreeInsertable).coordinate.longitude)
-                }
-                var markers = weatherClusterTree.neighboursForLocation(coord.coordinate, limitCount: 1)
-                
-                if markers != nil && markers.count > 0{
-                    iconCoord = CLLocation(latitude: (markers[0] as! WeatherMarker).coordinate.latitude, longitude: (markers[0] as! WeatherMarker).coordinate.longitude)
+                if iconsData != nil{
+                    WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
                     
-                    if coord.distanceFromLocation(iconCoord) < distance / 20 && find(iconToRemove, markers[0] as! WeatherMarker) != nil{
-                        // have the same icon
-                        weatherCluster.append(markers[0] as! WeatherMarker)
-                        (markers[0] as! WeatherMarker).data = icon
-                        iconToRemove.removeAtIndex(find(iconToRemove, markers[0] as! WeatherMarker)!)
+                    var coord = CLLocation()
+                    var iconCoord = CLLocation()
+                    
+                    if icon.isMemberOfClass(QCluster){
+                        coord = CLLocation(latitude: (icon as! QCluster).coordinate.latitude, longitude: (icon as! QCluster).coordinate.longitude)
+                    }else{
+                        coord = CLLocation(latitude: (icon as! QTreeInsertable).coordinate.latitude, longitude: (icon as! QTreeInsertable).coordinate.longitude)
+                    }
+                    var markers = weatherClusterTree.neighboursForLocation(coord.coordinate, limitCount: 1)
+                    
+                    if markers != nil && markers.count > 0{
+                        iconCoord = CLLocation(latitude: (markers[0] as! WeatherMarker).coordinate.latitude, longitude: (markers[0] as! WeatherMarker).coordinate.longitude)
+                        
+                        if coord.distanceFromLocation(iconCoord) < distance / 20 && find(iconToRemove, markers[0] as! WeatherMarker) != nil{
+                            // have the same icon
+                            weatherCluster.append(markers[0] as! WeatherMarker)
+                            (markers[0] as! WeatherMarker).data = icon
+                            iconToRemove.removeAtIndex(find(iconToRemove, markers[0] as! WeatherMarker)!)
+                        }else{
+                            addIconToMap("", position: coord.coordinate, iconInfo: icon)
+                        }
                     }else{
                         addIconToMap("", position: coord.coordinate, iconInfo: icon)
                     }
-                }else{
-                    addIconToMap("", position: coord.coordinate, iconInfo: icon)
                 }
                 
             }
@@ -345,9 +347,9 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         var cities: [AnyObject]!
         if iconInfo.objectsCount > 5{
-            cities = WeatherInfo.getTheFiveNearestIcons(iconInfo.coordinate) as [AnyObject]
+            cities = WeatherInfo.getTheFiveNearestIcons(iconInfo.coordinate) as! [AnyObject]
         }else{
-            cities = WeatherInfo.getTheTwoNearestIcons(iconInfo.coordinate) as [AnyObject]
+            cities = WeatherInfo.getTheTwoNearestIcons(iconInfo.coordinate) as! [AnyObject]
         }
         
         var iconArray = [String:Int]()
