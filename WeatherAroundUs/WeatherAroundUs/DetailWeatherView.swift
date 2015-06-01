@@ -54,7 +54,7 @@ class DetailWeatherView: UIView {
         
         beginY += blockHeight
         let humanity = (forecastInfos[0] as [String: AnyObject])["humidity"] as! Int
-        createTwoUILabelInMiddle("Humanity:", secondString: "\(humanity) %", yPosition: beginY)
+        createTwoUILabelInMiddle("Humidity:", secondString: "\(humanity) %", yPosition: beginY)
         
         beginY += blockHeight + spaceHeight
         let precipitation = (forecastInfos[0] as [String: AnyObject])["rain"] as? Double
@@ -74,7 +74,7 @@ class DetailWeatherView: UIView {
         
         beginY += blockHeight
         let nightTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["night"])!.intValue
-        createTwoUILabelInMiddle("Niehgt Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(nightTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
+        createTwoUILabelInMiddle("Night Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(nightTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
         
     }
     

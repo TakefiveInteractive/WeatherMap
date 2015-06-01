@@ -25,9 +25,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var citiesAroundDict = [String: AnyObject]()
     
     // tree that store all the weather data
-    var currentSearchTree = QTree()
-    var currentSearchTreeDict = [String: [WeatherDataQTree]]()
-    var currentSearchTreeUnique = [String: WeatherDataQTree]()
+    var currentSearchTrees = [String: QTree]()
+    var currentSearchTreeDict = [String: [String: WeatherDataQTree]]()
 
     
     var mainTree = QTree()
@@ -53,7 +52,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         //splitIntoSubtree()
         
         //Load Main Tree
-        if let path = NSBundle.mainBundle().pathForResource("MainTree", ofType: "plist") {
+        if var path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as? String{
+            path = path.stringByAppendingString("/MainTree.plist")
             var arr = NSArray(contentsOfFile: path) as! [NSDictionary]
             for tree in arr{
                 mainTree.insertObject(WeatherDataQTree(position: CLLocationCoordinate2DMake((tree.objectForKey("latitude")! as! NSNumber).doubleValue, (tree.objectForKey("longitude")! as! NSNumber).doubleValue), cityID: tree.objectForKey("cityID") as! String))
@@ -65,33 +65,84 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         var treeArr = [NSDictionary]()
         
-        if let path = NSBundle.mainBundle().pathForResource("\(cityID)", ofType: "plist") {
+        if var path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as? String{
+            path = path.stringByAppendingString("/" + cityID + ".plist")
             var arr = NSArray(contentsOfFile: path)
             treeArr = arr as! [NSDictionary]
         }
         
-        var arr = [WeatherDataQTree]()
+        var dict = [String: WeatherDataQTree]()
+        var tree = QTree()
         
         for node in treeArr{
             
-            if currentSearchTreeUnique[node.objectForKey("cityID") as! String] == nil{
+            if !cityExist(node.objectForKey("cityID") as! String){
                 var data = WeatherDataQTree(position: CLLocationCoordinate2DMake(node.objectForKey("latitude")!.doubleValue, node.objectForKey("longitude")!.doubleValue), cityID: node.objectForKey("cityID") as! String)
-                arr.append(data)
-                currentSearchTree.insertObject(data)
-                
-                weak var weakData = data
-                currentSearchTreeUnique.updateValue(weakData!, forKey: data.cityID)
+                dict.updateValue(data, forKey: data.cityID)
+                tree.insertObject(data)
             }
         }
-        currentSearchTreeDict.updateValue(arr, forKey: cityID)
+        currentSearchTreeDict.updateValue(dict, forKey: cityID)
+        currentSearchTrees.updateValue(tree, forKey: cityID)
+        
+    }
+    
+    func cityExist(cityID: String)->Bool{
+        for tree in currentSearchTreeDict.keys.array {
+            if currentSearchTreeDict[tree]![cityID] != nil{
+                return true
+            }
+        }
+        return false
     }
     
     func removeTree(cityID: String){
         
         currentSearchTreeDict.removeValueForKey(cityID)
-
+        currentSearchTrees.removeValueForKey(cityID)
     }
     
+    // get the closest icon
+    func getTheNearestIcon(position: CLLocationCoordinate2D)->WeatherDataQTree{
+        let nearestTree = mainTree.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
+        let data = currentSearchTrees[nearestTree.cityID]?.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
+        return data
+    }
+    
+    // get the five closest icons
+    func getTheTwoNearestIcons(position: CLLocationCoordinate2D)->NSArray?{
+        let nearestTree = mainTree.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
+        let data = currentSearchTrees[nearestTree.cityID]?.neighboursForLocation(position, limitCount: 2)
+        return data
+    }
+    
+    // get the five closest icons
+    func getTheFiveNearestIcons(position: CLLocationCoordinate2D)->NSArray?{
+        let nearestTree = mainTree.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
+        let data = currentSearchTrees[nearestTree.cityID]?.neighboursForLocation(position, limitCount: 5)
+        return data
+    }
+    
+    // get the closest icons
+    func getNearestIcons(position: CLLocationCoordinate2D)->NSArray{
+        let nearestTrees = mainTree.neighboursForLocation(position, limitCount: 2)
+        var set = currentSearchTrees[(nearestTrees[0] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 30)
+        set = set! + (currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 5))!
+        
+        return set!
+    }
+    
+    func getObjectsInRegion(region: MKCoordinateRegion)->NSArray{
+        
+        var arr = [AnyObject]()
+        
+        println(currentSearchTrees.count)
+        for tree in currentSearchTrees.keys.array{
+            arr = arr + currentSearchTrees[tree]!.getObjectsInRegion(region, minNonClusteredSpan: min(region.span.latitudeDelta, region.span.longitudeDelta) / 6)!
+        }
+        
+        return arr
+    }
     
     func getLocalWeatherInformation(cities: [QTreeInsertable]){
         

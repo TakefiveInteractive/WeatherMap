@@ -10,6 +10,7 @@ xcodeproj 'WeatherMap'
 
 use_frameworks!
 
+pod 'ZipArchive'
 pod 'Spring'
 pod 'Alamofire'
 pod 'GPUImage'
