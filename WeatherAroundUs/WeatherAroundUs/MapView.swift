@@ -39,7 +39,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: zoom)
             self.camera = camera
         }
-        self.setMinZoom(6, maxZoom: 15)
+        self.setMinZoom(7.5, maxZoom: 15)
 
         lastLocation = CLLocation(latitude: camera.target.latitude, longitude: camera.target.longitude)
 
@@ -150,7 +150,11 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         for tree in trees as! [AnyObject]{
             //load trees if not loaded
             if WeatherInfo.currentSearchTreeDict[(tree as! WeatherDataQTree).cityID] == nil {
-                WeatherInfo.loadTree((tree as! WeatherDataQTree).cityID)
+                if WeatherInfo.searchTreeDict[(tree as! WeatherDataQTree).cityID] == nil{
+                    WeatherInfo.loadTree((tree as! WeatherDataQTree).cityID)
+                }
+                WeatherInfo.currentSearchTreeDict.updateValue(WeatherInfo.searchTreeDict[(tree as! WeatherDataQTree).cityID]!, forKey: (tree as! WeatherDataQTree).cityID)
+                WeatherInfo.currentSearchTrees.updateValue(WeatherInfo.searchTrees[(tree as! WeatherDataQTree).cityID]!, forKey: (tree as! WeatherDataQTree).cityID)
             }else{
                 deleteArr.removeValueForKey((tree as! WeatherDataQTree).cityID)
             }

@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //copy db to local if needed
-        
         let fileManager = NSFileManager.defaultManager()
         let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         var target = path.stringByAppendingPathComponent("citiesInfo.db")

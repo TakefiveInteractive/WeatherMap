@@ -28,6 +28,9 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var currentSearchTrees = [String: QTree]()
     var currentSearchTreeDict = [String: [String: WeatherDataQTree]]()
 
+    var searchTrees = [String: QTree]()
+    var searchTreeDict = [String: [String: WeatherDataQTree]]()
+
     
     var mainTree = QTree()
     
@@ -39,7 +42,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
     var forcastMode = false
     
-    var blockSize = 8
+    var blockSize = 9
     
     var weatherDelegate : WeatherInformationDelegate?
     
@@ -82,14 +85,14 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                 tree.insertObject(data)
             }
         }
-        currentSearchTreeDict.updateValue(dict, forKey: cityID)
-        currentSearchTrees.updateValue(tree, forKey: cityID)
+        searchTreeDict.updateValue(dict, forKey: cityID)
+        searchTrees.updateValue(tree, forKey: cityID)
         
     }
     
     func cityExist(cityID: String)->Bool{
-        for tree in currentSearchTreeDict.keys.array {
-            if currentSearchTreeDict[tree]![cityID] != nil{
+        for tree in searchTreeDict.keys.array {
+            if searchTreeDict[tree]![cityID] != nil{
                 return true
             }
         }
@@ -221,7 +224,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                 // get all nodes in an area
                 let cities = entireTree.getObjectsInRegion(region, minNonClusteredSpan: 0.000001)
                 
-                if cities.count > 0{
+                if cities.count > 0 && cities.count < 5000{
                     
                     var tree = SecondLevelQTree(position: centerCoordinate, cityID: (cities[0] as! WeatherDataQTree).cityID)
                     
@@ -233,7 +236,33 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                     println(cities.count)
                     lv2.insertObject(tree)
                     
-                    // split into level 3 tree
+                }else if cities.count >= 5000 {
+                    // split into more tree
+                    for var tempX = x; tempX < x + blockSize; tempX += 3 {
+                        for var tempY = y; tempY < y + blockSize; tempY += 3 {
+                         
+                            let centerCoordinateS = CLLocationCoordinate2DMake(Double(tempY + 3 / 2), Double(tempX + 3 / 2))
+                            let location1S = CLLocation(latitude: Double(tempY), longitude: Double(tempX))
+                            let distanceS = location1S.distanceFromLocation(CLLocation(latitude: Double(tempY + 3), longitude: Double(tempX + 3)))
+                            let regionS = MKCoordinateRegionMakeWithDistance(centerCoordinateS, distanceS, distanceS)
+                            
+                            // get all nodes in an area
+                            let citiesS = entireTree.getObjectsInRegion(regionS, minNonClusteredSpan: 0.000001)
+                            
+                            if citiesS.count > 0 {
+                                var tree = SecondLevelQTree(position: centerCoordinateS, cityID: (citiesS[0] as! WeatherDataQTree).cityID)
+                                
+                                for city in citiesS{
+                                    
+                                    tree.insertObject(city as! WeatherDataQTree)
+                                    
+                                }
+                                println(citiesS.count)
+                                lv2.insertObject(tree)
+
+                            }
+                        }
+                    }
                 }
             }
         }
