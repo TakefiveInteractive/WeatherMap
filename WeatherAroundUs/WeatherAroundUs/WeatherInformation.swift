@@ -39,7 +39,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
     var forcastMode = false
     
-    var blockSize = 8
+    var blockSize = 5
     
     var weatherDelegate : WeatherInformationDelegate?
     
@@ -49,7 +49,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             citiesForcast = forcast as! [String : AnyObject]
         }
         
-        //splitIntoSubtree()
+        splitIntoSubtree()
         
         //Load Main Tree
         if var path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as? String{
@@ -62,7 +62,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     }
     
     func loadTree(cityID: String){
-        
+        println("loadtree")
         var treeArr = [NSDictionary]()
         
         if var path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as? String{

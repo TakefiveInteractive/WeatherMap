@@ -24,13 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         var target = path.stringByAppendingPathComponent("citiesInfo.db")
         
-        /*
-        create database
+        
+        //create database
         if (!fileManager.fileExistsAtPath(target)) {
             var resource = NSBundle.mainBundle().pathForResource("citiesInfo", ofType: "db") as String?
             fileManager.copyItemAtPath(resource!, toPath: target, error: nil)
         }
-        */
+        
         println(path)
         
         target = path.stringByAppendingPathComponent("MainTree.plist")
