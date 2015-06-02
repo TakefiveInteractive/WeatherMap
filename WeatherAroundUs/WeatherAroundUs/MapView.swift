@@ -28,6 +28,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     let clusterZoom: Float = 11
     
+    let searchTreeCount = 3
+    
     var iconSize = IconSize.Large
     
     var shouldDisplayCard = true
@@ -39,7 +41,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: zoom)
             self.camera = camera
         }
-        self.setMinZoom(7.5, maxZoom: 15)
+        self.setMinZoom(8, maxZoom: 15)
 
         lastLocation = CLLocation(latitude: camera.target.latitude, longitude: camera.target.longitude)
 
@@ -141,9 +143,11 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         displaying = true
         
+        self.parentController.loading.startAnimating()
+        
         let distance = WeatherMapCalculations.getTheDistanceBased(self.projection.visibleRegion())
         
-        var trees: AnyObject = WeatherInfo.mainTree.neighboursForLocation(camera.target, limitCount: 4)
+        var trees: AnyObject = WeatherInfo.mainTree.neighboursForLocation(camera.target, limitCount: UInt(searchTreeCount))
         
         var deleteArr = WeatherInfo.currentSearchTreeDict
         
@@ -253,7 +257,11 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
 
         replaceCard()
         
-        displaying = false
+        UIView.animateWithDuration(0.1, delay: 0.4, options: nil, animations: { () -> Void in
+            }) { (finish) -> Void in
+                self.parentController.loading.stopAnimating()
+                self.displaying = false
+        }
     }
     
     func removeIconOutSideScreen(weatherData: [AnyObject])->[AnyObject]{
@@ -450,8 +458,11 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             }
             
         }
-        
-        changeIcon = false
+        UIView.animateWithDuration(0.1, delay: 0.15, options: nil, animations: { () -> Void in
+            
+        }) { (finish) -> Void in
+            self.changeIcon = false
+        }
     }
 
     

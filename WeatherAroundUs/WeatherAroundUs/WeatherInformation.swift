@@ -62,6 +62,15 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                 mainTree.insertObject(WeatherDataQTree(position: CLLocationCoordinate2DMake((tree.objectForKey("latitude")! as! NSNumber).doubleValue, (tree.objectForKey("longitude")! as! NSNumber).doubleValue), cityID: tree.objectForKey("cityID") as! String))
             }
         }
+        
+        //loadAllTrees()
+    }
+    
+    func loadAllTrees(){
+        var tree = mainTree.neighboursForLocation(CLLocationCoordinate2DMake(1, 1), limitCount: mainTree.count) as! [WeatherDataQTree]
+        for id in tree{
+            loadTree(id.cityID)
+        }
     }
     
     func loadTree(cityID: String){
@@ -147,15 +156,21 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         return arr
     }
     
+    var ongoingRequest = 0
+    
     func getLocalWeatherInformation(cities: [QTreeInsertable]){
         
         var connection = InternetConnection()
         connection.delegate = self
         connection.getLocalWeather(cities)
+        
+        ongoingRequest++
     }
     
     // got local city weather from member
     func gotLocalCityWeather(cities: [AnyObject]) {
+        
+        ongoingRequest--
         
         var hasNewInfo = false
         
@@ -174,7 +189,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             }
         }
         
-        if !forcastMode && hasNewInfo {
+        if !forcastMode && hasNewInfo && ongoingRequest <= 0 {
+            ongoingRequest = 0
             self.weatherDelegate?.gotWeatherInformation!()
         }
         
