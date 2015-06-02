@@ -64,7 +64,6 @@
 		424F5A2E1ADF46BD00B09FBA /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F5A2D1ADF46BD00B09FBA /* ImageCardView.swift */; };
 		426880291AEDC5E000F0EC16 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426880281AEDC5E000F0EC16 /* MotionManager.swift */; };
 		4268802B1AEDD34200F0EC16 /* ImageScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268802A1AEDD34200F0EC16 /* ImageScrollerView.swift */; };
-		4274ADBB1B1CFA5B004D1EC2 /* citiesInfo.db in Resources */ = {isa = PBXBuildFile; fileRef = 4274ADBA1B1CFA5B004D1EC2 /* citiesInfo.db */; };
 		427BAFA51AD0E6F900C87BDE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA41AD0E6F900C87BDE /* MapView.swift */; };
 		427BAFAA1AD0E71100C87BDE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFA91AD0E71100C87BDE /* LocationManager.swift */; };
 		427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 427BAFAB1AD0EBBF00C87BDE /* slayer11.ttf */; };
@@ -181,7 +180,6 @@
 		424F5A2D1ADF46BD00B09FBA /* ImageCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
 		426880281AEDC5E000F0EC16 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		4268802A1AEDD34200F0EC16 /* ImageScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerView.swift; sourceTree = "<group>"; };
-		4274ADBA1B1CFA5B004D1EC2 /* citiesInfo.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = citiesInfo.db; sourceTree = "<group>"; };
 		427BAF711AD0C30B00C87BDE /* HanekeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HanekeSwift.framework; path = "Pods/../build/Debug-iphoneos/Pods/HanekeSwift.framework"; sourceTree = "<group>"; };
 		427BAFA41AD0E6F900C87BDE /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		427BAFA91AD0E71100C87BDE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -354,7 +352,6 @@
 				D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */,
 				D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
-				4274ADBA1B1CFA5B004D1EC2 /* citiesInfo.db */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				421A72221B04E8BC00B9135A /* CitySQL.swift */,
@@ -588,7 +585,6 @@
 				421A72101B03AB7F00B9135A /* 10d.png in Resources */,
 				421A721A1B03AB7F00B9135A /* 13n.png in Resources */,
 				421A72051B03AB7F00B9135A /* 03n.jpg in Resources */,
-				4274ADBB1B1CFA5B004D1EC2 /* citiesInfo.db in Resources */,
 				42D9619B1AE600830082352E /* NewclockPin2.png in Resources */,
 				421A71FD1B03AB7F00B9135A /* 01n.jpg in Resources */,
 				421A720F1B03AB7F00B9135A /* 10d.jpg in Resources */,

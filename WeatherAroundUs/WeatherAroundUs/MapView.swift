@@ -39,7 +39,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             var camera: GMSCameraPosition = GMSCameraPosition.cameraWithLatitude(userDefaults.valueForKey("latitude") as! Double, longitude: userDefaults.valueForKey("longitude") as! Double, zoom: zoom)
             self.camera = camera
         }
-        self.setMinZoom(7.5, maxZoom: 15)
+        self.setMinZoom(6, maxZoom: 15)
 
         lastLocation = CLLocation(latitude: camera.target.latitude, longitude: camera.target.longitude)
 
