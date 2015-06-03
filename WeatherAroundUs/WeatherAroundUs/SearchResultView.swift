@@ -83,10 +83,12 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
     }
     
     func gotLocationWithPlaceID(location: CLLocationCoordinate2D){
+        let camera = GMSCameraPosition(target: location, zoom: 12, bearing: parentController.mapView.camera.bearing, viewingAngle: parentController.mapView.camera.viewingAngle)
+        self.parentController.mapView.animateToCameraPosition(camera)
         parentController.mapView.shouldDisplayCard = true
-        //TO DO  NEW search
-        self.parentController.mapView.animateToLocation(location)
+        parentController.mapView.displayIcon(location)
 
+        //TO DO  NEW search
     }
     
     func removeCities(){

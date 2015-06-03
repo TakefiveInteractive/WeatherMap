@@ -44,6 +44,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     
     var blockSize = 5
     
+    let maxRequestNum = 3
+    
     var weatherDelegate : WeatherInformationDelegate?
     
     override init() {
@@ -117,6 +119,11 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // get the closest icon
     func getTheNearestIcon(position: CLLocationCoordinate2D)->WeatherDataQTree{
         let nearestTree = mainTree.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
+        
+        if currentSearchTrees[nearestTree.cityID] == nil{
+            loadTree(nearestTree.cityID)
+        }
+        
         let data = currentSearchTrees[nearestTree.cityID]?.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
         return data
     }
@@ -138,10 +145,16 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     // get the closest icons
     func getNearestIcons(position: CLLocationCoordinate2D)->NSArray{
         let nearestTrees = mainTree.neighboursForLocation(position, limitCount: 3)
+        
+        if currentSearchTrees[(nearestTrees[0] as! WeatherDataQTree).cityID] == nil{
+            loadTree((nearestTrees[0] as! WeatherDataQTree).cityID)
+        }
+        
+        if currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID] == nil{
+            loadTree((nearestTrees[1] as! WeatherDataQTree).cityID)
+        }
         var set = currentSearchTrees[(nearestTrees[0] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 20)
         set = set! + (currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 10))!
-        
-        set = set! + (currentSearchTrees[(nearestTrees[2] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 5))!
         
         println(set!.count)
         
@@ -161,14 +174,42 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     }
     
     var ongoingRequest = 0
+    var latestSearchReq:[QTreeInsertable]!
     
     func getLocalWeatherInformation(cities: [QTreeInsertable]){
         
-        var connection = InternetConnection()
-        connection.delegate = self
-        connection.getLocalWeather(cities)
+        if ongoingRequest < maxRequestNum{
         
-        ongoingRequest++
+            var index = 7
+            
+            while index < cities.count {
+                
+                var arr = [QTreeInsertable]()
+                
+                for data in cities[(index - 7)..<index]{
+                    arr.append(data)
+                }
+                var connection = InternetConnection()
+                connection.delegate = self
+                connection.getLocalWeather(arr)
+                index = index + 7
+                ongoingRequest++
+            }
+            
+            var arr = [QTreeInsertable]()
+            
+            for data in cities[(index - 7)..<cities.count]{
+                arr.append(data)
+            }
+            if arr.count > 0{
+                var connection = InternetConnection()
+                connection.delegate = self
+                connection.getLocalWeather(arr)
+                ongoingRequest++
+            }
+        }else{
+            latestSearchReq = cities
+        }
     }
     
     // got local city weather from member
@@ -193,9 +234,13 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             }
         }
         
-        if !forcastMode && hasNewInfo && ongoingRequest <= 0 {
-            ongoingRequest = 0
+        if !forcastMode && hasNewInfo {
             self.weatherDelegate?.gotWeatherInformation!()
+        }
+        
+        if ongoingRequest < maxRequestNum && latestSearchReq != nil{
+            getLocalWeatherInformation(latestSearchReq)
+            latestSearchReq = nil
         }
         
     }

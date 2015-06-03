@@ -63,7 +63,7 @@ class InternetConnection: NSObject {
             searchIDs = searchIDs + "," + city.cityID
         }
         searchIDs = (searchIDs as NSString).substringFromIndex(1)
-
+        
         var req = Alamofire.request(.GET, NSURL(string: "http://api.openweathermap.org/data/2.5/group?id=\(searchIDs)&units=metric")!).responseJSON { (_, response, JSON, error) in
             
             if error == nil && JSON != nil {

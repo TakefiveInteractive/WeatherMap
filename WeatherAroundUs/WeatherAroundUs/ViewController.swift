@@ -115,7 +115,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         
         if UserLocation.centerLocation != nil{
             mapView.shouldDisplayCard = true
-            mapView.displayIcon()
+            mapView.displayIcon(mapView.camera.target)
             mapView.animateToLocation(UserLocation.centerLocation.coordinate)
         }
     }

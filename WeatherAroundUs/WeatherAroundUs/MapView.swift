@@ -93,7 +93,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
        
         if !displaying || camera.zoom >= clusterZoom{
-            displayIcon()
+            displayIcon(camera.target)
         }
 
     }
@@ -139,14 +139,14 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     }
     
     //display the icon on the map
-    func displayIcon() {
+    func displayIcon(center: CLLocationCoordinate2D) {
         
         displaying = true
         
         
         let distance = WeatherMapCalculations.getTheDistanceBased(self.projection.visibleRegion())
         
-        var trees: AnyObject = WeatherInfo.mainTree.neighboursForLocation(camera.target, limitCount: UInt(searchTreeCount))
+        var trees: AnyObject = WeatherInfo.mainTree.neighboursForLocation(center, limitCount: UInt(searchTreeCount))
         
         var deleteArr = WeatherInfo.currentSearchTreeDict
         
@@ -173,7 +173,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             var iconToRemove = weatherIcons
             weatherIcons = [String: WeatherMarker]()
             
-            var iconsData = WeatherInfo.getNearestIcons(camera.target)
+            var iconsData = WeatherInfo.getNearestIcons(center)
             
             WeatherInfo.getLocalWeatherInformation(iconsData as! [WeatherDataQTree])
             
@@ -211,12 +211,15 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             var iconToRemove = weatherCluster
             weatherCluster = [WeatherMarker]()
             
+            var iconsData = [QTreeInsertable]()
+            
             for icon in reducedLocations {
                 
-                var iconsData = WeatherInfo.getTheFiveNearestIcons(icon.coordinate)
+                 let temp = WeatherInfo.getTheFiveNearestIcons(icon.coordinate)
                 
-                if iconsData != nil{
-                    WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
+                if temp != nil{
+                    
+                    iconsData = iconsData + (temp as! [QTreeInsertable])
                     
                     var coord = CLLocation()
                     var iconCoord = CLLocation()
@@ -246,6 +249,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 
             }
             
+            WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
+            
             for icon in iconToRemove{
                 icon.map = nil
                 weatherClusterTree.removeObject(icon)
@@ -256,7 +261,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         changeIconWithTime()
 
-        replaceCard()
+        replaceCard(center)
         
         UIView.animateWithDuration(0.1, delay: 0.4, options: nil, animations: { () -> Void in
             }) { (finish) -> Void in
@@ -293,12 +298,12 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     }
     
     //display card if needed
-    func replaceCard(){
+    func replaceCard(center: CLLocationCoordinate2D){
         if shouldDisplayCard {
             if weatherClusterTree.count > 0 || weatherIcons.count > 0{
                 shouldDisplayCard = false
                 //diplay the card of the first city getted
-                WeatherInfo.currentCityID = WeatherInfo.getTheNearestIcon(camera.target).cityID
+                WeatherInfo.currentCityID = WeatherInfo.getTheNearestIcon(center).cityID
                 if (WeatherInfo.citiesAroundDict[WeatherInfo.currentCityID] != nil && !WeatherInfo.forcastMode) || (WeatherInfo.citiesForcast[WeatherInfo.currentCityID] != nil && WeatherInfo.forcastMode){
                     parentController.card.displayCity(WeatherInfo.currentCityID)
                 }
@@ -407,7 +412,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     func gotWeatherInformation() {
         //display if first open
         if weatherCluster.count == 0 && weatherIcons.count == 0{
-            displayIcon()
+            displayIcon(camera.target)
             return
         }
         
