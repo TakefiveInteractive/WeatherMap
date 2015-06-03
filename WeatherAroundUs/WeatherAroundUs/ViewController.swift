@@ -18,7 +18,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     @IBOutlet var timeLine: TimeLineView!
     @IBOutlet var returnBut: ReturnButton!
     @IBOutlet var returnCurrentPositionButton: DesignableButton!
-    @IBOutlet var loading: UIActivityIndicatorView!
     
     @IBOutlet var searchBarLength: NSLayoutConstraint!
     

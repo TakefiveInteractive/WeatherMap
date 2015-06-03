@@ -148,11 +148,6 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                     <color key="tintColor" red="0.26666666666666666" green="0.60784313725490191" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ukp-oD-o5b">
-                                                    <rect key="frame" x="4" y="4" width="37" height="37"/>
-                                                    <color key="tintColor" red="0.2666666667" green="0.60784313729999995" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="color" red="0.2666666667" green="0.60784313729999995" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ZUd-Al-luT" firstAttribute="leading" secondItem="oUn-7j-9mZ" secondAttribute="leading" id="08D-x2-Zdh"/>
@@ -166,11 +161,9 @@
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="top" secondItem="0Co-rd-AxZ" secondAttribute="top" id="LRV-ek-nLf"/>
                                                 <constraint firstAttribute="trailing" secondItem="j1A-ZF-CQd" secondAttribute="trailing" id="Rbb-T4-D1q"/>
                                                 <constraint firstItem="ZUd-Al-luT" firstAttribute="top" secondItem="oUn-7j-9mZ" secondAttribute="top" id="UnK-Dz-rMh"/>
-                                                <constraint firstAttribute="centerX" secondItem="Ukp-oD-o5b" secondAttribute="centerX" id="f2h-WB-ArE"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="top" secondItem="oUn-7j-9mZ" secondAttribute="top" id="h5b-Ye-5F6"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="bottom" secondItem="0Co-rd-AxZ" secondAttribute="bottom" id="heP-GI-SUt"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="leading" secondItem="oUn-7j-9mZ" secondAttribute="leading" id="l47-At-7OK"/>
-                                                <constraint firstAttribute="centerY" secondItem="Ukp-oD-o5b" secondAttribute="centerY" id="nu2-NG-ucL"/>
                                                 <constraint firstAttribute="trailing" secondItem="NIh-rh-4pZ" secondAttribute="trailing" id="vKi-aX-NDV"/>
                                                 <constraint firstItem="NIh-rh-4pZ" firstAttribute="trailing" secondItem="0Co-rd-AxZ" secondAttribute="trailing" id="vsC-ov-9ap"/>
                                             </constraints>
@@ -263,7 +256,6 @@
                     <connections>
                         <outlet property="card" destination="lX5-BA-Wy8" id="7Lq-U5-IPO"/>
                         <outlet property="clockButton" destination="VjW-vs-Mcr" id="oL5-8g-C4Q"/>
-                        <outlet property="loading" destination="Ukp-oD-o5b" id="Ntu-4n-qx2"/>
                         <outlet property="mapView" destination="Oul-K5-F1o" id="Mge-w9-0LJ"/>
                         <outlet property="returnBut" destination="og9-ta-dNc" id="2zh-JO-zKf"/>
                         <outlet property="returnCurrentPositionButton" destination="M0F-bs-deC" id="ueY-dW-4s0"/>

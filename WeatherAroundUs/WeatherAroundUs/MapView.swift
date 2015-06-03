@@ -143,7 +143,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         displaying = true
         
-        self.parentController.loading.startAnimating()
         
         let distance = WeatherMapCalculations.getTheDistanceBased(self.projection.visibleRegion())
         
@@ -259,7 +258,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         UIView.animateWithDuration(0.1, delay: 0.4, options: nil, animations: { () -> Void in
             }) { (finish) -> Void in
-                self.parentController.loading.stopAnimating()
                 self.displaying = false
         }
     }

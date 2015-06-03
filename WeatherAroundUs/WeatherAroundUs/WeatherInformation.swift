@@ -42,7 +42,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
     var forcastMode = false
     
-    var blockSize = 9
+    var blockSize = 5
     
     var weatherDelegate : WeatherInformationDelegate?
     
@@ -52,7 +52,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             citiesForcast = forcast as! [String : AnyObject]
         }
         
-        //splitIntoSubtree()
+        splitIntoSubtree()
         
         //Load Main Tree
         if var path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as? String{
@@ -88,11 +88,11 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         for node in treeArr{
             
-            if !cityExist(node.objectForKey("cityID") as! String){
+            //if !cityExist(node.objectForKey("cityID") as! String){
                 var data = WeatherDataQTree(position: CLLocationCoordinate2DMake(node.objectForKey("latitude")!.doubleValue, node.objectForKey("longitude")!.doubleValue), cityID: node.objectForKey("cityID") as! String)
                 dict.updateValue(data, forKey: data.cityID)
                 tree.insertObject(data)
-            }
+            //}
         }
         searchTreeDict.updateValue(dict, forKey: cityID)
         searchTrees.updateValue(tree, forKey: cityID)
@@ -137,9 +137,13 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     
     // get the closest icons
     func getNearestIcons(position: CLLocationCoordinate2D)->NSArray{
-        let nearestTrees = mainTree.neighboursForLocation(position, limitCount: 2)
-        var set = currentSearchTrees[(nearestTrees[0] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 30)
-        set = set! + (currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 5))!
+        let nearestTrees = mainTree.neighboursForLocation(position, limitCount: 3)
+        var set = currentSearchTrees[(nearestTrees[0] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 20)
+        set = set! + (currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 10))!
+        
+        set = set! + (currentSearchTrees[(nearestTrees[2] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 5))!
+        
+        println(set!.count)
         
         return set!
     }
@@ -234,13 +238,17 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                 
                 let centerCoordinate = CLLocationCoordinate2DMake(Double(y + blockSize / 2), Double(x + blockSize / 2))
                 let location1 = CLLocation(latitude: Double(y), longitude: Double(x))
+                let location2 = CLLocation(latitude: Double(y + blockSize), longitude: Double(x))
+                let location3 = CLLocation(latitude: Double(y + blockSize), longitude: Double(x + blockSize))
+                let location4 = CLLocation(latitude: Double(y), longitude: Double(x + blockSize))
+
                 let distance = location1.distanceFromLocation(CLLocation(latitude: Double(y + blockSize), longitude: Double(x + blockSize)))
-                let region = MKCoordinateRegionMakeWithDistance(centerCoordinate, distance, distance)
+                let region = MKCoordinateRegionMakeWithDistance(centerCoordinate, max(location2.distanceFromLocation(location1), location4.distanceFromLocation(location3)) , max(location2.distanceFromLocation(location3), location4.distanceFromLocation(location1)))
                 
                 // get all nodes in an area
                 let cities = entireTree.getObjectsInRegion(region, minNonClusteredSpan: 0.000001)
                 
-                if cities.count > 0 && cities.count < 5000{
+                if cities.count > 0 {//&& cities.count < 5000{
                     
                     var tree = SecondLevelQTree(position: centerCoordinate, cityID: (cities[0] as! WeatherDataQTree).cityID)
                     
@@ -252,7 +260,9 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                     println(cities.count)
                     lv2.insertObject(tree)
                     
-                }else if cities.count >= 5000 {
+                }
+                /*
+                else if cities.count >= 5000 {
                     // split into more tree
                     for var tempX = x; tempX < x + blockSize; tempX += 3 {
                         for var tempY = y; tempY < y + blockSize; tempY += 3 {
@@ -279,7 +289,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
                             }
                         }
                     }
-                }
+                }*/
             }
         }
         
