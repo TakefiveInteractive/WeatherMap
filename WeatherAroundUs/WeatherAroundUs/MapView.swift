@@ -92,7 +92,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
 
         let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
        
-        if !displaying{
+        if !displaying || camera.zoom >= clusterZoom{
             displayIcon()
         }
 
@@ -409,7 +409,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             return
         }
         
-        if !changeIcon {
+        if !changeIcon || camera.zoom >= clusterZoom {
             changeIconWithTime()
         }
     }
