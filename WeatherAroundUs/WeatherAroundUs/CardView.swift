@@ -177,16 +177,18 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                         if WeatherInfo.forcastMode {
                             temp = Int32((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
                         }
-                        self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                         self.city.text = (info as! [String: AnyObject])["name"] as? String
                         self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString
                         
                         if WeatherInfo.forcastMode {
                             self.currentIcon = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
                             self.icon.image = UIImage(named: self.currentIcon)!
+                            self.temperature.text = "\(WeatherMapCalculations.kelvinConvert(temp, isFnotC: true))°C / \(WeatherMapCalculations.kelvinConvert(temp, isFnotC: false))°F"
+
                         }else{
                             self.currentIcon = (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
                             self.icon.image = UIImage(named: self.currentIcon)!
+                            self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                         }
                         
                         UIView.animateWithDuration(0.4, animations: { () -> Void in
