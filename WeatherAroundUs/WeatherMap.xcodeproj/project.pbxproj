@@ -49,6 +49,7 @@
 		423838FD1B1EB80F007DC01C /* 13n.png in Resources */ = {isa = PBXBuildFile; fileRef = 423838FB1B1EB80F007DC01C /* 13n.png */; };
 		423839001B1EB837007DC01C /* 50d.png in Resources */ = {isa = PBXBuildFile; fileRef = 423838FE1B1EB837007DC01C /* 50d.png */; };
 		423839011B1EB837007DC01C /* 50n.png in Resources */ = {isa = PBXBuildFile; fileRef = 423838FF1B1EB837007DC01C /* 50n.png */; };
+		423839031B1EB8A9007DC01C /* 02n.png in Resources */ = {isa = PBXBuildFile; fileRef = 423839021B1EB8A9007DC01C /* 02n.png */; };
 		42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */; };
 		42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8C1AE5466A00E0BD4B /* ImageCache.swift */; };
 		42466A901AE5961100E0BD4B /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8F1AE5961100E0BD4B /* TimeLineView.swift */; };
@@ -163,6 +164,7 @@
 		423838FB1B1EB80F007DC01C /* 13n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13n.png; sourceTree = "<group>"; };
 		423838FE1B1EB837007DC01C /* 50d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50d.png; sourceTree = "<group>"; };
 		423838FF1B1EB837007DC01C /* 50n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50n.png; sourceTree = "<group>"; };
+		423839021B1EB8A9007DC01C /* 02n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02n.png; sourceTree = "<group>"; };
 		4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
 		42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		42466A8C1AE5466A00E0BD4B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				421A71E01B03AB7F00B9135A /* 03d.png */,
 				423838E61B1EB6C8007DC01C /* 03n.png */,
 				421A71E11B03AB7F00B9135A /* 03n.jpg */,
+				423839021B1EB8A9007DC01C /* 02n.png */,
 				421A71E31B03AB7F00B9135A /* 04d.jpg */,
 				421A71E41B03AB7F00B9135A /* 04d.png */,
 				421A71E51B03AB7F00B9135A /* 04n.jpg */,
@@ -596,6 +599,7 @@
 				423838E71B1EB6C8007DC01C /* 03n.png in Resources */,
 				421A72151B03AB7F00B9135A /* 11n.jpg in Resources */,
 				421A71FE1B03AB7F00B9135A /* 01n.png in Resources */,
+				423839031B1EB8A9007DC01C /* 02n.png in Resources */,
 				B5E257621AEF4665007B343F /* startScr.png in Resources */,
 				42D4EDD31A9E7F02006AE807 /* Images.xcassets in Resources */,
 				421A72001B03AB7F00B9135A /* 02d.png in Resources */,
