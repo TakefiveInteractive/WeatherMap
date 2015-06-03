@@ -49,6 +49,7 @@
 		4237ACAF1AFF1FCC00B80DF7 /* QNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACA71AFF1FCC00B80DF7 /* QNode.m */; };
 		4237ACB01AFF1FCC00B80DF7 /* QTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACAA1AFF1FCC00B80DF7 /* QTree.m */; };
 		4237ACB11AFF1FCC00B80DF7 /* QTreeGeometryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACAC1AFF1FCC00B80DF7 /* QTreeGeometryUtils.m */; };
+		423838E51B1EB1AA007DC01C /* subtrees.zip in Resources */ = {isa = PBXBuildFile; fileRef = 423838E41B1EB1AA007DC01C /* subtrees.zip */; };
 		42466A8B1AE4D3FE00E0BD4B /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */; };
 		42466A8D1AE5466A00E0BD4B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8C1AE5466A00E0BD4B /* ImageCache.swift */; };
 		42466A901AE5961100E0BD4B /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42466A8F1AE5961100E0BD4B /* TimeLineView.swift */; };
@@ -68,7 +69,6 @@
 		427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 427BAFAB1AD0EBBF00C87BDE /* slayer11.ttf */; };
 		427BAFB21AD0EECE00C87BDE /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */; };
 		427BAFCA1AD18C7500C87BDE /* WeatherMapCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */; };
-		429A92421B1E18F600B304BF /* subtrees.zip in Resources */ = {isa = PBXBuildFile; fileRef = 429A92411B1E18F600B304BF /* subtrees.zip */; };
 		429B95CB1AD198E400851D32 /* WeatherInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429B95CA1AD198E400851D32 /* WeatherInformation.swift */; };
 		42AF65641AEB537400E4E550 /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF65631AEB537400E4E550 /* IconImage.swift */; };
 		42D4EDC91A9E7F02006AE807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */; };
@@ -164,6 +164,7 @@
 		4237ACAB1AFF1FCC00B80DF7 /* QTreeGeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QTreeGeometryUtils.h; path = QTree/QTreeGeometryUtils.h; sourceTree = "<group>"; };
 		4237ACAC1AFF1FCC00B80DF7 /* QTreeGeometryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QTreeGeometryUtils.m; path = QTree/QTreeGeometryUtils.m; sourceTree = "<group>"; };
 		4237ACAD1AFF1FCC00B80DF7 /* QTreeInsertable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QTreeInsertable.h; path = QTree/QTreeInsertable.h; sourceTree = "<group>"; };
+		423838E41B1EB1AA007DC01C /* subtrees.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = subtrees.zip; sourceTree = "<group>"; };
 		4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
 		42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		42466A8C1AE5466A00E0BD4B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -185,7 +186,6 @@
 		427BAFAB1AD0EBBF00C87BDE /* slayer11.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = slayer11.ttf; sourceTree = "<group>"; };
 		427BAFB11AD0EECE00C87BDE /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMapCalculations.swift; sourceTree = "<group>"; };
-		429A92411B1E18F600B304BF /* subtrees.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = subtrees.zip; sourceTree = "<group>"; };
 		429B95CA1AD198E400851D32 /* WeatherInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInformation.swift; sourceTree = "<group>"; };
 		42AF65631AEB537400E4E550 /* IconImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
 		42D4EDC31A9E7F02006AE807 /* WeatherMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,8 +352,8 @@
 				D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */,
 				D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
+				423838E41B1EB1AA007DC01C /* subtrees.zip */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
-				429A92411B1E18F600B304BF /* subtrees.zip */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				421A72221B04E8BC00B9135A /* CitySQL.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
@@ -595,7 +595,7 @@
 				427BAFAC1AD0EBBF00C87BDE /* slayer11.ttf in Resources */,
 				421A720C1B03AB7F00B9135A /* 09d.png in Resources */,
 				421A72171B03AB7F00B9135A /* 13d.jpg in Resources */,
-				429A92421B1E18F600B304BF /* subtrees.zip in Resources */,
+				423838E51B1EB1AA007DC01C /* subtrees.zip in Resources */,
 				421A720E1B03AB7F00B9135A /* 09n.png in Resources */,
 				421A72151B03AB7F00B9135A /* 11n.jpg in Resources */,
 				421A72181B03AB7F00B9135A /* 13d.png in Resources */,

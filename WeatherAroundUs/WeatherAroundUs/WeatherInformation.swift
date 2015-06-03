@@ -52,7 +52,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
             citiesForcast = forcast as! [String : AnyObject]
         }
         
-        splitIntoSubtree()
+        //splitIntoSubtree()
         
         //Load Main Tree
         if var path =  NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as? String{
