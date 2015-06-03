@@ -184,7 +184,9 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 if iconToRemove[cityID] == nil{
                     //if the icon has valid weather data
                     if WeatherInfo.citiesAroundDict[cityID] != nil{
-                        addIconToMap(cityID, position: (icon as! WeatherDataQTree).coordinate, iconInfo: icon)
+                        if weatherIcons[cityID] == nil{
+                            addIconToMap(cityID, position: (icon as! WeatherDataQTree).coordinate, iconInfo: icon)
+                        }
                     }else{
                         addIconToMap("empty", position: (icon as! WeatherDataQTree).coordinate, iconInfo: icon)
                     }
