@@ -26,6 +26,8 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     @IBOutlet var digestWeatherView: DigestWeatherView!
     @IBOutlet var forecastView: BasicWeatherView!
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
     var isFnotC = NSUserDefaults.standardUserDefaults().objectForKey("temperatureDisplay")!.boolValue!
     
     var tempImage: UIImage!
@@ -67,6 +69,8 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
        // backgroundImageView = tempImage
         switchWeatherUnitButton.addTarget(self, action: "switchWeatherUnitButtonDidPressed", forControlEvents: UIControlEvents.TouchUpInside)
         
+        loadingIndicator.startAnimating()
+        
         backgroundImageView.setup(tempImage)
         setBackgroundImage()
     }
@@ -77,12 +81,11 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
 
 
         UIView.animateWithDuration(1, animations: { () -> Void in
-            self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 5
+            self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 110
+//            self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height / 2
             self.view.layoutIfNeeded()
-            }) { (finish) -> Void in
-                
-                self.setUpBasicViews()
-                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 150)
+            }) { (finished) -> Void in
+                self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainTempatureToTopHeightConstraint.constant + self.basicForecastViewHeight.constant + self.digestWeatherView.frame.height + self.detailWeatherView.frame.height + 140)
         }
         
         var currDate = NSDate()

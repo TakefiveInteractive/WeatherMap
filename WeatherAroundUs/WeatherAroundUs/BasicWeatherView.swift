@@ -128,6 +128,8 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
 
     
     func gotThreeHourForcastData(cityID: String, forcast: [AnyObject]) {
+        parentController.loadingIndicator.stopAnimating()
+        
         /// set up scroll view daily forcast
         let hourItemViewWidth: CGFloat = 40
         let numOfDailyWeatherForcast = forcast.count
