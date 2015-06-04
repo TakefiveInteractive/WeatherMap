@@ -97,5 +97,6 @@ class DigestWeatherView: DesignableView {
             unit = "C"
         }
         tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
+        setNeedsDisplay()
     }
 }

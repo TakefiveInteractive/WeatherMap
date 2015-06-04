@@ -333,36 +333,41 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngr-eb-lax">
-                                                                    <rect key="frame" x="10" y="8" width="66" height="24"/>
+                                                                    <rect key="frame" x="10" y="8" width="65.5" height="23.5"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gb3-Po-DIr">
-                                                                    <rect key="frame" x="10" y="33" width="339" height="1"/>
+                                                                    <rect key="frame" x="10" y="32" width="339" height="1"/>
                                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="YZq-0U-LnA"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AKP-h8-OV7">
-                                                                    <rect key="frame" x="10" y="104" width="339" height="1"/>
+                                                                    <rect key="frame" x="10" y="103" width="339" height="1"/>
                                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="loj-fz-NvX"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-gh-FLm">
-                                                                    <rect key="frame" x="10" y="34" width="339" height="70"/>
+                                                                    <rect key="frame" x="10" y="33" width="339" height="70"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="70" id="sMQ-2w-4NT"/>
                                                                     </constraints>
                                                                 </scrollView>
+                                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="XQ6-11-Tes">
+                                                                    <rect key="frame" x="169" y="58" width="20" height="20"/>
+                                                                </activityIndicatorView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="gb3-Po-DIr" firstAttribute="centerX" secondItem="AKP-h8-OV7" secondAttribute="centerX" id="2dE-Dz-7AI"/>
+                                                                <constraint firstItem="N1A-gh-FLm" firstAttribute="centerY" secondItem="XQ6-11-Tes" secondAttribute="centerY" id="2xO-l3-N7Y"/>
                                                                 <constraint firstItem="N1A-gh-FLm" firstAttribute="trailing" secondItem="gb3-Po-DIr" secondAttribute="trailing" id="8TG-Mk-cnp"/>
                                                                 <constraint firstItem="N1A-gh-FLm" firstAttribute="top" secondItem="gb3-Po-DIr" secondAttribute="bottom" id="CzO-3m-jzd"/>
+                                                                <constraint firstItem="N1A-gh-FLm" firstAttribute="centerX" secondItem="XQ6-11-Tes" secondAttribute="centerX" id="Lo0-Iq-vmo"/>
                                                                 <constraint firstItem="gb3-Po-DIr" firstAttribute="top" secondItem="ngr-eb-lax" secondAttribute="bottom" constant="1" id="T5H-Uh-lda"/>
                                                                 <constraint firstAttribute="trailing" secondItem="gb3-Po-DIr" secondAttribute="trailing" constant="10" id="UIz-ny-iI0"/>
                                                                 <constraint firstItem="N1A-gh-FLm" firstAttribute="leading" secondItem="gb3-Po-DIr" secondAttribute="leading" id="ahb-sY-Pg4"/>
@@ -407,20 +412,20 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ant-hH-KYp">
-                                                                    <rect key="frame" x="10" y="8" width="74" height="24"/>
+                                                                    <rect key="frame" x="10" y="8" width="74" height="23.5"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YfI-Rk-jBn">
-                                                                    <rect key="frame" x="10" y="33" width="339" height="1"/>
+                                                                    <rect key="frame" x="10" y="32" width="339" height="1"/>
                                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="Lgp-ab-IVe"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu2-Ii-RtU">
-                                                                    <rect key="frame" x="306" y="8" width="43" height="24"/>
+                                                                    <rect key="frame" x="306" y="8" width="43" height="23.5"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -465,13 +470,13 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGo-et-DsR">
-                                                                    <rect key="frame" x="10" y="8" width="46" height="24"/>
+                                                                    <rect key="frame" x="10" y="8" width="46" height="23.5"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nx3-76-x01">
-                                                                    <rect key="frame" x="10" y="33" width="339" height="1"/>
+                                                                    <rect key="frame" x="10" y="32" width="339" height="1"/>
                                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="qMg-nB-VyU"/>
@@ -566,6 +571,7 @@
                         <outlet property="detailWeatherView" destination="YcK-fL-cU8" id="js3-Ne-uCx"/>
                         <outlet property="digestWeatherView" destination="xJg-lg-rAJ" id="Bhu-Je-EwB"/>
                         <outlet property="forecastView" destination="uYV-Mc-jsF" id="nvS-og-8Uj"/>
+                        <outlet property="loadingIndicator" destination="XQ6-11-Tes" id="T1I-jc-XKT"/>
                         <outlet property="mainTempatureToTopHeightConstraint" destination="BNP-kf-ts1" id="fUX-rS-K0Q"/>
                         <outlet property="mainTemperatureDisplay" destination="M5C-g9-bKn" id="ieL-oy-yxR"/>
                         <outlet property="mainTemperatureShimmerView" destination="Daj-Li-ljH" id="uwM-4y-IVh"/>
