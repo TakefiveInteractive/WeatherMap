@@ -42,5 +42,5 @@ Now Weather Map version 1.1 is available in App Store.
 * [Shimmer](https://github.com/facebook/Shimmer) for animation
 
 # Donation:
-<img src="http://i.imgur.com/H4Qs3am.png" width="250" height="250"/>
+<img src="http://i.imgur.com/H4Qs3am.png" width="250" height="250"/> *or* 
 <img src="http://i.imgur.com/uhIJ1Bw.png" width="250" height="250"/>
