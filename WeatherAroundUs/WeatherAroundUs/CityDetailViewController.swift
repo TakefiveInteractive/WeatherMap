@@ -53,7 +53,6 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
             mainTemperatureDisplay.text = "°F"
         } else {
             mainTemperatureDisplay.text = "°C"
-            
         }
     }
     
@@ -79,6 +78,9 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height / 3 + basicForecastViewHeight.constant + digestWeatherView.frame.height + detailWeatherView.frame.height + 250)
         setUpBasicViews();
 
+        var panEdgeReco = UIScreenEdgePanGestureRecognizer(target: self, action: "swipeFromScreenEdge:")
+        panEdgeReco.edges = UIRectEdge.Left
+        self.view.addGestureRecognizer(panEdgeReco)
 
         UIView.animateWithDuration(1, animations: { () -> Void in
             self.mainTempatureToTopHeightConstraint.constant = self.view.frame.height - self.digestWeatherView.frame.height - self.mainTemperatureShimmerView.frame.height - 110
@@ -111,6 +113,11 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
             connection.delegate = self
             connection.getWeatherForcast(cityID)
         }
+    }
+    
+    func swipeFromScreenEdge(sender: UIScreenEdgePanGestureRecognizer) {
+        UserMotion.stop()
+        self.performSegueWithIdentifier("backToMain", sender: self)
     }
     
     // if doesn't have forcast data
