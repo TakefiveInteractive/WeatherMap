@@ -219,8 +219,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 
                 if temp != nil{
                     
-                    iconsData = iconsData + (temp as! [QTreeInsertable])
-                    
                     var coord = CLLocation()
                     var iconCoord = CLLocation()
                     
@@ -245,12 +243,15 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                     }else{
                         addIconToMap("", position: coord.coordinate, iconInfo: icon)
                     }
+                    iconsData = iconsData + (temp as! [QTreeInsertable])
+                    if iconsData.count > 60{
+                        break
+                    }
                 }
                 
             }
             
-            WeatherInfo.getLocalWeatherInformation(iconsData as! [QTreeInsertable])
-            
+            WeatherInfo.getLocalWeatherInformation(iconsData as [QTreeInsertable])
             for icon in iconToRemove{
                 icon.map = nil
                 weatherClusterTree.removeObject(icon)
@@ -258,6 +259,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             iconToRemove.removeAll(keepCapacity: false)
             
         }
+        
+        parentController.searchBar.startLoading()
         
         changeIconWithTime()
 
@@ -301,10 +304,10 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     func replaceCard(center: CLLocationCoordinate2D){
         if shouldDisplayCard {
             if weatherClusterTree.count > 0 || weatherIcons.count > 0{
-                shouldDisplayCard = false
                 //diplay the card of the first city getted
                 WeatherInfo.currentCityID = WeatherInfo.getTheNearestIcon(center).cityID
                 if (WeatherInfo.citiesAroundDict[WeatherInfo.currentCityID] != nil && !WeatherInfo.forcastMode) || (WeatherInfo.citiesForcast[WeatherInfo.currentCityID] != nil && WeatherInfo.forcastMode){
+                    shouldDisplayCard = false
                     parentController.card.displayCity(WeatherInfo.currentCityID)
                 }
             }
@@ -416,6 +419,10 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             return
         }
         
+        if WeatherInfo.ongoingRequest < WeatherInfo.maxRequestNum{
+            parentController.searchBar.endLoading()
+        }
+        
         if !changeIcon || camera.zoom >= clusterZoom {
             changeIconWithTime()
         }
@@ -463,11 +470,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             }
             
         }
-        UIView.animateWithDuration(0.1, delay: 0.15, options: nil, animations: { () -> Void in
-            
-        }) { (finish) -> Void in
-            self.changeIcon = false
-        }
+        self.changeIcon = false
     }
 
     

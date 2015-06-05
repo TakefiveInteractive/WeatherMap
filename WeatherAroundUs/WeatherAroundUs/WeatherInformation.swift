@@ -44,7 +44,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     
     var blockSize = 5
     
-    let maxRequestNum = 3
+    let maxRequestNum = 4
     
     var weatherDelegate : WeatherInformationDelegate?
     
@@ -155,9 +155,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         }
         var set = currentSearchTrees[(nearestTrees[0] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 20)
         set = set! + (currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 10))!
-        
-        println(set!.count)
-        
+                
         return set!
     }
     
@@ -165,7 +163,6 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         var arr = [AnyObject]()
         
-        println(currentSearchTrees.count)
         for tree in currentSearchTrees.keys.array{
             arr = arr + currentSearchTrees[tree]!.getObjectsInRegion(region, minNonClusteredSpan: min(region.span.latitudeDelta, region.span.longitudeDelta) / 6)!
         }
@@ -179,7 +176,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     func getLocalWeatherInformation(cities: [QTreeInsertable]){
         
         if ongoingRequest < maxRequestNum{
-        
+            
             var index = 7
             
             while index < cities.count {
@@ -216,6 +213,8 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     func gotLocalCityWeather(cities: [AnyObject]) {
         
         ongoingRequest--
+        
+        println("got")
         
         var hasNewInfo = false
         

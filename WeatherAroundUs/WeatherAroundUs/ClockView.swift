@@ -194,6 +194,7 @@ class ClockView: DesignableView{
     }
     
     func rotatePin(pin: UIView, time: Double){
+        pin.layer.removeAllAnimations()
         var rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(float: Float(M_PI * 2.0))
         rotationAnimation.duration = time

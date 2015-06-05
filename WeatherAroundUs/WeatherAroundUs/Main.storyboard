@@ -49,8 +49,15 @@
                                                         <constraint firstAttribute="height" constant="20" id="qWk-Oz-gGr"/>
                                                     </constraints>
                                                 </view>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2X-nq-ZAZ">
+                                                    <rect key="frame" x="15" y="13" width="70" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="N2X-nq-ZAZ" secondAttribute="height" multiplier="108:31" id="JQp-bv-233"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="3CT-pi-HrN" firstAttribute="bottom" secondItem="N2X-nq-ZAZ" secondAttribute="bottom" id="1Gb-3d-JGE"/>
                                                 <constraint firstItem="ZhV-B8-7vv" firstAttribute="leading" secondItem="oUi-oI-aXT" secondAttribute="leading" id="9vB-N6-DvH"/>
                                                 <constraint firstItem="oUi-oI-aXT" firstAttribute="leading" secondItem="aVn-e8-yUe" secondAttribute="leading" constant="8" id="Cv7-mD-vsw"/>
                                                 <constraint firstAttribute="centerY" secondItem="3CT-pi-HrN" secondAttribute="centerY" id="NEC-x1-QH2"/>
@@ -58,9 +65,11 @@
                                                 <constraint firstAttribute="centerX" secondItem="3CT-pi-HrN" secondAttribute="centerX" id="SeL-dr-MAA"/>
                                                 <constraint firstItem="ZhV-B8-7vv" firstAttribute="bottom" secondItem="oUi-oI-aXT" secondAttribute="bottom" id="Skr-Iv-EH0"/>
                                                 <constraint firstItem="ZhV-B8-7vv" firstAttribute="trailing" secondItem="oUi-oI-aXT" secondAttribute="trailing" id="TE1-96-8t1"/>
+                                                <constraint firstItem="3CT-pi-HrN" firstAttribute="top" secondItem="N2X-nq-ZAZ" secondAttribute="top" id="WVQ-Vy-AR2"/>
                                                 <constraint firstItem="ZhV-B8-7vv" firstAttribute="top" secondItem="oUi-oI-aXT" secondAttribute="top" id="e7Y-XM-uWl"/>
                                                 <constraint firstAttribute="bottom" secondItem="oUi-oI-aXT" secondAttribute="bottom" constant="8" id="gUw-xH-jW3"/>
                                                 <constraint firstAttribute="trailing" secondItem="oUi-oI-aXT" secondAttribute="trailing" constant="8" id="jde-Qq-prG"/>
+                                                <constraint firstItem="3CT-pi-HrN" firstAttribute="centerX" secondItem="N2X-nq-ZAZ" secondAttribute="centerX" id="uVy-X1-8s6"/>
                                             </constraints>
                                         </view>
                                         <blurEffect style="light"/>
@@ -83,6 +92,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="blurView" destination="zl1-80-eGp" id="wYU-nP-ubb"/>
+                                    <outlet property="loadingDraw" destination="N2X-nq-ZAZ" id="pQn-B5-8b8"/>
                                     <outlet property="searchBack" destination="oUi-oI-aXT" id="KGQ-NK-mQC"/>
                                     <outlet property="searchBar" destination="ZhV-B8-7vv" id="PQw-Uy-K9p"/>
                                     <outlet property="searchDraw" destination="3CT-pi-HrN" id="270-UO-hvD"/>
