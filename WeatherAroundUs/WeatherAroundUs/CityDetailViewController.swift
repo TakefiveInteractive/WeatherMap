@@ -10,7 +10,7 @@ import UIKit
 import Spring
 import Shimmer
 
-class CityDetailViewController: UIViewController, UIScrollViewDelegate, InternetConnectionDelegate{
+class CityDetailViewController: UIViewController, UIScrollViewDelegate, InternetConnectionDelegate {
     
     @IBOutlet var backgroundImageView: ImageScrollerView!
     @IBOutlet var scrollView: UIScrollView!
@@ -108,7 +108,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
             forecastView.setup(nineDayWeatherForcast)
             digestWeatherView.setup(nineDayWeatherForcast)
             detailWeatherView.setup(nineDayWeatherForcast)
-        }else{
+        } else {
             var connection = InternetConnection()
             connection.delegate = self
             connection.getWeatherForcast(cityID)
@@ -116,8 +116,12 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     }
     
     func swipeFromScreenEdge(sender: UIScreenEdgePanGestureRecognizer) {
-        UserMotion.stop()
-        self.performSegueWithIdentifier("backToMain", sender: self)
+        let point = sender.translationInView(self.view)
+//        if scrollView.contentOffset.y > 0 {
+//            scrollView.setContentOffset(CGPointZero, animated: true)
+//        } else {
+            scrollView.contentOffset.y = -point.x * CGFloat(1.5)
+//        }
     }
     
     // if doesn't have forcast data
