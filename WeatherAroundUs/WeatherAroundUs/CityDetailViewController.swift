@@ -117,11 +117,14 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     
     func swipeFromScreenEdge(sender: UIScreenEdgePanGestureRecognizer) {
         let point = sender.translationInView(self.view)
-//        if scrollView.contentOffset.y > 0 {
-//            scrollView.setContentOffset(CGPointZero, animated: true)
-//        } else {
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            scrollView.setContentOffset(CGPointZero, animated: true)
+        } else if sender.state == UIGestureRecognizerState.Changed {
             scrollView.contentOffset.y = -point.x * CGFloat(1.5)
-//        }
+        } else if sender.state == UIGestureRecognizerState.Ended || sender.state == UIGestureRecognizerState.Cancelled || sender.state == UIGestureRecognizerState.Failed {
+            scrollView.setContentOffset(CGPointZero, animated: true)
+        }
     }
     
     // if doesn't have forcast data
