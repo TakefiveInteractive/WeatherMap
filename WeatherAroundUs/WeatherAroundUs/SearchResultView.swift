@@ -88,6 +88,9 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
         parentController.mapView.shouldDisplayCard = true
         parentController.mapView.displayIcon(location)
 
+        var iconsData = WeatherInfo.getNearestIcons(location)
+        WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
+        
         //TO DO  NEW search
     }
     

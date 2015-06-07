@@ -177,35 +177,40 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         if ongoingRequest < maxRequestNum{
             
-            var index = 7
-            
-            while index < cities.count {
-                
-                var arr = [QTreeInsertable]()
-                
-                for data in cities[(index - 7)..<index]{
-                    arr.append(data)
-                }
-                var connection = InternetConnection()
-                connection.delegate = self
-                connection.getLocalWeather(arr)
-                index = index + 7
-                ongoingRequest++
-            }
+            searchWeather(cities)
+
+        }else{
+            latestSearchReq = cities
+        }
+    }
+    
+    func searchWeather(cities: [QTreeInsertable]){
+        var index = 7
+        
+        while index < cities.count {
             
             var arr = [QTreeInsertable]()
             
-            for data in cities[(index - 7)..<cities.count]{
+            for data in cities[(index - 7)..<index]{
                 arr.append(data)
             }
-            if arr.count > 0{
-                var connection = InternetConnection()
-                connection.delegate = self
-                connection.getLocalWeather(arr)
-                ongoingRequest++
-            }
-        }else{
-            latestSearchReq = cities
+            var connection = InternetConnection()
+            connection.delegate = self
+            connection.getLocalWeather(arr)
+            index = index + 7
+            ongoingRequest++
+        }
+        
+        var arr = [QTreeInsertable]()
+        
+        for data in cities[(index - 7)..<cities.count]{
+            arr.append(data)
+        }
+        if arr.count > 0{
+            var connection = InternetConnection()
+            connection.delegate = self
+            connection.getLocalWeather(arr)
+            ongoingRequest++
         }
     }
     
