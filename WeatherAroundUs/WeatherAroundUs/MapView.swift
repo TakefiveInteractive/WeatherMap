@@ -44,7 +44,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         self.setMinZoom(8, maxZoom: 15)
 
         lastLocation = CLLocation(latitude: camera.target.latitude, longitude: camera.target.longitude)
-
+        
+        animateToZoom(zoom)
         self.mapType = kGMSTypeNormal
         self.myLocationEnabled = true
         self.delegate = self
@@ -98,9 +99,14 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         }*/
         let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
         
+        if self.camera.zoom >= self.clusterZoom {
+            parentController.searchBar.endLoading()
+        }
+        
         if !self.displaying || self.camera.zoom >= self.clusterZoom{
             self.displayIcon(self.camera.target)
         }
+
         
         if displayTimeCount == 0{
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "displayCardOnIdle:", userInfo: nil, repeats: true)
@@ -112,17 +118,22 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     func displayCardOnIdle(timer: NSTimer){
         
-        if displayTimeCount < 3{
-            displayTimeCount++
-        }else{
-            if parentController.card.hide{
-                shouldDisplayCard = true
-                replaceCard()
+        if self.camera.zoom >= self.clusterZoom{
+        
+            if displayTimeCount < 3{
+                displayTimeCount++
+            }else{
+                if parentController.card.hide{
+                    shouldDisplayCard = true
+                    replaceCard()
+                }
+                displayTimeCount = 0
+                timer.invalidate()
             }
+        }else{
             displayTimeCount = 0
             timer.invalidate()
         }
-        println(displayTimeCount)
     }
     
     func mapView(mapView: GMSMapView!, willMove gesture: Bool) {
@@ -170,7 +181,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         displaying = true
         
-        parentController.searchBar.startLoading()
         
         let distance = WeatherMapCalculations.getTheDistanceBased(self.projection.visibleRegion())
         
@@ -231,6 +241,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             iconToRemove.removeAll(keepCapacity: false)
             
         }else{
+            
+            parentController.searchBar.startLoading()
             
             var mapRegion = WeatherMapCalculations.convertRegion(camera.target, distance: distance)
             var reducedLocations = WeatherInfo.getObjectsInRegion(mapRegion)

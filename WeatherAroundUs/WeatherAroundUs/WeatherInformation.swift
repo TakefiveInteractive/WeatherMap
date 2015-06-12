@@ -227,8 +227,6 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         
         ongoingRequest--
         
-        println("got")
-        
         var hasNewInfo = false
         
         for var index = 0; index < cities.count; index++ {

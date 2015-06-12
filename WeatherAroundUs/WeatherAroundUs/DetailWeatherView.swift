@@ -70,7 +70,7 @@ class DetailWeatherView: UIView {
         
         beginY += blockHeight + spaceHeight
         let mornTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["morn"])!.intValue
-        createTwoUILabelInMiddle("Morn Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(mornTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
+        createTwoUILabelInMiddle("Morning Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(mornTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
         
         beginY += blockHeight
         let nightTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["night"])!.intValue

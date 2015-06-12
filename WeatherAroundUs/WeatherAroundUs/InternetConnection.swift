@@ -68,6 +68,7 @@ class InternetConnection: NSObject {
             
             if error == nil && JSON != nil {
                 let myjson = SwiftyJSON.JSON(JSON!)
+                
                 if let data = myjson["list"].arrayObject{
                     self.delegate?.gotLocalCityWeather!(data)
                 }

@@ -3,9 +3,9 @@
 //
 
 #import <GoogleMaps/GoogleMaps.h>
-#import <GPUImage/GPUImage.h>
+//#import <GPUImage/GPUImage.h>
 #import <Shimmer/FBShimmering.h>
-#import <FMDB/FMDB.h>
+//#import <FMDB/FMDB.h>
 #import <ZipArchive/ZipArchive.h>
 
 #import "QTree.h"

@@ -357,7 +357,6 @@
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
 				421A72221B04E8BC00B9135A /* CitySQL.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
-				42F093931B17A737009BA6A6 /* TreeData */,
 				421A721F1B047ECB00B9135A /* DetailViews */,
 				4237ACB21AFF1FE400B80DF7 /* QTree */,
 				4237AC9F1AFF1E8500B80DF7 /* Map */,
@@ -406,13 +405,6 @@
 				42D4EDE01A9E7F02006AE807 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		42F093931B17A737009BA6A6 /* TreeData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = TreeData;
 			sourceTree = "<group>";
 		};
 		42F15D491AD08275004D64EF /* IMGs */ = {

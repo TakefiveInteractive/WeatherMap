@@ -1,11 +1,5 @@
 PODS:
   - Alamofire (1.2.2)
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
-  - GPUImage (0.1.6)
   - HanekeSwift (0.9.1)
   - Shimmer (1.0.2)
   - Spring (1.0.3)
@@ -14,31 +8,18 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - FMDB (from `https://github.com/robertmryan/fmdb.git`)
-  - GPUImage
   - HanekeSwift
   - Shimmer
   - Spring
   - SwiftyJSON
   - ZipArchive
 
-EXTERNAL SOURCES:
-  FMDB:
-    :git: https://github.com/robertmryan/fmdb.git
-
-CHECKOUT OPTIONS:
-  FMDB:
-    :commit: b45874924a0b8240abf3f7715af57fc5158616c0
-    :git: https://github.com/robertmryan/fmdb.git
-
 SPEC CHECKSUMS:
   Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
-  FMDB: 8e59e93d20d76d0b135db26ecc83ae88d016076d
-  GPUImage: 4675ce4a5370ca92fcea8623b2a08b8f0c51b940
   HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
   ZipArchive: e25a4373192673e3229ac8d6e9f64a3e5713c966
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.37.2
