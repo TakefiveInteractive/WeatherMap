@@ -6,7 +6,9 @@
 //  Copyright (c) 2015年 Kedan Li. All rights reserved.
 //
 
+/*
 import UIKit
+import FMDB
 
 class CitySQL: NSObject{
     
@@ -44,3 +46,4 @@ class CitySQL: NSObject{
     }
     
 }
+*/

@@ -281,12 +281,12 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         }
     }
     
-    
+    /*
     func splitIntoSubtree(){
         
-        let db = CitySQL()
+        //let db = CitySQL()
         var entireTree = QTree()
-        db.loadDataToTree(entireTree)
+        //db.loadDataToTree(entireTree)
         
         for var x = -180; x < 180; x += blockSize {
             for var y = -90; y < 90; y += blockSize{
@@ -351,7 +351,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         QtreeSerialization.saveSecondLevelTree(lv2)
         QtreeSerialization.saveMainTree(lv2)
     }
-    
+    */
 }
 
 

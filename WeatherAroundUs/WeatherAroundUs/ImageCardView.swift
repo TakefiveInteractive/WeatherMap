@@ -8,7 +8,7 @@
 
 import UIKit
 import Spring
-import GPUImage
+//import GPUImage
 
 class ImageCardView: DesignableImageView {
     
@@ -39,7 +39,7 @@ class ImageCardView: DesignableImageView {
         
         originalFrame = frame
         
-        var img = addFilter(img)
+        //var img = addFilter(img)
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.frame = frame
@@ -61,6 +61,7 @@ class ImageCardView: DesignableImageView {
         }
     }
     
+    /*
     func addFilter(img: UIImage)->UIImage{
         var filter = GPUImageToonFilter()
         filter.threshold = 4
@@ -69,7 +70,7 @@ class ImageCardView: DesignableImageView {
         roundedImg = roundedImg.roundCorners(10)!
         roundedImg = filter.imageByFilteringImage(roundedImg)
         return roundedImg
-    }
+    }*/
     
     func hideSelf(){
         

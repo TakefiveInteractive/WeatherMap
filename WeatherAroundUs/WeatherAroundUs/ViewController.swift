@@ -23,7 +23,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     var fullLengthOfSearchBar:CGFloat!
     
-    var smallImageView: ImageCardView!
     var searchResultList: SearchResultView!
     
     var weatherCardList = [UIImageView]()
