@@ -130,7 +130,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                 hide = false
                 self.userInteractionEnabled = true
                 let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
-                
+                                
                 var temp = Int32(((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
                 if WeatherInfo.forcastMode {
                     temp = Int32((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)

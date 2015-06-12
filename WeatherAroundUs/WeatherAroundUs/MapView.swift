@@ -71,7 +71,6 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             let data = WeatherInfo.getTheNearestIcon((marker as! WeatherMarker).position)
             self.animateToCameraPosition(GMSCameraPosition(target: data.coordinate, zoom: 11.5, bearing: self.camera.bearing, viewingAngle: self.camera.viewingAngle))
             WeatherInfo.currentCityID = data.cityID
-            parentController.card.displayCity(data.cityID)
             
         }else{
             if WeatherInfo.citiesAroundDict[((marker as! WeatherMarker).data as! QTreeInsertable).cityID] != nil {
@@ -90,6 +89,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     
     func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
 
+        shouldDisplayCard = true
+        
         let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
        
         if !displaying || camera.zoom >= clusterZoom{
@@ -143,6 +144,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         
         displaying = true
         
+        parentController.searchBar.startLoading()
         
         let distance = WeatherMapCalculations.getTheDistanceBased(self.projection.visibleRegion())
         
@@ -175,7 +177,7 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             
             var iconsData = WeatherInfo.getNearestIcons(center)
             
-            WeatherInfo.getLocalWeatherInformation(iconsData as! [WeatherDataQTree])
+            WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
             
             for icon in iconsData{
                 
@@ -251,7 +253,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
                 
             }
             
-            WeatherInfo.getLocalWeatherInformation(iconsData as [QTreeInsertable])
+            WeatherInfo.searchWeatherIfLimitedRequest(iconsData as [QTreeInsertable])
+            
             for icon in iconToRemove{
                 icon.map = nil
                 weatherClusterTree.removeObject(icon)
@@ -260,11 +263,9 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
             
         }
         
-        parentController.searchBar.startLoading()
+        WeatherInfo.currentCityID = WeatherInfo.getTheNearestIcon(center).cityID
         
         changeIconWithTime()
-
-        replaceCard(center)
         
         UIView.animateWithDuration(0.1, delay: 0.4, options: nil, animations: { () -> Void in
             }) { (finish) -> Void in
@@ -301,12 +302,11 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
     }
     
     //display card if needed
-    func replaceCard(center: CLLocationCoordinate2D){
+    func replaceCard(){
         if shouldDisplayCard {
             if weatherClusterTree.count > 0 || weatherIcons.count > 0{
                 //diplay the card of the first city getted
-                WeatherInfo.currentCityID = WeatherInfo.getTheNearestIcon(center).cityID
-                if (WeatherInfo.citiesAroundDict[WeatherInfo.currentCityID] != nil && !WeatherInfo.forcastMode) || (WeatherInfo.citiesForcast[WeatherInfo.currentCityID] != nil && WeatherInfo.forcastMode){
+                if (WeatherInfo.currentCityID != "" && WeatherInfo.citiesAroundDict[WeatherInfo.currentCityID] != nil && !WeatherInfo.forcastMode) || (WeatherInfo.citiesForcast[WeatherInfo.currentCityID] != nil && WeatherInfo.forcastMode) {
                     shouldDisplayCard = false
                     parentController.card.displayCity(WeatherInfo.currentCityID)
                 }
@@ -435,6 +435,8 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         changeIcon = true
         
         if zoom >= clusterZoom {
+            
+            replaceCard()
             
             for cityID in weatherIcons.keys.array {
                 

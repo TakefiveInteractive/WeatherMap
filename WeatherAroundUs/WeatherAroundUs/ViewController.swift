@@ -28,6 +28,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     var weatherCardList = [UIImageView]()
     
+    var loaded = false
+    
     var draggingGesture: UIScreenEdgePanGestureRecognizer!
     
     override func viewDidLoad() {
@@ -59,11 +61,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     
     override func viewDidAppear(animated: Bool) {
 
+        if !loaded{
+            loaded = true
+            searchBar.setup()
+        }
         clockButton.setup()
         timeLine.setup()
         card.setup()
-        searchBar.setup()
-        
+
         returnCurrentPositionButton.layer.cornerRadius = returnCurrentPositionButton.frame.width / 2
         returnCurrentPositionButton.layer.shadowOffset = CGSizeMake(1, 1)
         returnCurrentPositionButton.layer.shadowRadius = 1
@@ -108,15 +113,24 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     }
     
     @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
-        
+        mapView.shouldDisplayCard = true
+        mapView.replaceCard()
+        mapView.changeIconWithTime()
+        var iconsData = WeatherInfo.getNearestIcons(UserLocation.centerLocation.coordinate)
+        WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
+        searchBar.startLoading()
+
     }
     
     @IBAction func returnCurrentPositionButtonDidPressed(sender: DesignableButton) {
         
         if UserLocation.centerLocation != nil{
+            let camera = GMSCameraPosition(target: UserLocation.centerLocation.coordinate, zoom: 12, bearing: mapView.camera.bearing, viewingAngle: mapView.camera.viewingAngle)
+            mapView.animateToCameraPosition(camera)
             mapView.shouldDisplayCard = true
-            mapView.displayIcon(mapView.camera.target)
-            mapView.animateToLocation(UserLocation.centerLocation.coordinate)
+            mapView.displayIcon(UserLocation.centerLocation.coordinate)
+            var iconsData = WeatherInfo.getNearestIcons(UserLocation.centerLocation.coordinate)
+            WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
         }
     }
 

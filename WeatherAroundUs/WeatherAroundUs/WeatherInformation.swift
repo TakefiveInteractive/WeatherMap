@@ -153,10 +153,19 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         if currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID] == nil{
             loadTree((nearestTrees[1] as! WeatherDataQTree).cityID)
         }
-        var set = currentSearchTrees[(nearestTrees[0] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 20)
-        set = set! + (currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 10))!
+        var set = currentSearchTrees[(nearestTrees[0] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 15)
+        
+        if set == nil{
+            return NSArray()
+        }
+        
+        var set2 = (currentSearchTrees[(nearestTrees[1] as! WeatherDataQTree).cityID]?.neighboursForLocation(position, limitCount: 5))
+        
+        if set2 == nil{
+            return set!
+        }
                 
-        return set!
+        return set! + set2!
     }
     
     func getObjectsInRegion(region: MKCoordinateRegion)->NSArray{
@@ -173,10 +182,9 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     var ongoingRequest = 0
     var latestSearchReq:[QTreeInsertable]!
     
-    func getLocalWeatherInformation(cities: [QTreeInsertable]){
+    func searchWeatherIfLimitedRequest(cities: [QTreeInsertable]){
         
         if ongoingRequest < maxRequestNum{
-            
             searchWeather(cities)
 
         }else{
@@ -243,7 +251,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         }
         
         if ongoingRequest < maxRequestNum && latestSearchReq != nil{
-            getLocalWeatherInformation(latestSearchReq)
+            searchWeatherIfLimitedRequest(latestSearchReq)
             latestSearchReq = nil
         }
         

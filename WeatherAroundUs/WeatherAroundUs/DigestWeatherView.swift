@@ -23,8 +23,7 @@ class DigestWeatherView: DesignableView {
 
     func setup(forecastInfos: [[String: AnyObject]]) {
         let todayTemp = forecastInfos[0]["temp"] as! [String: AnyObject]
-        let todayWeather = (forecastInfos[0]["weather"] as! [AnyObject])[0] as! [String: AnyObject]
-        
+        let todayWeather =  ((WeatherInfo.citiesAroundDict[WeatherInfo.currentCityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject]
         let beginY = line.frame.origin.y + line.frame.height
         let beginX = line.frame.origin.x
         

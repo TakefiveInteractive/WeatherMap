@@ -1,3 +1,4 @@
+
 //
 //  SearchResultView.swift
 //  WeatherAroundUs
@@ -90,7 +91,7 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
 
         var iconsData = WeatherInfo.getNearestIcons(location)
         WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
-        
+
         //TO DO  NEW search
     }
     
