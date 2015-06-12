@@ -68,12 +68,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         clockButton.setup()
         timeLine.setup()
         card.setup()
-
+        
         returnCurrentPositionButton.layer.cornerRadius = returnCurrentPositionButton.frame.width / 2
         returnCurrentPositionButton.layer.shadowOffset = CGSizeMake(1, 1)
         returnCurrentPositionButton.layer.shadowRadius = 1
         returnCurrentPositionButton.layer.shadowOpacity = 0.5
         
+        mapView.shouldDisplayCard = true
+        mapView.replaceCard()
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,13 +115,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     }
     
     @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
-        mapView.shouldDisplayCard = true
-        mapView.replaceCard()
-        mapView.changeIconWithTime()
+        let camera = GMSCameraPosition(target: mapView.camera.target, zoom: 12, bearing: mapView.camera.bearing, viewingAngle: mapView.camera.viewingAngle)
+        mapView.animateToCameraPosition(camera)
         var iconsData = WeatherInfo.getNearestIcons(UserLocation.centerLocation.coordinate)
         WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
-        searchBar.startLoading()
-
     }
     
     @IBAction func returnCurrentPositionButtonDidPressed(sender: DesignableButton) {
@@ -127,8 +126,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         if UserLocation.centerLocation != nil{
             let camera = GMSCameraPosition(target: UserLocation.centerLocation.coordinate, zoom: 12, bearing: mapView.camera.bearing, viewingAngle: mapView.camera.viewingAngle)
             mapView.animateToCameraPosition(camera)
-            mapView.shouldDisplayCard = true
-            mapView.displayIcon(UserLocation.centerLocation.coordinate)
             var iconsData = WeatherInfo.getNearestIcons(UserLocation.centerLocation.coordinate)
             WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
         }

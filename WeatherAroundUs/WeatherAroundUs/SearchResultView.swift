@@ -86,13 +86,8 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
     func gotLocationWithPlaceID(location: CLLocationCoordinate2D){
         let camera = GMSCameraPosition(target: location, zoom: 12, bearing: parentController.mapView.camera.bearing, viewingAngle: parentController.mapView.camera.viewingAngle)
         self.parentController.mapView.animateToCameraPosition(camera)
-        parentController.mapView.shouldDisplayCard = true
-        parentController.mapView.displayIcon(location)
-
         var iconsData = WeatherInfo.getNearestIcons(location)
         WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
-
-        //TO DO  NEW search
     }
     
     func removeCities(){

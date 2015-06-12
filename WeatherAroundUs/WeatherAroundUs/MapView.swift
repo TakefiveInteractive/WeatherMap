@@ -81,22 +81,48 @@ class MapView: GMSMapView, GMSMapViewDelegate, LocationManagerDelegate, WeatherI
         }
         
         return true
-
     }
     
     //whether the display function is currently running
     var displaying = false
-    
+    var displayTimeCount = 0
+
     func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-
-        shouldDisplayCard = true
         
-        let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
-       
-        if !displaying || camera.zoom >= clusterZoom{
-            displayIcon(camera.target)
-        }
+        // delay 1 second
+        /*
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
 
+        }*/
+        let thisLocation = CLLocation(latitude: self.camera.target.longitude, longitude: self.camera.target.latitude)
+        
+        if !self.displaying || self.camera.zoom >= self.clusterZoom{
+            self.displayIcon(self.camera.target)
+        }
+        
+        if displayTimeCount == 0{
+            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "displayCardOnIdle:", userInfo: nil, repeats: true)
+        }else{
+            displayTimeCount = 0
+        }
+    }
+    
+    
+    func displayCardOnIdle(timer: NSTimer){
+        
+        if displayTimeCount < 3{
+            displayTimeCount++
+        }else{
+            if parentController.card.hide{
+                shouldDisplayCard = true
+                replaceCard()
+            }
+            displayTimeCount = 0
+            timer.invalidate()
+        }
+        println(displayTimeCount)
     }
     
     func mapView(mapView: GMSMapView!, willMove gesture: Bool) {
