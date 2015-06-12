@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FMDB
 
 class CitySQL: NSObject{
     
