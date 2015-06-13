@@ -116,7 +116,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
         let camera = GMSCameraPosition(target: mapView.camera.target, zoom: 12, bearing: mapView.camera.bearing, viewingAngle: mapView.camera.viewingAngle)
         mapView.animateToCameraPosition(camera)
-        var iconsData = WeatherInfo.getNearestIcons(UserLocation.centerLocation.coordinate)
+        var iconsData = WeatherInfo.getNearestIcons(mapView.camera.target)
         WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
     }
     
