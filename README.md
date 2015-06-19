@@ -1,5 +1,5 @@
-# Weather Map - [Take Five Interactive](http://www.takefiveinteractive.com)
-WeatherMap combines weather info with map display. You can view the ongoing weather change of an entire region in one scroll! A tool designed for those of you who road-trip or travel around often.
+# Weather Map - [Takefive Interactive](http://www.takefiveinteractive.com)
+WeatherMap combines weather info with map display. You can view the ongoing weather change of an entire region in one scroll! It is a tool designed for those of you who road-trip or travel around often.
 
 <img src="./ScreenShots/screenshot1.png" width="320" height="550"/>
 <img src="./ScreenShots/screenshot2.png" width="320" height="550"/>
@@ -30,7 +30,7 @@ $ open WeatherMap.xcworkspace
 Now Weather Map version 1.1 is available in App Store.
 
 
-[Click here to Weather Map iTunes page](https://itunes.apple.com/us/app/weather-map-take-five-interactive/id990141529?mt=8)
+[Weather Map iTunes page](https://itunes.apple.com/us/app/weather-map-take-five-interactive/id990141529?mt=8)
 
 ## Credits
 * [Alamofire](https://github.com/Alamofire/Alamofire) for network request
