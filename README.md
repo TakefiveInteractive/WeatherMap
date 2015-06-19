@@ -9,7 +9,7 @@ WeatherMap combines weather info with map display. You can view the ongoing weat
 ## Usage
 1) Download the repository
 ```
-$ git clone https://github.com/TakeFiveInteractive/WeatherMap.git
+$ git clone https://github.com/TakefiveInteractive/WeatherMap.git
 $ cd WeatherMap
 ```
 
