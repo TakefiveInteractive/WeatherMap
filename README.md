@@ -13,9 +13,14 @@ $ git clone https://github.com/TakefiveInteractive/WeatherMap.git
 $ cd WeatherMap
 ```
 
-2) Open the workspace
+2) Install pods
 ```
 $ cd WeatherAroundUs
+$ pod install
+```
+
+3) Open the workspace
+```
 $ open WeatherMap.xcworkspace
 ```
 
@@ -27,7 +32,7 @@ $ open WeatherMap.xcworkspace
 * iOS 8
 
 ## Download:
-Now Weather Map version 1.1 is available in App Store.
+Now Weather Map version 2.0 is available in App Store.
 
 
 [Weather Map iTunes page](https://itunes.apple.com/us/app/weather-map-take-five-interactive/id990141529?mt=8)
