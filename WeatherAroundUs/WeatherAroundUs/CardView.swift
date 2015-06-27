@@ -131,9 +131,9 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                 self.userInteractionEnabled = true
                 let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
                                 
-                var temp = Int32(((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
+                var temp = Int(((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
                 if WeatherInfo.forcastMode {
-                    temp = Int32((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
+                    temp = Int((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
                     currentIcon = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
                     self.icon.image = UIImage(named: currentIcon)!
                 }else{
@@ -173,9 +173,9 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                         
                         let info: AnyObject? = WeatherInfo.citiesAroundDict[cityID]
                         
-                        var temp = Int32(((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
+                        var temp = Int(((info as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
                         if WeatherInfo.forcastMode {
-                            temp = Int32((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
+                            temp = Int((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
                         }
                         self.city.text = (info as! [String: AnyObject])["name"] as? String
                         self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString

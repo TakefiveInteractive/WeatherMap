@@ -69,11 +69,11 @@ class DetailWeatherView: UIView {
         createTwoUILabelInMiddle("Pressure:", secondString: "\(pressure) hPa", yPosition: beginY)
         
         beginY += blockHeight + spaceHeight
-        let mornTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["morn"])!.intValue
+        let mornTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["morn"]!.doubleValue
         createTwoUILabelInMiddle("Morning Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(mornTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
         
         beginY += blockHeight
-        let nightTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["night"])!.intValue
+        let nightTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["night"]!.doubleValue
         createTwoUILabelInMiddle("Night Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(nightTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
         
     }
@@ -104,9 +104,9 @@ class DetailWeatherView: UIView {
         let lastFirst = TempLabelArray[TempLabelArray.count - 1]
         let lastSecond = TempLabelArray[TempLabelArray.count - 2]
 
-        let nightTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["night"])!.intValue
+        let nightTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["night"]!.doubleValue
         lastFirst.text = "\(WeatherMapCalculations.kelvinConvert(nightTemperature, isFnotC: parentController.isFnotC)) °" + unit
-        let mornTemperature = ((forecastInfos[0]["temp"] as! [String: AnyObject])["morn"])!.intValue
+        let mornTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["morn"]!.doubleValue
         lastSecond.text = "\(WeatherMapCalculations.kelvinConvert(mornTemperature, isFnotC: parentController.isFnotC)) °" + unit
     }
     

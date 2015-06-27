@@ -56,16 +56,13 @@ class DigestWeatherView: DesignableView {
         let shimmerTempRange = FBShimmeringView(frame: CGRectMake(0, self.frame.height / 5 - 5, line.frame.width / 2, self.frame.height / 2))
         labelView.addSubview(shimmerTempRange)
         tempRange = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, self.frame.height / 2))
-        let minTemp = todayTemp["min"]!.intValue
-        let maxTemp = todayTemp["max"]!.intValue
+        let minTemp = todayTemp["min"]!.doubleValue
+        let maxTemp = todayTemp["max"]!.doubleValue
         tempRange.font = UIFont(name: "AvenirNext-Regular", size: 24)
         tempRange.adjustsFontSizeToFitWidth = true
         tempRange.textAlignment = .Left
         tempRange.textColor = UIColor.whiteColor()
-        var unit = "F"
-        if parentController.isFnotC {
-            unit = "C"
-        }
+        let unit = parentController.isFnotC ? "C" : "F"
         tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
         shimmerTempRange.addSubview(tempRange)
         tempRange.animation = "fadeIn"
@@ -89,12 +86,9 @@ class DigestWeatherView: DesignableView {
     
     func reloadTemperature(forecastInfos: [[String: AnyObject]]) {
         let todayTemp = forecastInfos[0]["temp"] as! [String: AnyObject]
-        let minTemp = todayTemp["min"]!.intValue
-        let maxTemp = todayTemp["max"]!.intValue
-        var unit = "F"
-        if parentController.isFnotC {
-            unit = "C"
-        }
+        let minTemp = todayTemp["min"]!.doubleValue
+        let maxTemp = todayTemp["max"]!.doubleValue
+        var unit = parentController.isFnotC ? "C" : "F"
         tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
         setNeedsDisplay()
     }

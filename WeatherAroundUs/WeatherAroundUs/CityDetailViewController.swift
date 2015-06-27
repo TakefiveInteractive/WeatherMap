@@ -166,7 +166,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         
         isFnotC = !isFnotC
         
-        let todayDegree = Int32(((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
+        let todayDegree = Int(((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
         if isFnotC {
             mainTemperatureDisplay.text = "\(todayDegree)°C"
         } else {

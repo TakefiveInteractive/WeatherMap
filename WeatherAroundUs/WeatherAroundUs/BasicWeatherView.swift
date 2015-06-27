@@ -40,11 +40,11 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
     }
     
     var hourForcastTemperatureLabelArr = [SpringLabel]()
-    var hourForcastTemperatureIntArr = [Int32]()
+    var hourForcastTemperatureIntArr = [Int]()
     var dayForcastMinTemperatureLabelArr = [UILabel]()
-    var dayForcastMinTemperatureIntArr = [Int32]()
+    var dayForcastMinTemperatureIntArr = [Int]()
     var dayForcastMaxTemperatureLabelArr = [UILabel]()
-    var dayForcastMaxTemperatureIntArr = [Int32]()
+    var dayForcastMaxTemperatureIntArr = [Int]()
 
     func setup(forecastInfos: [[String: AnyObject]]) {
         
@@ -93,20 +93,20 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             maxTempLabel.textColor = UIColor.whiteColor()
             maxTempLabel.textAlignment = .Right
             maxTempLabel.font = labelFont
-            let maxTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["max"])!.intValue
-            maxTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(maxTempInt, isFnotC: parentController.isFnotC))°"
+            let maxTemp = (forecastInfos[index]["temp"] as! [String: AnyObject])["max"]!.doubleValue
+            maxTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°"
             backView.addSubview(maxTempLabel)
-            dayForcastMaxTemperatureIntArr.append(maxTempInt)
+            dayForcastMaxTemperatureIntArr.append(Int(round(maxTemp)))
             dayForcastMaxTemperatureLabelArr.append(maxTempLabel)
             
             var minTempLabel = UILabel(frame: CGRectMake(backView.frame.width - 50, 0, 50, blockHeight))
             minTempLabel.textColor = UIColor(hex: "#ADD8E6")
             minTempLabel.textAlignment = .Right
             minTempLabel.font = labelFont
-            let minTempInt = ((forecastInfos[index]["temp"] as! [String: AnyObject])["min"])!.intValue
-            minTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(minTempInt, isFnotC: parentController.isFnotC))°"
+            let minTemp = (forecastInfos[index]["temp"] as! [String: AnyObject])["min"]!.doubleValue
+            minTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))°"
             backView.addSubview(minTempLabel)
-            dayForcastMinTemperatureIntArr.append(minTempInt)
+            dayForcastMinTemperatureIntArr.append(Int(round(minTemp)))
             dayForcastMinTemperatureLabelArr.append(minTempLabel)
             
             var weatherIcon = UIImageView(frame: CGRect(x: backView.frame.width/2 - 10, y: 4, width: blockHeight - 8, height: blockHeight - 8))
@@ -155,7 +155,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             hourImageIcon.contentMode = UIViewContentMode.ScaleAspectFit
             hourItemView.addSubview(hourImageIcon)
             
-            let temp = ((forcast[index]["main"] as! [String: AnyObject])["temp"])!.intValue
+            let temp = (forcast[index]["main"] as! [String: AnyObject])["temp"]!.doubleValue
             let hourTemperatureLabel = SpringLabel(frame: CGRectMake(0, hourImageIcon.frame.origin.y + hourImageIcon.frame.height, hourItemViewWidth, 20))
             hourTemperatureLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
             hourTemperatureLabel.textColor = UIColor.whiteColor()
@@ -168,7 +168,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             //hourItemView.animate()
             
             hourForcastTemperatureLabelArr.append(hourTemperatureLabel)
-            hourForcastTemperatureIntArr.append(temp)
+            hourForcastTemperatureIntArr.append(Int(round(temp)))
         }
     }
     
