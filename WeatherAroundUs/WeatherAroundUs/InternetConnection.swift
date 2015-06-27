@@ -230,7 +230,6 @@ class InternetConnection: NSObject {
                             
                             if let url =  url["tbUrl"].string
                             {
-                                
                                 tbUrl = url
                             }
                             
