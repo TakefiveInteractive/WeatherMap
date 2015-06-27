@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (1.2.2)
+  - GoogleMaps (1.10.1)
   - HanekeSwift (0.9.1)
   - Shimmer (1.0.2)
   - Spring (1.0.3)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - GoogleMaps
   - HanekeSwift
   - Shimmer
   - Spring
@@ -16,6 +18,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
+  GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
   HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7

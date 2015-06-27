@@ -90,8 +90,6 @@
 		88CAEEC11AEB14FC00F73974 /* BasicWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */; };
 		B5E257601AEF45B1007B343F /* bkgd.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E2575F1AEF45B1007B343F /* bkgd.png */; };
 		B5E257621AEF4665007B343F /* startScr.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E257611AEF4665007B343F /* startScr.png */; };
-		D5362D611AD0B77F00CAD195 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */; };
-		D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */; };
 		D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D641AD0B83F00CAD195 /* AVFoundation.framework */; };
 		D5362D671AD0B84800CAD195 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D661AD0B84800CAD195 /* CoreData.framework */; };
 		D5362D691AD0B85300CAD195 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D681AD0B85300CAD195 /* CoreLocation.framework */; };
@@ -214,8 +212,6 @@
 		88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicWeatherView.swift; sourceTree = "<group>"; };
 		B5E2575F1AEF45B1007B343F /* bkgd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkgd.png; sourceTree = "<group>"; };
 		B5E257611AEF4665007B343F /* startScr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startScr.png; sourceTree = "<group>"; };
-		D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../GoogleMaps.framework; sourceTree = "<group>"; };
-		D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		D5362D641AD0B83F00CAD195 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D5362D661AD0B84800CAD195 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D5362D681AD0B85300CAD195 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -248,7 +244,6 @@
 				D5362D691AD0B85300CAD195 /* CoreLocation.framework in Frameworks */,
 				D5362D671AD0B84800CAD195 /* CoreData.framework in Frameworks */,
 				D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */,
-				D5362D611AD0B77F00CAD195 /* GoogleMaps.framework in Frameworks */,
 				E013A29CC0210A2FFC963A73 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,8 +344,6 @@
 		42D4EDC51A9E7F02006AE807 /* WeatherAroundUs */ = {
 			isa = PBXGroup;
 			children = (
-				D5362D621AD0B7BA00CAD195 /* GoogleMaps.bundle */,
-				D5362D601AD0B77F00CAD195 /* GoogleMaps.framework */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				423838E41B1EB1AA007DC01C /* subtrees.zip */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
@@ -606,7 +599,6 @@
 				421A71FF1B03AB7F00B9135A /* 02d.jpg in Resources */,
 				423838FC1B1EB80F007DC01C /* 13d.png in Resources */,
 				423838F91B1EB7F2007DC01C /* 11n.png in Resources */,
-				D5362D631AD0B7BA00CAD195 /* GoogleMaps.bundle in Resources */,
 				423839011B1EB837007DC01C /* 50n.png in Resources */,
 				42D9638A1ADC407900FC75C3 /* Main.storyboard in Resources */,
 				42466A931AE5A4EA00E0BD4B /* Newclock.png in Resources */,
