@@ -48,13 +48,6 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
 
     func setup(forecastInfos: [[String: AnyObject]]) {
         
-//        var hourForcastScrollViewConstraints = [NSLayoutConstraint]()
-//        hourForcastScrollViewConstraints += [NSLayoutConstraint(item: hourForcastScrollView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: upperLine, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)]
-//        hourForcastScrollViewConstraints += [NSLayoutConstraint(item: hourForcastScrollView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: upperLine, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)]
-//        hourForcastScrollViewConstraints += [NSLayoutConstraint(item: hourForcastScrollView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: lowerLine, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)]
-//        hourForcastScrollViewConstraints += [NSLayoutConstraint(item: hourForcastScrollView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: lowerLine, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)]
-//        hourForcastScrollView.addConstraints(hourForcastScrollViewConstraints)
-        
         hourForcastScrollView = UIScrollView(frame: scrollViewPosition.frame)
         self.addSubview(hourForcastScrollView)
         // each daily display block height
@@ -94,7 +87,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             maxTempLabel.textAlignment = .Right
             maxTempLabel.font = labelFont
             let maxTemp = (forecastInfos[index]["temp"] as! [String: AnyObject])["max"]!.doubleValue
-            maxTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°"
+            maxTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(maxTemp, unit: parentController.unit))°"
             backView.addSubview(maxTempLabel)
             dayForcastMaxTemperatureIntArr.append(Int(round(maxTemp)))
             dayForcastMaxTemperatureLabelArr.append(maxTempLabel)
@@ -104,7 +97,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             minTempLabel.textAlignment = .Right
             minTempLabel.font = labelFont
             let minTemp = (forecastInfos[index]["temp"] as! [String: AnyObject])["min"]!.doubleValue
-            minTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))°"
+            minTempLabel.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, unit: parentController.unit))°"
             backView.addSubview(minTempLabel)
             dayForcastMinTemperatureIntArr.append(Int(round(minTemp)))
             dayForcastMinTemperatureLabelArr.append(minTempLabel)
@@ -160,7 +153,7 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
             hourTemperatureLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
             hourTemperatureLabel.textColor = UIColor.whiteColor()
             hourTemperatureLabel.textAlignment = .Center
-            hourTemperatureLabel.text = "\(WeatherMapCalculations.kelvinConvert(temp, isFnotC: parentController.isFnotC))°"
+            hourTemperatureLabel.text = "\(WeatherMapCalculations.kelvinConvert(temp, unit: parentController.unit))°"
             hourItemView.addSubview(hourTemperatureLabel)
             
             //hourItemView.animation = "fadeIn"
@@ -175,11 +168,11 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
     func reloadTempatureContent() {
         
         for var index = 0; index < hourForcastTemperatureLabelArr.count; index++ {
-            hourForcastTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(hourForcastTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
+            hourForcastTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(hourForcastTemperatureIntArr[index], unit: parentController.unit))°"
         }
         for var index = 0; index < dayForcastMaxTemperatureLabelArr.count; index++ {
-            dayForcastMaxTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(dayForcastMaxTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
-            dayForcastMinTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(dayForcastMinTemperatureIntArr[index], isFnotC: parentController.isFnotC))°"
+            dayForcastMaxTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(dayForcastMaxTemperatureIntArr[index], unit: parentController.unit))°"
+            dayForcastMinTemperatureLabelArr[index].text = "\(WeatherMapCalculations.kelvinConvert(dayForcastMinTemperatureIntArr[index], unit: parentController.unit))°"
 
         }
         

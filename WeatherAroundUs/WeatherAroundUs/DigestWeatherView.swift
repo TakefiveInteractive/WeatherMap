@@ -62,8 +62,8 @@ class DigestWeatherView: DesignableView {
         tempRange.adjustsFontSizeToFitWidth = true
         tempRange.textAlignment = .Left
         tempRange.textColor = UIColor.whiteColor()
-        let unit = parentController.isFnotC ? "C" : "F"
-        tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
+        let unit = parentController.unit.stringValue
+        tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, unit: parentController.unit))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, unit: parentController.unit))°\(unit)"
         shimmerTempRange.addSubview(tempRange)
         tempRange.animation = "fadeIn"
         tempRange.delay = 0.2
@@ -88,8 +88,8 @@ class DigestWeatherView: DesignableView {
         let todayTemp = forecastInfos[0]["temp"] as! [String: AnyObject]
         let minTemp = todayTemp["min"]!.doubleValue
         let maxTemp = todayTemp["max"]!.doubleValue
-        var unit = parentController.isFnotC ? "C" : "F"
-        tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, isFnotC: parentController.isFnotC))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, isFnotC: parentController.isFnotC))°\(unit)"
+        var unit = parentController.unit.stringValue
+        tempRange.text = "\(WeatherMapCalculations.kelvinConvert(minTemp, unit: parentController.unit))° ~ \(WeatherMapCalculations.kelvinConvert(maxTemp, unit: parentController.unit))°\(unit)"
         setNeedsDisplay()
     }
 }

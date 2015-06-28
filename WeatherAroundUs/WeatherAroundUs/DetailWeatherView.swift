@@ -19,11 +19,7 @@ class DetailWeatherView: UIView {
     }
     
     var unit: String {
-        if parentController.isFnotC {
-            return "C"
-        } else {
-            return "F"
-        }
+        return parentController.unit.stringValue
     }
     
     func setup(forecastInfos: [[String: AnyObject]]) {
@@ -70,11 +66,11 @@ class DetailWeatherView: UIView {
         
         beginY += blockHeight + spaceHeight
         let mornTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["morn"]!.doubleValue
-        createTwoUILabelInMiddle("Morning Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(mornTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
+        createTwoUILabelInMiddle("Morning Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(mornTemperature, unit: parentController.unit)) °" + unit, yPosition: beginY)
         
         beginY += blockHeight
         let nightTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["night"]!.doubleValue
-        createTwoUILabelInMiddle("Night Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(nightTemperature, isFnotC: parentController.isFnotC)) °" + unit, yPosition: beginY)
+        createTwoUILabelInMiddle("Night Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(nightTemperature, unit: parentController.unit)) °" + unit, yPosition: beginY)
         
     }
     
@@ -105,9 +101,9 @@ class DetailWeatherView: UIView {
         let lastSecond = TempLabelArray[TempLabelArray.count - 2]
 
         let nightTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["night"]!.doubleValue
-        lastFirst.text = "\(WeatherMapCalculations.kelvinConvert(nightTemperature, isFnotC: parentController.isFnotC)) °" + unit
+        lastFirst.text = "\(WeatherMapCalculations.kelvinConvert(nightTemperature, unit: parentController.unit)) °" + unit
         let mornTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["morn"]!.doubleValue
-        lastSecond.text = "\(WeatherMapCalculations.kelvinConvert(mornTemperature, isFnotC: parentController.isFnotC)) °" + unit
+        lastSecond.text = "\(WeatherMapCalculations.kelvinConvert(mornTemperature, unit: parentController.unit)) °" + unit
     }
     
 }

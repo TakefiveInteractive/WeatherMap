@@ -28,7 +28,7 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
-    var isFnotC = NSUserDefaults.standardUserDefaults().objectForKey("temperatureDisplay")!.boolValue!
+    var unit: TUnit!
     
     var tempImage: UIImage!
     
@@ -49,11 +49,13 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
         digestWeatherView.clipsToBounds = true
         detailWeatherView.clipsToBounds = true
         
-        if isFnotC == true {
-            mainTemperatureDisplay.text = "°F"
+        if NSUserDefaults.standardUserDefaults().objectForKey("temperatureDisplay")!.boolValue! {
+            unit = .Fahrenheit
         } else {
-            mainTemperatureDisplay.text = "°C"
+            unit = .Celcius
         }
+        
+        mainTemperatureDisplay.text = "\(unit.stringValue)°"
     }
     
     
@@ -161,17 +163,13 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     
     func switchWeatherUnitButtonDidPressed() {
         
-        NSUserDefaults.standardUserDefaults().setBool(isFnotC, forKey: "temperatureDisplay")
+        NSUserDefaults.standardUserDefaults().setBool(unit.boolValue, forKey: "temperatureDisplay")
         NSUserDefaults.standardUserDefaults().synchronize()
         
-        isFnotC = !isFnotC
+        unit = unit.inverse
         
-        let todayDegree = Int(((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double)
-        if isFnotC {
-            mainTemperatureDisplay.text = "\(todayDegree)°C"
-        } else {
-            mainTemperatureDisplay.text = "\(WeatherMapCalculations.degreeToF(todayDegree))°F"
-        }
+        let todayDegree = Int(round(((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["main"] as! [String: AnyObject])["temp"] as! Double))
+        mainTemperatureDisplay.text = unit.format(todayDegree)
         
         if let nineDayWeatherForcast = WeatherInfo.citiesForcast[cityID] as? [[String: AnyObject]] {
             digestWeatherView.reloadTemperature(nineDayWeatherForcast)

@@ -183,7 +183,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                         if WeatherInfo.forcastMode {
                             self.currentIcon = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
                             self.icon.image = UIImage(named: self.currentIcon)!
-                            self.temperature.text = "\(WeatherMapCalculations.kelvinConvert(temp, isFnotC: true))°C / \(WeatherMapCalculations.kelvinConvert(temp, isFnotC: false))°F"
+                            self.temperature.text = "\(WeatherMapCalculations.kelvinConvert(temp, unit: TUnit.Celcius))°C / \(WeatherMapCalculations.kelvinConvert(temp, unit: TUnit.Fahrenheit))°F"
 
                         }else{
                             self.currentIcon = (((info as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String

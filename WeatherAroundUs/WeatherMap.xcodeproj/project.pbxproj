@@ -88,6 +88,7 @@
 		88888A041AEB4041007EC387 /* DigestWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88888A031AEB4041007EC387 /* DigestWeatherView.swift */; };
 		88CAEEBB1AE9FD7600F73974 /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */; };
 		88CAEEC11AEB14FC00F73974 /* BasicWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */; };
+		8FBC72681B3F707D0042C6AC /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC72671B3F707D0042C6AC /* Temperature.swift */; };
 		B5E257601AEF45B1007B343F /* bkgd.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E2575F1AEF45B1007B343F /* bkgd.png */; };
 		B5E257621AEF4665007B343F /* startScr.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E257611AEF4665007B343F /* startScr.png */; };
 		D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D641AD0B83F00CAD195 /* AVFoundation.framework */; };
@@ -210,6 +211,7 @@
 		88888A031AEB4041007EC387 /* DigestWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigestWeatherView.swift; sourceTree = "<group>"; };
 		88CAEEBA1AE9FD7600F73974 /* CityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailViewController.swift; sourceTree = "<group>"; };
 		88CAEEC01AEB14FC00F73974 /* BasicWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicWeatherView.swift; sourceTree = "<group>"; };
+		8FBC72671B3F707D0042C6AC /* Temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Temperature.swift; path = ../Temperature.swift; sourceTree = "<group>"; };
 		B5E2575F1AEF45B1007B343F /* bkgd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bkgd.png; sourceTree = "<group>"; };
 		B5E257611AEF4665007B343F /* startScr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startScr.png; sourceTree = "<group>"; };
 		D5362D641AD0B83F00CAD195 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -344,6 +346,7 @@
 		42D4EDC51A9E7F02006AE807 /* WeatherAroundUs */ = {
 			isa = PBXGroup;
 			children = (
+				8FBC72671B3F707D0042C6AC /* Temperature.swift */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				423838E41B1EB1AA007DC01C /* subtrees.zip */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
@@ -518,7 +521,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Kedan Li";
+				ORGANIZATIONNAME = "Takefive Interactive";
 				TargetAttributes = {
 					42D4EDC21A9E7F02006AE807 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -697,6 +700,7 @@
 				429B95CB1AD198E400851D32 /* WeatherInformation.swift in Sources */,
 				42F62E791AD0B84900D494E6 /* CardView.swift in Sources */,
 				427BAFB21AD0EECE00C87BDE /* ImageProcessor.swift in Sources */,
+				8FBC72681B3F707D0042C6AC /* Temperature.swift in Sources */,
 				4237ACAF1AFF1FCC00B80DF7 /* QNode.m in Sources */,
 				42D4EDCC1A9E7F02006AE807 /* WeatherAroundUs.xcdatamodeld in Sources */,
 				88CAEEC11AEB14FC00F73974 /* BasicWeatherView.swift in Sources */,

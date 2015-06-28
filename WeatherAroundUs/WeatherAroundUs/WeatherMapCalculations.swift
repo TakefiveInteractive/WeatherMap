@@ -10,22 +10,29 @@ import UIKit
 
 class WeatherMapCalculations: NSObject {
     
-    class func kelvinConvert(var degree: Double!, isFnotC: Bool) -> Int {
+    // Convert Kelvin/Celcius temperature to another unit
+    class func kelvinConvert(var degree: Double!, unit: TUnit) -> Int {
+        // Workaround for OpenWeatherMap API bug:
+        // sometimes temperature is returned in Celcius directly
         if degree > 200 {
             degree = degree - 273.15
         }
-        if !isFnotC {
-            degree = degree * 9.0 / 5.0 + 32
+        if unit == TUnit.Fahrenheit {
+            degree = degreeToF(degree)
         }
         return Int(round(degree))
     }
     
-    class func kelvinConvert(degree: Int!, isFnotC: Bool) -> Int {
-        return kelvinConvert(Double(degree), isFnotC: isFnotC)
+    class func kelvinConvert(degree: Int!, unit: TUnit) -> Int {
+        return kelvinConvert(Double(degree), unit: unit)
+    }
+    
+    class func degreeToF(var degree: Double) -> Double {
+        return degree * 1.8 + 32
     }
     
     class func degreeToF(degree: Int) -> Int {
-        return Int(Double(degree) * 1.8 + 32)
+        return Int(round(degreeToF(Double(degree))))
     }
     
     // get the diagonal real distance of the map displayed on the screen
@@ -33,7 +40,6 @@ class WeatherMapCalculations: NSObject {
         let location = CLLocation(latitude: region.farLeft.latitude, longitude: region.farLeft.longitude)
         return location.distanceFromLocation(CLLocation(latitude: region.nearRight.latitude, longitude: region.nearRight.longitude))
     }
-    
     
     // correctly display the distance with text
     class func displayKMWithLabel(kilometer: Double) -> String{
