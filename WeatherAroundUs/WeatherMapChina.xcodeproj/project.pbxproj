@@ -187,14 +187,14 @@
 		427BAFC91AD18C7500C87BDE /* WeatherMapCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMapCalculations.swift; sourceTree = "<group>"; };
 		429B95CA1AD198E400851D32 /* WeatherInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInformation.swift; sourceTree = "<group>"; };
 		42AF65631AEB537400E4E550 /* IconImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
-		42D4EDC31A9E7F02006AE807 /* WeatherMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D4EDC31A9E7F02006AE807 /* WeatherMapChina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherMapChina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D4EDC71A9E7F02006AE807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D4EDCB1A9E7F02006AE807 /* WeatherAroundUs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherAroundUs.xcdatamodel; sourceTree = "<group>"; };
 		42D4EDCD1A9E7F02006AE807 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		42D4EDD21A9E7F02006AE807 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		42D4EDD51A9E7F02006AE807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		42D4EDDB1A9E7F02006AE807 /* WeatherMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D4EDDB1A9E7F02006AE807 /* WeatherMapChinaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherMapChinaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D4EDE01A9E7F02006AE807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D4EDE11A9E7F02006AE807 /* WeatherAroundUsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAroundUsTests.swift; sourceTree = "<group>"; };
 		42D961981AE5FF850082352E /* NewclockPin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewclockPin1.png; sourceTree = "<group>"; };
@@ -337,8 +337,8 @@
 		42D4EDC41A9E7F02006AE807 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				42D4EDC31A9E7F02006AE807 /* WeatherMap.app */,
-				42D4EDDB1A9E7F02006AE807 /* WeatherMapTests.xctest */,
+				42D4EDC31A9E7F02006AE807 /* WeatherMapChina.app */,
+				42D4EDDB1A9E7F02006AE807 /* WeatherMapChinaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -346,8 +346,8 @@
 		42D4EDC51A9E7F02006AE807 /* WeatherAroundUs */ = {
 			isa = PBXGroup;
 			children = (
-				8FBC72671B3F707D0042C6AC /* Temperature.swift */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
+				8FBC72671B3F707D0042C6AC /* Temperature.swift */,
 				423838E41B1EB1AA007DC01C /* subtrees.zip */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
@@ -476,9 +476,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		42D4EDC21A9E7F02006AE807 /* WeatherMap */ = {
+		42D4EDC21A9E7F02006AE807 /* WeatherMapChina */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 42D4EDE51A9E7F02006AE807 /* Build configuration list for PBXNativeTarget "WeatherMap" */;
+			buildConfigurationList = 42D4EDE51A9E7F02006AE807 /* Build configuration list for PBXNativeTarget "WeatherMapChina" */;
 			buildPhases = (
 				D99B0F89AEA77D1551147CCD /* Check Pods Manifest.lock */,
 				42D4EDBF1A9E7F02006AE807 /* Sources */,
@@ -491,14 +491,14 @@
 			);
 			dependencies = (
 			);
-			name = WeatherMap;
+			name = WeatherMapChina;
 			productName = WeatherAroundUs;
-			productReference = 42D4EDC31A9E7F02006AE807 /* WeatherMap.app */;
+			productReference = 42D4EDC31A9E7F02006AE807 /* WeatherMapChina.app */;
 			productType = "com.apple.product-type.application";
 		};
-		42D4EDDA1A9E7F02006AE807 /* WeatherMapTests */ = {
+		42D4EDDA1A9E7F02006AE807 /* WeatherMapChinaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 42D4EDE81A9E7F02006AE807 /* Build configuration list for PBXNativeTarget "WeatherMapTests" */;
+			buildConfigurationList = 42D4EDE81A9E7F02006AE807 /* Build configuration list for PBXNativeTarget "WeatherMapChinaTests" */;
 			buildPhases = (
 				42D4EDD71A9E7F02006AE807 /* Sources */,
 				42D4EDD81A9E7F02006AE807 /* Frameworks */,
@@ -509,9 +509,9 @@
 			dependencies = (
 				42D4EDDD1A9E7F02006AE807 /* PBXTargetDependency */,
 			);
-			name = WeatherMapTests;
+			name = WeatherMapChinaTests;
 			productName = WeatherAroundUsTests;
-			productReference = 42D4EDDB1A9E7F02006AE807 /* WeatherMapTests.xctest */;
+			productReference = 42D4EDDB1A9E7F02006AE807 /* WeatherMapChinaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -533,7 +533,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 42D4EDBE1A9E7F02006AE807 /* Build configuration list for PBXProject "WeatherMap" */;
+			buildConfigurationList = 42D4EDBE1A9E7F02006AE807 /* Build configuration list for PBXProject "WeatherMapChina" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -546,8 +546,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				42D4EDC21A9E7F02006AE807 /* WeatherMap */,
-				42D4EDDA1A9E7F02006AE807 /* WeatherMapTests */,
+				42D4EDC21A9E7F02006AE807 /* WeatherMapChina */,
+				42D4EDDA1A9E7F02006AE807 /* WeatherMapChinaTests */,
 			);
 		};
 /* End PBXProject section */
@@ -720,7 +720,7 @@
 /* Begin PBXTargetDependency section */
 		42D4EDDD1A9E7F02006AE807 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 42D4EDC21A9E7F02006AE807 /* WeatherMap */;
+			target = 42D4EDC21A9E7F02006AE807 /* WeatherMapChina */;
 			targetProxy = 42D4EDDC1A9E7F02006AE807 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -836,7 +836,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = WeatherMap;
+				PRODUCT_NAME = WeatherMapChina;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "WeatherAroundUs/WeatherAroundUs-Bridging-Header.h";
@@ -865,7 +865,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = WeatherMap;
+				PRODUCT_NAME = WeatherMapChina;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "WeatherAroundUs/WeatherAroundUs-Bridging-Header.h";
@@ -888,7 +888,7 @@
 				);
 				INFOPLIST_FILE = WeatherAroundUsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = WeatherMapTests;
+				PRODUCT_NAME = WeatherMapChinaTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMap.app/WeatherMap";
 			};
 			name = Debug;
@@ -903,7 +903,7 @@
 				);
 				INFOPLIST_FILE = WeatherAroundUsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = WeatherMapTests;
+				PRODUCT_NAME = WeatherMapChinaTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMap.app/WeatherMap";
 			};
 			name = Release;
@@ -911,7 +911,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		42D4EDBE1A9E7F02006AE807 /* Build configuration list for PBXProject "WeatherMap" */ = {
+		42D4EDBE1A9E7F02006AE807 /* Build configuration list for PBXProject "WeatherMapChina" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				42D4EDE31A9E7F02006AE807 /* Debug */,
@@ -920,7 +920,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		42D4EDE51A9E7F02006AE807 /* Build configuration list for PBXNativeTarget "WeatherMap" */ = {
+		42D4EDE51A9E7F02006AE807 /* Build configuration list for PBXNativeTarget "WeatherMapChina" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				42D4EDE61A9E7F02006AE807 /* Debug */,
@@ -929,7 +929,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		42D4EDE81A9E7F02006AE807 /* Build configuration list for PBXNativeTarget "WeatherMapTests" */ = {
+		42D4EDE81A9E7F02006AE807 /* Build configuration list for PBXNativeTarget "WeatherMapChinaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				42D4EDE91A9E7F02006AE807 /* Debug */,
