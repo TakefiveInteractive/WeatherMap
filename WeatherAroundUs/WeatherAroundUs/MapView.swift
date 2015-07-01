@@ -411,7 +411,7 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
             var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(iconStr)
             if (annotationView == nil)
             {
-                annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: iconStr)
+                annotationView = MAAnnotationView(annotation: annotation, reuseIdentifier: iconStr)
             }
             annotationView.image = IconImage.getImageWithNameAndSize(iconStr, size: iconSize)
 
@@ -516,12 +516,17 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
                 if !WeatherInfo.forcastMode {
                     if WeatherInfo.citiesAroundDict[cityID] != nil && weatherIcons[cityID] != nil && viewForAnnotation(weatherIcons[cityID]!) != nil{
                         let iconStr = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                        viewForAnnotation(weatherIcons[cityID]!).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                        if viewForAnnotation(weatherIcons[cityID]!) != nil{
+
+                            viewForAnnotation(weatherIcons[cityID]!).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                        }
                     }
                 }else{
                     if WeatherInfo.citiesForcast[cityID] != nil && weatherIcons[cityID] != nil{
                         let iconStr = (((WeatherInfo.citiesForcast[cityID]![self.parentController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
-                        viewForAnnotation(weatherIcons[cityID]!).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                        if viewForAnnotation(weatherIcons[cityID]!) != nil{
+                            viewForAnnotation(weatherIcons[cityID]!).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                        }
                     }
                 }
             }
@@ -533,7 +538,9 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
                 
                     if marker.data.isMemberOfClass(QCluster){
                         let iconStr = getMaxWeatherInCluster(marker.data as! QCluster)
-                        viewForAnnotation(marker).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                        if viewForAnnotation(marker) != nil{
+                            viewForAnnotation(marker).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                        }
                     }
 
             }
@@ -550,6 +557,8 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        maxZoomLevel = 15
+        minZoomLevel = 8
         setup()
     }
     
