@@ -34,6 +34,8 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     
     
     func setup() {
+        
+        
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         if userDefaults.valueForKey("longitude") != nil{
@@ -44,8 +46,10 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         lastLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
         setZoomLevel(prevzoom, animated: true)
         self.delegate = self
-        self.showTraffic = false
-        self.showsUserLocation = true
+        showTraffic = false
+        showsCompass = false
+        showsScale = false
+        showsUserLocation = true
         UserLocation.delegate = self
         
         WeatherInfo.weatherDelegate = self
@@ -236,12 +240,8 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
             
             var reducedLocations = WeatherInfo.getObjectsInRegion(MKCoordinateRegion(center: region.center, span: MKCoordinateSpan(latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta)))
             
-            println(reducedLocations.count)
             
             reducedLocations = removeIconOutSideScreen(reducedLocations as [AnyObject])
-            
-            println(reducedLocations.count)
-
             
             var iconToRemove = weatherCluster
             weatherCluster = [WeatherMarker]()
@@ -254,6 +254,8 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
                 
                 if icon.isMemberOfClass(QCluster){
                     temp = WeatherInfo.getTheFiveNearestIcons((icon as! QCluster).coordinate)!
+                }else{
+                    temp = WeatherInfo.getTheTwoNearestIcons((icon as! WeatherDataQTree).coordinate)!
                 }
                 
                 if temp.count > 0{
@@ -362,7 +364,6 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     func addIconToMap(cityID: String, position: CLLocationCoordinate2D, iconInfo: AnyObject){
         
         var marker = WeatherMarker(position: position, cityID: cityID, info: iconInfo)
-
         marker.cityID = cityID
         addAnnotation(marker)
         
