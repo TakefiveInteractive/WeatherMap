@@ -347,10 +347,10 @@
 			isa = PBXGroup;
 			children = (
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
-				8FBC72671B3F707D0042C6AC /* Temperature.swift */,
 				423838E41B1EB1AA007DC01C /* subtrees.zip */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
+				8FBC72671B3F707D0042C6AC /* Temperature.swift */,
 				421A72221B04E8BC00B9135A /* CitySQL.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
 				421A721F1B047ECB00B9135A /* DetailViews */,

@@ -43,7 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             zip.UnzipCloseFile()
         }
         
-        GMSServices.provideAPIKey("AIzaSyDLBiMd9DqNtqeRc2DMtoeYL4hg53wUEw8")
+        let APIKey = "8f28406aa71c51fa819c12d996637e9c"
+        MAMapServices.sharedServices().apiKey = APIKey
+
         UserLocation.setup()
         IconImage.setupPhotos()
 

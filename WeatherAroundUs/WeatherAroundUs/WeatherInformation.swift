@@ -139,6 +139,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
     func getTheFiveNearestIcons(position: CLLocationCoordinate2D)->NSArray?{
         let nearestTree = mainTree.neighboursForLocation(position, limitCount: 1)[0] as! WeatherDataQTree
         let data = currentSearchTrees[nearestTree.cityID]?.neighboursForLocation(position, limitCount: 5)
+        println(data)
         return data
     }
     
@@ -173,7 +174,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         var arr = [AnyObject]()
         
         for tree in currentSearchTrees.keys.array{
-            arr = arr + currentSearchTrees[tree]!.getObjectsInRegion(region, minNonClusteredSpan: min(region.span.latitudeDelta, region.span.longitudeDelta) / 6)!
+            arr = arr + currentSearchTrees[tree]!.getObjectsInRegion(region, minNonClusteredSpan: min(region.span.latitudeDelta, region.span.longitudeDelta) / 3)!
         }
         
         return arr

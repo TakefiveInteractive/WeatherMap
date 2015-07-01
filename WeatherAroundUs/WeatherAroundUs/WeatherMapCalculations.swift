@@ -35,11 +35,6 @@ class WeatherMapCalculations: NSObject {
         return Int(round(degreeToF(Double(degree))))
     }
     
-    // get the diagonal real distance of the map displayed on the screen
-    class func getTheDistanceBased(region: GMSVisibleRegion) -> Double{
-        let location = CLLocation(latitude: region.farLeft.latitude, longitude: region.farLeft.longitude)
-        return location.distanceFromLocation(CLLocation(latitude: region.nearRight.latitude, longitude: region.nearRight.longitude))
-    }
     
     // correctly display the distance with text
     class func displayKMWithLabel(kilometer: Double) -> String{
@@ -66,6 +61,41 @@ class WeatherMapCalculations: NSObject {
             
         }
 
+    }
+    
+    
+    class func checkIfPointInRegion(region: MKCoordinateRegion, location: CLLocationCoordinate2D)->Bool{
+        
+        var center = region.center;
+        var northWestCorner = CLLocationCoordinate2DMake(0, 0)
+        var southEastCorner = CLLocationCoordinate2DMake(0, 0)
+        
+        northWestCorner.latitude  = center.latitude - (region.span.latitudeDelta  / 2.0);
+        northWestCorner.longitude = center.longitude - (region.span.longitudeDelta / 2.0);
+        southEastCorner.latitude  = center.latitude  + (region.span.latitudeDelta  / 2.0);
+        southEastCorner.longitude = center.longitude + (region.span.longitudeDelta / 2.0);
+        
+        if (
+            location.latitude  >= northWestCorner.latitude &&
+                location.latitude  <= southEastCorner.latitude &&
+                
+                location.longitude >= northWestCorner.longitude &&
+                location.longitude <= southEastCorner.longitude
+            )
+        {
+            // User location (location) in the region - OK :-)
+            return true
+            
+        }else {
+            
+            // User location (location) out of the region - NOT ok :-(
+            return false
+        }
+    }
+    
+    class func getTheDistanceBased(region: MACoordinateRegion) -> Double{
+        let location = CLLocation(latitude: region.center.latitude + region.span.latitudeDelta / 2, longitude: region.center.longitude + region.span.longitudeDelta / 2)
+        return location.distanceFromLocation(CLLocation(latitude: region.center.latitude - region.span.latitudeDelta / 2, longitude: region.center.longitude - region.span.longitudeDelta / 2))
     }
     
     /*

@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (1.2.2)
-  - GoogleMaps (1.10.1)
+  - AMap2DMap (2.5.0)
+  - AMapSearch (2.5.0)
   - HanekeSwift (0.9.1)
   - Shimmer (1.0.2)
   - Spring (1.0.3)
@@ -9,7 +10,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - GoogleMaps
+  - AMap2DMap
+  - AMapSearch
   - HanekeSwift
   - Shimmer
   - Spring
@@ -18,7 +20,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
-  GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
+  AMap2DMap: 4952d35e7d3abdf36a568115bda21bd2b0d65e9b
+  AMapSearch: eafa5a749b1078a46f15e6108e88307f78f75e9b
   HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7

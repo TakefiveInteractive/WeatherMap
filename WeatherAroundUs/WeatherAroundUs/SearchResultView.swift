@@ -84,8 +84,8 @@ class SearchResultView: UIVisualEffectView, SearchInformationDelegate, InternetC
     }
     
     func gotLocationWithPlaceID(location: CLLocationCoordinate2D){
-        let camera = GMSCameraPosition(target: location, zoom: 12, bearing: parentController.mapView.camera.bearing, viewingAngle: parentController.mapView.camera.viewingAngle)
-        self.parentController.mapView.animateToCameraPosition(camera)
+        self.parentController.mapView.setZoomLevel(12, animated: true)
+        self.parentController.mapView.setCenterCoordinate(location, animated: true)
         var iconsData = WeatherInfo.getNearestIcons(location)
         WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
     }
