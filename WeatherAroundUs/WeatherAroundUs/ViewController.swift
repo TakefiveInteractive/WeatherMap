@@ -76,6 +76,9 @@ class ViewController: UIViewController, InternetConnectionDelegate {
         
         mapView.shouldDisplayCard = true
         mapView.replaceCard()
+        
+        mapView.displayIcon(mapView.centerCoordinate)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,8 +126,7 @@ class ViewController: UIViewController, InternetConnectionDelegate {
     @IBAction func returnCurrentPositionButtonDidPressed(sender: DesignableButton) {
         
         if UserLocation.centerLocation != nil{
-            mapView.setCenterCoordinate(UserLocation.centerLocation.coordinate, animated: true)
-            mapView.setZoomLevel(12, animated: true)
+            mapView.setZoomLevel(11.5, atPivot: mapView.convertCoordinate(UserLocation.centerLocation.coordinate, toPointToView: mapView), animated: true)
             var iconsData = WeatherInfo.getNearestIcons(UserLocation.centerLocation.coordinate)
             WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
         }
