@@ -1,4 +1,4 @@
-# Weather Map - [Takefive Interactive](http://www.takefiveinteractive.com)
+# Weather Map - [Takefive Interactive](http://takefiveinteractive.com)
 WeatherMap combines weather info with map display. You can view the ongoing weather change of an entire region in one scroll! It is a tool designed for those of you who road-trip or travel around often.
 
 <img src="./ScreenShots/screenshot1.png" width="320" height="550"/>
