@@ -90,7 +90,8 @@ class ViewController: UIViewController, InternetConnectionDelegate {
         if segue.identifier == "cityDetailSegue" {
             let toView = segue.destinationViewController as! CityDetailViewController
             toView.cityID = WeatherInfo.currentCityID
-            
+            toView.cityName = card.city.text!
+
             if card.imageUrlReady {
                 toView.tempImage = card.smallImage.image
             }else{

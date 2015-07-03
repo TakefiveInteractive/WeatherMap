@@ -40,7 +40,7 @@ class DigestWeatherView: DesignableView {
         let shimmerWeatherDescription = FBShimmeringView(frame: CGRectMake(0, 26, line.frame.width / 2, 30))
         labelView.addSubview(shimmerWeatherDescription)
         let cityDisplay = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, 30))
-        cityDisplay.text = (WeatherInfo.citiesAroundDict[parentController.cityID] as! [String: AnyObject])["name"]! as? String
+        cityDisplay.text = parentController.cityName
         cityDisplay.textAlignment = .Left
         cityDisplay.font = UIFont(name: "AvenirNext-Medium", size: 18)
         cityDisplay.adjustsFontSizeToFitWidth = true
