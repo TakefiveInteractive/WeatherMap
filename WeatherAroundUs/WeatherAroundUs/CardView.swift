@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
+class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, AMapSearchDelegate{
 
     var icon: UIImageView!
     var temperature: UILabel!
@@ -42,6 +42,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     
     let sideWidth:CGFloat = 6
 
+    var search: AMapSearchAPI?
+    
     // get small city image from google
     func gotImageUrls(btUrl: String, imageURL: String, cityID: String) {
         var cache = ImageCache()
@@ -50,6 +52,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
     }
     
     func setup(){
+        
+        search = AMapSearchAPI(searchKey: APIKey, delegate: self)
         
         hide = false
         
@@ -109,6 +113,15 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
 
         hideSelf()
     }
+    
+    
+    func onReGeocodeSearchDone(request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
+        if response.regeocode.addressComponent.district != nil{
+            self.city.text = response.regeocode.addressComponent.district
+        }else{
+            self.city.text = response.regeocode.addressComponent.city
+        }
+    }
  
     func displayCity(cityID: String){
         
@@ -117,10 +130,18 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
         // set image to invalid
             imageUrlReady = false
         
+            var location = CLLocationCoordinate2DMake(((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double)
+            
             var connection = InternetConnection()
             connection.delegate = self
             //get image url
-            connection.searchForCityPhotos(CLLocationCoordinate2DMake(((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lat"]! as! Double, ((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject]) ["coord"] as! [String: AnyObject])["lon"]! as! Double), name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
+            connection.searchForCityPhotos(location, name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
+            
+            var regeoRequest = AMapReGeocodeSearchRequest()
+            regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(location.latitude), longitude: CGFloat(location.longitude))
+            search!.AMapReGoecodeSearch(regeoRequest)
+            //发起逆地理编码
+            
             
             if hide {
                 
@@ -141,7 +162,6 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                     self.icon.image = UIImage(named: currentIcon)!
                 }
                 self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
-                self.city.text = (info as! [String: AnyObject])["name"] as? String
                 
                 self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
                 if WeatherInfo.forcastMode {
@@ -177,7 +197,6 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate{
                         if WeatherInfo.forcastMode {
                             temp = Int((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
                         }
-                        self.city.text = (info as! [String: AnyObject])["name"] as? String
                         self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString
                         
                         if WeatherInfo.forcastMode {
