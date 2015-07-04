@@ -140,6 +140,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
             var regeoRequest = AMapReGeocodeSearchRequest()
             regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(location.latitude), longitude: CGFloat(location.longitude))
             search!.AMapReGoecodeSearch(regeoRequest)
+            
+            
             //发起逆地理编码
             
             
