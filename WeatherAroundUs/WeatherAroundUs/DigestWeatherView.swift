@@ -73,7 +73,7 @@ class DigestWeatherView: DesignableView {
         
         //digest the main weather of the day
         let mainWeather = SpringLabel(frame: CGRectMake(0, beginY + self.frame.height / 5 + 18 - beginY, line.frame.width / 2 + 10, self.frame.height / 2))
-        mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 17)
         mainWeather.textAlignment = .Left
         mainWeather.textColor = UIColor.whiteColor()
         mainWeather.text = IconImage.getWeatherInChinese(todayWeather["icon"] as! String)

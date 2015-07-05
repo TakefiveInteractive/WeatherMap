@@ -12,6 +12,8 @@ class ImageScrollerView: UIScrollView, ImageCacheDelegate, MotionManagerDelegate
 
     var imageView = UIImageView()
     
+    var isAnimating = false
+    
     func setup(image: UIImage){
         imageView.image = image
         
@@ -93,23 +95,26 @@ class ImageScrollerView: UIScrollView, ImageCacheDelegate, MotionManagerDelegate
 
             var animateIndex:CGFloat = 0
             
-            if contentOffset.x >= 5 && contentOffset.x <= contentSize.width - UIScreen.mainScreen().bounds.width - 5 {
-                if num > 1{
-                    num = 1
-                }else if num < -1 {
-                    num = -1
+            if contentOffset.x >= 2 && contentOffset.x <= contentSize.width - UIScreen.mainScreen().bounds.width - 2 {
+                if num > 0{
+                    num = 2
+                }else if num < 0 {
+                    num = -2
                 }
                 animateIndex = contentOffset.x + num
-            }else if contentOffset.x < 5{
-                animateIndex = 5
-            }else if contentOffset.x > contentSize.width - UIScreen.mainScreen().bounds.width - 5{
-                animateIndex = contentSize.width - UIScreen.mainScreen().bounds.width - 5
+            }else{
+                return
             }
             
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
-                self.contentOffset = CGPointMake(animateIndex, 0)
-            })
+            if !isAnimating{
+                self.isAnimating = true
             
+                UIView.animateWithDuration(0.05, animations: { () -> Void in
+                    self.contentOffset = CGPointMake(animateIndex, 0)
+                    }, completion: { (finish) -> Void in
+                        self.isAnimating = false
+                })
+            }
         }
     }
 
