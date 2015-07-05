@@ -102,14 +102,12 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
                 self.delegate?.addACity!((response.pois[index] as! AMapPOI).location, description: (response.pois[index] as! AMapPOI).name)
             }
         }
-        println(response.pois)
-        println("~~~~~~~~~~~~~~~~~~~~~")
     }
+    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        
         var placeREq = AMapPlaceSearchRequest()
-        placeREq.keywords = textField.text
+        placeREq.keywords = textField.text + string
         placeREq.types = ["190000","190100","190101", "190102", "190103", "190105", "190104" ,"190200" ,"190203" ,"190202"]
         placeREq.offset = 8
         search!.AMapPlaceSearch(placeREq)
