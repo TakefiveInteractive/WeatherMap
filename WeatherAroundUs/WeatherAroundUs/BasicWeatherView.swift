@@ -60,13 +60,13 @@ class BasicWeatherView: DesignableView, InternetConnectionDelegate {
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let component = calendar.component(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
-        let week = [0: "Sunday", 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday", 6: "Saturday"]
+        let week = [0: "星期天", 1: "星期一", 2: "星期二", 3: "星期三", 4: "星期四", 5: "星期五", 6: "星期六"]
         var weekDate = [Int: String]()
         for var index = 0; index < displayedDays; index++ {
             weekDate[index] = week[(index + component - 1) % 7]
         }
-        weekDate[0] = "Today"
-        weekDate[1] = "Tomorrow"
+        weekDate[0] = "今天"
+        weekDate[1] = "明天"
 
         let beginY = hourForcastScrollView.frame.origin.y + hourForcastScrollView.frame.height + 8
         let beginX = hourForcastScrollView.frame.origin.x

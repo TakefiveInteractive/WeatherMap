@@ -165,10 +165,8 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                 }
                 self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                 
-                self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
-                if WeatherInfo.forcastMode {
-                    self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
-                }
+                self.weatherDescription.text = IconImage.getWeatherInChinese(currentIcon)
+
                 weatherDescriptionBack.center = weatherDescriptionBackCenter
                 weatherDescriptionBack.animation = "slideLeft"
                 weatherDescriptionBack.animate()
@@ -199,7 +197,6 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                         if WeatherInfo.forcastMode {
                             temp = Int((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["temp"] as! [String: AnyObject])["day"] as! Double)
                         }
-                        self.weatherDescription.text = ((((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"])?.capitalizedString
                         
                         if WeatherInfo.forcastMode {
                             self.currentIcon = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
@@ -211,7 +208,7 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                             self.icon.image = UIImage(named: self.currentIcon)!
                             self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                         }
-                        
+                        self.weatherDescription.text = IconImage.getWeatherInChinese(self.currentIcon)
                         UIView.animateWithDuration(0.4, animations: { () -> Void in
                             self.icon.alpha = 1
                             self.temperature.alpha = 1

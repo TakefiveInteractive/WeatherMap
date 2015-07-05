@@ -47,6 +47,29 @@ class IconImage: NSObject {
 
     }
     
+    static func getWeatherInChinese(iconStr: String)->String{
+        if iconStr == "01d" || iconStr == "01n" {
+            return "晴"
+        }else if iconStr == "02d" || iconStr == "02n" {
+            return "局部多云"
+        }else if iconStr == "03d" || iconStr == "03n" {
+            return "多云"
+        }else if iconStr == "04d" || iconStr == "04n" {
+            return "阴"
+        }else if iconStr == "09d" || iconStr == "09n" {
+            return "大雨"
+        }else if iconStr == "10d" || iconStr == "10n" {
+            return "小雨"
+        }else if iconStr == "11d" || iconStr == "11n" {
+            return "雷阵雨"
+        }else if iconStr == "13d" || iconStr == "13n" {
+            return "雪"
+        }else if iconStr == "50d" || iconStr == "50n" {
+            return "大雾"
+        }
+        return ""
+    }
+    
     static func createImageForName(name: String){
         
         var img: UIImage!
