@@ -16,5 +16,5 @@ pod 'SwiftyJSON'
 pod 'Shimmer'
 pod 'HanekeSwift'#, :git => 'https://github.com/Haneke/HanekeSwift.git'
 #pod 'FMDB', :git => 'https://github.com/robertmryan/fmdb.git'
-pod 'AMap2DMap' #2D地图SDK(2D地图和3D地图不能同时使用)
-pod 'AMapSearch' #搜索服务SDK
+#pod 'AMap2DMap' #2D地图SDK(2D地图和3D地图不能同时使用)
+#pod 'AMapSearch' #搜索服务SDK
