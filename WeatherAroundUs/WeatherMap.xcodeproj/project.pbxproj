@@ -520,6 +520,7 @@
 		42D4EDBB1A9E7F02006AE807 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Takefive Interactive";
 				TargetAttributes = {
