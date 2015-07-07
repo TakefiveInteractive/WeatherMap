@@ -40,8 +40,6 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         if userDefaults.valueForKey("longitude") != nil{
             setCenterCoordinate(CLLocationCoordinate2DMake(userDefaults.valueForKey("latitude") as! Double, userDefaults.valueForKey("longitude") as! Double), animated: true)
         }
-        //maxZoomLevel = 15
-        //minZoomLevel = 8
         lastLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
         setZoomLevel(prevzoom, animated: true)
         self.delegate = self
