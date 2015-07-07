@@ -19,7 +19,7 @@ Checkout the ```ChinaVersion``` branch for our pre-release!
 $ git clone https://github.com/TakefiveInteractive/WeatherMap.git
 $ cd WeatherMap
 ```
-For checkout the ```ChinaVersion```
+  For checkout the ```ChinaVersion```
 
 ```
 $ git checkout ChinaVersion
