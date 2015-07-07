@@ -6,7 +6,8 @@ WeatherMap combines weather info with map display. You can view the ongoing weat
 <img src="./ScreenShots/screenshot3.png" width="320" height="550"/>
 <img src="./ScreenShots/screenshot4.png" width="320" height="550"/>
 
-Weather Map is now supporting Gaode Map（高德地图）in China! Checkout the ```ChinaVersion``` branch for our pre-release!
+**Weather Map is now supporting Gaode Map（高德地图）in China! **
+Checkout the ```ChinaVersion``` branch for our pre-release!
 
 <img src="./ScreenShots/chn1.png" width="320" height="550"/>
 <img src="./ScreenShots/chn2.png" width="320" height="550"/>
@@ -16,6 +17,12 @@ Weather Map is now supporting Gaode Map（高德地图）in China! Checkout the 
 ```
 $ git clone https://github.com/TakefiveInteractive/WeatherMap.git
 $ cd WeatherMap
+```
+For checkout the ```ChinaVersion```
+
+```
+$ git checkout ChinaVersion
+
 ```
 
 2) Install pods
