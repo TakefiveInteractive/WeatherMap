@@ -22,9 +22,9 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     var weatherIcons = [String: WeatherMarker]()
     var lastLocation = CLLocation()
     
-    var prevzoom: Double = 12
+    var prevzoom: CGFloat = 12
     
-    let clusterZoom: Double = 9
+    let clusterZoom: CGFloat = 9
     
     let searchTreeCount = 3
     
@@ -41,8 +41,9 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
             setCenterCoordinate(CLLocationCoordinate2DMake(userDefaults.valueForKey("latitude") as! Double, userDefaults.valueForKey("longitude") as! Double), animated: true)
         }
         lastLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
-        setZoomLevel(prevzoom, animated: true)
         self.delegate = self
+        
+        setZoomLevel(prevzoom, animated: true)
         showTraffic = false
         showsCompass = false
         showsScale = false
@@ -50,6 +51,8 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         UserLocation.delegate = self
         
         WeatherInfo.weatherDelegate = self
+        
+        
   
     }
 
@@ -576,8 +579,8 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        maxZoomLevel = 13.5
-        minZoomLevel = 7
+        //maxZoomLevel = 13.5
+        //minZoomLevel = 7
         setup()
     }
     
