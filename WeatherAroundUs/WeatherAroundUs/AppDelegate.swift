@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import ZipArchive
 
-import KDIntroView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
