@@ -32,6 +32,9 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     
     var shouldDisplayCard = true
 
+    var maximumZoomLevel = 13.5
+    var minimumZoomLevel = 7
+    
     func setup() {
         
         
@@ -105,15 +108,15 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     var displaying = false
     var displayTimeCount = 0
 
+
+    
     func mapView(mapView: MAMapView!, regionDidChangeAnimated animated: Bool) {
         
-        // delay 1 second
-        /*
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-        Int64(1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-        
-        }*/
+        if zoomLevel > CGFloat(maximumZoomLevel){
+            setZoomLevel(CGFloat(maximumZoomLevel), animated: false)
+        }else if zoomLevel < CGFloat(minimumZoomLevel){
+            setZoomLevel(CGFloat(minimumZoomLevel), animated: false)
+        }
         
         let thisLocation = CLLocation(latitude: centerCoordinate.longitude, longitude: centerCoordinate.latitude)
         
@@ -436,6 +439,13 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
             {
                 annotationView = WeatherMarkerAnnotation(annotation: annotation, reuseIdentifier: iconStr)
             }
+            
+            if iconStr == "empty"{
+                annotationView.alpha = 0
+            }else{
+                annotationView.alpha = 1
+            }
+            
             annotationView.image = IconImage.getImageWithNameAndSize(iconStr, size: iconSize)
 
             annotationView.canShowCallout = false     //设置气泡可以弹出，默认为NO
@@ -579,8 +589,6 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        //maxZoomLevel = 13.5
-        //minZoomLevel = 7
         setup()
     }
     
@@ -609,6 +617,7 @@ class WeatherMarkerAnnotation: MAAnnotationView{
     override init!(annotation: MAAnnotation!, reuseIdentifier: String!) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         image = IconImage.getEmptyImage()
+        alpha = 0
     }
     
 
