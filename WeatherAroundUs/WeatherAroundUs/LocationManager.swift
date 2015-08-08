@@ -20,7 +20,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AMapSearchDelegate{
     
     var centerLocation:CLLocation!
     
-    var inChina = false
+    var inChina = true
     
     var locationM:CLLocationManager = CLLocationManager()
 
@@ -55,7 +55,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AMapSearchDelegate{
     
     func onReGeocodeSearchDone(request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
 
-        if response.regeocode.addressComponent.district == nil && response.regeocode.addressComponent.city == nil {
+        println(response)
+        if response.regeocode.addressComponent.district == "" && response.regeocode.addressComponent.city == "" {
             inChina = false
         }else{
             inChina = true

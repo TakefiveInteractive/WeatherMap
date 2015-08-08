@@ -170,7 +170,14 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                     self.city.text = (info as! [String: AnyObject])["name"] as? String
                 }
                 
-                self.weatherDescription.text = IconImage.getWeatherInChinese(currentIcon)
+                if UserLocation.inChina{
+                    self.weatherDescription.text = IconImage.getWeatherInChinese(currentIcon)
+                }else{
+                    self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                    if WeatherInfo.forcastMode {
+                        self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                    }
+                }
 
                 weatherDescriptionBack.center = weatherDescriptionBackCenter
                 weatherDescriptionBack.animation = "slideLeft"
@@ -217,7 +224,15 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                             self.city.text = (info as! [String: AnyObject])["name"] as? String
                         }
                         
-                        self.weatherDescription.text = IconImage.getWeatherInChinese(self.currentIcon)
+                        if UserLocation.inChina{
+                            self.weatherDescription.text = IconImage.getWeatherInChinese(self.currentIcon)
+                        }else{
+                            self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                            if WeatherInfo.forcastMode {
+                                self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                            }
+                        }
+                        
                         UIView.animateWithDuration(0.4, animations: { () -> Void in
                             self.icon.alpha = 1
                             self.temperature.alpha = 1
