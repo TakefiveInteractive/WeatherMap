@@ -90,7 +90,7 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
         if (view.annotation as! WeatherMarker).data.isMemberOfClass(QCluster) {
             //handle cluster
             let data = WeatherInfo.getTheNearestIcon((view.annotation as! WeatherMarker).coordinate)
-            setCenterCoordinate(data.coordinate, zoomLevel: UInt(11.5), animated: true)
+            setCenterCoordinate(data.coordinate, zoomLevel: UInt(12), animated: true)
             WeatherInfo.currentCityID = data.cityID
             parentController.searchBar.hideSelf()
             parentController.searchResultList.removeCities()
@@ -129,7 +129,10 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
     }
     
     func mapView(mapView: MKMapView!, regionWillChangeAnimated animated: Bool) {
-        mapChangingTimer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "mapRegionIsChanging:", userInfo: nil, repeats: true)
+        
+        if !animated{
+            mapChangingTimer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "mapRegionIsChanging:", userInfo: nil, repeats: true)
+        }
         
         if !animated{
             parentController.searchBar.hideSelf()
@@ -141,8 +144,9 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
     }
     
     func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
-        mapChangingTimer.invalidate()
-        
+        if mapChangingTimer != nil{
+            mapChangingTimer.invalidate()
+        }
         let thisLocation = CLLocation(latitude: centerCoordinate.longitude, longitude: centerCoordinate.latitude)
         
         if zoomLevel() >= self.clusterZoom {
