@@ -119,7 +119,7 @@ class ViewController: UIViewController, InternetConnectionDelegate {
     }
     
     @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
-        mapView.setZoomLevel(12, animated: true)
+        mapView.setCenterCoordinate(mapView.centerCoordinate, zoomLevel: 12, animated: true)
         var iconsData = WeatherInfo.getNearestIcons(mapView.centerCoordinate)
         WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
     }
@@ -127,7 +127,7 @@ class ViewController: UIViewController, InternetConnectionDelegate {
     @IBAction func returnCurrentPositionButtonDidPressed(sender: DesignableButton) {
         
         if UserLocation.centerLocation != nil{
-            mapView.setZoomLevel(11.5, atPivot: mapView.convertCoordinate(UserLocation.centerLocation.coordinate, toPointToView: mapView), animated: true)
+            mapView.setCenterCoordinate(UserLocation.centerLocation.coordinate, zoomLevel: 11, animated: true)
             var iconsData = WeatherInfo.getNearestIcons(UserLocation.centerLocation.coordinate)
             WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
         }

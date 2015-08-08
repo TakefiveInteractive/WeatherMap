@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (1.3.0)
-  - AMap3DMap (2.6.1)
-  - HanekeSwift (0.9.1)
+  - AMapSearch (2.6.0)
+  - MKMapViewZoom (1.0.0)
   - Shimmer (1.0.2)
   - Spring (1.0.3)
   - SwiftyJSON (2.2.1)
@@ -9,8 +9,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - AMap3DMap
-  - HanekeSwift
+  - AMapSearch
+  - MKMapViewZoom
   - Shimmer
   - Spring
   - SwiftyJSON
@@ -18,8 +18,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 220403a8d5840e0b4c946a6fbaf209dbca124282
-  AMap3DMap: 9ddc896034f7b5b8e28848c8abf7488a37e2897e
-  HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
+  AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
+  MKMapViewZoom: dbd9c9d7fe85cbd2084492e87aac0646e63c7f7f
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33

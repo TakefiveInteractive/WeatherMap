@@ -47,8 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             zip.UnzipCloseFile()
         }
         
-        MAMapServices.sharedServices().apiKey = APIKey
-
         UserLocation.setup()
         IconImage.setupPhotos()
 

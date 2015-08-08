@@ -77,8 +77,7 @@ class SearchResultView: UIVisualEffectView, InternetConnectionDelegate, SearchIn
         parentController.searchBar.searchBar.text = ""
         removeCities()
 
-        self.parentController.mapView.setZoomLevel(12, animated: true)
-        self.parentController.mapView.setCenterCoordinate(CLLocationCoordinate2DMake(Double(location.latitude), Double(location.longitude)), animated: true)
+        self.parentController.mapView.setCenterCoordinate(CLLocationCoordinate2DMake(Double(location.latitude), Double(location.longitude)), zoomLevel: 12, animated: true)
         var iconsData = WeatherInfo.getNearestIcons(CLLocationCoordinate2DMake(Double(location.latitude), Double(location.longitude)))
         WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
     }

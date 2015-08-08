@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInformationDelegate{
+import MapKit
+class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInformationDelegate{
     
     var parentController: ViewController!
     
@@ -22,9 +22,9 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     var weatherIcons = [String: WeatherMarker]()
     var lastLocation = CLLocation()
     
-    var prevzoom: CGFloat = 12
+    var prevzoom: UInt = 12
     
-    let clusterZoom: CGFloat = 9
+    let clusterZoom: UInt = 9
     
     let searchTreeCount = 3
     
@@ -32,8 +32,9 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     
     var shouldDisplayCard = true
 
-    var maximumZoomLevel = 13.5
-    var minimumZoomLevel = 7
+    let maxZoom = 13
+    let minZoom = 7
+
     
     func setup() {
         
@@ -41,22 +42,16 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         if userDefaults.valueForKey("longitude") != nil{
-            setCenterCoordinate(CLLocationCoordinate2DMake(userDefaults.valueForKey("latitude") as! Double, userDefaults.valueForKey("longitude") as! Double), animated: true)
+            setCenterCoordinate(CLLocationCoordinate2DMake(userDefaults.valueForKey("latitude") as! Double, userDefaults.valueForKey("longitude") as! Double), zoomLevel:  prevzoom, animated: true)
         }
         lastLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
-        self.delegate = self
+        delegate = self
         
-        setZoomLevel(prevzoom, animated: true)
-        showTraffic = false
-        showsCompass = false
-        showsScale = false
         showsUserLocation = true
         UserLocation.delegate = self
         
         WeatherInfo.weatherDelegate = self
         
-        
-  
     }
 
     func gotCurrentLocation(location: CLLocation) {
@@ -66,23 +61,29 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         currentLocation = location
     }
     
-    func mapView(mapView: MAMapView!, didSelectAnnotationView view: MAAnnotationView!) {
-        
-        println("tapped")
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        //nothing happen when select currenlocation
+        if view.isKindOfClass(NSClassFromString("MKModernUserLocationView")){
+            deselectAnnotation(view.annotation, animated: false)
+        }else{
+            selectIcon(view)
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
         selectIcon(view)
-        //deselectAnnotation(view.annotation, animated: false)
+    }
+    override func didAddSubview(subview: UIView) {
+        if subview.isKindOfClass(NSClassFromString("MKCompassView")){
+            subview.removeFromSuperview()
+        }
     }
 
-    func mapView(mapView: MAMapView!, didDeselectAnnotationView view: MAAnnotationView!) {
-        println("dtapped")
-        selectIcon(view)
-    }
-
-    func selectIcon(view: MAAnnotationView!){
+    func selectIcon(view: MKAnnotationView!){
         if (view.annotation as! WeatherMarker).data.isMemberOfClass(QCluster) {
             //handle cluster
             let data = WeatherInfo.getTheNearestIcon((view.annotation as! WeatherMarker).coordinate)
-            setZoomLevel(11.5, atPivot: convertCoordinate(CLLocationCoordinate2DMake(data.coordinate.latitude, data.coordinate.longitude), toPointToView: self), animated: true)
+            setCenterCoordinate(data.coordinate, zoomLevel: UInt(11.5), animated: true)
             WeatherInfo.currentCityID = data.cityID
             parentController.searchBar.hideSelf()
             parentController.searchResultList.removeCities()
@@ -108,19 +109,36 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     var displaying = false
     var displayTimeCount = 0
 
-
+    var previousCamera: MKMapCamera!
+    var mapChangingTimer: NSTimer!
     
-    func mapView(mapView: MAMapView!, regionDidChangeAnimated animated: Bool) {
-        
-        if zoomLevel > CGFloat(maximumZoomLevel){
-            setZoomLevel(CGFloat(maximumZoomLevel), animated: false)
-        }else if zoomLevel < CGFloat(minimumZoomLevel){
-            setZoomLevel(CGFloat(minimumZoomLevel), animated: false)
+    func mapRegionIsChanging(timer: NSTimer){
+        // keep checking if it exceed zoom bound
+        if zoomLevel() > UInt(maxZoom){
+            setCenterCoordinate(centerCoordinate, zoomLevel: UInt(maxZoom), animated: false)
+        }else if zoomLevel() < UInt(minZoom){
+            setCenterCoordinate(centerCoordinate, zoomLevel: UInt(minZoom), animated: false)
         }
+    }
+    
+    func mapView(mapView: MKMapView!, regionWillChangeAnimated animated: Bool) {
+        mapChangingTimer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "mapRegionIsChanging:", userInfo: nil, repeats: true)
+        
+        if !animated{
+            parentController.searchBar.hideSelf()
+            parentController.searchResultList.removeCities()
+            if parentController.card.weatherDescriptionBack != nil{
+                parentController.card.hideSelf()
+            }
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
+        mapChangingTimer.invalidate()
         
         let thisLocation = CLLocation(latitude: centerCoordinate.longitude, longitude: centerCoordinate.latitude)
         
-        if zoomLevel >= self.clusterZoom {
+        if zoomLevel() >= self.clusterZoom {
             parentController.searchBar.endLoading()
         }
         
@@ -135,37 +153,35 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
             displayTimeCount = 0
         }
         
-        if prevzoom != zoomLevel{
-            if (zoomLevel < clusterZoom && weatherIcons.count > 0) || (zoomLevel >= clusterZoom && weatherCluster.count > 0){
+        if prevzoom != zoomLevel(){
+            if (zoomLevel() < clusterZoom && weatherIcons.count > 0) || (zoomLevel() >= clusterZoom && weatherCluster.count > 0){
                 clearIcons()
                 displayIcon(mapView.centerCoordinate)
             }
-            prevzoom = zoomLevel
+            prevzoom = zoomLevel()
         }
         
         let previousSize = iconSize
         
-        if zoomLevel > 12.5{
+        if zoomLevel() >= 12{
             iconSize = .XLarge
-        }else if zoomLevel > 11{
+        }else if zoomLevel() >= 11{
             iconSize = .Large
-        }else if zoomLevel > 10{
+        }else if zoomLevel() >= 10{
             iconSize = .Mid
-        }else if zoomLevel >= 9{
+        }else if zoomLevel() >= 9{
             iconSize = .Small
         }else{
             iconSize = .Reduced
         }
         
         changeIconWithTime()
-        
     }
 
     
-    
     func displayCardOnIdle(timer: NSTimer){
         
-        if self.zoomLevel >= self.clusterZoom{
+        if self.zoomLevel() >= self.clusterZoom{
         
             if displayTimeCount < 3{
                 displayTimeCount++
@@ -183,23 +199,16 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         }
     }
     
-    func mapView(mapView: MAMapView!, regionWillChangeAnimated animated: Bool) {
-        // hide board
-        if !animated{
-            parentController.searchBar.hideSelf()
-            parentController.searchResultList.removeCities()
-            if parentController.card.weatherDescriptionBack != nil{
-                parentController.card.hideSelf()
-            }
-        }
-    }
     
     //display the icon on the map
     func displayIcon(center: CLLocationCoordinate2D) {
         
         displaying = true
-        
-        let distance = WeatherMapCalculations.getTheDistanceBased(region)
+    
+        let point1 = convertPoint(CGPointMake(0, 0), toCoordinateFromView: self)
+        let point2 = convertPoint(CGPointMake(frame.width, frame.height), toCoordinateFromView: self)
+
+        let distance = CLLocation(latitude: point1.latitude, longitude: point1.longitude).distanceFromLocation(CLLocation(latitude: point2.latitude, longitude: point2.longitude))
         
         var trees: AnyObject = WeatherInfo.mainTree.neighboursForLocation(center, limitCount: UInt(searchTreeCount))
         
@@ -222,7 +231,7 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
             WeatherInfo.removeTree(tree)
         }
         
-        if zoomLevel >= clusterZoom {
+        if zoomLevel() >= clusterZoom {
             //display all icon
             
             var iconToRemove = weatherIcons
@@ -388,7 +397,7 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         marker.cityID = cityID
         addAnnotation(marker)
         
-        if zoomLevel >= clusterZoom {
+        if zoomLevel() >= clusterZoom {
             weatherIcons.updateValue(marker, forKey: (iconInfo as! QTreeInsertable).cityID)
         }else{
             weatherClusterTree.insertObject(marker)
@@ -397,8 +406,9 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         
     }
     
-    func mapView(mapView: MAMapView!, viewForAnnotation annotation: MAAnnotation!) -> MAAnnotationView! {
-        if annotation.isMemberOfClass(MAPointAnnotation) {
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+        if annotation.isMemberOfClass(MKAnnotationView) {
             
             var iconStr = ""
             
@@ -447,15 +457,16 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
             }
             
             annotationView.image = IconImage.getImageWithNameAndSize(iconStr, size: iconSize)
-
+            
             annotationView.canShowCallout = false     //设置气泡可以弹出，默认为NO
             annotationView.draggable = false;        //设置标注可以拖动，默认为NO
             return annotationView;
         }
         return nil
+
     }
     
-    func mapView(mapView: MAMapView!, didAddAnnotationViews views: [AnyObject]!) {
+    func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!) {
         for annotation in views{
             (annotation as! UIView).transform = CGAffineTransformMakeScale(0.1, 0.1)
             UIView.animateWithDuration(1.5, animations: { () -> Void in
@@ -526,7 +537,7 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
             parentController.searchBar.endLoading()
         }
         
-        if !changeIcon || zoomLevel >= clusterZoom {
+        if !changeIcon || zoomLevel() >= clusterZoom {
             changeIconWithTime()
         }
     }
@@ -537,7 +548,7 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
         
         changeIcon = true
         
-        if zoomLevel >= clusterZoom {
+        if zoomLevel() >= clusterZoom {
             
             replaceCard()
             
@@ -594,14 +605,15 @@ class MapView: MAMapView, MAMapViewDelegate, LocationManagerDelegate, WeatherInf
     
 }
 
-class WeatherMarker: MAPointAnnotation, QTreeInsertable{
+class WeatherMarker: NSObject, MKAnnotation, QTreeInsertable{
     
+    var coordinate: CLLocationCoordinate2D
     var cityID: String!
     var data: AnyObject!
     
     init(position: CLLocationCoordinate2D, cityID: String, info: AnyObject) {
-        super.init()
         coordinate = position
+        super.init()
         data = info
         self.cityID = cityID
     }
@@ -612,15 +624,14 @@ class WeatherMarker: MAPointAnnotation, QTreeInsertable{
     
 }
 
-class WeatherMarkerAnnotation: MAAnnotationView{
+class WeatherMarkerAnnotation: MKAnnotationView{
+
     
-    override init!(annotation: MAAnnotation!, reuseIdentifier: String!) {
+    override init!(annotation: MKAnnotation!, reuseIdentifier: String!) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         image = IconImage.getEmptyImage()
         alpha = 0
     }
-    
-
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -93,11 +93,7 @@ class WeatherMapCalculations: NSObject {
         }
     }
     
-    class func getTheDistanceBased(region: MACoordinateRegion) -> Double{
-        let location = CLLocation(latitude: region.center.latitude + region.span.latitudeDelta / 2, longitude: region.center.longitude + region.span.longitudeDelta / 2)
-        return location.distanceFromLocation(CLLocation(latitude: region.center.latitude - region.span.latitudeDelta / 2, longitude: region.center.longitude - region.span.longitudeDelta / 2))
-    }
-    
+
     /*
     // get the weather around according to map center and zoom
     class func getWeatherAround(mapCenter:CLLocationCoordinate2D, zoom: Float)->[CLLocationCoordinate2D]{
