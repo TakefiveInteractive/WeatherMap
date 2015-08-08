@@ -42,8 +42,12 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
         if userDefaults.valueForKey("longitude") != nil{
-            setCenterCoordinate(CLLocationCoordinate2DMake(userDefaults.valueForKey("latitude") as! Double, userDefaults.valueForKey("longitude") as! Double), zoomLevel:  prevzoom, animated: true)
+            setCenterCoordinate(CLLocationCoordinate2DMake(userDefaults.valueForKey("latitude") as! Double, userDefaults.valueForKey("longitude") as! Double), zoomLevel: prevzoom, animated: true)
+        }else{
+            setCenterCoordinate(centerCoordinate, zoomLevel: prevzoom, animated: true)
         }
+        
+        
         lastLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
         delegate = self
         

@@ -10,7 +10,8 @@ import UIKit
 import Spring
 
 @objc protocol SearchInformationDelegate: class {
-    optional func addACity(coordinate: AMapGeoPoint, description: String)
+    optional func addACityCN(coordinate: AMapGeoPoint , description: String)
+    optional func addACity(placeID: String, description: String)
     optional func removeCities()
 }
 
@@ -99,19 +100,36 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
             for var index = 0; index < cityNum; index++ {
                 println(response.pois[index])
                 
-                self.delegate?.addACity!((response.pois[index] as! AMapPOI).location, description: (response.pois[index] as! AMapPOI).name)
+                self.delegate?.addACityCN!((response.pois[index] as! AMapPOI).location, description: (response.pois[index] as! AMapPOI).name)
             }
+        }
+    }
+    
+    func gotCityNameAutoComplete(cities: [AnyObject]) {
+        // only display 10 result maximum
+        self.delegate?.removeCities!()
+        var cityNum = cities.count
+        if cityNum > 10{
+            cityNum = 10
+        }
+        for var index = 0; index < cityNum; index++ {
+            self.delegate?.addACity!((cities[index] as! [String: AnyObject])["place_id"] as! String, description: (cities[index] as! [String: AnyObject])["description"] as! String)
         }
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        var placeREq = AMapPlaceSearchRequest()
-        placeREq.keywords = textField.text + string
-        placeREq.types = ["190000","190100","190101", "190102", "190103", "190105", "190104" ,"190200" ,"190203" ,"190202"]
-        placeREq.offset = 8
-        search!.AMapPlaceSearch(placeREq)
-        println(placeREq.keywords)
+        if UserLocation.inChina{
+            var placeREq = AMapPlaceSearchRequest()
+            placeREq.keywords = textField.text + string
+            placeREq.types = ["190000","190100","190101", "190102", "190103", "190105", "190104" ,"190200" ,"190203" ,"190202"]
+            placeREq.offset = 8
+            search!.AMapPlaceSearch(placeREq)
+        }else{
+            var connection = InternetConnection()
+            connection.delegate = self
+            connection.searchCityName(textField.text)
+        }
         return true
 
     }

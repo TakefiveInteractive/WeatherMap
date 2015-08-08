@@ -137,10 +137,11 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
             //get image url
             connection.searchForCityPhotos(location, name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
             
-            var regeoRequest = AMapReGeocodeSearchRequest()
-            regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(location.latitude), longitude: CGFloat(location.longitude))
-            search!.AMapReGoecodeSearch(regeoRequest)
-            
+            if UserLocation.inChina{
+                var regeoRequest = AMapReGeocodeSearchRequest()
+                regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(location.latitude), longitude: CGFloat(location.longitude))
+                search!.AMapReGoecodeSearch(regeoRequest)
+            }
             
             //发起逆地理编码
             
@@ -164,6 +165,10 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                     self.icon.image = UIImage(named: currentIcon)!
                 }
                 self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
+                
+                if !UserLocation.inChina{
+                    self.city.text = (info as! [String: AnyObject])["name"] as? String
+                }
                 
                 self.weatherDescription.text = IconImage.getWeatherInChinese(currentIcon)
 
@@ -208,6 +213,10 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                             self.icon.image = UIImage(named: self.currentIcon)!
                             self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                         }
+                        if !UserLocation.inChina{
+                            self.city.text = (info as! [String: AnyObject])["name"] as? String
+                        }
+                        
                         self.weatherDescription.text = IconImage.getWeatherInChinese(self.currentIcon)
                         UIView.animateWithDuration(0.4, animations: { () -> Void in
                             self.icon.alpha = 1
