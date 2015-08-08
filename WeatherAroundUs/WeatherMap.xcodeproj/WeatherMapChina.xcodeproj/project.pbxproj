@@ -33,6 +33,7 @@
 		421A721D1B03AB7F00B9135A /* 50n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421A71F91B03AB7F00B9135A /* 50n.jpg */; };
 		421A72231B04E8BC00B9135A /* CitySQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421A72221B04E8BC00B9135A /* CitySQL.swift */; };
 		421C5B3F1B1ABF0300A0B9E0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D741AD0B89C00CAD195 /* libz.dylib */; };
+		4223AADB1B7658480020B23B /* MapViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4223AADA1B7658480020B23B /* MapViewExtension.m */; };
 		4237ACAE1AFF1FCC00B80DF7 /* QCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACA51AFF1FCC00B80DF7 /* QCluster.m */; };
 		4237ACAF1AFF1FCC00B80DF7 /* QNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACA71AFF1FCC00B80DF7 /* QNode.m */; };
 		4237ACB01AFF1FCC00B80DF7 /* QTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACAA1AFF1FCC00B80DF7 /* QTree.m */; };
@@ -83,12 +84,7 @@
 		42F093841B175725009BA6A6 /* WeatherDataQTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F093831B175725009BA6A6 /* WeatherDataQTree.swift */; };
 		42F093861B175DAF009BA6A6 /* QtreeSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F093851B175DAF009BA6A6 /* QtreeSerialization.swift */; };
 		42F139FF1B4A782C003D31A3 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F139FE1B4A782C003D31A3 /* libstdc++.6.0.9.dylib */; };
-		42F13A011B4A783A003D31A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A001B4A783A003D31A3 /* Security.framework */; };
-		42F13A031B4A784F003D31A3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A021B4A784F003D31A3 /* CoreTelephony.framework */; };
-		42F13A091B4C3B09003D31A3 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 42F13A081B4C3B09003D31A3 /* AMap.bundle */; };
-		42F13A0A1B4C3B26003D31A3 /* AMap.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A081B4C3B09003D31A3 /* AMap.bundle */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
-		42F860A31B5446D50093E2F8 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A041B4A78E9003D31A3 /* AMapSearchKit.framework */; };
 		8814F8881AEC52250093B037 /* DetailWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814F8871AEC52250093B037 /* DetailWeatherView.swift */; };
 		882AB7E21AECA6B000C1C773 /* returnCurPosButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 882AB7E11AECA6B000C1C773 /* returnCurPosButton.png */; };
 		88888A041AEB4041007EC387 /* DigestWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88888A031AEB4041007EC387 /* DigestWeatherView.swift */; };
@@ -98,14 +94,10 @@
 		B5E257601AEF45B1007B343F /* bkgd.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E2575F1AEF45B1007B343F /* bkgd.png */; };
 		B5E257621AEF4665007B343F /* startScr.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E257611AEF4665007B343F /* startScr.png */; };
 		D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D641AD0B83F00CAD195 /* AVFoundation.framework */; };
-		D5362D671AD0B84800CAD195 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D661AD0B84800CAD195 /* CoreData.framework */; };
 		D5362D691AD0B85300CAD195 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D681AD0B85300CAD195 /* CoreLocation.framework */; };
-		D5362D6B1AD0B85B00CAD195 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D6A1AD0B85B00CAD195 /* CoreText.framework */; };
 		D5362D6D1AD0B86400CAD195 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D6C1AD0B86400CAD195 /* GLKit.framework */; };
-		D5362D6F1AD0B86D00CAD195 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D6E1AD0B86D00CAD195 /* ImageIO.framework */; };
 		D5362D711AD0B88300CAD195 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D701AD0B88300CAD195 /* libc++.dylib */; };
 		D5362D731AD0B89100CAD195 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D721AD0B89100CAD195 /* libicucore.dylib */; };
-		D5362D771AD0B8A400CAD195 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D761AD0B8A400CAD195 /* OpenGLES.framework */; };
 		D5362D791AD0B8AC00CAD195 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D781AD0B8AC00CAD195 /* QuartzCore.framework */; };
 		D5362D7B1AD0B8B600CAD195 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D7A1AD0B8B600CAD195 /* SystemConfiguration.framework */; };
 		E013A29CC0210A2FFC963A73 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7061C7B48DE2F420FC0085AE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -147,6 +139,8 @@
 		421A71F71B03AB7F00B9135A /* 50d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 50d.jpg; sourceTree = "<group>"; };
 		421A71F91B03AB7F00B9135A /* 50n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 50n.jpg; sourceTree = "<group>"; };
 		421A72221B04E8BC00B9135A /* CitySQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySQL.swift; sourceTree = "<group>"; };
+		4223AAD91B7658480020B23B /* MapViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewExtension.h; sourceTree = "<group>"; };
+		4223AADA1B7658480020B23B /* MapViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewExtension.m; sourceTree = "<group>"; };
 		4237ACA41AFF1FCC00B80DF7 /* QCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QCluster.h; path = QTree/QCluster.h; sourceTree = "<group>"; };
 		4237ACA51AFF1FCC00B80DF7 /* QCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QCluster.m; path = QTree/QCluster.m; sourceTree = "<group>"; };
 		4237ACA61AFF1FCC00B80DF7 /* QNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QNode.h; path = QTree/QNode.h; sourceTree = "<group>"; };
@@ -215,7 +209,6 @@
 		42F13A021B4A784F003D31A3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		42F13A041B4A78E9003D31A3 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		42F13A051B4A78E9003D31A3 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
-		42F13A081B4C3B09003D31A3 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
 		42F62E781AD0B84900D494E6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		42F62E7C1AD0BA9100D494E6 /* WeatherAroundUs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherAroundUs-Bridging-Header.h"; sourceTree = "<group>"; };
 		7061C7B48DE2F420FC0085AE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,22 +241,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42F860A31B5446D50093E2F8 /* AMapSearchKit.framework in Frameworks */,
-				42F13A0A1B4C3B26003D31A3 /* AMap.bundle in Frameworks */,
-				42F13A031B4A784F003D31A3 /* CoreTelephony.framework in Frameworks */,
-				42F13A011B4A783A003D31A3 /* Security.framework in Frameworks */,
 				42F139FF1B4A782C003D31A3 /* libstdc++.6.0.9.dylib in Frameworks */,
 				D5362D7B1AD0B8B600CAD195 /* SystemConfiguration.framework in Frameworks */,
 				421C5B3F1B1ABF0300A0B9E0 /* libz.dylib in Frameworks */,
 				D5362D791AD0B8AC00CAD195 /* QuartzCore.framework in Frameworks */,
-				D5362D771AD0B8A400CAD195 /* OpenGLES.framework in Frameworks */,
 				D5362D731AD0B89100CAD195 /* libicucore.dylib in Frameworks */,
 				D5362D711AD0B88300CAD195 /* libc++.dylib in Frameworks */,
-				D5362D6F1AD0B86D00CAD195 /* ImageIO.framework in Frameworks */,
 				D5362D6D1AD0B86400CAD195 /* GLKit.framework in Frameworks */,
-				D5362D6B1AD0B85B00CAD195 /* CoreText.framework in Frameworks */,
 				D5362D691AD0B85300CAD195 /* CoreLocation.framework in Frameworks */,
-				D5362D671AD0B84800CAD195 /* CoreData.framework in Frameworks */,
 				D5362D651AD0B83F00CAD195 /* AVFoundation.framework in Frameworks */,
 				E013A29CC0210A2FFC963A73 /* Pods.framework in Frameworks */,
 			);
@@ -302,6 +287,8 @@
 		4237AC9F1AFF1E8500B80DF7 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				4223AAD91B7658480020B23B /* MapViewExtension.h */,
+				4223AADA1B7658480020B23B /* MapViewExtension.m */,
 				42F093831B175725009BA6A6 /* WeatherDataQTree.swift */,
 				427BAFA41AD0E6F900C87BDE /* MapView.swift */,
 				42AF65631AEB537400E4E550 /* IconImage.swift */,
@@ -365,7 +352,6 @@
 		42D4EDC51A9E7F02006AE807 /* WeatherAroundUs */ = {
 			isa = PBXGroup;
 			children = (
-				42F13A081B4C3B09003D31A3 /* AMap.bundle */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				423838E41B1EB1AA007DC01C /* subtrees.zip */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
@@ -596,7 +582,6 @@
 				423838F51B1EB7CD007DC01C /* 10n.png in Resources */,
 				421A71FC1B03AB7F00B9135A /* 01d.png in Resources */,
 				B5E257601AEF45B1007B343F /* bkgd.png in Resources */,
-				42F13A091B4C3B09003D31A3 /* AMap.bundle in Resources */,
 				421A72051B03AB7F00B9135A /* 03n.jpg in Resources */,
 				423838FD1B1EB80F007DC01C /* 13n.png in Resources */,
 				423839001B1EB837007DC01C /* 50d.png in Resources */,
@@ -732,6 +717,7 @@
 				8FBC72681B3F707D0042C6AC /* Temperature.swift in Sources */,
 				4237ACAF1AFF1FCC00B80DF7 /* QNode.m in Sources */,
 				42D4EDCC1A9E7F02006AE807 /* WeatherAroundUs.xcdatamodeld in Sources */,
+				4223AADB1B7658480020B23B /* MapViewExtension.m in Sources */,
 				88CAEEC11AEB14FC00F73974 /* BasicWeatherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

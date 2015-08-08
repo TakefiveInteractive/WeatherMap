@@ -1,0 +1,6 @@
+framework module MKMapViewZoom {
+  umbrella header "MKMapViewZoom-umbrella.h"
+
+  export *
+  module * { export * }
+}

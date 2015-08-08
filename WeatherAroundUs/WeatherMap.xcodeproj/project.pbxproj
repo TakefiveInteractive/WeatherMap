@@ -33,6 +33,7 @@
 		421A721D1B03AB7F00B9135A /* 50n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 421A71F91B03AB7F00B9135A /* 50n.jpg */; };
 		421A72231B04E8BC00B9135A /* CitySQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421A72221B04E8BC00B9135A /* CitySQL.swift */; };
 		421C5B3F1B1ABF0300A0B9E0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5362D741AD0B89C00CAD195 /* libz.dylib */; };
+		4223AADC1B766FD80020B23B /* WeatherAroundUsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4EDE11A9E7F02006AE807 /* WeatherAroundUsTests.swift */; };
 		4237ACAE1AFF1FCC00B80DF7 /* QCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACA51AFF1FCC00B80DF7 /* QCluster.m */; };
 		4237ACAF1AFF1FCC00B80DF7 /* QNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACA71AFF1FCC00B80DF7 /* QNode.m */; };
 		4237ACB01AFF1FCC00B80DF7 /* QTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 4237ACAA1AFF1FCC00B80DF7 /* QTree.m */; };
@@ -76,7 +77,6 @@
 		42D4EDCE1A9E7F02006AE807 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4EDCD1A9E7F02006AE807 /* ViewController.swift */; };
 		42D4EDD31A9E7F02006AE807 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D4EDD21A9E7F02006AE807 /* Images.xcassets */; };
 		42D4EDD61A9E7F02006AE807 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42D4EDD41A9E7F02006AE807 /* LaunchScreen.xib */; };
-		42D4EDE21A9E7F02006AE807 /* WeatherAroundUsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4EDE11A9E7F02006AE807 /* WeatherAroundUsTests.swift */; };
 		42D961991AE5FF850082352E /* NewclockPin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 42D961981AE5FF850082352E /* NewclockPin1.png */; };
 		42D9619B1AE600830082352E /* NewclockPin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 42D9619A1AE600830082352E /* NewclockPin2.png */; };
 		42D9638A1ADC407900FC75C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D963891ADC407900FC75C3 /* Main.storyboard */; };
@@ -85,10 +85,7 @@
 		42F139FF1B4A782C003D31A3 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F139FE1B4A782C003D31A3 /* libstdc++.6.0.9.dylib */; };
 		42F13A011B4A783A003D31A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A001B4A783A003D31A3 /* Security.framework */; };
 		42F13A031B4A784F003D31A3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A021B4A784F003D31A3 /* CoreTelephony.framework */; };
-		42F13A091B4C3B09003D31A3 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 42F13A081B4C3B09003D31A3 /* AMap.bundle */; };
-		42F13A0A1B4C3B26003D31A3 /* AMap.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A081B4C3B09003D31A3 /* AMap.bundle */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
-		42F860A31B5446D50093E2F8 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A041B4A78E9003D31A3 /* AMapSearchKit.framework */; };
 		8814F8881AEC52250093B037 /* DetailWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814F8871AEC52250093B037 /* DetailWeatherView.swift */; };
 		882AB7E21AECA6B000C1C773 /* returnCurPosButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 882AB7E11AECA6B000C1C773 /* returnCurPosButton.png */; };
 		88888A041AEB4041007EC387 /* DigestWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88888A031AEB4041007EC387 /* DigestWeatherView.swift */; };
@@ -170,7 +167,6 @@
 		423838FE1B1EB837007DC01C /* 50d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50d.png; sourceTree = "<group>"; };
 		423838FF1B1EB837007DC01C /* 50n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50n.png; sourceTree = "<group>"; };
 		423839021B1EB8A9007DC01C /* 02n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02n.png; sourceTree = "<group>"; };
-		4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
 		42466A8A1AE4D3FE00E0BD4B /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		42466A8C1AE5466A00E0BD4B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		42466A8F1AE5961100E0BD4B /* TimeLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
@@ -185,7 +181,6 @@
 		424F5A2D1ADF46BD00B09FBA /* ImageCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
 		426880281AEDC5E000F0EC16 /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		4268802A1AEDD34200F0EC16 /* ImageScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerView.swift; sourceTree = "<group>"; };
-		427BAF711AD0C30B00C87BDE /* HanekeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HanekeSwift.framework; path = "Pods/../build/Debug-iphoneos/Pods/HanekeSwift.framework"; sourceTree = "<group>"; };
 		427BAFA41AD0E6F900C87BDE /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		427BAFA91AD0E71100C87BDE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		427BAFAB1AD0EBBF00C87BDE /* slayer11.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = slayer11.ttf; sourceTree = "<group>"; };
@@ -208,14 +203,9 @@
 		42D963891ADC407900FC75C3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		42F093831B175725009BA6A6 /* WeatherDataQTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataQTree.swift; sourceTree = "<group>"; };
 		42F093851B175DAF009BA6A6 /* QtreeSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QtreeSerialization.swift; sourceTree = "<group>"; };
-		42F139FA1B4A77EA003D31A3 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = ../../AMapSearchKit.framework; sourceTree = "<group>"; };
-		42F139FB1B4A77EA003D31A3 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = ../../MAMapKit.framework; sourceTree = "<group>"; };
 		42F139FE1B4A782C003D31A3 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		42F13A001B4A783A003D31A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42F13A021B4A784F003D31A3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		42F13A041B4A78E9003D31A3 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
-		42F13A051B4A78E9003D31A3 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
-		42F13A081B4C3B09003D31A3 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
 		42F62E781AD0B84900D494E6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		42F62E7C1AD0BA9100D494E6 /* WeatherAroundUs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherAroundUs-Bridging-Header.h"; sourceTree = "<group>"; };
 		7061C7B48DE2F420FC0085AE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,8 +238,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42F860A31B5446D50093E2F8 /* AMapSearchKit.framework in Frameworks */,
-				42F13A0A1B4C3B26003D31A3 /* AMap.bundle in Frameworks */,
 				42F13A031B4A784F003D31A3 /* CoreTelephony.framework in Frameworks */,
 				42F13A011B4A783A003D31A3 /* Security.framework in Frameworks */,
 				42F139FF1B4A782C003D31A3 /* libstdc++.6.0.9.dylib in Frameworks */,
@@ -365,7 +353,6 @@
 		42D4EDC51A9E7F02006AE807 /* WeatherAroundUs */ = {
 			isa = PBXGroup;
 			children = (
-				42F13A081B4C3B09003D31A3 /* AMap.bundle */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				423838E41B1EB1AA007DC01C /* subtrees.zip */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
@@ -474,15 +461,9 @@
 		7AD6E77C29B17734BE286BBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				42F13A041B4A78E9003D31A3 /* AMapSearchKit.framework */,
-				42F13A051B4A78E9003D31A3 /* MAMapKit.framework */,
 				42F13A021B4A784F003D31A3 /* CoreTelephony.framework */,
 				42F13A001B4A783A003D31A3 /* Security.framework */,
 				42F139FE1B4A782C003D31A3 /* libstdc++.6.0.9.dylib */,
-				42F139FA1B4A77EA003D31A3 /* AMapSearchKit.framework */,
-				42F139FB1B4A77EA003D31A3 /* MAMapKit.framework */,
-				4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */,
-				427BAF711AD0C30B00C87BDE /* HanekeSwift.framework */,
 				D5362D7A1AD0B8B600CAD195 /* SystemConfiguration.framework */,
 				D5362D781AD0B8AC00CAD195 /* QuartzCore.framework */,
 				D5362D761AD0B8A400CAD195 /* OpenGLES.framework */,
@@ -596,7 +577,6 @@
 				423838F51B1EB7CD007DC01C /* 10n.png in Resources */,
 				421A71FC1B03AB7F00B9135A /* 01d.png in Resources */,
 				B5E257601AEF45B1007B343F /* bkgd.png in Resources */,
-				42F13A091B4C3B09003D31A3 /* AMap.bundle in Resources */,
 				421A72051B03AB7F00B9135A /* 03n.jpg in Resources */,
 				423838FD1B1EB80F007DC01C /* 13n.png in Resources */,
 				423839001B1EB837007DC01C /* 50d.png in Resources */,
@@ -740,7 +720,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D4EDE21A9E7F02006AE807 /* WeatherAroundUsTests.swift in Sources */,
+				4223AADC1B766FD80020B23B /* WeatherAroundUsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,7 +900,7 @@
 				INFOPLIST_FILE = WeatherAroundUsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = WeatherMapTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMapChina.app/WeatherMapChina";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMap.app/WeatherMap";
 			};
 			name = Debug;
 		};
@@ -935,7 +915,7 @@
 				INFOPLIST_FILE = WeatherAroundUsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = WeatherMapTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMapChina.app/WeatherMapChina";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMap.app/WeatherMap";
 			};
 			name = Release;
 		};

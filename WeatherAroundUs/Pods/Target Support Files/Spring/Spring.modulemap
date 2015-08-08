@@ -1,0 +1,6 @@
+framework module Spring {
+  umbrella header "Spring-umbrella.h"
+
+  export *
+  module * { export * }
+}

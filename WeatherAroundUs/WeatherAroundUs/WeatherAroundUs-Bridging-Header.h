@@ -6,9 +6,8 @@
 #import <Shimmer/FBShimmering.h>
 //#import <FMDB/FMDB.h>
 #import <ZipArchive/ZipArchive.h>
-#import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchAPI.h>
 #import "QTree.h"
 #import "QTreeInsertable.h"
 #import "QCluster.h"
-
+#import <MKMapViewZoom/MKMapView+ZoomLevel.h>

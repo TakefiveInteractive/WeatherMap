@@ -1,0 +1,1 @@
+MKMAPVIEWZOOM_OTHER_LDFLAGS = -framework "MapKit"

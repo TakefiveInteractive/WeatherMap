@@ -137,10 +137,11 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
             //get image url
             connection.searchForCityPhotos(location, name: ((WeatherInfo.citiesAroundDict[cityID] as! [String: AnyObject])["name"] as? String)!, cityID: cityID)
             
-            var regeoRequest = AMapReGeocodeSearchRequest()
-            regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(location.latitude), longitude: CGFloat(location.longitude))
-            search!.AMapReGoecodeSearch(regeoRequest)
-            
+            if UserLocation.inChina{
+                var regeoRequest = AMapReGeocodeSearchRequest()
+                regeoRequest.location = AMapGeoPoint.locationWithLatitude(CGFloat(location.latitude), longitude: CGFloat(location.longitude))
+                search!.AMapReGoecodeSearch(regeoRequest)
+            }
             
             //发起逆地理编码
             
@@ -165,7 +166,18 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                 }
                 self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                 
-                self.weatherDescription.text = IconImage.getWeatherInChinese(currentIcon)
+                if !UserLocation.inChina{
+                    self.city.text = (info as! [String: AnyObject])["name"] as? String
+                }
+                
+                if UserLocation.inChina{
+                    self.weatherDescription.text = IconImage.getWeatherInChinese(currentIcon)
+                }else{
+                    self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                    if WeatherInfo.forcastMode {
+                        self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                    }
+                }
 
                 weatherDescriptionBack.center = weatherDescriptionBackCenter
                 weatherDescriptionBack.animation = "slideLeft"
@@ -208,7 +220,19 @@ class CardView: DesignableView, ImageCacheDelegate, InternetConnectionDelegate, 
                             self.icon.image = UIImage(named: self.currentIcon)!
                             self.temperature.text = "\(temp)°C / \(WeatherMapCalculations.degreeToF(temp))°F"
                         }
-                        self.weatherDescription.text = IconImage.getWeatherInChinese(self.currentIcon)
+                        if !UserLocation.inChina{
+                            self.city.text = (info as! [String: AnyObject])["name"] as? String
+                        }
+                        
+                        if UserLocation.inChina{
+                            self.weatherDescription.text = IconImage.getWeatherInChinese(self.currentIcon)
+                        }else{
+                            self.weatherDescription.text = (((info as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                            if WeatherInfo.forcastMode {
+                                self.weatherDescription.text = ((((WeatherInfo.citiesForcast[cityID] as! [AnyObject])[self.parentViewController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+                            }
+                        }
+                        
                         UIView.animateWithDuration(0.4, animations: { () -> Void in
                             self.icon.alpha = 1
                             self.temperature.alpha = 1

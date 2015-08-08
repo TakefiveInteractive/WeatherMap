@@ -1,0 +1,5 @@
+#include "Shimmer.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/Shimmer" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AMapSearch" "${PODS_ROOT}/Headers/Public/AMapSearch/AMapSearchKit"
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

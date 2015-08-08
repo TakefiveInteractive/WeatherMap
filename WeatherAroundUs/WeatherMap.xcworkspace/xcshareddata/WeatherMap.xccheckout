@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EBACCD32-0F8A-4407-B74A-BDC2CB31191A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WeatherMap</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>13B2DA26DA1DF3C52437CFFAC1E1759E8E72A0DD</key>
+		<string>https://github.com/TakefiveInteractive/WeatherMap.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>WeatherAroundUs/WeatherMap.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>13B2DA26DA1DF3C52437CFFAC1E1759E8E72A0DD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/TakefiveInteractive/WeatherMap.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>13B2DA26DA1DF3C52437CFFAC1E1759E8E72A0DD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>13B2DA26DA1DF3C52437CFFAC1E1759E8E72A0DD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WeatherMap</string>
+		</dict>
+	</array>
+</dict>
+</plist>
