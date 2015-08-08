@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDelegate {
+class ViewController: UIViewController, InternetConnectionDelegate {
 
     @IBOutlet var clockButton: ClockView!
     @IBOutlet var mapView: MapView!
@@ -40,6 +40,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         returnBut.parentController = self
         searchBar.parentController = self
         card.parentViewController = self
+        
         
         returnCurrentPositionButton.alpha = 0
         var tapGestureRecoYu = UITapGestureRecognizer(target: self, action: "tappedCard:")
@@ -75,6 +76,9 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         
         mapView.shouldDisplayCard = true
         mapView.replaceCard()
+        
+        mapView.displayIcon(mapView.centerCoordinate)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,7 +90,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
         if segue.identifier == "cityDetailSegue" {
             let toView = segue.destinationViewController as! CityDetailViewController
             toView.cityID = WeatherInfo.currentCityID
-            
+            toView.cityName = card.city.text!
+
             if card.imageUrlReady {
                 toView.tempImage = card.smallImage.image
             }else{
@@ -114,17 +119,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, InternetConnectionDe
     }
     
     @IBAction func returnFromWeatherDetail(segue:UIStoryboardSegue) {
-        let camera = GMSCameraPosition(target: mapView.camera.target, zoom: 12, bearing: mapView.camera.bearing, viewingAngle: mapView.camera.viewingAngle)
-        mapView.animateToCameraPosition(camera)
-        var iconsData = WeatherInfo.getNearestIcons(mapView.camera.target)
+        mapView.setZoomLevel(12, animated: true)
+        var iconsData = WeatherInfo.getNearestIcons(mapView.centerCoordinate)
         WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
     }
     
     @IBAction func returnCurrentPositionButtonDidPressed(sender: DesignableButton) {
         
         if UserLocation.centerLocation != nil{
-            let camera = GMSCameraPosition(target: UserLocation.centerLocation.coordinate, zoom: 12, bearing: mapView.camera.bearing, viewingAngle: mapView.camera.viewingAngle)
-            mapView.animateToCameraPosition(camera)
+            mapView.setZoomLevel(11.5, atPivot: mapView.convertCoordinate(UserLocation.centerLocation.coordinate, toPointToView: mapView), animated: true)
             var iconsData = WeatherInfo.getNearestIcons(UserLocation.centerLocation.coordinate)
             WeatherInfo.searchWeather(iconsData as! [WeatherDataQTree])
         }

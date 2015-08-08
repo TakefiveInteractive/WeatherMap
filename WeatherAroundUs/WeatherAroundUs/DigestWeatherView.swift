@@ -40,7 +40,7 @@ class DigestWeatherView: DesignableView {
         let shimmerWeatherDescription = FBShimmeringView(frame: CGRectMake(0, 26, line.frame.width / 2, 30))
         labelView.addSubview(shimmerWeatherDescription)
         let cityDisplay = SpringLabel(frame: CGRectMake(0, 0, line.frame.width / 2, 30))
-        cityDisplay.text = (WeatherInfo.citiesAroundDict[parentController.cityID] as! [String: AnyObject])["name"]! as? String
+        cityDisplay.text = parentController.cityName
         cityDisplay.textAlignment = .Left
         cityDisplay.font = UIFont(name: "AvenirNext-Medium", size: 18)
         cityDisplay.adjustsFontSizeToFitWidth = true
@@ -73,10 +73,10 @@ class DigestWeatherView: DesignableView {
         
         //digest the main weather of the day
         let mainWeather = SpringLabel(frame: CGRectMake(0, beginY + self.frame.height / 5 + 18 - beginY, line.frame.width / 2 + 10, self.frame.height / 2))
-        mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 17)
         mainWeather.textAlignment = .Left
         mainWeather.textColor = UIColor.whiteColor()
-        mainWeather.text = (todayWeather["description"] as? String)?.capitalizedString
+        mainWeather.text = IconImage.getWeatherInChinese(todayWeather["icon"] as! String)
         labelView.addSubview(mainWeather)
         mainWeather.animation = "fadeIn"
         mainWeather.delay = 0.3

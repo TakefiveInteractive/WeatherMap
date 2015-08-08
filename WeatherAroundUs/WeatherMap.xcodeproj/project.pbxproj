@@ -82,7 +82,13 @@
 		42D9638A1ADC407900FC75C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D963891ADC407900FC75C3 /* Main.storyboard */; };
 		42F093841B175725009BA6A6 /* WeatherDataQTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F093831B175725009BA6A6 /* WeatherDataQTree.swift */; };
 		42F093861B175DAF009BA6A6 /* QtreeSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F093851B175DAF009BA6A6 /* QtreeSerialization.swift */; };
+		42F139FF1B4A782C003D31A3 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F139FE1B4A782C003D31A3 /* libstdc++.6.0.9.dylib */; };
+		42F13A011B4A783A003D31A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A001B4A783A003D31A3 /* Security.framework */; };
+		42F13A031B4A784F003D31A3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A021B4A784F003D31A3 /* CoreTelephony.framework */; };
+		42F13A091B4C3B09003D31A3 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 42F13A081B4C3B09003D31A3 /* AMap.bundle */; };
+		42F13A0A1B4C3B26003D31A3 /* AMap.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A081B4C3B09003D31A3 /* AMap.bundle */; };
 		42F62E791AD0B84900D494E6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F62E781AD0B84900D494E6 /* CardView.swift */; };
+		42F860A31B5446D50093E2F8 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F13A041B4A78E9003D31A3 /* AMapSearchKit.framework */; };
 		8814F8881AEC52250093B037 /* DetailWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8814F8871AEC52250093B037 /* DetailWeatherView.swift */; };
 		882AB7E21AECA6B000C1C773 /* returnCurPosButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 882AB7E11AECA6B000C1C773 /* returnCurPosButton.png */; };
 		88888A041AEB4041007EC387 /* DigestWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88888A031AEB4041007EC387 /* DigestWeatherView.swift */; };
@@ -202,6 +208,14 @@
 		42D963891ADC407900FC75C3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		42F093831B175725009BA6A6 /* WeatherDataQTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataQTree.swift; sourceTree = "<group>"; };
 		42F093851B175DAF009BA6A6 /* QtreeSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QtreeSerialization.swift; sourceTree = "<group>"; };
+		42F139FA1B4A77EA003D31A3 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = ../../AMapSearchKit.framework; sourceTree = "<group>"; };
+		42F139FB1B4A77EA003D31A3 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = ../../MAMapKit.framework; sourceTree = "<group>"; };
+		42F139FE1B4A782C003D31A3 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		42F13A001B4A783A003D31A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		42F13A021B4A784F003D31A3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		42F13A041B4A78E9003D31A3 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
+		42F13A051B4A78E9003D31A3 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
+		42F13A081B4C3B09003D31A3 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
 		42F62E781AD0B84900D494E6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		42F62E7C1AD0BA9100D494E6 /* WeatherAroundUs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherAroundUs-Bridging-Header.h"; sourceTree = "<group>"; };
 		7061C7B48DE2F420FC0085AE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,8 +248,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				421C5B3F1B1ABF0300A0B9E0 /* libz.dylib in Frameworks */,
+				42F860A31B5446D50093E2F8 /* AMapSearchKit.framework in Frameworks */,
+				42F13A0A1B4C3B26003D31A3 /* AMap.bundle in Frameworks */,
+				42F13A031B4A784F003D31A3 /* CoreTelephony.framework in Frameworks */,
+				42F13A011B4A783A003D31A3 /* Security.framework in Frameworks */,
+				42F139FF1B4A782C003D31A3 /* libstdc++.6.0.9.dylib in Frameworks */,
 				D5362D7B1AD0B8B600CAD195 /* SystemConfiguration.framework in Frameworks */,
+				421C5B3F1B1ABF0300A0B9E0 /* libz.dylib in Frameworks */,
 				D5362D791AD0B8AC00CAD195 /* QuartzCore.framework in Frameworks */,
 				D5362D771AD0B8A400CAD195 /* OpenGLES.framework in Frameworks */,
 				D5362D731AD0B89100CAD195 /* libicucore.dylib in Frameworks */,
@@ -346,11 +365,12 @@
 		42D4EDC51A9E7F02006AE807 /* WeatherAroundUs */ = {
 			isa = PBXGroup;
 			children = (
-				8FBC72671B3F707D0042C6AC /* Temperature.swift */,
+				42F13A081B4C3B09003D31A3 /* AMap.bundle */,
 				42D963891ADC407900FC75C3 /* Main.storyboard */,
 				423838E41B1EB1AA007DC01C /* subtrees.zip */,
 				42D4EDC81A9E7F02006AE807 /* AppDelegate.swift */,
 				429B95CA1AD198E400851D32 /* WeatherInformation.swift */,
+				8FBC72671B3F707D0042C6AC /* Temperature.swift */,
 				421A72221B04E8BC00B9135A /* CitySQL.swift */,
 				42D4EDCD1A9E7F02006AE807 /* ViewController.swift */,
 				421A721F1B047ECB00B9135A /* DetailViews */,
@@ -454,6 +474,13 @@
 		7AD6E77C29B17734BE286BBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42F13A041B4A78E9003D31A3 /* AMapSearchKit.framework */,
+				42F13A051B4A78E9003D31A3 /* MAMapKit.framework */,
+				42F13A021B4A784F003D31A3 /* CoreTelephony.framework */,
+				42F13A001B4A783A003D31A3 /* Security.framework */,
+				42F139FE1B4A782C003D31A3 /* libstdc++.6.0.9.dylib */,
+				42F139FA1B4A77EA003D31A3 /* AMapSearchKit.framework */,
+				42F139FB1B4A77EA003D31A3 /* MAMapKit.framework */,
 				4242E6C31AD1D69B00D7EB9A /* Alamofire.framework */,
 				427BAF711AD0C30B00C87BDE /* HanekeSwift.framework */,
 				D5362D7A1AD0B8B600CAD195 /* SystemConfiguration.framework */,
@@ -569,6 +596,7 @@
 				423838F51B1EB7CD007DC01C /* 10n.png in Resources */,
 				421A71FC1B03AB7F00B9135A /* 01d.png in Resources */,
 				B5E257601AEF45B1007B343F /* bkgd.png in Resources */,
+				42F13A091B4C3B09003D31A3 /* AMap.bundle in Resources */,
 				421A72051B03AB7F00B9135A /* 03n.jpg in Resources */,
 				423838FD1B1EB80F007DC01C /* 13n.png in Resources */,
 				423839001B1EB837007DC01C /* 50d.png in Resources */,
@@ -831,6 +859,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+					/Users/kedanli/Downloads,
 				);
 				INFOPLIST_FILE = WeatherAroundUs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -860,6 +889,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+					/Users/kedanli/Downloads,
 				);
 				INFOPLIST_FILE = WeatherAroundUs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -890,7 +920,7 @@
 				INFOPLIST_FILE = WeatherAroundUsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = WeatherMapTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMap.app/WeatherMap";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMapChina.app/WeatherMapChina";
 			};
 			name = Debug;
 		};
@@ -905,7 +935,7 @@
 				INFOPLIST_FILE = WeatherAroundUsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = WeatherMapTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMap.app/WeatherMap";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherMapChina.app/WeatherMapChina";
 			};
 			name = Release;
 		};

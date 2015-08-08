@@ -32,7 +32,8 @@ class CityDetailViewController: UIViewController, UIScrollViewDelegate, Internet
     
     var tempImage: UIImage!
     
-    var cityID = String()
+    var cityID = ""
+    var cityName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

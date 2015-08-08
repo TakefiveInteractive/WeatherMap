@@ -2,9 +2,9 @@ platform :ios, '8.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-workspace 'WeatherMap'
+workspace 'WeatherMapChina'
 
-xcodeproj 'WeatherMap'
+xcodeproj 'WeatherMapChina'
 
 use_frameworks!
 
@@ -16,5 +16,8 @@ pod 'SwiftyJSON'
 pod 'Shimmer'
 pod 'HanekeSwift'#, :git => 'https://github.com/Haneke/HanekeSwift.git'
 #pod 'FMDB', :git => 'https://github.com/robertmryan/fmdb.git'
-pod 'GoogleMaps'
 
+#pod 'AMap2DMap' #2D地图SDK(2D地图和3D地图不能同时使用)
+#pod 'AMapSearch' #搜索服务SDK
+pod 'AMap3DMap'
+#由于需要更改AMap中的部分设定，因此不适用pod管理AMap。

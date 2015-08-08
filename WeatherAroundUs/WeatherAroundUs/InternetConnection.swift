@@ -166,10 +166,11 @@ class InternetConnection: NSObject {
         
     }
     
+    /*
     // get small city image
-    func googleSearch(location: CLLocationCoordinate2D, name: String, cityID: String){
+    func mamapSearch(location: CLLocationCoordinate2D, name: String, cityID: String){
         
-        var geocoder = GMSGeocoder()
+        var geocoder = AMapSearchAPI()
         geocoder.reverseGeocodeCoordinate(location) { (response, error) -> Void in
             
             if error == nil && response != nil{
@@ -212,7 +213,7 @@ class InternetConnection: NSObject {
             }
         }
     }
-    
+    */
     func getPictureURLOfACity(searchText: String, cityID: String){
         
         let url = NSURL(string: "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=\(searchText)&imgtype=photo&imgsz=xxlarge%7Chuge&imgc=color&hl=en")!

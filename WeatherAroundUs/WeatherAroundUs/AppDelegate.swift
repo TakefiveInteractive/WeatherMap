@@ -11,7 +11,11 @@ import CoreData
 import ZipArchive
 
 
+let APIKey: String = "8f28406aa71c51fa819c12d996637e9c"
+
+
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -44,7 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             zip.UnzipCloseFile()
         }
         
-        GMSServices.provideAPIKey("AIzaSyDLBiMd9DqNtqeRc2DMtoeYL4hg53wUEw8")
+        MAMapServices.sharedServices().apiKey = APIKey
+
         UserLocation.setup()
         IconImage.setupPhotos()
 

@@ -10,11 +10,11 @@ import UIKit
 import Spring
 
 @objc protocol SearchInformationDelegate: class {
-    optional func addACity(placeID: String, description: String)
+    optional func addACity(coordinate: AMapGeoPoint, description: String)
     optional func removeCities()
 }
 
-class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDelegate{
+class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDelegate,AMapSearchDelegate{
     
     var parentController: ViewController!
 
@@ -30,6 +30,8 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
 
     var textPath: UIBezierPath!
     var searchPath: UIBezierPath!
+
+    var search: AMapSearchAPI?
 
     var delegate : SearchInformationDelegate?
     var hide = true
@@ -50,6 +52,8 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
         loadingDraw.alpha = 0
         addLoadingAnimation()
         changeCircleSize()
+        search = AMapSearchAPI(searchKey: APIKey, delegate: self)
+
     }
 
     var isLoading = false
@@ -79,17 +83,7 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
     }
     // got the search result from internet
     
-    func gotCityNameAutoComplete(cities: [AnyObject]) {
-        // only display 10 result maximum
-        self.delegate?.removeCities!()
-        var cityNum = cities.count
-        if cityNum > 10{
-            cityNum = 10
-        }
-        for var index = 0; index < cityNum; index++ {
-            self.delegate?.addACity!((cities[index] as! [String: AnyObject])["place_id"] as! String, description: (cities[index] as! [String: AnyObject])["description"] as! String)
-        }
-    }
+    
     
     func hideSelf(){
 
@@ -97,10 +91,27 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
 
     }
     
+    func onPlaceSearchDone(request: AMapPlaceSearchRequest!, response: AMapPlaceSearchResponse!) {
+        self.delegate?.removeCities!()
+        
+        if response.pois != nil{
+            var cityNum = response.pois.count
+            for var index = 0; index < cityNum; index++ {
+                println(response.pois[index])
+                
+                self.delegate?.addACity!((response.pois[index] as! AMapPOI).location, description: (response.pois[index] as! AMapPOI).name)
+            }
+        }
+    }
+    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var connection = InternetConnection()
-        connection.delegate = self
-        connection.searchCityName(textField.text)
+        
+        var placeREq = AMapPlaceSearchRequest()
+        placeREq.keywords = textField.text + string
+        placeREq.types = ["190000","190100","190101", "190102", "190103", "190105", "190104" ,"190200" ,"190203" ,"190202"]
+        placeREq.offset = 8
+        search!.AMapPlaceSearch(placeREq)
+        println(placeREq.keywords)
         return true
 
     }

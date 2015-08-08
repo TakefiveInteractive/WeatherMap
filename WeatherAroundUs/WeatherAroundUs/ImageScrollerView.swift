@@ -108,7 +108,6 @@ class ImageScrollerView: UIScrollView, ImageCacheDelegate, MotionManagerDelegate
             
             if !isAnimating{
                 self.isAnimating = true
-                
                 UIView.animateWithDuration(0.05, animations: { () -> Void in
                     self.contentOffset = CGPointMake(animateIndex, 0)
                     }, completion: { (finish) -> Void in

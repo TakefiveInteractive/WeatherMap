@@ -173,7 +173,7 @@ class WeatherInformation: NSObject, InternetConnectionDelegate{
         var arr = [AnyObject]()
         
         for tree in currentSearchTrees.keys.array{
-            arr = arr + currentSearchTrees[tree]!.getObjectsInRegion(region, minNonClusteredSpan: min(region.span.latitudeDelta, region.span.longitudeDelta) / 6)!
+            arr = arr + currentSearchTrees[tree]!.getObjectsInRegion(region, minNonClusteredSpan: min(region.span.latitudeDelta, region.span.longitudeDelta) / 5)!
         }
         
         return arr

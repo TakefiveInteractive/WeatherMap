@@ -39,18 +39,18 @@ class DetailWeatherView: UIView {
         } else {
             windDirectionStr = "\(windDirection-270)° SE"
         }
-        createTwoUILabelInMiddle("Wind Speed:", secondString: "\(windSpeed) mps", yPosition: beginY)
+        createTwoUILabelInMiddle("风速:", secondString: "\(windSpeed) mps", yPosition: beginY)
         
         beginY += blockHeight
-        createTwoUILabelInMiddle("Wind Direction:", secondString: windDirectionStr, yPosition: beginY)
+        createTwoUILabelInMiddle("风向:", secondString: windDirectionStr, yPosition: beginY)
         
         beginY += blockHeight + spaceHeight
         let clouds = (forecastInfos[0] as [String: AnyObject])["speed"] as! Int
-        createTwoUILabelInMiddle("Cloudiness:", secondString: "\(clouds) %", yPosition: beginY)
+        createTwoUILabelInMiddle("云量:", secondString: "\(clouds) %", yPosition: beginY)
         
         beginY += blockHeight
         let humanity = (forecastInfos[0] as [String: AnyObject])["humidity"] as! Int
-        createTwoUILabelInMiddle("Humidity:", secondString: "\(humanity) %", yPosition: beginY)
+        createTwoUILabelInMiddle("湿度:", secondString: "\(humanity) %", yPosition: beginY)
         
         beginY += blockHeight + spaceHeight
         let precipitation = (forecastInfos[0] as [String: AnyObject])["rain"] as? Double
@@ -58,19 +58,19 @@ class DetailWeatherView: UIView {
         if precipitation != nil {
             precipitationStr = "\(precipitation! * 100) mm"
         }
-        createTwoUILabelInMiddle("Precipitation:", secondString: precipitationStr, yPosition: beginY)
+        createTwoUILabelInMiddle("降雨量:", secondString: precipitationStr, yPosition: beginY)
         
         beginY += blockHeight
         let pressure = (forecastInfos[0] as [String: AnyObject])["pressure"] as! Int
-        createTwoUILabelInMiddle("Pressure:", secondString: "\(pressure) hPa", yPosition: beginY)
+        createTwoUILabelInMiddle("气压:", secondString: "\(pressure) hPa", yPosition: beginY)
         
         beginY += blockHeight + spaceHeight
         let mornTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["morn"]!.doubleValue
-        createTwoUILabelInMiddle("Morning Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(mornTemperature, unit: parentController.unit)) °" + unit, yPosition: beginY)
+        createTwoUILabelInMiddle("早晨气温:", secondString: "\(WeatherMapCalculations.kelvinConvert(mornTemperature, unit: parentController.unit)) °" + unit, yPosition: beginY)
         
         beginY += blockHeight
         let nightTemperature = (forecastInfos[0]["temp"] as! [String: AnyObject])["night"]!.doubleValue
-        createTwoUILabelInMiddle("Night Temp:", secondString: "\(WeatherMapCalculations.kelvinConvert(nightTemperature, unit: parentController.unit)) °" + unit, yPosition: beginY)
+        createTwoUILabelInMiddle("夜晚气温:", secondString: "\(WeatherMapCalculations.kelvinConvert(nightTemperature, unit: parentController.unit)) °" + unit, yPosition: beginY)
         
     }
     
