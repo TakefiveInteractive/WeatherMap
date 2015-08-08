@@ -61,6 +61,9 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
     func gotCurrentLocation(location: CLLocation) {
         if currentLocation == nil{
             setCenterCoordinate(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), animated: true)
+            if !parentController.card.hide && parentController.card.weatherDescriptionBack != nil{
+                parentController.card.hideSelf()
+            }
         }
         currentLocation = location
     }
