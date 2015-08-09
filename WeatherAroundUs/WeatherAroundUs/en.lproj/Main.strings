@@ -8,8 +8,5 @@
 /* Class = "UILabel"; text = "Weather"; ObjectID = "ant-hH-KYp"; */
 "ant-hH-KYp.text" = "Weather";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "eu2-Ii-RtU"; */
-"eu2-Ii-RtU.text" = "Label";
-
 /* Class = "UILabel"; text = "Forecast"; ObjectID = "ngr-eb-lax"; */
 "ngr-eb-lax.text" = "Forecast";

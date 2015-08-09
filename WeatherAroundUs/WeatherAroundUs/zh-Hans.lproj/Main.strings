@@ -5,11 +5,8 @@
 /* Class = "UILabel"; text = " °F"; ObjectID = "M5C-g9-bKn"; */
 "M5C-g9-bKn.text" = " °F";
 
-/* Class = "UILabel"; text = "天气"; ObjectID = "ant-hH-KYp"; */
+/* Class = "UILabel"; text = "Weather"; ObjectID = "ant-hH-KYp"; */
 "ant-hH-KYp.text" = "天气";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "eu2-Ii-RtU"; */
-"eu2-Ii-RtU.text" = "Label";
-
-/* Class = "UILabel"; text = "预报"; ObjectID = "ngr-eb-lax"; */
+/* Class = "UILabel"; text = "Forecast"; ObjectID = "ngr-eb-lax"; */
 "ngr-eb-lax.text" = "预报";
