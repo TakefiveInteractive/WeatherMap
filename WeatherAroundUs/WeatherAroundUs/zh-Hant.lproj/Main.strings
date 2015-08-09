@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "详细"; ObjectID = "KGo-et-DsR"; */
+"KGo-et-DsR.text" = "詳細";
+
+/* Class = "UILabel"; text = " °F"; ObjectID = "M5C-g9-bKn"; */
+"M5C-g9-bKn.text" = " °F";
+
+/* Class = "UILabel"; text = "天气"; ObjectID = "ant-hH-KYp"; */
+"ant-hH-KYp.text" = "天氣";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eu2-Ii-RtU"; */
+"eu2-Ii-RtU.text" = "Label";
+
+/* Class = "UILabel"; text = "预报"; ObjectID = "ngr-eb-lax"; */
+"ngr-eb-lax.text" = "預報";
