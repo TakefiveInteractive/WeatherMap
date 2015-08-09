@@ -418,6 +418,8 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        annotation.superclass
+        println()
         
         if annotation.isMemberOfClass(MKAnnotationView) {
             
@@ -637,6 +639,11 @@ class WeatherMarker: NSObject, MKAnnotation, QTreeInsertable{
 
 class WeatherMarkerAnnotation: MKAnnotationView{
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        image = IconImage.getEmptyImage()
+        alpha = 0
+    }
     
     override init!(annotation: MKAnnotation!, reuseIdentifier: String!) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
