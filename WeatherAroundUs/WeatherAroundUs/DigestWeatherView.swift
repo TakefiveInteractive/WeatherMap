@@ -76,7 +76,12 @@ class DigestWeatherView: DesignableView {
         mainWeather.font = UIFont(name: "AvenirNext-Regular", size: 17)
         mainWeather.textAlignment = .Left
         mainWeather.textColor = UIColor.whiteColor()
-        mainWeather.text = IconImage.getWeatherInChinese(todayWeather["icon"] as! String)
+        
+        if UserLocation.inChina{
+            mainWeather.text = IconImage.getWeatherInChinese(todayWeather["icon"] as! String)
+        }else{
+            mainWeather.text = (((WeatherInfo.citiesAroundDict[WeatherInfo.currentCityID] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["main"]?.capitalizedString
+        }
         labelView.addSubview(mainWeather)
         mainWeather.animation = "fadeIn"
         mainWeather.delay = 0.3
