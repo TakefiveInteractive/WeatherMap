@@ -11,7 +11,7 @@ import CoreData
 import ZipArchive
 
 
-let APIKey: String = "8f28406aa71c51fa819c12d996637e9c"
+let APIKey: String = "24ca61756c2b67cf28c5cc3bef430e2c"
 
 
 @UIApplicationMain
