@@ -32,6 +32,7 @@ class ClockView: DesignableView{
     var parentController: ViewController!
 
     var dragger: UIPanGestureRecognizer!
+    var dragger2: UIPanGestureRecognizer!
 
     var timer = NSTimer()
     var timerCount = 0
@@ -165,6 +166,8 @@ class ClockView: DesignableView{
                 }){ (finish) -> Void in
                     self.dragger = UIPanGestureRecognizer(target: self, action: "dragged:")
                     self.blurView.addGestureRecognizer(self.dragger)
+                    self.dragger2 = UIPanGestureRecognizer(target: self, action: "dragged:")
+                    self.timeDisplay.addGestureRecognizer(self.dragger2)
             }
 
         }
@@ -178,6 +181,7 @@ class ClockView: DesignableView{
             clockIndex = 0
             futureDay = 0
             blurView.removeGestureRecognizer(dragger)
+            timeDisplay.removeGestureRecognizer(dragger)
             dateIndicatorDisappear()
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.transform = CGAffineTransformMakeScale(1, 1)

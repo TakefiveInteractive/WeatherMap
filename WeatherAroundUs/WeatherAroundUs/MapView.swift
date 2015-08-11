@@ -552,6 +552,8 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
         }
     }
     
+    var pending = false
+    
     //if day == -1  display current time
 
     func changeIconWithTime(){
@@ -560,6 +562,7 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
         changeIcon = true
         
         if zoomLevel() >= clusterZoom {
+            pending = false
             
             replaceCard()
             
@@ -604,7 +607,13 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
                 
                 }) { (done) -> Void in
                     self.changeIcon = false
-            }                }
+                    if self.pending{
+                        self.changeIconWithTime()
+                    }
+            }
+        }else{
+            pending = true
+        }
     }
 
     
