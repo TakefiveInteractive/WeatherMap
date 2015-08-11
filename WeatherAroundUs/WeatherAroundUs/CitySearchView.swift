@@ -98,7 +98,6 @@ class CitySearchView: DesignableView, UITextFieldDelegate, InternetConnectionDel
         if response.pois != nil{
             var cityNum = response.pois.count
             for var index = 0; index < cityNum; index++ {
-                println(response.pois[index])
                 
                 self.delegate?.addACityCN!((response.pois[index] as! AMapPOI).location, description: (response.pois[index] as! AMapPOI).name)
             }

@@ -54,7 +54,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AMapSearchDelegate{
     
     func onReGeocodeSearchDone(request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
 
-        println(response)
         if response.regeocode.addressComponent.district == "" && response.regeocode.addressComponent.city == "" {
             inChina = false
         }else{
