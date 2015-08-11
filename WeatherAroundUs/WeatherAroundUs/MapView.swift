@@ -167,7 +167,6 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
         if prevzoom != zoomLevel(){
             if (zoomLevel() < clusterZoom && weatherIcons.count > 0) || (zoomLevel() >= clusterZoom && weatherCluster.count > 0){
                 clearIcons()
-                displayIcon(mapView.centerCoordinate)
             }
             prevzoom = zoomLevel()
         }
@@ -348,7 +347,7 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
         changeIconWithTime()
         
 
-        UIView.animateWithDuration(0.1, delay: 0.4, options: nil, animations: { () -> Void in
+        UIView.animateWithDuration(0.01, delay: 0.99, options: nil, animations: { () -> Void in
             
             }) { (done) -> Void in
                 self.displaying = false
@@ -418,8 +417,6 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        annotation.superclass
-        println()
         
         if annotation.isMemberOfClass(MKAnnotationView) {
             
@@ -559,6 +556,7 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
 
     func changeIconWithTime(){
         
+        if !changeIcon{
         changeIcon = true
         
         if zoomLevel() >= clusterZoom {
@@ -602,7 +600,11 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
             }
             
         }
-        self.changeIcon = false
+            UIView.animateWithDuration(0.01, delay: 0.49, options: nil, animations: { () -> Void in
+                
+                }) { (done) -> Void in
+                    self.changeIcon = false
+            }                }
     }
 
     
