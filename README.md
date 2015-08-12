@@ -8,8 +8,7 @@ WeatherMap combines weather info with map display. You can view the ongoing weat
 
 **Weather Map is now supporting Gaode Map（高德地图）in China!**
 
-Checkout the ```ChinaVersion``` branch for our pre-release!
-
+Now the ```master``` branch contains **both** Gaode Map & Google Map!
 <img src="./ScreenShots/chn1.png" width="320" height="550"/>
 <img src="./ScreenShots/chn2.png" width="320" height="550"/>
 
@@ -23,7 +22,6 @@ cd WeatherMap
 
 ```fish
 git checkout ChinaVersion
-
 ```
 
 2) Install pods
@@ -45,7 +43,7 @@ open WeatherMap.xcworkspace
 * iOS 8
 
 ## Download:
-Now Weather Map version 2.0 is available in App Store.
+Now Weather Map version 2.2.0 is available in App Store.
 
 
 [Weather Map iTunes page](https://itunes.apple.com/us/app/weather-map-take-five-interactive/id990141529?mt=8)
