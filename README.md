@@ -15,26 +15,26 @@ Checkout the ```ChinaVersion``` branch for our pre-release!
 
 ## Usage
 1) Download the repository
-```
-$ git clone https://github.com/TakefiveInteractive/WeatherMap.git
-$ cd WeatherMap
+```fish
+git clone https://github.com/TakefiveInteractive/WeatherMap.git
+cd WeatherMap
 ```
   For checkout the ```ChinaVersion```
 
-```
-$ git checkout ChinaVersion
+```fish
+git checkout ChinaVersion
 
 ```
 
 2) Install pods
-```
-$ cd WeatherAroundUs
-$ pod install
+```fish
+cd WeatherAroundUs
+pod install
 ```
 
 3) Open the workspace
-```
-$ open WeatherMap.xcworkspace
+```fish
+open WeatherMap.xcworkspace
 ```
 
 3) Compile and run the app in simulator
