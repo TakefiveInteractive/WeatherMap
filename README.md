@@ -1,14 +1,12 @@
 # Weather Map - [Takefive Interactive](http://takefiveinteractive.com)
 WeatherMap combines weather info with map display. You can view the ongoing weather change of an entire region in one scroll! It is a tool designed for those of you who road-trip or travel around often.
 
+**Now the ```master``` branch contains both Gaode Map & Google Map!**
+
 <img src="./ScreenShots/screenshot1.png" width="320" height="550"/>
 <img src="./ScreenShots/screenshot2.png" width="320" height="550"/>
 <img src="./ScreenShots/screenshot3.png" width="320" height="550"/>
 <img src="./ScreenShots/screenshot4.png" width="320" height="550"/>
-
-**Weather Map is now supporting Gaode Map（高德地图）in China!**
-
-Now the ```master``` branch contains **both** Gaode Map & Google Map!
 <img src="./ScreenShots/chn1.png" width="320" height="550"/>
 <img src="./ScreenShots/chn2.png" width="320" height="550"/>
 
