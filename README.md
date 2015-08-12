@@ -7,7 +7,6 @@ WeatherMap combines weather info with map display. You can view the ongoing weat
 <img src="./ScreenShots/screenshot4.png" width="320" height="550"/>
 
 **Weather Map is now supporting Gaode Map（高德地图）in China!**
-
 Now the ```master``` branch contains **both** Gaode Map & Google Map!
 <img src="./ScreenShots/chn1.png" width="320" height="550"/>
 <img src="./ScreenShots/chn2.png" width="320" height="550"/>
