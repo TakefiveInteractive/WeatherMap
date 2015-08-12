@@ -547,7 +547,7 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
             parentController.searchBar.endLoading()
         }
         
-        if !changeIcon || zoomLevel() >= clusterZoom {
+        if zoomLevel() >= clusterZoom {
             changeIconWithTime()
         }
     }
@@ -559,60 +559,55 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
     func changeIconWithTime(){
         
         if !changeIcon{
-        changeIcon = true
-        
-        if zoomLevel() >= clusterZoom {
-            pending = false
             
-            replaceCard()
+            changeIcon = true
             
-            for cityID in weatherIcons.keys.array {
+            if zoomLevel() >= clusterZoom {
                 
-                //set to low priority    performance issue
-                //dispatch_after(DISPATCH_TIME_NOW, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { () -> Void in
-                if !WeatherInfo.forcastMode {
-                    if WeatherInfo.citiesAroundDict[cityID] != nil && weatherIcons[cityID] != nil && viewForAnnotation(weatherIcons[cityID]!) != nil{
-                        let iconStr = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
-                        if viewForAnnotation(weatherIcons[cityID]!) != nil{
-
-                            viewForAnnotation(weatherIcons[cityID]!).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                replaceCard()
+                
+                for cityID in weatherIcons.keys.array {
+                    
+                    //set to low priority    performance issue
+                    //dispatch_after(DISPATCH_TIME_NOW, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { () -> Void in
+                    if !WeatherInfo.forcastMode {
+                        if WeatherInfo.citiesAroundDict[cityID] != nil && weatherIcons[cityID] != nil && viewForAnnotation(weatherIcons[cityID]!) != nil{
+                            let iconStr = (((WeatherInfo.citiesAroundDict[cityID] as! [String : AnyObject])["weather"] as! [AnyObject])[0] as! [String : AnyObject])["icon"] as! String
+                            if viewForAnnotation(weatherIcons[cityID]!) != nil{
+                                
+                                viewForAnnotation(weatherIcons[cityID]!).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                            }
                         }
-                    }
-                }else{
-                    if WeatherInfo.citiesForcast[cityID] != nil && weatherIcons[cityID] != nil{
-                        let iconStr = (((WeatherInfo.citiesForcast[cityID]![self.parentController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
-                        if viewForAnnotation(weatherIcons[cityID]!) != nil{
-                            viewForAnnotation(weatherIcons[cityID]!).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                    }else{
+                        if WeatherInfo.citiesForcast[cityID] != nil && weatherIcons[cityID] != nil{
+                            let iconStr = (((WeatherInfo.citiesForcast[cityID]![self.parentController.clockButton.futureDay] as! [String: AnyObject])["weather"] as! [AnyObject])[0] as! [String: AnyObject])["icon"] as! String
+                            if viewForAnnotation(weatherIcons[cityID]!) != nil{
+                                viewForAnnotation(weatherIcons[cityID]!).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
+                            }
                         }
                     }
                 }
-            }
-            
-        }else{
-            //change icon display
-            for marker in weatherCluster{
-                //set to low priority    performance issue
                 
+            }else{
+                //change icon display
+                for marker in weatherCluster{
+                    //set to low priority    performance issue
+                    
                     if marker.data.isMemberOfClass(QCluster){
                         let iconStr = getMaxWeatherInCluster(marker.data as! QCluster)
                         if viewForAnnotation(marker) != nil{
                             viewForAnnotation(marker).image = IconImage.getImageWithNameAndSize(iconStr, size: self.iconSize)
                         }
                     }
-
+                    
+                }
+                
             }
-            
-        }
             UIView.animateWithDuration(0.01, delay: 0.49, options: nil, animations: { () -> Void in
                 
                 }) { (done) -> Void in
                     self.changeIcon = false
-                    if self.pending{
-                        self.changeIconWithTime()
-                    }
             }
-        }else{
-            pending = true
         }
     }
 
