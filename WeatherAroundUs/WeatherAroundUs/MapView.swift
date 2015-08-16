@@ -78,7 +78,9 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
     }
     
     func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
-        selectIcon(view)
+        if !view.isKindOfClass(NSClassFromString("MKModernUserLocationView")){
+            selectIcon(view)
+        }
     }
     override func didAddSubview(subview: UIView) {
         if subview.isKindOfClass(NSClassFromString("MKCompassView")){
