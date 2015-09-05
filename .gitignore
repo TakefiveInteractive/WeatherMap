@@ -1,7 +1,7 @@
 # Logs
 logs
 *.log
-
+Thumbs.db
 # Runtime data
 pids
 *.pid
