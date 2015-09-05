@@ -460,6 +460,7 @@ class MapView: MKMapView, MKMapViewDelegate, LocationManagerDelegate, WeatherInf
             if (annotationView == nil)
             {
                 annotationView = WeatherMarkerAnnotation(annotation: annotation, reuseIdentifier: iconStr)
+                annotationView.frame.size = CGSizeMake(50, 50)
             }
             
             if iconStr == "empty"{
